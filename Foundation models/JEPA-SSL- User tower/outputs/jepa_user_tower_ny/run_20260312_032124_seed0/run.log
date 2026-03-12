@@ -1,0 +1,5 @@
+2026-03-12 03:21:24,729 | INFO | Starting run
+2026-03-12 03:21:24,730 | INFO | Run dir: outputs/jepa_user_tower_ny/run_20260312_032124_seed0
+2026-03-12 03:21:25,841 | INFO | Loaded CSVs: train=190740, valid=27201, test=54427
+2026-03-12 03:22:25,938 | INFO | Vocab sizes: {'venues': 45805, 'users': 6930, 'cats': 586}
+2026-03-12 03:22:25,938 | INFO | Trail length stats: {'train': {'count': 64428, 'min': 2, 'p25': 2.0, 'median': 2.0, 'p75': 3.0, 'p90': 5.0, 'max': 59, 'mean': 2.9605140622089774}, 'valid': {'count': 9204, 'min': 2, 'p25': 2.0, 'median': 2.0, 'p75': 3.0, 'p90': 5.0, 'max': 35, 'mean': 2.9553455019556716}, 'test': {'count': 18409, 'min': 2, 'p25': 2.0, 'median': 2.0, 'p75': 3.0, 'p90': 5.0, 'max': 116, 'mean': 2.956542995274051}}
