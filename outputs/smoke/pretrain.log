@@ -1,0 +1,39 @@
+00:38:13 | INFO    | gemma.pretrain | device=cpu | pretrain_cities=['synth_a']
+00:38:13 | INFO    | gemma.pretrain | [start] build global category vocab
+00:38:13 | INFO    | gemma.pretrain | [done ] build global category vocab (0.0s)
+00:38:13 | INFO    | gemma.pretrain | category vocab: 11 categories, 11 primary
+00:38:13 | INFO    | gemma.pretrain | [start] load + featurise source cities
+00:38:13 | INFO    | gemma.pretrain | [synth_a/train] 1734 check-ins, 60 users, 503 trails
+00:38:13 | INFO    | gemma.pretrain | [done ] load + featurise source cities (0.1s)
+00:38:13 | INFO    | gemma.pretrain | continuous feature dim = 797
+00:38:13 | INFO    | gemma.pretrain | pretrain windows source (diaries usable) = 60
+00:38:13 | INFO    | gemma.pretrain | trainable params = 0.25M
+00:38:14 | INFO    | gemma.pretrain | e0 s0 lr0.00e+00 loss=5.124 pred=1.868 cat=2.452 act=3.201 sig=0.000 | cat@1=0.107 act@1=0.024  [sig off: warmup]
+00:38:14 | INFO    | gemma.pretrain | == epoch 0 mean: loss=5.1242 pred=1.8676 cat=2.4524 cat_top1=0.1071 act_top1=0.0238
+00:38:15 | INFO    | gemma.pretrain | == epoch 1 mean: loss=5.1750 pred=1.8792 cat=2.4889 cat_top1=0.0909 act_top1=0.0227
+00:38:15 | INFO    | gemma.pretrain | == epoch 2 mean: loss=5.1299 pred=1.8549 cat=2.4678 cat_top1=0.1412 act_top1=0.0353
+00:38:15 | INFO    | gemma.pretrain | == epoch 3 mean: loss=5.1570 pred=1.9414 cat=2.4090 cat_top1=0.1013 act_top1=0.0127
+00:38:15 | INFO    | gemma.pretrain | == epoch 4 mean: loss=5.2538 pred=1.8764 cat=2.5682 cat_top1=0.1163 act_top1=0.0698
+00:38:15 | INFO    | gemma.pretrain | == epoch 5 mean: loss=5.1669 pred=1.9123 cat=2.4474 cat_top1=0.1134 act_top1=0.0103
+00:38:15 | INFO    | gemma.pretrain | == epoch 6 mean: loss=5.1500 pred=1.8649 cat=2.4785 cat_top1=0.1000 act_top1=0.0250
+00:38:16 | INFO    | gemma.pretrain | == epoch 7 mean: loss=5.0916 pred=1.8405 cat=2.4466 cat_top1=0.1011 act_top1=0.0674
+00:38:16 | INFO    | gemma.pretrain | == epoch 8 mean: loss=5.2016 pred=1.8332 cat=2.5629 cat_top1=0.0805 act_top1=0.0230
+00:38:16 | INFO    | gemma.pretrain | == epoch 9 mean: loss=5.1995 pred=1.8226 cat=2.5702 cat_top1=0.1026 act_top1=0.0513
+00:38:16 | INFO    | gemma.pretrain | == epoch 10 mean: loss=5.0931 pred=1.7725 cat=2.5151 cat_top1=0.1111 act_top1=0.0617
+00:38:16 | INFO    | gemma.pretrain | == epoch 11 mean: loss=5.0223 pred=1.7838 cat=2.4324 cat_top1=0.1304 act_top1=0.0435
+00:38:17 | INFO    | gemma.pretrain | == epoch 12 mean: loss=5.0454 pred=1.7503 cat=2.4878 cat_top1=0.0976 act_top1=0.0488
+00:38:17 | INFO    | gemma.pretrain | == epoch 13 mean: loss=4.9708 pred=1.7328 cat=2.4306 cat_top1=0.0938 act_top1=0.0469
+00:38:17 | INFO    | gemma.pretrain | == epoch 14 mean: loss=4.8851 pred=1.7373 cat=2.3397 cat_top1=0.1807 act_top1=0.0241
+00:38:17 | INFO    | gemma.pretrain | == epoch 15 mean: loss=4.9444 pred=1.7230 cat=2.4168 cat_top1=0.1471 act_top1=0.0588
+00:38:17 | INFO    | gemma.pretrain | == epoch 16 mean: loss=4.8713 pred=1.6929 cat=2.3697 cat_top1=0.1795 act_top1=0.0256
+00:38:17 | INFO    | gemma.pretrain | == epoch 17 mean: loss=4.9131 pred=1.6125 cat=2.4955 cat_top1=0.0814 act_top1=0.0000
+00:38:18 | INFO    | gemma.pretrain | == epoch 18 mean: loss=4.8561 pred=1.5830 cat=2.4685 cat_top1=0.0986 act_top1=0.0845
+00:38:18 | INFO    | gemma.pretrain | == epoch 19 mean: loss=4.7761 pred=1.6044 cat=2.3654 cat_top1=0.1628 act_top1=0.0233
+00:38:18 | INFO    | gemma.pretrain | e20 s20 lr1.00e-04 loss=4.815 pred=1.541 cat=2.465 act=3.212 sig=0.022 | cat@1=0.091 act@1=0.026
+00:38:18 | INFO    | gemma.pretrain | == epoch 20 mean: loss=4.8153 pred=1.5413 cat=2.4651 cat_top1=0.0909 act_top1=0.0260
+00:38:18 | INFO    | gemma.pretrain | == epoch 21 mean: loss=4.7635 pred=1.5544 cat=2.4025 cat_top1=0.0972 act_top1=0.0417
+00:38:18 | INFO    | gemma.pretrain | == epoch 22 mean: loss=4.8225 pred=1.5493 cat=2.4646 cat_top1=0.1250 act_top1=0.0227
+00:38:18 | INFO    | gemma.pretrain | == epoch 23 mean: loss=4.6220 pred=1.4842 cat=2.3300 cat_top1=0.1446 act_top1=0.0361
+00:38:19 | INFO    | gemma.pretrain | == epoch 24 mean: loss=4.6755 pred=1.4663 cat=2.4013 cat_top1=0.1410 act_top1=0.0256
+00:38:19 | INFO    | gemma.pretrain | saved checkpoint -> outputs/smoke/gemma.pt
+00:38:19 | INFO    | gemma.pretrain | saved transition matrix (K=24) -> outputs/smoke/transition_matrix.npy
