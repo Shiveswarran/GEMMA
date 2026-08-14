@@ -74,6 +74,7 @@ class CheckinEmbed(nn.Module):
         self.norm = nn.LayerNorm(d_model)
 
     def forward(self, cont, cid, pid, types, mask):
+        cont = torch.nan_to_num(cont, nan=0.0, posinf=0.0, neginf=0.0)
         base = self.cont_proj(cont) + self.cat_emb(cid) \
             + self.primary_emb(pid) + self.type_emb(types)
         role, role_dist = self.role(base, mask)

@@ -53,11 +53,14 @@ class NameEmbedder:
 
         if backend == "sbert":
             try:
+                import torch
                 from sentence_transformers import SentenceTransformer
-                self._model = SentenceTransformer(model_name)
+                dev = "cuda" if torch.cuda.is_available() else "cpu"
+                self._model = SentenceTransformer(model_name, device=dev)
                 self.dim = self._model.get_sentence_embedding_dimension()
                 if logger:
-                    logger.info(f"SBERT loaded: {model_name} (dim={self.dim})")
+                    logger.info(f"SBERT loaded: {model_name} "
+                                f"(dim={self.dim}, device={dev})")
             except Exception as e:  # pragma: no cover - depends on environment
                 if logger:
                     logger.warning(
@@ -139,6 +142,31 @@ class CategoryVocab:
         self.cat2id: Dict[str, int] = {"<unk>": 0}
         self.primary2id: Dict[str, int] = {"<unk>": 0}
         self.id2cat: List[str] = ["<unk>"]
+        self.use_coarse: bool = False
+        self.cat2coarse: Dict[str, int] = {}
+        self._n_coarse: int = 0
+
+    def build_coarse(self, embedder, n_coarse: int, logger=None) -> "CategoryVocab":
+        """Induce a COARSE, city-invariant activity label space by clustering
+        category-name embeddings.  Massive-STEPS categories are flat leaf labels
+        (no hierarchy separator), so a semantic clustering is what yields the
+        ~10-20 shared "activities" the factorization premise needs."""
+        from sklearn.cluster import KMeans
+        cats = [c for c in self.id2cat if c != "<unk>"]
+        if len(cats) <= n_coarse:                    # already coarse enough
+            self.cat2coarse = {c: i + 1 for i, c in enumerate(cats)}
+            self._n_coarse = len(cats) + 1
+            self.use_coarse = True
+            return self
+        emb = embedder.encode(cats)
+        km = KMeans(n_clusters=n_coarse, random_state=42, n_init=10).fit(emb)
+        self.cat2coarse = {c: int(lbl) + 1 for c, lbl in zip(cats, km.labels_)}
+        self._n_coarse = n_coarse + 1                 # +1 for <unk> = 0
+        self.use_coarse = True
+        if logger:
+            logger.info(f"coarse activity space: {len(cats)} categories "
+                        f"-> {n_coarse} activities (semantic clusters)")
+        return self
 
     def _primary_of(self, cat: str) -> str:
         c = str(cat)
@@ -162,6 +190,8 @@ class CategoryVocab:
         return self.cat2id.get(str(cat), 0)
 
     def primary_id(self, cat: str) -> int:
+        if self.use_coarse:
+            return self.cat2coarse.get(str(cat), 0)
         return self.primary2id.get(self._primary_of(str(cat)), 0)
 
     @property
@@ -170,7 +200,7 @@ class CategoryVocab:
 
     @property
     def n_primary(self) -> int:
-        return len(self.primary2id)
+        return self._n_coarse if self.use_coarse else len(self.primary2id)
 
 
 # --------------------------------------------------------------------------- #

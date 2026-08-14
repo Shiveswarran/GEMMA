@@ -40,7 +40,16 @@ def main():
     vocab = build_category_vocab(cfg.data_root,
                                  list(dict.fromkeys(cfg.pretrain_cities
                                                     + cfg.transfer_cities)))
-    id2primary = {v: k for k, v in vocab.primary2id.items()}
+    embedder = NameEmbedder(cfg.name_embedder, cfg.sbert_model, cfg.name_emb_dim,
+                            os.path.join(cfg.out_dir, "cache_text"), logger)
+    if getattr(cfg, "coarse_activities", False):
+        vocab.build_coarse(embedder, cfg.n_coarse_activities, logger)
+        id2primary = {}
+        for cat, cid in vocab.cat2coarse.items():
+            id2primary.setdefault(cid, []).append(cat)
+        id2primary = {k: ", ".join(v[:4]) for k, v in id2primary.items()}
+    else:
+        id2primary = {v: k for k, v in vocab.primary2id.items()}
 
     model = GEMMA(cfg, ckpt["cont_dim"], ckpt["n_cat"], ckpt["n_primary"])
     model.load_state_dict(ckpt["model"])
@@ -54,8 +63,6 @@ def main():
         logger.info(f"   activity {a:>2} -> activity {b:>2}   P={T[a,b]:.3f}")
 
     # 2) prototype -> category composition
-    embedder = NameEmbedder(cfg.name_embedder, cfg.sbert_model, cfg.name_emb_dim,
-                            os.path.join(cfg.out_dir, "cache_text"), logger)
     city = build_city_data(cfg.data_root, args.city, "train", vocab, embedder,
                            cfg, logger, filter_users=False)
     rows = np.arange(len(city.cont))

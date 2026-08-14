@@ -46,6 +46,14 @@ def parse_args():
     p.add_argument("--n_activities", type=int, default=64)
     p.add_argument("--name_embedder", default="sbert", choices=["sbert", "hash"])
     p.add_argument("--device", default="auto")
+    p.add_argument("--num_workers", type=int, default=8,
+                   help="DataLoader workers (set to #CPU cores available)")
+    p.add_argument("--no_amp", action="store_true",
+                   help="disable mixed precision (AMP on by default on CUDA)")
+    p.add_argument("--compile", action="store_true",
+                   help="torch.compile the model (opt-in; slow first step)")
+    p.add_argument("--max_seq_len", type=int, default=None,
+                   help="cap per-user concatenated diary length (memory/speed)")
     p.add_argument("--out_dir", default="outputs")
     p.add_argument("--run_name", default="gemma_run")
     p.add_argument("--seed", type=int, default=42)
@@ -59,7 +67,10 @@ def main():
         transfer_cities=a.transfer, epochs=a.epochs, batch_size=a.batch_size,
         d_model=a.d_model, n_activities=a.n_activities,
         name_embedder=a.name_embedder, device=a.device, out_dir=a.out_dir,
-        run_name=a.run_name, seed=a.seed)
+        run_name=a.run_name, seed=a.seed,
+        num_workers=a.num_workers, amp=(not a.no_amp), compile=a.compile)
+    if a.max_seq_len is not None:
+        cfg.max_user_seq_len = a.max_seq_len
 
     # -- pretrain -----------------------------------------------------------
     model, vocab, embedder, run_dir = pretrain(cfg)

@@ -138,6 +138,7 @@ def build_candidates(model, city, cfg, device):
     pop = pt["count"] / pt["count"].sum()
     return {"venue_ids": pt["venue_ids"], "latent": latents, "q": qpois,
             "primary_id": pt["primary_id"], "pop": pop.astype(np.float32),
+            "lat": pt["lat"], "lon": pt["lon"],
             "id2row": pt["id2row"]}
 
 
@@ -170,15 +171,27 @@ def _retrieval_next(summ, pool_Q, pool_NEXT, k):
 
 
 def score_and_rank(summ, next_cat, cand, prefix_vids, cfg,
-                   use_popularity=False):
+                   use_popularity=False, query_latlon=None):
     """Return ranked candidate row indices (descending) for one query.
 
     Activity match = probability the model assigns to each candidate POI's
-    (shared) primary category under the predicted next-category grammar."""
+    (shared) primary category under the predicted next-category grammar.
+    A geographic proximity prior (next POI is usually near the last one) is
+    the strongest city-agnostic realization signal and is added when the
+    query's last-check-in location is known."""
     act_match = next_cat[cand["primary_id"]]             # (P,) transferable
     sem = cand["latent"] @ (summ / (np.linalg.norm(summ) + 1e-6))
     score = ((1 - cfg.sem_blend) * _zscore(act_match)
              + cfg.sem_blend * _zscore(sem))
+    if cfg.geo_prior > 0 and query_latlon is not None \
+            and np.isfinite(query_latlon).all():
+        qlat, qlon = query_latlon
+        # equirectangular approximation (monotonic in true distance, fast)
+        mlat = np.radians((cand["lat"] + qlat) * 0.5)
+        dx = np.radians(cand["lon"] - qlon) * np.cos(mlat)
+        dy = np.radians(cand["lat"] - qlat)
+        dist_km = 6371.0 * np.sqrt(dx * dx + dy * dy)
+        score = score + cfg.geo_prior * _zscore(-np.log1p(dist_km))
     if use_popularity:
         score = score + cfg.popularity_prior * _zscore(cand["pop"])
     if cfg.personal_prior > 0 and prefix_vids:
@@ -236,11 +249,17 @@ def evaluate_city(model, target_city_data, source_pool, cfg, device, logger,
                 + cfg.retrieval_blend * retr)
     next_cat = next_cat / (next_cat.sum(1, keepdims=True) + 1e-8)
 
+    lat_arr = target_city_data.df["latitude"].values.astype(np.float32)
+    lon_arr = target_city_data.df["longitude"].values.astype(np.float32)
+
     ranks, rows = [], []
     for i, t in enumerate(eval_trails):
         prefix_vids = [int(target_city_data.venue_id[r]) for r in t["rows"][:-1]]
+        last_row = t["rows"][-2]                        # last CONTEXT check-in
+        query_latlon = (lat_arr[last_row], lon_arr[last_row])
         order, score = score_and_rank(summ[i], next_cat[i], cand,
-                                       prefix_vids, cfg, use_pop)
+                                       prefix_vids, cfg, use_pop,
+                                       query_latlon=query_latlon)
         truth = truths[i]
         truth_row = cand["id2row"].get(truth, None)
         if truth_row is None:

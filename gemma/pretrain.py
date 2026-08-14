@@ -44,7 +44,21 @@ def pretrain(cfg: GemmaConfig):
     logger = get_logger("gemma.pretrain", os.path.join(run_dir, "pretrain.log"))
     set_seed(cfg.seed)
     device = cfg.resolved_device()
+    use_cuda = device.startswith("cuda")
+    if use_cuda:
+        torch.backends.cuda.matmul.allow_tf32 = True
+        torch.backends.cudnn.allow_tf32 = True
+        torch.backends.cudnn.benchmark = True          # autotune conv/matmul
+    amp_on = bool(cfg.amp) and use_cuda
+    amp_dtype = (torch.bfloat16 if amp_on and torch.cuda.is_bf16_supported()
+                 else torch.float16)
+    # GradScaler is only needed for fp16; bf16 has fp32 range and skips it.
+    scaler = torch.amp.GradScaler(
+        "cuda", enabled=(amp_on and amp_dtype == torch.float16))
     logger.info(f"device={device} | pretrain_cities={cfg.pretrain_cities}")
+    if use_cuda:
+        logger.info(f"amp={amp_on} ({amp_dtype if amp_on else 'off'}) "
+                    f"tf32=on cudnn.benchmark=on num_workers={cfg.num_workers}")
     cfg.to_json(os.path.join(run_dir, "config.json"))
 
     # -- shared category vocab over ALL cities (source + target) ------------
@@ -55,6 +69,9 @@ def pretrain(cfg: GemmaConfig):
                 f"{vocab.n_primary} primary")
 
     embedder = _make_embedder(cfg, logger)
+    if cfg.coarse_activities:
+        vocab.build_coarse(embedder, cfg.n_coarse_activities, logger)
+        logger.info(f"grammar target space: {vocab.n_primary} coarse activities")
 
     # -- build source-city data --------------------------------------------
     cities = []
@@ -69,6 +86,8 @@ def pretrain(cfg: GemmaConfig):
     logger.info(f"pretrain windows source (diaries usable) = {len(ds)}")
     loader = DataLoader(ds, batch_size=cfg.batch_size, shuffle=True,
                         num_workers=cfg.num_workers,
+                        pin_memory=(cfg.pin_memory and use_cuda),
+                        persistent_workers=(cfg.num_workers > 0),
                         collate_fn=partial(collate_windows,
                                            block_max=cfg.mask_block_max),
                         drop_last=len(ds) > cfg.batch_size)
@@ -77,6 +96,9 @@ def pretrain(cfg: GemmaConfig):
     model = GEMMA(cfg, cont_dim, vocab.n_cat, vocab.n_primary).to(device)
     n_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     logger.info(f"trainable params = {n_params/1e6:.2f}M")
+    if cfg.compile and use_cuda:
+        logger.info("torch.compile(model) — first step will be slow (tracing)")
+        model = torch.compile(model)
     opt = torch.optim.AdamW(model.parameters(), lr=cfg.lr,
                             weight_decay=cfg.weight_decay)
     total_steps = max(1, cfg.epochs * len(loader))
@@ -95,14 +117,24 @@ def pretrain(cfg: GemmaConfig):
         use_sig = epoch >= cfg.sigreg_warmup_epochs
         agg = {}
         for it, batch in enumerate(loader):
-            batch = {k: v.to(device) for k, v in batch.items()}
+            batch = {k: v.to(device, non_blocking=True) for k, v in batch.items()}
             for g in opt.param_groups:
                 g["lr"] = cfg.lr * lr_at(gstep)
-            out = model(batch, use_sig=use_sig)
-            opt.zero_grad()
-            out["loss"].backward()
+            opt.zero_grad(set_to_none=True)
+            with torch.autocast(device_type="cuda", dtype=amp_dtype,
+                                enabled=amp_on):
+                out = model(batch, use_sig=use_sig)
+            if not torch.isfinite(out["loss"]):
+                logger.warning(f"e{epoch} s{gstep} non-finite loss "
+                               f"({float(out['loss'])}); skipping step")
+                opt.zero_grad(set_to_none=True)
+                gstep += 1
+                continue
+            scaler.scale(out["loss"]).backward()
+            scaler.unscale_(opt)
             torch.nn.utils.clip_grad_norm_(model.parameters(), cfg.grad_clip)
-            opt.step()
+            scaler.step(opt)
+            scaler.update()
             model.ema_update(cfg.ema_decay)
 
             rec = {k: float(v.detach()) for k, v in out.items()}

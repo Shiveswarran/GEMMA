@@ -153,6 +153,10 @@ def build_city_data(data_root: str, city: str, split: str,
     spat = np.zeros((n, spatial_dim()), dtype=np.float32)
     lat = df["latitude"].values.astype(float)
     lon = df["longitude"].values.astype(float)
+    n_bad = int(np.sum(~np.isfinite(lat)) + np.sum(~np.isfinite(lon)))
+    if n_bad and logger:
+        logger.warning(f"[{city}/{split}] {n_bad} non-finite lat/lon values "
+                       f"-> treated as no-movement (spatial zeroed for those)")
     ts = df["timestamp"].values.astype("datetime64[s]").astype(np.int64)
     trail = df["trail_id"].values
     prev_i = -1
@@ -164,7 +168,11 @@ def build_city_data(data_root: str, city: str, split: str,
         else:
             d = haversine_km(lat[prev_i], lon[prev_i], lat[i], lon[i])
             b = bearing_rad(lat[prev_i], lon[prev_i], lat[i], lon[i])
-            spat[i] = [np.log1p(d), np.sin(b), np.cos(b), 0.0]
+            if not np.isfinite(d):
+                d = 0.0
+            if not np.isfinite(b):
+                b = 0.0
+            spat[i] = [np.log1p(max(d, 0.0)), np.sin(b), np.cos(b), 0.0]
             dt = max(0.0, (ts[i] - ts[prev_i]) / 3600.0)   # hours
             dwell_log[i] = np.log1p(dt)
         prev_i = i
@@ -173,6 +181,8 @@ def build_city_data(data_root: str, city: str, split: str,
     temporal = temporal_features(hour, dow, month, dwell_log, cfg.n_time_harmonics)
 
     cont = np.concatenate([name_emb, cat_emb, temporal, spat], axis=1).astype(np.float32)
+    # final safety net: never let a non-finite feature reach the model
+    cont = np.nan_to_num(cont, nan=0.0, posinf=0.0, neginf=0.0)
 
     # --- per-user diaries (token plan) -------------------------------------
     diaries = _build_diaries(df, cfg.max_user_seq_len)
@@ -235,13 +245,19 @@ def _build_poi_table(df, name_emb, cat_id, primary_id, hour,
     catv = np.zeros(len(uniq), dtype=np.int64)
     primv = np.zeros(len(uniq), dtype=np.int64)
     meanhour = np.zeros(len(uniq), dtype=np.float32)
+    plat = np.zeros(len(uniq), dtype=np.float32)
+    plon = np.zeros(len(uniq), dtype=np.float32)
     count = np.zeros(len(uniq), dtype=np.float32)
+    lat_all = np.nan_to_num(df["latitude"].values.astype(np.float32))
+    lon_all = np.nan_to_num(df["longitude"].values.astype(np.float32))
     for k in range(len(uniq)):
         sel = order[start[k]:end[k]]
         name[k] = name_emb[sel].mean(0)
         catv[k] = np.bincount(cat_id[sel]).argmax()
         primv[k] = np.bincount(primary_id[sel]).argmax()
         meanhour[k] = hour[sel].mean()
+        plat[k] = lat_all[sel].mean()
+        plon[k] = lon_all[sel].mean()
         count[k] = len(sel)
     if cfg.cat_sbert:
         cat_strings = df.drop_duplicates("venue_id").set_index("venue_id")\
@@ -251,6 +267,7 @@ def _build_poi_table(df, name_emb, cat_id, primary_id, hour,
         cat_text = np.zeros((len(uniq), 0), dtype=np.float32)
     return {"venue_ids": uniq, "name_emb": name, "cat_text": cat_text,
             "cat_id": catv, "primary_id": primv, "mean_hour": meanhour,
+            "lat": plat, "lon": plon,
             "count": count, "id2row": {int(v): i for i, v in enumerate(uniq)}}
 
 

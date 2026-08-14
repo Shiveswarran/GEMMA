@@ -33,6 +33,8 @@ class GemmaConfig:
     sbert_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     name_emb_dim: int = 384                 # 384 for MiniLM; auto-set for hash
     cat_sbert: bool = True                  # also embed the category string with SBERT
+    coarse_activities: bool = True          # induce a COARSE shared activity label
+    n_coarse_activities: int = 12           # #coarse activity classes (grammar target)
     n_time_harmonics: int = 4               # Fourier harmonics per cyclic time field
     use_absolute_coords_in_encoder: bool = False  # keep False for city-invariance
     coord_grid_m: float = 500.0             # metres, for optional coarse geo-hashing
@@ -71,13 +73,17 @@ class GemmaConfig:
     seed: int = 42
     device: str = "auto"                    # "auto" | "cpu" | "cuda"
     num_workers: int = 0
+    amp: bool = True                        # mixed precision on CUDA (bf16/fp16)
+    compile: bool = False                   # torch.compile the model (opt-in)
+    pin_memory: bool = True                 # pinned host memory for H2D copies
 
     # ---------------------------------------------------------- transfer
     knn_k: int = 50                         # neighbours in source pool retrieval
     retrieval_blend: float = 0.5            # weight on retrieval vs grammar head
     sem_blend: float = 0.5                  # weight on semantic-sim vs activity-match
     personal_prior: float = 1.0            # bonus for POIs already in the query prefix
-    popularity_prior: float = 0.3           # weight on city popularity prior (few-shot)
+    geo_prior: float = 1.2                  # weight on geographic proximity to last check-in
+    popularity_prior: float = 0.15          # weight on city popularity prior (few-shot)
     few_shot_trails_per_user: int = 1       # labelled target trails added per user
     top_k_save: int = 10                    # how many ranked POIs to persist per trail
     eval_ks: List[int] = field(default_factory=lambda: [1, 5, 10])
