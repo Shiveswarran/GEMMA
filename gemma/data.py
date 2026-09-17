@@ -1,394 +1,265 @@
 """
 gemma.data
 ----------
-Loads Massive-STEPS check-in CSVs and turns them into everything the model
-needs.  Key ideas that follow the paper and the user's design notes:
+Massive-STEPS check-in loading, per-user DIARY construction (all of a user's
+trails joined with a learned [SEP] token so JEPA has a long-enough sequence to
+mask -- the fix for the short-trail problem), city-agnostic spatio-temporal
+features, and the SSL masking strategies (ablation axis).
 
-  * Trails are short (median ~2-3 check-ins), which is too short for a JEPA
-    SSL signal on its own.  We therefore build a **per-user diary**: all of a
-    user's trails, ordered in time, concatenated with a learned [SEP] token
-    between trails (and a [USR] token at the front).  JEPA then predicts masked
-    *future* check-ins across this longer diary, so the user embedding and the
-    activity grammar get a real training signal.
-
-  * The evaluation protocol matches the Massive-STEPS repo exactly: each trail's
-    last check-in is the target; the context is every earlier check-in of that
-    trail; predictions are ranked over the target city's POI vocabulary.
-
-Public objects
---------------
-CityData                 - per-city arrays + diaries + POI table (realization map)
-build_category_vocab     - global category vocab shared across all cities
-PretrainDiaryDataset     - torch Dataset yielding (context, target-block) windows
-collate_windows          - pads/stacks a batch of windows
-CONT_DIM / token type ids
+Split protocol matches the Massive-STEPS repo: a trail's LAST check-in is the
+target, the rest is the context prefix; ranking is over the city POI vocabulary.
 """
 from __future__ import annotations
 
 import os
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Tuple
+from math import atan2, cos, radians, sin, sqrt
+from typing import Dict, List
 
 import numpy as np
 import pandas as pd
+import torch
 
-from .features import (NameEmbedder, CategoryVocab, temporal_features,
-                       temporal_dim, spatial_dim)
-from .utils import haversine_km, bearing_rad
+from .fsq import FSQTaxonomy
 
-# token types
-TT_CHECKIN, TT_SEP, TT_USR = 0, 1, 2
+REQUIRED = ["trail_id", "user_id", "venue_id", "latitude", "longitude",
+            "venue_category", "venue_category_id", "timestamp"]
 
-REQUIRED_COLS = ["trail_id", "user_id", "venue_id", "latitude", "longitude",
-                 "name", "venue_category", "timestamp"]
+TT_CHECKIN, TT_SEP, TT_USR = 0, 1, 2          # token types
 
 
 # --------------------------------------------------------------------------- #
-#  Loading helpers                                                            #
-# --------------------------------------------------------------------------- #
-def _split_path(data_root: str, city: str, split: str) -> str:
-    return os.path.join(data_root, city, f"{city}_checkins_{split}.csv")
+def _path(root, city, split):
+    return os.path.join(root, city, f"{city}_checkins_{split}.csv")
 
 
-def load_city_csv(data_root: str, city: str, split: str) -> pd.DataFrame:
-    path = _split_path(data_root, city, split)
-    if not os.path.exists(path):
-        raise FileNotFoundError(f"Missing {path}")
-    df = pd.read_csv(path)
-    missing = [c for c in REQUIRED_COLS if c not in df.columns]
-    if missing:
-        raise ValueError(f"{path} missing columns {missing}")
+def load_city_csv(root, city, splits) -> pd.DataFrame:
+    splits = [splits] if isinstance(splits, str) else list(splits)
+    frames = []
+    for sp in splits:
+        p = _path(root, city, sp)
+        if os.path.exists(p):
+            frames.append(pd.read_csv(p))
+    if not frames:
+        raise FileNotFoundError(f"no splits {splits} for {city} under {root}")
+    df = pd.concat(frames, ignore_index=True) if len(frames) > 1 else frames[0]
     df["timestamp"] = pd.to_datetime(df["timestamp"], errors="coerce")
-    df = df.dropna(subset=["timestamp", "venue_id"])
+    df = df.dropna(subset=["timestamp", "venue_id"]).reset_index(drop=True)
     return df
 
 
-def _filter_min(df: pd.DataFrame, min_trail_len: int,
-                min_user_trails: int) -> pd.DataFrame:
-    """Drop short trails and low-activity users (repo default: >=2 / >=3)."""
-    tl = df.groupby("trail_id")["venue_id"].transform("size")
-    df = df[tl >= min_trail_len]
-    ut = df.groupby("user_id")["trail_id"].transform("nunique")
-    df = df[ut >= min_user_trails]
-    return df.reset_index(drop=True)
+def haversine_km(a_lat, a_lon, b_lat, b_lon):
+    a_lat, a_lon, b_lat, b_lon = map(radians, [a_lat, a_lon, b_lat, b_lon])
+    d_lat, d_lon = b_lat - a_lat, b_lon - a_lon
+    h = sin(d_lat / 2) ** 2 + cos(a_lat) * cos(b_lat) * sin(d_lon / 2) ** 2
+    return 6371.0 * 2 * atan2(sqrt(h), sqrt(1 - h))
 
 
-def build_category_vocab(data_root: str, cities: List[str],
-                         splits=("train",)) -> CategoryVocab:
-    """Fit ONE global category vocabulary over all cities (shared label space)."""
-    vocab = CategoryVocab()
-    cats: List[str] = []
-    for city in cities:
-        for split in splits:
-            p = _split_path(data_root, city, split)
-            if os.path.exists(p):
-                cats.extend(pd.read_csv(p, usecols=["venue_category"])
-                            ["venue_category"].astype(str).tolist())
-    return vocab.fit(cats)
+def bearing_rad(a_lat, a_lon, b_lat, b_lon):
+    a_lat, b_lat = radians(a_lat), radians(b_lat)
+    d_lon = radians(b_lon - a_lon)
+    x = sin(d_lon) * cos(b_lat)
+    y = cos(a_lat) * sin(b_lat) - sin(a_lat) * cos(b_lat) * cos(d_lon)
+    return atan2(x, y)
 
 
-# --------------------------------------------------------------------------- #
-#  Per-city container                                                         #
+def _cyclic(v, period, n_harm):
+    out = []
+    for k in range(1, n_harm + 1):
+        out += [np.sin(2 * np.pi * k * v / period), np.cos(2 * np.pi * k * v / period)]
+    return np.stack(out, -1).astype(np.float32)          # (N, 2*n_harm)
+
+
+def temporal_features(ts: pd.Series, n_harm: int) -> np.ndarray:
+    tod = ts.dt.hour + ts.dt.minute / 60.0
+    dow = ts.dt.dayofweek.astype(float)
+    month = ts.dt.month.astype(float)
+    return np.concatenate([_cyclic(tod.values, 24, n_harm),
+                           _cyclic(dow.values, 7, n_harm),
+                           _cyclic(month.values, 12, n_harm)], axis=1)
+
+
 # --------------------------------------------------------------------------- #
 @dataclass
 class CityData:
     city: str
-    df: pd.DataFrame                      # sorted check-ins
-    cont: np.ndarray                     # (N, CONT_DIM) continuous streams
-    cat_id: np.ndarray                   # (N,) global category id
-    primary_id: np.ndarray               # (N,) coarse primary category id
-    venue_id: np.ndarray                 # (N,) city-local POI id
-    user_ids: np.ndarray                 # (N,)
-    diaries: List[Dict]                  # per-user ordered token plan
-    poi_table: Dict                      # realization map inputs for the city
-    trails: List[Dict]                   # per-trail row indices (for eval/pool)
+    df: pd.DataFrame
+    cont: np.ndarray          # (N, cont_dim) city-agnostic features
+    name_emb: np.ndarray      # (N, poi_emb_dim) POI-knowledge embedding
+    venue_id: np.ndarray
+    act_id: np.ndarray        # per-checkin FSQ activity id
+    pri_id: np.ndarray
+    sec_id: np.ndarray
+    trails: List[dict]        # [{user_id, trail_id, rows:[...]}]
+    poi_table: Dict           # per-POI static attrs for retrieval / candidates
 
     @property
-    def cont_dim(self) -> int:
+    def cont_dim(self):
         return self.cont.shape[1]
 
 
-def _row_temporal(ts: pd.Series) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    hour = ts.dt.hour.values + ts.dt.minute.values / 60.0
-    dow = ts.dt.dayofweek.values.astype(np.float32)
-    month = (ts.dt.month.values - 1).astype(np.float32)
-    return hour.astype(np.float32), dow, month
+def build_city_data(cfg, city, splits, fsq: FSQTaxonomy, poi_encoder,
+                    logger=None, filter_users=True) -> CityData:
+    df = load_city_csv(cfg.data_root, city, splits)
+    df = df.sort_values(["user_id", "timestamp"]).reset_index(drop=True)
 
-
-def build_city_data(data_root: str, city: str, split: str,
-                    vocab: CategoryVocab, name_embedder: NameEmbedder,
-                    cfg, logger=None, filter_users: bool = True) -> CityData:
-    """Load one split of one city and precompute all city-agnostic features.
-
-    filter_users=True  -> apply repo filters (trail>=2 AND user>=3 trails);
-                          used for pretraining diaries.
-    filter_users=False -> only drop trails with <2 check-ins; used for eval so
-                          that every provided test trail is scored.
-    """
-    df = load_city_csv(data_root, city, split)
-    min_ut = cfg.min_user_trails if filter_users else 1
-    df = _filter_min(df, cfg.min_trail_len, min_ut)
-    df = df.sort_values(["user_id", "trail_id", "timestamp"]).reset_index(drop=True)
-    n = len(df)
-    if logger:
-        logger.info(f"[{city}/{split}] {n} check-ins, "
-                    f"{df['user_id'].nunique()} users, "
-                    f"{df['trail_id'].nunique()} trails")
-
-    # --- name + category text embeddings (frozen, cached) ------------------
-    name_emb = name_embedder.encode(df["name"].astype(str).tolist())
-    cat_id = np.array([vocab.cat_id(c) for c in df["venue_category"]], dtype=np.int64)
-    primary_id = np.array([vocab.primary_id(c) for c in df["venue_category"]],
-                          dtype=np.int64)
-    if cfg.cat_sbert:
-        cat_emb = name_embedder.encode(df["venue_category"].astype(str).tolist())
-    else:
-        cat_emb = np.zeros((n, 0), dtype=np.float32)
-
-    # --- temporal ----------------------------------------------------------
-    hour, dow, month = _row_temporal(df["timestamp"])
-
-    # --- relative spatial + dwell, computed within each (user,trail) -------
-    dwell_log = np.zeros(n, dtype=np.float32)
-    spat = np.zeros((n, spatial_dim()), dtype=np.float32)
     lat = df["latitude"].values.astype(float)
     lon = df["longitude"].values.astype(float)
     n_bad = int(np.sum(~np.isfinite(lat)) + np.sum(~np.isfinite(lon)))
     if n_bad and logger:
-        logger.warning(f"[{city}/{split}] {n_bad} non-finite lat/lon values "
-                       f"-> treated as no-movement (spatial zeroed for those)")
-    ts = df["timestamp"].values.astype("datetime64[s]").astype(np.int64)
+        logger.warning(f"[{city}] {n_bad} non-finite coords -> zeroed spatial")
+
+    # POI-knowledge embedding (pluggable encoder over name+category text)
+    names = (df["venue_category"].astype(str) + " : " +
+             df.get("name", pd.Series([""] * len(df))).astype(str)).tolist()
+    name_emb = poi_encoder.encode(names)                 # (N, poi_emb_dim)
+
+    # spatio-temporal (relative motion + cyclic time)
+    temporal = temporal_features(df["timestamp"], cfg.n_time_harmonics)
+    spat = np.zeros((len(df), 4), np.float32)
     trail = df["trail_id"].values
-    prev_i = -1
-    prev_trail = None
-    for i in range(n):
-        if trail[i] != prev_trail:                      # start of a trail
-            spat[i] = [0.0, 0.0, 0.0, 1.0]              # is_first = 1
-            dwell_log[i] = 0.0
+    prev_i, prev_tr = -1, None
+    for i in range(len(df)):
+        if trail[i] != prev_tr:
+            spat[i] = [0, 0, 0, 1]                        # is_first
         else:
             d = haversine_km(lat[prev_i], lon[prev_i], lat[i], lon[i])
             b = bearing_rad(lat[prev_i], lon[prev_i], lat[i], lon[i])
-            if not np.isfinite(d):
-                d = 0.0
-            if not np.isfinite(b):
-                b = 0.0
-            spat[i] = [np.log1p(max(d, 0.0)), np.sin(b), np.cos(b), 0.0]
-            dt = max(0.0, (ts[i] - ts[prev_i]) / 3600.0)   # hours
-            dwell_log[i] = np.log1p(dt)
-        prev_i = i
-        prev_trail = trail[i]
+            d = 0.0 if not np.isfinite(d) else d
+            b = 0.0 if not np.isfinite(b) else b
+            spat[i] = [np.log1p(max(d, 0.0)), np.sin(b), np.cos(b), 0]
+        prev_i, prev_tr = i, trail[i]
 
-    temporal = temporal_features(hour, dow, month, dwell_log, cfg.n_time_harmonics)
-
-    cont = np.concatenate([name_emb, cat_emb, temporal, spat], axis=1).astype(np.float32)
-    # final safety net: never let a non-finite feature reach the model
+    cont = np.concatenate([name_emb, temporal, spat], 1).astype(np.float32)
     cont = np.nan_to_num(cont, nan=0.0, posinf=0.0, neginf=0.0)
 
-    # --- per-user diaries (token plan) -------------------------------------
-    diaries = _build_diaries(df, cfg.max_user_seq_len)
+    cat_id = df["venue_category_id"].values
+    act_id = np.array([fsq.activity_id(c) for c in cat_id], np.int64)
+    pri_id = np.array([fsq.primary_id(c) for c in cat_id], np.int64)
+    sec_id = np.array([fsq.secondary_id(c) for c in cat_id], np.int64)
 
-    # --- per-trail row lists (ordered) for eval / few-shot pools -----------
+    # trails (+ optional filtering as in the repo)
     trails = []
-    for tid, g in df.groupby("trail_id", sort=False):
-        rows = g.index.values.astype(np.int64)
-        if len(rows) >= cfg.min_trail_len:
-            trails.append({"trail_id": tid,
-                           "user_id": g["user_id"].iloc[0],
-                           "rows": rows})
+    for (uid, tid), g in df.groupby(["user_id", "trail_id"], sort=False):
+        rows = g.index.to_numpy()
+        if len(rows) < cfg.min_trail_len:
+            continue
+        trails.append({"user_id": int(uid), "trail_id": int(tid), "rows": rows})
+    if filter_users:
+        by_user = {}
+        for t in trails:
+            by_user.setdefault(t["user_id"], []).append(t)
+        trails = [t for u, ts in by_user.items() if len(ts) >= cfg.min_user_trails
+                  for t in ts]
 
-    # --- POI realization table for the city --------------------------------
-    poi_table = _build_poi_table(df, name_emb, cat_id, primary_id,
-                                 hour, name_embedder, cfg)
-
-    return CityData(city, df, cont, cat_id, primary_id,
-                    df["venue_id"].values.astype(np.int64),
-                    df["user_id"].values, diaries, poi_table, trails)
-
-
-def _build_diaries(df: pd.DataFrame, max_len: int) -> List[Dict]:
-    """Each diary is a token plan: an ordered list of (row_index, token_type)
-    with [SEP] inserted between trails.  Row indices reference the city arrays.
-    """
-    diaries = []
-    for uid, g in df.groupby("user_id", sort=False):
-        idx = g.index.values
-        trails = g["trail_id"].values
-        plan_rows, plan_types = [], []
-        prev_trail = None
-        for j, ridx in enumerate(idx):
-            if prev_trail is not None and trails[j] != prev_trail:
-                plan_rows.append(-1)            # SEP marker
-                plan_types.append(TT_SEP)
-            plan_rows.append(int(ridx))
-            plan_types.append(TT_CHECKIN)
-            prev_trail = trails[j]
-        # keep the most recent tokens if too long
-        if len(plan_rows) > max_len:
-            plan_rows = plan_rows[-max_len:]
-            plan_types = plan_types[-max_len:]
-        diaries.append({"user_id": uid,
-                        "rows": np.array(plan_rows, dtype=np.int64),
-                        "types": np.array(plan_types, dtype=np.int64)})
-    return diaries
+    poi_table = _poi_table(df, name_emb, act_id, pri_id, sec_id, lat, lon)
+    return CityData(city, df, cont, name_emb, df["venue_id"].values.astype(np.int64),
+                    act_id, pri_id, sec_id, trails, poi_table)
 
 
-def _build_poi_table(df, name_emb, cat_id, primary_id, hour,
-                     name_embedder, cfg) -> Dict:
-    """Realization map R_c: for every POI in the city, a static feature vector
-    (mean over its check-ins) so we can embed candidate POIs into activity space
-    at transfer time, plus a visit-count popularity prior."""
-    vids = df["venue_id"].values
+def _poi_table(df, name_emb, act, pri, sec, lat, lon):
+    vids = df["venue_id"].values.astype(np.int64)
     order = np.argsort(vids, kind="stable")
     uniq, start = np.unique(vids[order], return_index=True)
-    end = np.append(start[1:], len(vids))
-    name = np.zeros((len(uniq), name_emb.shape[1]), dtype=np.float32)
-    catv = np.zeros(len(uniq), dtype=np.int64)
-    primv = np.zeros(len(uniq), dtype=np.int64)
-    meanhour = np.zeros(len(uniq), dtype=np.float32)
-    plat = np.zeros(len(uniq), dtype=np.float32)
-    plon = np.zeros(len(uniq), dtype=np.float32)
-    count = np.zeros(len(uniq), dtype=np.float32)
-    lat_all = np.nan_to_num(df["latitude"].values.astype(np.float32))
-    lon_all = np.nan_to_num(df["longitude"].values.astype(np.float32))
-    for k in range(len(uniq)):
+    end = np.r_[start[1:], len(order)]
+    P = len(uniq)
+    nm = np.zeros((P, name_emb.shape[1]), np.float32)
+    a = np.zeros(P, np.int64); p = np.zeros(P, np.int64); s = np.zeros(P, np.int64)
+    plat = np.zeros(P, np.float32); plon = np.zeros(P, np.float32)
+    cnt = np.zeros(P, np.float32)
+    la = np.nan_to_num(lat).astype(np.float32); lo = np.nan_to_num(lon).astype(np.float32)
+    for k in range(P):
         sel = order[start[k]:end[k]]
-        name[k] = name_emb[sel].mean(0)
-        catv[k] = np.bincount(cat_id[sel]).argmax()
-        primv[k] = np.bincount(primary_id[sel]).argmax()
-        meanhour[k] = hour[sel].mean()
-        plat[k] = lat_all[sel].mean()
-        plon[k] = lon_all[sel].mean()
-        count[k] = len(sel)
-    if cfg.cat_sbert:
-        cat_strings = df.drop_duplicates("venue_id").set_index("venue_id")\
-            .loc[uniq, "venue_category"].astype(str).tolist()
-        cat_text = name_embedder.encode(cat_strings)
-    else:
-        cat_text = np.zeros((len(uniq), 0), dtype=np.float32)
-    return {"venue_ids": uniq, "name_emb": name, "cat_text": cat_text,
-            "cat_id": catv, "primary_id": primv, "mean_hour": meanhour,
-            "lat": plat, "lon": plon,
-            "count": count, "id2row": {int(v): i for i, v in enumerate(uniq)}}
+        nm[k] = name_emb[sel].mean(0)
+        a[k] = np.bincount(act[sel]).argmax()
+        p[k] = np.bincount(pri[sel]).argmax()
+        s[k] = np.bincount(sec[sel]).argmax()
+        plat[k] = la[sel].mean(); plon[k] = lo[sel].mean(); cnt[k] = len(sel)
+    return {"venue_ids": uniq, "name_emb": nm, "act": a, "pri": p, "sec": s,
+            "lat": plat, "lon": plon, "count": cnt,
+            "id2row": {int(v): i for i, v in enumerate(uniq)}}
 
 
 # --------------------------------------------------------------------------- #
-#  JEPA windowing dataset                                                     #
+#  Per-user diaries (join trails with [SEP]) + JEPA windowing dataset          #
 # --------------------------------------------------------------------------- #
-class PretrainDiaryDataset:
-    """Yields (context, target-block) windows sampled from user diaries.
+class DiaryDataset(torch.utils.data.Dataset):
+    """Each item = one user's diary (trails joined, capped) with a mask over a
+    future block, per the chosen masking strategy."""
 
-    For a diary, a split point is drawn so that there is >=1 context check-in
-    and a contiguous block of up to `mask_block_max` future check-ins.  The
-    context tokens are handed to the context encoder; the target check-ins are
-    the JEPA prediction targets (their latents + activity assignments).
-    """
-
-    def __init__(self, cities: List[CityData], cfg, rng_seed: int = 0):
-        self.cont = [c.cont for c in cities]
-        self.cat_id = [c.cat_id for c in cities]
-        self.primary_id = [c.primary_id for c in cities]
-        self.cfg = cfg
-        # flatten diaries, remembering which city they belong to
-        self.index: List[Tuple[int, int]] = []
+    def __init__(self, city: CityData, cfg):
+        self.city, self.cfg = city, cfg
+        by_user = {}
+        for t in city.trails:
+            by_user.setdefault(t["user_id"], []).append(t)
         self.diaries = []
-        for ci, c in enumerate(cities):
-            for d in c.diaries:
-                # need at least 2 check-ins to form context+target
-                n_checkin = int((d["types"] == TT_CHECKIN).sum())
-                if n_checkin >= 2:
-                    self.index.append((ci, len(self.diaries)))
-                    self.diaries.append(d)
-        self.rng = np.random.RandomState(rng_seed)
-        self.cont_dim = cities[0].cont_dim
+        for uid, ts in by_user.items():
+            ts = sorted(ts, key=lambda x: x["rows"][0])
+            rows, types = [], []
+            for j, t in enumerate(ts):
+                if j > 0:
+                    rows.append(-1); types.append(TT_SEP)     # [SEP]
+                for r in t["rows"]:
+                    rows.append(int(r)); types.append(TT_CHECKIN)
+                if len(rows) >= cfg.max_diary_len:
+                    break
+            rows = rows[:cfg.max_diary_len]; types = types[:cfg.max_diary_len]
+            if sum(1 for x in types if x == TT_CHECKIN) >= 3:
+                self.diaries.append((np.array(rows), np.array(types)))
 
     def __len__(self):
-        return len(self.index)
+        return len(self.diaries)
 
-    def _gather(self, ci, rows, types):
-        """Materialise continuous + id features for a token plan slice."""
-        L = len(rows)
-        cont = np.zeros((L, self.cont_dim), dtype=np.float32)
-        cid = np.zeros(L, dtype=np.int64)
-        pid = np.zeros(L, dtype=np.int64)
-        for k, (r, t) in enumerate(zip(rows, types)):
-            if t == TT_CHECKIN and r >= 0:
-                cont[k] = self.cont[ci][r]
-                cid[k] = self.cat_id[ci][r]
-                pid[k] = self.primary_id[ci][r]
-        return cont, cid, pid
+    def _mask(self, n_ck, rng):
+        """Return boolean mask over positions that are TARGETS (predicted)."""
+        m = np.zeros(n_ck, bool)
+        strat = self.cfg.masking
+        if strat == "causal_next":
+            m[-1] = True
+        elif strat == "random_span":
+            k = max(1, int(self.cfg.mask_ratio * n_ck))
+            s = rng.randint(1, max(2, n_ck - k + 1))
+            m[s:s + k] = True
+        elif strat == "activity_block":
+            k = max(1, int(self.cfg.mask_ratio * n_ck))
+            m[-k:] = True                                    # last activity block
+        else:  # block_future (default JEPA)
+            b = min(self.cfg.mask_block_max, max(1, int(self.cfg.mask_ratio * n_ck)))
+            cut = rng.randint(1, max(2, n_ck - b + 1))
+            m[cut:cut + b] = True
+        m[0] = False
+        return m
 
-    def __getitem__(self, i):
-        ci, di = self.index[i]
-        d = self.diaries[di]
-        rows, types = d["rows"], d["types"]
-        checkin_pos = np.where(types == TT_CHECKIN)[0]
-        # split so target block is the last few check-ins of a random window
-        n_ck = len(checkin_pos)
-        # choose how many future check-ins to predict
-        blk = self.rng.randint(self.cfg.mask_block_min,
-                               min(self.cfg.mask_block_max, n_ck - 1) + 1)
-        split_ck = self.rng.randint(1, n_ck - blk + 1)     # >=1 context check-in
-        ctx_end_pos = checkin_pos[split_ck - 1] + 1        # token index (exclusive)
-        tgt_positions = checkin_pos[split_ck:split_ck + blk]
-
-        ctx_rows = rows[:ctx_end_pos]
-        ctx_types = types[:ctx_end_pos]
-        # keep the last max_context_len tokens
-        if len(ctx_rows) > self.cfg.max_context_len:
-            ctx_rows = ctx_rows[-self.cfg.max_context_len:]
-            ctx_types = ctx_types[-self.cfg.max_context_len:]
-
-        ctx_cont, ctx_cid, ctx_pid = self._gather(ci, ctx_rows, ctx_types)
-        tgt_cont, tgt_cid, tgt_pid = self._gather(
-            ci, rows[tgt_positions], types[tgt_positions])
-        # relative offset of each target from the context end (for the predictor)
-        offsets = (tgt_positions - ctx_end_pos + 1).astype(np.int64)
-        return {
-            "ctx_cont": ctx_cont, "ctx_cid": ctx_cid, "ctx_pid": ctx_pid,
-            "ctx_types": ctx_types.astype(np.int64),
-            "tgt_cont": tgt_cont, "tgt_cid": tgt_cid, "tgt_pid": tgt_pid,
-            "offsets": offsets,
-        }
+    def __getitem__(self, idx):
+        rows, types = self.diaries[idx]
+        rng = np.random.RandomState(idx)
+        ck_pos = np.where(types == TT_CHECKIN)[0]
+        tmask_ck = self._mask(len(ck_pos), rng)
+        tmask = np.zeros(len(rows), bool)
+        tmask[ck_pos[tmask_ck]] = True
+        ctx = ~tmask                                          # context positions
+        return rows, types, ctx, tmask
 
 
-def collate_windows(batch, block_max: int):
-    """Pad context to the batch max length; pad target block to block_max."""
+def collate(batch, city: CityData, cfg):
     B = len(batch)
-    ctx_lens = [len(b["ctx_types"]) for b in batch]
-    Lc = max(ctx_lens)
-    cont_dim = batch[0]["ctx_cont"].shape[1]
-
-    ctx_cont = np.zeros((B, Lc, cont_dim), dtype=np.float32)
-    ctx_cid = np.zeros((B, Lc), dtype=np.int64)
-    ctx_pid = np.zeros((B, Lc), dtype=np.int64)
-    ctx_types = np.full((B, Lc), TT_CHECKIN, dtype=np.int64)
-    ctx_mask = np.zeros((B, Lc), dtype=np.float32)          # 1 = real token
-
-    tgt_cont = np.zeros((B, block_max, cont_dim), dtype=np.float32)
-    tgt_cid = np.zeros((B, block_max), dtype=np.int64)
-    tgt_pid = np.zeros((B, block_max), dtype=np.int64)
-    tgt_mask = np.zeros((B, block_max), dtype=np.float32)
-    offsets = np.zeros((B, block_max), dtype=np.int64)
-
-    for i, b in enumerate(batch):
-        lc = len(b["ctx_types"])
-        ctx_cont[i, :lc] = b["ctx_cont"]
-        ctx_cid[i, :lc] = b["ctx_cid"]
-        ctx_pid[i, :lc] = b["ctx_pid"]
-        ctx_types[i, :lc] = b["ctx_types"]
-        ctx_mask[i, :lc] = 1.0
-        bt = len(b["offsets"])
-        tgt_cont[i, :bt] = b["tgt_cont"]
-        tgt_cid[i, :bt] = b["tgt_cid"]
-        tgt_pid[i, :bt] = b["tgt_pid"]
-        tgt_mask[i, :bt] = 1.0
-        offsets[i, :bt] = b["offsets"]
-
-    import torch
-    t = torch.as_tensor
-    return {
-        "ctx_cont": t(ctx_cont), "ctx_cid": t(ctx_cid), "ctx_pid": t(ctx_pid),
-        "ctx_types": t(ctx_types), "ctx_mask": t(ctx_mask),
-        "tgt_cont": t(tgt_cont), "tgt_cid": t(tgt_cid), "tgt_pid": t(tgt_pid),
-        "tgt_mask": t(tgt_mask), "offsets": t(offsets),
-    }
+    L = max(len(b[0]) for b in batch)
+    cd = city.cont_dim
+    cont = np.zeros((B, L, cd), np.float32)
+    act = np.zeros((B, L), np.int64); pri = np.zeros((B, L), np.int64)
+    sec = np.zeros((B, L), np.int64); typ = np.zeros((B, L), np.int64)
+    vid = np.full((B, L), -1, np.int64)
+    ctx_mask = np.zeros((B, L), np.float32); tgt_mask = np.zeros((B, L), np.float32)
+    for i, (rows, types, ctx, tm) in enumerate(batch):
+        for j, r in enumerate(rows):
+            typ[i, j] = types[j]
+            if r >= 0:
+                cont[i, j] = city.cont[r]
+                act[i, j] = city.act_id[r]; pri[i, j] = city.pri_id[r]; sec[i, j] = city.sec_id[r]
+                vid[i, j] = int(city.venue_id[r])
+        ctx_mask[i, :len(rows)] = ctx.astype(np.float32)
+        tgt_mask[i, :len(rows)] = tm.astype(np.float32)
+    t = lambda x: torch.as_tensor(x)
+    return {"cont": t(cont), "act": t(act), "pri": t(pri), "sec": t(sec),
+            "types": t(typ), "vid": t(vid),
+            "ctx_mask": t(ctx_mask), "tgt_mask": t(tgt_mask)}

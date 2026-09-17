@@ -1,102 +1,96 @@
-"""
-gemma.config
-------------
-A single dataclass that holds every knob for the GEMMA pipeline (data,
-features, model, JEPA/activity objective, optimisation, transfer/eval).
-
-Keeping everything in one typed object makes runs reproducible: the config
-is serialised to JSON next to every checkpoint and every results file.
-"""
+"""gemma.config -- one dataclass of knobs; every experiment is a config diff."""
 from __future__ import annotations
 
 import json
 from dataclasses import dataclass, field, asdict
-from typing import List, Optional
+from typing import List
 
 
 @dataclass
-class GemmaConfig:
-    # ---------------------------------------------------------------- data
-    data_root: str = "data"                 # folder with one sub-folder per city
-    # city sub-folder names must match the file prefixes, e.g.
-    #   data/new_york/new_york_checkins_train.csv
-    pretrain_cities: List[str] = field(default_factory=lambda: ["new_york"])
-    transfer_cities: List[str] = field(default_factory=lambda: ["tokyo"])
+class Config:
+    # ---- data ----
+    data_root: str = "data"
+    fsq_csv: str = "personalization-apis-movement-sdk-categories.csv"
+    pretrain_cities: List[str] = field(default_factory=lambda: [
+        # Massive-STEPS cities with > ~89k training trajectories
+        "istanbul", "petaling_jaya", "jakarta", "new_york", "kuwait_city", "sao_paulo"])
+    eval_cities: List[str] = field(default_factory=lambda: [
+        "tokyo", "istanbul", "jakarta"])          # override on the CLI
+    train_splits: List[str] = field(default_factory=lambda: ["train"])
+    min_trail_len: int = 2
+    min_user_trails: int = 3
+    max_diary_len: int = 128                       # per-user diary cap (memory/speed)
 
-    min_trail_len: int = 2                  # drop trails with < this many check-ins
-    min_user_trails: int = 3                # drop users with < this many trails
-    max_user_seq_len: int = 128             # cap the per-user concatenated sequence
-    max_context_len: int = 64               # context window fed to the encoder
-
-    # ------------------------------------------------------------ features
-    name_embedder: str = "sbert"            # "sbert" | "hash" (hash = offline fallback)
+    # ---- POI knowledge encoder (pluggable) ----
+    poi_encoder: str = "hash"                      # hash | sbert | llm_cached
+    poi_emb_dim: int = 384
+    poi_emb_cache: str = "poi_emb_cache"           # dir for llm_cached / sbert cache
     sbert_model: str = "sentence-transformers/all-MiniLM-L6-v2"
-    name_emb_dim: int = 384                 # 384 for MiniLM; auto-set for hash
-    cat_sbert: bool = True                  # also embed the category string with SBERT
-    coarse_activities: bool = True          # induce a COARSE shared activity label
-    n_coarse_activities: int = 12           # #coarse activity classes (grammar target)
-    n_time_harmonics: int = 4               # Fourier harmonics per cyclic time field
-    use_absolute_coords_in_encoder: bool = False  # keep False for city-invariance
-    coord_grid_m: float = 500.0             # metres, for optional coarse geo-hashing
 
-    # ------------------------------------------------------------- model
-    d_model: int = 128
-    n_ctx_layers: int = 3
+    # ---- spatio-temporal encoding ----
+    n_time_harmonics: int = 6                       # multi-scale Fourier tod/dow/season
+    use_relative_space: bool = True                # log-dist + bearing (city-agnostic)
+
+    # ---- backbone (JEPA) ----
+    d_model: int = 256
+    n_ctx_layers: int = 4
     n_pred_layers: int = 2
-    n_heads: int = 4
+    n_heads: int = 8
     ffn_mult: int = 4
     dropout: float = 0.1
-    n_roles: int = 8                        # behavioural-role router codes
-    n_activities: int = 64                  # activity-prototype codebook size (K)
-    activity_temp: float = 0.5              # softmax temperature for prototype assign
-
-    # -------------------------------------------------- JEPA / objective
     ema_decay: float = 0.996
-    mask_block_min: int = 1                 # masked future block size (check-ins)
-    mask_block_max: int = 4
-    lambda_pred: float = 1.0                # JEPA latent-prediction loss
-    lambda_cat: float = 1.0                 # next-CATEGORY grammar (transferable)
-    lambda_act: float = 0.3                 # latent activity-prototype clustering
-    lambda_markov: float = 0.1              # tie grammar to Markov operator T
-    lambda_sig: float = 0.05                # SIGReg isotropic-Gaussian regulariser
-    lambda_cb: float = 0.05                 # codebook usage entropy regulariser
-    sig_n_proj: int = 128                   # random projections for SIGReg
-    sigreg_warmup_epochs: int = 1           # warm-start: predictor first, reg later
+    geometry: str = "euclidean"                    # euclidean | poincare (ablation)
+    # ---- two-tower next-POI ranker ----
+    d_tower: int = 256
+    nce_temp: float = 0.1
+    n_hard_neg: int = 8                             # same-secondary hard negatives
+    lambda_nce: float = 1.0
+    # inference score blend (next-POI): tower.sim + hierarchy path + geo + temporal + revisit
+    w_tower: float = 1.0
+    w_hier: float = 1.0
+    w_geo: float = 1.0
+    w_temporal: float = 0.5
+    w_revisit: float = 1.0
+    hier_restrict_topk: int = 3                     # keep candidates whose activity in predicted top-k
+    # ---- few-shot ----
+    few_shot_trails_per_user: int = 2
+    few_shot_epochs: int = 3
 
-    # ------------------------------------------------------- optimisation
-    epochs: int = 10
-    batch_size: int = 64
+    # ---- SSL masking (ablation axis) ----
+    masking: str = "block_future"                  # block_future | random_span | activity_block | causal_next
+    mask_ratio: float = 0.25
+    mask_block_max: int = 8
+
+    # ---- objective weights ----
+    lambda_pred: float = 1.0                        # JEPA latent MSE
+    lambda_reg: float = 1.0                         # anti-collapse regularizer
+    regularizer: str = "vicreg"                     # vicreg | sigreg | none
+    vic_var: float = 1.0
+    vic_cov: float = 0.04
+    sig_n_proj: int = 128
+    lambda_act: float = 1.0                         # next-activity CE (transferable)
+    lambda_pri: float = 0.5                         # next-primary CE
+    lambda_sec: float = 0.5                         # next-secondary CE
+    lambda_motif: float = 0.3                       # motif codebook prior
+    n_motifs: int = 24                              # motif codebook size (>=17)
+    motif_dummy_nodes: bool = True                  # inject HOME/WORK dummy nodes
+
+    # ---- optim ----
+    epochs: int = 40
+    batch_size: int = 256
     lr: float = 1e-3
-    weight_decay: float = 1e-2
+    weight_decay: float = 0.05
+    warmup_frac: float = 0.05
     grad_clip: float = 1.0
-    warmup_steps: int = 200
+    amp: bool = True
+    num_workers: int = 8
     seed: int = 42
-    device: str = "auto"                    # "auto" | "cpu" | "cuda"
-    num_workers: int = 0
-    amp: bool = True                        # mixed precision on CUDA (bf16/fp16)
-    compile: bool = False                   # torch.compile the model (opt-in)
-    pin_memory: bool = True                 # pinned host memory for H2D copies
+    device: str = "auto"
 
-    # ---------------------------------------------------------- transfer
-    knn_k: int = 50                         # neighbours in source pool retrieval
-    retrieval_blend: float = 0.5            # weight on retrieval vs grammar head
-    sem_blend: float = 0.5                  # weight on semantic-sim vs activity-match
-    personal_prior: float = 1.0            # bonus for POIs already in the query prefix
-    geo_prior: float = 1.2                  # weight on geographic proximity to last check-in
-    popularity_prior: float = 0.15          # weight on city popularity prior (few-shot)
-    few_shot_trails_per_user: int = 1       # labelled target trails added per user
-    top_k_save: int = 10                    # how many ranked POIs to persist per trail
-    eval_ks: List[int] = field(default_factory=lambda: [1, 5, 10])
-    ndcg_ks: List[int] = field(default_factory=lambda: [5, 10])
-    max_eval_candidates: int = 0            # 0 = rank over full city vocab
+    # ---- io ----
+    out_dir: str = "runs"
+    run_name: str = "gemma2"
 
-    # ------------------------------------------------------------- io
-    out_dir: str = "outputs"
-    run_name: str = "gemma_run"
-    log_every: int = 20
-    save_predictions: bool = True
-
-    # ---------------------------------------------------------- helpers
     def resolved_device(self) -> str:
         if self.device != "auto":
             return self.device
@@ -106,11 +100,11 @@ class GemmaConfig:
         except Exception:
             return "cpu"
 
-    def to_json(self, path: str) -> None:
+    def to_json(self, path):
         with open(path, "w") as f:
             json.dump(asdict(self), f, indent=2)
 
     @classmethod
-    def from_json(cls, path: str) -> "GemmaConfig":
+    def from_json(cls, path):
         with open(path) as f:
             return cls(**json.load(f))

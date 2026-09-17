@@ -1,205 +1,108 @@
-# GEMMA — Global Embeddings for Mobility Modeling and Adaptation
+# GEMMA v2 — a self-supervised mobility foundation model for Massive-STEPS
 
-A self-supervised, JEPA-style representation learner for **cross-city next-POI
-recommendation**, implemented to plug into the
-[Massive-STEPS](https://github.com/cruiseresearchgroup/Massive-STEPS) data and
-evaluation protocol.
+GEMMA is a JEPA-style, self-supervised **backbone** for human mobility. It is
+pretrained once on the high-resource Massive-STEPS cities and then plugs into the
+benchmark's downstream models (STHGCN, GETNext, LSTPM, DeepMove, Flashback, …) and
+LLM baselines (LLM-Mob, LLM-ZS, LLM-Move) as a feature/KG/RAG backbone, so every
+comparison is exactly **`model` vs `model + GEMMA`** under the *unchanged*
+Massive-STEPS protocol (https://github.com/cruiseresearchgroup/Massive-STEPS).
 
-The model pretrains on a few "source" cities and transfers — **zero-shot** and
-**few-shot**, with no per-city gradient updates — to unseen "target" cities by
-retrieval in a shared activity space.
+Tasks: (1) next-POI recommendation, (2) next-activity prediction (new, uses the
+Foursquare hierarchy), (3) trajectory classification (weekday/weekend).
 
----
-
-## What this implements (mapping to the paper)
-
-| Paper concept | Where |
-|---|---|
-| Activity-space factorization `P_c(p|X) = P(a|A) · R_c(p|a)` | invariant encoder (grammar) + per-city POI table (realization) |
-| City-agnostic check-in token (category, POI-name semantics, cyclic time, behavioural role) | `features.py`, `model.CheckinEmbed` |
-| JEPA: predict masked-future **latents**, EMA target encoder | `model.GEMMA.forward` |
-| SIGReg isotropic-Gaussian regularizer (anti-collapse) | `model.sigreg_loss` |
-| Transfer by retrieval, not fine-tuning | `transfer.py` |
-| Massive-STEPS eval (last check-in = target; Acc@{1,5,10}, NDCG@{5,10}) | `transfer.compute_metrics` |
-
-### The added activity-transition mechanism (your request)
-
-The paper *names* activities but doesn't give a mechanism to **learn activity
-transitions**. This implementation adds one, in three grounded pieces:
-
-1. **Activity-prototype codebook** (`ActivityCodebook`): `K` learnable prototypes.
-   Each check-in latent is softly assigned to prototypes (SwAV-style, with
-   Sinkhorn balancing to prevent prototype collapse). This is the learned,
-   city-invariant "what activity is this" label.
-2. **Transferable category grammar** (`cat_head`): an explicit head that predicts
-   the **next check-in's shared primary category** from the JEPA-predicted latent.
-   Because the category taxonomy is shared across cities, this is the component
-   that actually transfers, and its accuracy — `cat_top1` — is the headline
-   *grammar-transfer* diagnostic (grammar quality separated from realization).
-3. **Interpretable transition operator `T`** (K×K, row-stochastic): a first-order
-   activity grammar `P(a_i | a_{i-1})` ("coffee → office"), softly tied to the
-   predictions via a Markov-consistency term. Saved as `transition_matrix.npy`;
-   inspect it with `analyze_activities.py`.
-
-Prototypes end up **category-grounded but finer** (e.g. splitting a category by
-time-of-day / role), giving an interpretable activity vocabulary on top of the
-raw taxonomy.
-
-### Handling short trails
-
-Massive-STEPS trails are short (median ~2–3 check-ins), which is too little for a
-JEPA SSL signal per trail. We instead build a **per-user diary**: all of a user's
-trails, time-ordered, concatenated with a learned `[SEP]` token between trails.
-JEPA predicts masked *future* check-ins across this longer diary, so the user
-representation and the activity grammar get a real training signal. Evaluation
-still scores one trail's last check-in, exactly as the benchmark specifies.
-
----
+## What GEMMA learns (design)
+- **Latent-predictive SSL (JEPA)**: predict masked-future check-in *latents* from a
+  masked diary, with an EMA target encoder. Anti-collapse regularizer is **VICReg**
+  (variance–covariance) by default, **SIGReg** (LeJEPA-style) as an ablation.
+- **Real Foursquare hierarchy** (`gemma/fsq.py`): top level = **activity** (~10,
+  transferable), leaf = **secondary**, middle = **primary**. Joined on
+  `venue_category_id`. Decoded coarse→fine from the predicted latent → the
+  transferable `act@1 ≥ pri@1 ≥ sec@1` diagnostic curve. This also *is* the
+  next-activity downstream task.
+- **Per-user diaries**: a user's trails are joined with a learned `[SEP]` token so
+  JEPA has a long-enough sequence to mask (fixes the short-trail problem).
+- **Spatio-temporal encoding**: city-agnostic relative motion (log-distance +
+  bearing) + multi-scale Fourier time; absolute geography stays on the downstream
+  realization side.
+- **POI-knowledge encoder** (`gemma/poi_encoder.py`, pluggable): `hash` (offline),
+  `sbert`, or `llm_cached` (drop in precomputed embeddings from a modern LLM
+  encoder — GTE/Qwen/OpenAI — no code change).
+- **Motif codebook** (`MotifCodebook`): soft-assign each diary's activity-transition
+  day-graph to ≥17 learnable motif prototypes (Schneider–González universality),
+  optionally with **dummy HOME/WORK nodes** so a user's missing routine nodes are
+  inferable from their characteristic motif — the personalization signal.
+- **Geometry** (`geometry=euclidean|poincare`): Euclidean default; hyperbolic
+  (Poincaré) stubbed as an ablation for the hierarchy.
 
 ## Install
-
 ```bash
 pip install -r requirements.txt
 ```
 
-`sentence-transformers` provides the frozen POI-name embeddings. If it is not
-available, pass `--name_embedder hash` to use a deterministic offline fallback
-(fine for pipeline testing; use SBERT for real results).
+## Data
+1. **Massive-STEPS splits** under `data/<city>/<city>_checkins_{train,validation,test}.csv`
+   (per-check-in rows; the repo/HF format). Pretrain uses the 6 cities with
+   >~89k trails: istanbul, petaling_jaya, jakarta, new_york, kuwait_city, sao_paulo.
+2. **Foursquare taxonomy CSV** (`Category ID, Category Name, Category Label`) at the
+   path in `--fsq_csv`. This is the real hierarchy; `gemma/fsq.py` parses the
+   `>`-separated label into activity/primary/secondary.
 
----
-
-## Data layout
-
-Point `--data_root` at a folder with one sub-folder per city, each containing the
-three Massive-STEPS split CSVs you already have:
-
-```
-data/
-  new_york/
-    new_york_checkins_train.csv
-    new_york_checkins_validation.csv
-    new_york_checkins_test.csv
-  tokyo/
-    tokyo_checkins_train.csv
-    ...
-```
-
-Expected columns (as in your dump): `trail_id, user_id, venue_id, latitude,
-longitude, name, address, venue_category, venue_category_id,
-venue_category_id_code, venue_city, venue_city_latitude, venue_city_longitude,
-venue_country, timestamp`.
-
----
-
-## Quick start
-
-**0. Smoke test with no real data** (generates synthetic Massive-STEPS-format
-cities with a *shared* grammar but disjoint POIs):
-
+Offline smoke test (no data / no network):
 ```bash
-python make_synthetic_data.py --out data_synth
-python run_experiment.py --data_root data_synth \
-    --pretrain synth_a --transfer synth_b synth_c \
-    --name_embedder hash --epochs 20 --run_name smoke
+python scripts/make_synthetic.py --out data --cities src_a src_b tgt_c
 ```
 
-**1. The "glimpse": train on one city, test on two/three** (your first ask):
-
+## Run
+Pretrain the backbone (once):
 ```bash
-python run_experiment.py \
-    --pretrain new_york \
-    --transfer tokyo istanbul \
-    --modes zero_shot few_shot \
-    --epochs 20 --run_name glimpse
+CUDA_VISIBLE_DEVICES=0 python scripts/run_pretrain.py \
+  --data_root data --fsq_csv personalization-apis-movement-sdk-categories.csv \
+  --pretrain_cities istanbul petaling_jaya jakarta new_york kuwait_city sao_paulo \
+  --poi_encoder sbert --masking block_future --regularizer vicreg \
+  --epochs 40 --batch_size 256 --d_model 256 --num_workers 8 --run_name gemma_v2
 ```
-
-**2. Full paper setup** (pretrain jointly on the five >90k-trail cities, transfer
-to the other ten):
-
+Reference downstream (all tasks, all cities), GEMMA frozen:
 ```bash
-python run_experiment.py \
-    --pretrain istanbul petaling_jaya jakarta new_york kuwait_city \
-    --transfer bandung beijing melbourne moscow palembang sao_paulo \
-               shanghai sydney tangerang tokyo \
-    --modes zero_shot few_shot \
-    --epochs 40 --d_model 256 --n_activities 128 --run_name full
+python scripts/run_downstream.py --run_dir runs/gemma_v2 --data_root data \
+  --cities tokyo istanbul jakarta new_york ... \
+  --tasks next_poi next_activity classification --modes frozen finetune
 ```
+Results: `runs/gemma_v2/down_<city>_<task>_<mode>.json`, plus `pretrain.log`,
+`history.jsonl`, `config.json`, `gemma.pt`.
 
-**3. Inspect the learned activity grammar:**
-
-```bash
-python analyze_activities.py --run_dir outputs/glimpse --city new_york
+## Integrating a SOTA downstream model (the clean comparison)
+We do **not** reimplement STHGCN/GETNext/etc. — we wrap their released repos and
+inject GEMMA features at one point, so their numbers are reproduced except for the
+injected features. Contract (`ExternalAdapter` in `gemma/downstream.py`):
+```python
+adapter = ExternalAdapter(backbone, cfg, device)
+poi_feat = adapter.poi_features(city)     # (n_pois, d): per-POI GEMMA feature
+# In the external repo, at the line that builds its POI embedding table:
+#   emb = nn.Embedding(n_pois, d0)                      # original
+#   emb_table = concat([emb.weight, gemma_poi_feat])    # + GEMMA  (3-line patch)
 ```
+Each repo gets a `adapters/<model>.py` wrapper (build order below). The LLM track
+uses `adapters/rag.py`: GEMMA retrieves the user's nearest activity-motif neighbours
+and their next-activity distribution, injected into the LLM-Mob/ZS/Move prompt as
+retrieved context (KG/RAG), same prompting otherwise.
 
-Every knob (loss weights, masking block size, kNN `k`, blend weights, model size,
-priors) lives in `gemma/config.py` and is overridable from `run_experiment.py`.
+## Build order (recommended)
+1. ✅ backbone + pretrain + reference probe + metrics + protocol (this repo).
+2. Real FSQ taxonomy join + `poi_encoder=llm_cached` (precompute LLM POI embeddings).
+3. Two-tower next-POI head (contrastive, same-secondary hard negatives) replacing
+   the reference probe's proxy head — this is what makes next-POI numbers real.
+4. `adapters/getnext.py` then `adapters/sthgcn.py` (highest-value baselines).
+5. `adapters/rag.py` + LLM-Move prompt injection.
+6. Ablation sweep (`experiments/matrix.md`) + transfer-gradient figures.
 
----
-
-## Outputs (per run, under `outputs/<run_name>/`)
-
-| File | Contents |
-|---|---|
-| `config.json` | the exact config used |
-| `pretrain.log`, `transfer.log` | full logs (per-step losses, per-city metrics) |
-| `history.jsonl` | every training step's loss components + `cat_top1` |
-| `gemma.pt` | model weights + vocab |
-| `transition_matrix.npy` | K×K learned activity transition operator |
-| `metrics_summary.json` | Acc@{1,5,10}, NDCG@{5,10}, MRR per city × mode |
-| `predictions_<city>_<mode>.csv` | **per test trail: the top-10 ranked POIs**, their scores, `rank_of_truth`, `hit@{1,5,10}`, and predicted next category |
-
----
-
-## Evaluation protocol (matches the repo)
-
-* One **trail** = check-ins sharing a `trail_id`, time-ordered; the **last**
-  check-in is the target, the rest are the context prefix.
-* Predictions are ranked over the **target city's POI vocabulary**.
-* `NDCG@k = 1/log2(rank+2)` if the truth is in the top-k (the repo's convention),
-  averaged over trails; `MRR = 1/(rank+1)`.
-* **zero-shot**: retrieval pool = source cities only; no target labels, no
-  popularity prior. **few-shot**: a few labelled target trails per user are added
-  to the retrieval pool and a city popularity prior is switched on — still no
-  gradient updates.
-
----
-
-## Honest notes / where to push next
-
-* **Absolute magnitudes.** Zero-shot next-POI over a full city vocabulary
-  (thousands of venues, no target supervision) is genuinely hard; expect modest
-  Acc@1. The meaningful signals are (a) `cat_top1` (does the activity grammar
-  transfer?) and (b) few-shot > zero-shot, and wins in **cold-start / low-
-  regularity** regimes where ID-based models have nothing to memorize. Segmenting
-  the prediction CSVs by seen-vs-new venue and by user predictability is the
-  analysis that makes GEMMA's case.
-* **Spatial features.** By design the invariant encoder uses *relative* motion
-  (distance/bearing to the previous check-in), not absolute coordinates, to keep
-  it transferable (`use_absolute_coords_in_encoder=False`). City/country live in
-  the realization side. Flip the flag to ablate.
-* **The transition operator `T`** only sharpens once predictions are confident;
-  raise `lambda_markov` and train longer if you want a crisper interpretable `T`.
-* **Baselines.** For a fair table against GETNext / STHGCN / KAS / CATUS, run
-  those through this same split + metric code (the repo already hosts several).
-
----
-
-## Module map
-
-```
-gemma/
-  config.py     one dataclass of all settings (serialized with every run)
-  utils.py      logging, seeding, haversine/bearing
-  features.py   SBERT name/category embeddings (+ offline fallback),
-                cyclic temporal encoding, relative spatial features, category vocab
-  data.py       Massive-STEPS loader, per-user diaries with [SEP], feature
-                precompute, JEPA windowing dataset, per-trail eval structures
-  model.py      GEMMA: check-in embed + role router, context/EMA-target
-                Transformers, predictor, activity codebook + T, cat grammar, SIGReg
-  pretrain.py   joint JEPA + category-grammar + SIGReg training loop
-  transfer.py   retrieval pools, candidate POI embedding, zero/few-shot ranking,
-                metrics, per-trail top-K saving
-run_experiment.py    end-to-end pretrain -> transfer -> evaluate
-analyze_activities.py interpret T and prototype->category composition
-make_synthetic_data.py  tiny Massive-STEPS-format data for offline testing
-```
+## Honest notes
+- The reference probe's next-POI head is a *proxy* (trains the summary via an
+  activity head); real next-POI ranking needs the two-tower contrastive head
+  (build step 3). next-activity and classification are fully functional now.
+- Hyperbolic geometry is a documented stub (`geometry=poincare`); correct
+  Riemannian training is step-6 work.
+- "Beating SOTA" is empirical. The design maximizes the odds (transferable
+  activity grammar + motifs + modern SSL + clean adaptation) and, more importantly,
+  gives a defensible *story* (the transfer-gradient + cold-start analyses in
+  `experiments/matrix.md §D`) that stands even where a leaderboard cell doesn't.
+EOF
