@@ -104,11 +104,18 @@ def build_city_data(cfg, city, splits, fsq: FSQTaxonomy, poi_encoder,
     df = load_city_csv(cfg.data_root, city, splits)
     df = df.sort_values(["user_id", "timestamp"]).reset_index(drop=True)
 
-    lat = df["latitude"].values.astype(float)
-    lon = df["longitude"].values.astype(float)
-    n_bad = int(np.sum(~np.isfinite(lat)) + np.sum(~np.isfinite(lon)))
+    lat = pd.to_numeric(df["latitude"], errors="coerce")
+    lon = pd.to_numeric(df["longitude"], errors="coerce")
+    coord_valid = (np.isfinite(lat) & np.isfinite(lon)).values      # EXACT coord present?
+    # backfill for the geo RANKING prior (city centroid), but keep validity=exact
+    if "venue_city_latitude" in df.columns:
+        lat = lat.fillna(pd.to_numeric(df["venue_city_latitude"], errors="coerce"))
+        lon = lon.fillna(pd.to_numeric(df["venue_city_longitude"], errors="coerce"))
+    lat = lat.values.astype(float); lon = lon.values.astype(float)
+    n_bad = int((~coord_valid).sum())
     if n_bad and logger:
-        logger.warning(f"[{city}] {n_bad} non-finite coords -> zeroed spatial")
+        logger.info(f"[{city}] {n_bad}/{len(df)} rows missing exact coords -> "
+                    f"centroid for geo prior; hashed for semantic-ID uniqueness")
 
     # POI-knowledge embedding (pluggable encoder over name+category text)
     names = (df["venue_category"].astype(str) + " : " +
@@ -153,7 +160,7 @@ def build_city_data(cfg, city, splits, fsq: FSQTaxonomy, poi_encoder,
         trails = [t for u, ts in by_user.items() if len(ts) >= cfg.min_user_trails
                   for t in ts]
 
-    poi_table = _poi_table(df, name_emb, act_id, pri_id, sec_id, lat, lon)
+    poi_table = _poi_table(df, name_emb, act_id, pri_id, sec_id, lat, lon, coord_valid)
 
     # per-check-in semantic codes (from offline RQ-VAE cache), if present
     codes = None
@@ -176,7 +183,7 @@ def build_city_data(cfg, city, splits, fsq: FSQTaxonomy, poi_encoder,
                     act_id, pri_id, sec_id, trails, poi_table, codes)
 
 
-def _poi_table(df, name_emb, act, pri, sec, lat, lon):
+def _poi_table(df, name_emb, act, pri, sec, lat, lon, coord_valid=None):
     vids = df["venue_id"].values.astype(np.int64)
     order = np.argsort(vids, kind="stable")
     uniq, start = np.unique(vids[order], return_index=True)
@@ -185,8 +192,9 @@ def _poi_table(df, name_emb, act, pri, sec, lat, lon):
     nm = np.zeros((P, name_emb.shape[1]), np.float32)
     a = np.zeros(P, np.int64); p = np.zeros(P, np.int64); s = np.zeros(P, np.int64)
     plat = np.zeros(P, np.float32); plon = np.zeros(P, np.float32)
-    cnt = np.zeros(P, np.float32)
+    cnt = np.zeros(P, np.float32); valid = np.ones(P, np.float32)
     la = np.nan_to_num(lat).astype(np.float32); lo = np.nan_to_num(lon).astype(np.float32)
+    cv = coord_valid if coord_valid is not None else np.ones(len(df), bool)
     for k in range(P):
         sel = order[start[k]:end[k]]
         nm[k] = name_emb[sel].mean(0)
@@ -194,8 +202,9 @@ def _poi_table(df, name_emb, act, pri, sec, lat, lon):
         p[k] = np.bincount(pri[sel]).argmax()
         s[k] = np.bincount(sec[sel]).argmax()
         plat[k] = la[sel].mean(); plon[k] = lo[sel].mean(); cnt[k] = len(sel)
+        valid[k] = float(cv[sel].mean())
     return {"venue_ids": uniq, "name_emb": nm, "act": a, "pri": p, "sec": s,
-            "lat": plat, "lon": plon, "count": cnt,
+            "lat": plat, "lon": plon, "count": cnt, "coord_valid": valid,
             "id2row": {int(v): i for i, v in enumerate(uniq)}}
 
 

@@ -33,6 +33,8 @@ import torch.nn.functional as F
 from .backbone import GEMMA
 from .data import build_city_data, temporal_features
 from .metrics import classification_metrics, ranking_metrics
+from .adapter import (AdaptationHead, build_covisitation, user_activity_profile,
+                      candidate_features, FEATS)
 from .utils import get_logger
 
 
@@ -100,8 +102,9 @@ def _candidate_bank(bb, city, device):
     for k, v in enumerate(pt["venue_ids"]):
         sel = df["venue_id"].values == v
         hours[k] = tod[sel].mean() if sel.any() else 12.0
+    pop = (pt["count"] / pt["count"].sum()).astype(np.float32)
     return {"p": np.concatenate(P), "act": pt["act"], "pri": pt["pri"], "sec": pt["sec"],
-            "lat": pt["lat"], "lon": pt["lon"], "hour": hours,
+            "lat": pt["lat"], "lon": pt["lon"], "hour": hours, "pop": pop,
             "venue_ids": pt["venue_ids"], "id2row": pt["id2row"],
             "codes": _poi_codes(city)}
 
@@ -171,61 +174,110 @@ def _few_shot_finetune(bb, city, cfg, device, logger):
     logger.info(f"[{city.city}] few-shot fine-tuned on {len(chosen)} trails")
 
 
-def eval_next_poi(bb, city, cfg, device, logger):
-    cand = _candidate_bank(bb, city, device)
-    eval_trails = [t for t in city.trails if len(t["rows"]) >= 2]
-    ranks = []; a_hit = p_hit = s_hit = 0
-    lat = city.df["latitude"].values.astype(np.float32)
-    lon = city.df["longitude"].values.astype(np.float32)
-    l2a = None
-    for s0 in range(0, len(eval_trails), 256):
-        chunk = eval_trails[s0:s0+256]
-        b = _prefix_batch(city, [t["rows"][:-1] for t in chunk], device)
+def _encode_all(bb, city, trails, device):
+    """Encode prefixes -> arrays: act/pri/sec dists, q, z1 (predicted latent)."""
+    A=[]; P=[]; S=[]; Z=[]
+    for s0 in range(0,len(trails),256):
+        chunk=trails[s0:s0+256]
+        b=_prefix_batch(city,[t["rows"][:-1] for t in chunk],device)
         with torch.no_grad():
-            _, act_d, pri_d, sec_d, q, gen_code = bb.embed_prefix(b)
-        act_d = act_d.cpu().numpy(); pri_d = pri_d.cpu().numpy()
-        sec_d = sec_d.cpu().numpy(); q = q.cpu().numpy()
-        gen_code = gen_code.cpu().numpy() if gen_code is not None else None
-        for i, t in enumerate(chunk):
-            hier = (np.log(act_d[i][cand["act"]] + 1e-8)
-                    + np.log(pri_d[i][cand["pri"]] + 1e-8)
-                    + np.log(sec_d[i][cand["sec"]] + 1e-8))
-            last = t["rows"][-2]
-            dlat = cand["lat"] - lat[last]; dlon = cand["lon"] - lon[last]
-            geo = -np.log1p(np.sqrt(dlat*dlat + dlon*dlon))
-            last_h = city.df["timestamp"].iloc[last].hour
-            temporal = -np.abs(((cand["hour"] - last_h + 12) % 24) - 12) / 12.0
-            if gen_code is not None and cand["codes"] is not None:
-                # generative leaf: match the generated semantic ID prefix
-                sid_match = (cand["codes"] == gen_code[i][None, :]).sum(1).astype(np.float32)
-                score = (cfg.w_hier * _z(hier) + cfg.w_geo * _z(geo)
-                         + cfg.w_temporal * _z(temporal)
-                         + cfg.w_tower * _z(sid_match))          # w_tower reused as w_sid
+            _,act,pri,sec,q,code,z1=bb.embed_prefix(b)
+        A.append(act.cpu().numpy());P.append(pri.cpu().numpy())
+        S.append(sec.cpu().numpy());Z.append(z1)
+    import numpy as _np
+    return (_np.concatenate(A),_np.concatenate(P),_np.concatenate(S),torch.cat(Z,0))
+
+
+def _prune_keep(act_row, cand_act, topb):
+    keep_acts=set(np.argsort(-act_row)[:topb])
+    return np.array([a in keep_acts for a in cand_act])
+
+
+def train_adapter(bb, city, cand, cfg, device, logger, covis):
+    """Train the AdaptationHead on the target city's train trails (few/full-shot).
+    Backbone frozen; listwise softmax over the pruned candidate set."""
+    adapter=AdaptationHead(cfg.adapt_hidden).to(device)
+    trails=[t for t in city.trails if len(t["rows"])>=2]
+    if not trails:
+        return adapter
+    opt=torch.optim.AdamW(adapter.parameters(),lr=1e-2,weight_decay=1e-4)
+    lat=city.df["latitude"].values.astype(np.float32); lon=city.df["longitude"].values.astype(np.float32)
+    A,Pp,Sp,Z=_encode_all(bb,city,trails,device)
+    codes_t=torch.as_tensor(cand["codes"]).long().to(device)
+    for ep in range(cfg.adapt_epochs):
+        order=np.random.RandomState(ep).permutation(len(trails))
+        tot=0.0; nb=0
+        for bi in range(0,len(order),128):
+            batch=order[bi:bi+128]
+            loss=torch.zeros((),device=device); used=0
+            # AR log-lik for this mini-batch of queries over ALL candidates once
+            zb=Z[batch]
+            ar=bb.leaf.score_codes(zb, codes_t).cpu().numpy()   # (B, Ncand)
+            for bj,ti in enumerate(batch):
+                t=trails[ti]; last=t["rows"][-2]
+                truth=int(city.venue_id[t["rows"][-1]]); tr=cand["id2row"].get(truth)
+                if tr is None: continue
+                keep=_prune_keep(A[ti],cand["act"],cfg.adapt_beam_act)
+                keep[tr]=True                                   # ensure positive present
+                uprof=user_activity_profile(city,t["rows"][:-1],A.shape[1])
+                prefix_vids=[int(city.venue_id[r]) for r in t["rows"][:-1]]
+                f,idx=candidate_features(cand,ti,A[ti],Pp[ti],Sp[ti],ar[bj],
+                    lat[last],lon[last],city.df["timestamp"].iloc[last].hour,
+                    prefix_vids,covis,int(city.venue_id[last]),uprof,keep)
+                ft=torch.as_tensor(f).to(device)
+                scores=adapter(ft)
+                pos=int(np.where(idx==tr)[0][0])
+                loss=loss+F.cross_entropy(scores.unsqueeze(0),
+                     torch.tensor([pos],device=device)); used+=1
+            if used>0:
+                loss=loss/used; opt.zero_grad(); loss.backward(); opt.step()
+                tot+=float(loss.detach()); nb+=1
+        logger.info(f"[{city.city}] adapter epoch {ep} loss={tot/max(1,nb):.4f}")
+    return adapter
+
+
+def eval_next_poi(bb, city, cfg, device, logger, adapter=None, covis=None):
+    cand=_candidate_bank(bb,city,device)
+    codes_t=torch.as_tensor(cand["codes"]).long().to(device)
+    eval_trails=[t for t in city.trails if len(t["rows"])>=2]
+    lat=city.df["latitude"].values.astype(np.float32); lon=city.df["longitude"].values.astype(np.float32)
+    A,Pp,Sp,Z=_encode_all(bb,city,eval_trails,device)
+    ranks=[]; a_hit=p_hit=s_hit=0
+    fixed=adapter is None
+    for s0 in range(0,len(eval_trails),128):
+        batch=list(range(s0,min(s0+128,len(eval_trails))))
+        zb=Z[batch]
+        ar=bb.leaf.score_codes(zb, codes_t).cpu().numpy()       # (B,Ncand) GNPR-SID likelihood
+        for bj,ti in enumerate(batch):
+            t=eval_trails[ti]; last=t["rows"][-2]
+            keep=_prune_keep(A[ti],cand["act"],cfg.adapt_beam_act)
+            if keep.sum()<5: keep[:]=True                       # fallback if over-pruned
+            uprof=user_activity_profile(city,t["rows"][:-1],A.shape[1])
+            prefix_vids=[int(city.venue_id[r]) for r in t["rows"][:-1]]
+            f,idx=candidate_features(cand,ti,A[ti],Pp[ti],Sp[ti],ar[bj],
+                lat[last],lon[last],city.df["timestamp"].iloc[last].hour,
+                prefix_vids,covis,int(city.venue_id[last]),uprof,keep)
+            if fixed:
+                # equal-weight fusion (zero-shot: no adaptation)
+                score=f.sum(1)
             else:
-                tower = cand["p"] @ q[i]
-                score = (cfg.w_tower * _z(tower) + cfg.w_hier * _z(hier)
-                         + cfg.w_geo * _z(geo) + cfg.w_temporal * _z(temporal))
-            topk_act = set(np.argsort(-act_d[i])[:cfg.hier_restrict_topk])
-            keep = np.array([a in topk_act for a in cand["act"]])
-            if keep.any():
-                score = np.where(keep, score, score.min() - 10.0)
-            for v in [int(city.venue_id[r]) for r in t["rows"][:-1]]:
-                r = cand["id2row"].get(v)
-                if r is not None:
-                    score[r] += cfg.w_revisit
-            truth = int(city.venue_id[t["rows"][-1]])
-            tr = cand["id2row"].get(truth)
-            order = np.argsort(-score)
-            rank = len(cand["venue_ids"]) if tr is None else int(np.where(order == tr)[0][0])
+                with torch.no_grad():
+                    score=adapter(torch.as_tensor(f).to(device)).cpu().numpy()
+            truth=int(city.venue_id[t["rows"][-1]]); tr=cand["id2row"].get(truth)
+            if tr is None or tr not in idx:
+                rank=len(cand["venue_ids"])
+            else:
+                order_local=np.argsort(-score)
+                pos_in_keep=int(np.where(idx==tr)[0][0])
+                rank=int(np.where(order_local==pos_in_keep)[0][0])
             ranks.append(rank)
-            tleaf = t["rows"][-1]
-            a_hit += int(act_d[i].argmax() == city.act_id[tleaf])
-            p_hit += int(pri_d[i].argmax() == city.pri_id[tleaf])
-            s_hit += int(sec_d[i].argmax() == city.sec_id[tleaf])
-    met = ranking_metrics(ranks)
-    N = max(1, len(ranks))
-    met.update({"n_trails": len(ranks), "n_candidates": len(cand["venue_ids"]),
-                "act@1": a_hit/N, "pri@1": p_hit/N, "sec@1": s_hit/N})
+            tleaf=t["rows"][-1]
+            a_hit+=int(A[ti].argmax()==city.act_id[tleaf])
+            p_hit+=int(Pp[ti].argmax()==city.pri_id[tleaf])
+            s_hit+=int(Sp[ti].argmax()==city.sec_id[tleaf])
+    met=ranking_metrics(ranks); N=max(1,len(ranks))
+    met.update({"n_trails":len(ranks),"n_candidates":len(cand["venue_ids"]),
+                "act@1":a_hit/N,"pri@1":p_hit/N,"sec@1":s_hit/N})
     return met
 
 
@@ -236,7 +288,7 @@ def eval_next_activity(bb, city, cfg, device):
         chunk = eval_trails[s0:s0+256]
         b = _prefix_batch(city, [t["rows"][:-1] for t in chunk], device)
         with torch.no_grad():
-            _, act_d, _, _, _, _ = bb.embed_prefix(b)
+            _, act_d, _, _, _, _, _ = bb.embed_prefix(b)
         yp += list(act_d.argmax(-1).cpu().numpy())
         yt += [city.act_id[t["rows"][-1]] for t in chunk]
     return classification_metrics(yt, yp)
@@ -246,23 +298,31 @@ def run_downstream(bb, fsq, enc, cfg, city_name, run_dir, task="next_poi",
                    shot="zero_shot", logger=None):
     logger = logger or get_logger(f"gemma.down.{city_name}")
     device = cfg.resolved_device()
-    splits = ["train", "validation"] if shot == "full" else ["test"]
-    if shot == "few_shot":
-        train = build_city_data(cfg, city_name, ["train"], fsq, enc, logger, filter_users=False)
-        _few_shot_finetune(bb, train, cfg, device, logger)
-    if shot == "full":
-        train = build_city_data(cfg, city_name, ["train", "validation"], fsq, enc, logger, filter_users=False)
-        # reuse few-shot loop with all trails (cheap in-city adaptation of towers/heads)
-        cfg2 = cfg; cfg2.few_shot_trails_per_user = 10; cfg2.few_shot_epochs = max(cfg.few_shot_epochs, 5)
-        _few_shot_finetune(bb, train, cfg2, device, logger)
 
     test = build_city_data(cfg, city_name, "test", fsq, enc, logger, filter_users=False)
-    if task == "next_poi":
-        met = eval_next_poi(bb, test, cfg, device, logger)
-    elif task == "next_activity":
+    if task == "next_activity":
         met = eval_next_activity(bb, test, cfg, device)
+        met.update({"city": city_name, "task": task, "shot": shot})
+        logger.info(f"[{city_name}/{task}/{shot}] " +
+                    " ".join(f"{k}={round(v,4)}" for k, v in met.items() if isinstance(v, float)))
+        with open(os.path.join(run_dir, f"down_{city_name}_{task}_{shot}.json"), "w") as f:
+            json.dump(met, f, indent=2)
+        return met
+
+    # ---- next-POI: hierarchical decoding + Adaptation Head ----
+    adapter, covis = None, None
+    if shot in ("few_shot", "full"):
+        splits = ["train"] if shot == "few_shot" else ["train", "validation"]
+        train = build_city_data(cfg, city_name, splits, fsq, enc, logger, filter_users=False)
+        covis = build_covisitation(train)                    # collaborative signal
+        cand_tr = _candidate_bank(bb, train, device)
+        adapter = train_adapter(bb, train, cand_tr, cfg, device, logger, covis)
+        # co-visitation is estimated from target-train; carry it to the test candidates
+        covis_test = covis
     else:
-        raise ValueError(task)
+        covis_test = None                                    # zero-shot: no target stats
+
+    met = eval_next_poi(bb, test, cfg, device, logger, adapter=adapter, covis=covis_test)
     met.update({"city": city_name, "task": task, "shot": shot})
     logger.info(f"[{city_name}/{task}/{shot}] " +
                 " ".join(f"{k}={round(v,4)}" for k, v in met.items() if isinstance(v, float)))

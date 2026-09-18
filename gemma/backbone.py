@@ -177,8 +177,12 @@ class GEMMA(nn.Module):
         self.temporal_head = nn.Linear(d, 2)               # predict [sin tod, cos tod]
         # -- dynamic multi-task weighting --
         from .multitask import UncertaintyWeighter
+        # 'sid' (semantic-ID generation) is the deliverable head -> fixed weight,
+        # excluded from uncertainty weighting so it can never be starved.
         self.weighter = UncertaintyWeighter(
-            ["jepa", "act", "pri", "sec", "sid", "geo", "tmp"]) if cfg.uncertainty_weighting else None
+            ["jepa", "act", "pri", "sec", "sid", "geo", "tmp"],
+            fixed={"sid": cfg.lambda_sid}, min_w=cfg.uw_min_w
+        ) if cfg.uncertainty_weighting else None
         self.n_act, self.n_pri, self.n_sec = n_act, n_pri, n_sec
 
     def _encode(self, embed, enc, b, mask):
@@ -303,9 +307,9 @@ class GEMMA(nn.Module):
         act, pri, sec = self._hier_dists(z1)
         q = F.normalize(self.query_tower(z1), dim=-1)
         code = None
-        if self.use_sid and self.leaf is not None:
-            code = self.leaf.generate(z1)                    # (B, sid_levels)
-        return summ, act, pri, sec, q, code
+        if self.use_sid and self.leaf is not None and hasattr(self.leaf, "generate"):
+            code = self.leaf.generate(z1)
+        return summ, act, pri, sec, q, code, z1
 
     # -- downstream interface: frozen per-check-in contextual features ------
     @torch.no_grad()

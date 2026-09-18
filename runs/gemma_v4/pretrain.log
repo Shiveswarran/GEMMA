@@ -1,0 +1,138 @@
+03:41:52 | INFO    | gemma.pretrain | device=cuda pretrain_cities=['istanbul', 'petaling_jaya', 'jakarta', 'new_york', 'kuwait_city', 'sao_paulo']
+03:41:52 | INFO    | gemma.pretrain | FSQ taxonomy: 12 activities, 121 primary, 1245 secondary
+03:41:56 | INFO    | gemma.pretrain | loaded 228910 cached LLM embeddings
+03:41:56 | WARNING | gemma.pretrain | use_semantic_id=True but no *_codes.npz in sid_cache -> disabling; run build_semantic_ids.py
+03:41:57 | INFO    | gemma.pretrain | [istanbul] 43712/380986 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:42:29 | INFO    | gemma.pretrain | [istanbul] 380986 check-ins, 142390 trails, 18651 diaries
+03:42:30 | INFO    | gemma.pretrain | [petaling_jaya] 44052/354817 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:42:58 | INFO    | gemma.pretrain | [petaling_jaya] 354817 check-ins, 120411 trails, 11009 diaries
+03:42:59 | INFO    | gemma.pretrain | [jakarta] 55163/288339 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:43:22 | INFO    | gemma.pretrain | [jakarta] 288339 check-ins, 94605 trails, 7462 diaries
+03:43:23 | INFO    | gemma.pretrain | [new_york] 13806/190740 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:43:38 | INFO    | gemma.pretrain | [new_york] 190740 check-ins, 61925 trails, 5533 diaries
+03:43:38 | INFO    | gemma.pretrain | [kuwait_city] 20988/162716 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:43:51 | INFO    | gemma.pretrain | [kuwait_city] 162716 check-ins, 60551 trails, 7624 diaries
+03:43:52 | INFO    | gemma.pretrain | [sao_paulo] 13145/179771 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:44:06 | INFO    | gemma.pretrain | [sao_paulo] 179771 check-ins, 61372 trails, 5032 diaries
+03:44:06 | INFO    | gemma.pretrain | trainable params = 6.50M | geometry=euclidean masking=block_future reg=vicreg
+03:44:32 | INFO    | gemma.pretrain | e0 s0 lr0.00e+00 loss=18.014 pred=1.054 sid=0.000 geo=0.976 tmp=0.865 motif=-0.026 | act@1=0.058 pri@1=0.002 sec@1=0.000 poi@1=0.000
+03:46:40 | INFO    | gemma.pretrain | e0 s50 lr3.47e-04 loss=10.617 pred=0.718 sid=0.000 geo=0.478 tmp=0.448 motif=-0.027 | act@1=0.262 pri@1=0.338 sec@1=0.264 poi@1=0.000
+03:47:33 | INFO    | gemma.pretrain | == epoch 0 mean: loss=12.8532 pred=0.8246 sid=0.0000 geo=0.5262 tmp=0.5567 act@1=0.3206 pri@1=0.2261 sec@1=0.1511 poi@1=0.0000
+03:47:43 | INFO    | gemma.pretrain | e1 s72 lr5.00e-04 loss=20.694 pred=0.501 sid=0.000 geo=0.428 tmp=0.447 motif=-0.027 | act@1=0.419 pri@1=0.511 sec@1=0.299 poi@1=0.000
+03:49:51 | INFO    | gemma.pretrain | e1 s122 lr8.47e-04 loss=6.746 pred=0.187 sid=0.000 geo=0.491 tmp=0.581 motif=-0.028 | act@1=0.253 pri@1=0.571 sec@1=0.534 poi@1=0.000
+03:50:45 | INFO    | gemma.pretrain | == epoch 1 mean: loss=7.7192 pred=0.2680 sid=0.0000 geo=0.4555 tmp=0.5329 act@1=0.3303 pri@1=0.5147 sec@1=0.4316 poi@1=0.0000
+03:50:53 | INFO    | gemma.pretrain | e2 s144 lr1.00e-03 loss=5.928 pred=0.131 sid=0.000 geo=0.449 tmp=0.435 motif=-0.029 | act@1=0.311 pri@1=0.585 sec@1=0.412 poi@1=0.000
+03:53:02 | INFO    | gemma.pretrain | e2 s194 lr9.99e-04 loss=5.376 pred=0.102 sid=0.000 geo=0.491 tmp=0.448 motif=-0.029 | act@1=0.278 pri@1=0.537 sec@1=0.554 poi@1=0.000
+03:53:55 | INFO    | gemma.pretrain | == epoch 2 mean: loss=5.7465 pred=0.1098 sid=0.0000 geo=0.4682 tmp=0.4747 act@1=0.3368 pri@1=0.5535 sec@1=0.4781 poi@1=0.0000
+03:54:05 | INFO    | gemma.pretrain | e3 s216 lr9.98e-04 loss=5.358 pred=0.106 sid=0.000 geo=0.430 tmp=0.445 motif=-0.029 | act@1=0.356 pri@1=0.559 sec@1=0.475 poi@1=0.000
+03:56:13 | INFO    | gemma.pretrain | e3 s266 lr9.95e-04 loss=5.089 pred=0.093 sid=0.000 geo=0.523 tmp=0.415 motif=-0.029 | act@1=0.330 pri@1=0.484 sec@1=0.540 poi@1=0.000
+03:57:07 | INFO    | gemma.pretrain | == epoch 3 mean: loss=5.2325 pred=0.0952 sid=0.0000 geo=0.4863 tmp=0.4404 act@1=0.3547 pri@1=0.5644 sec@1=0.4910 poi@1=0.0000
+03:57:15 | INFO    | gemma.pretrain | e4 s288 lr9.93e-04 loss=4.718 pred=0.095 sid=0.000 geo=0.446 tmp=0.428 motif=-0.029 | act@1=0.339 pri@1=0.635 sec@1=0.518 poi@1=0.000
+03:59:25 | INFO    | gemma.pretrain | e4 s338 lr9.88e-04 loss=4.584 pred=0.089 sid=0.000 geo=0.477 tmp=0.387 motif=-0.029 | act@1=0.356 pri@1=0.598 sec@1=0.563 poi@1=0.000
+04:00:19 | INFO    | gemma.pretrain | == epoch 4 mean: loss=4.8827 pred=0.0839 sid=0.0000 geo=0.4639 tmp=0.4349 act@1=0.3655 pri@1=0.5725 sec@1=0.4996 poi@1=0.0000
+04:00:28 | INFO    | gemma.pretrain | e5 s360 lr9.85e-04 loss=4.575 pred=0.100 sid=0.000 geo=0.405 tmp=0.407 motif=-0.029 | act@1=0.343 pri@1=0.576 sec@1=0.529 poi@1=0.000
+04:02:36 | INFO    | gemma.pretrain | e5 s410 lr9.77e-04 loss=4.347 pred=0.090 sid=0.000 geo=0.456 tmp=0.349 motif=-0.029 | act@1=0.335 pri@1=0.594 sec@1=0.561 poi@1=0.000
+04:03:30 | INFO    | gemma.pretrain | == epoch 5 mean: loss=4.6093 pred=0.0835 sid=0.0000 geo=0.4591 tmp=0.4140 act@1=0.3636 pri@1=0.5821 sec@1=0.5142 poi@1=0.0000
+04:03:39 | INFO    | gemma.pretrain | e6 s432 lr9.73e-04 loss=4.222 pred=0.082 sid=0.000 geo=0.424 tmp=0.386 motif=-0.029 | act@1=0.414 pri@1=0.621 sec@1=0.516 poi@1=0.000
+04:05:47 | INFO    | gemma.pretrain | e6 s482 lr9.63e-04 loss=4.282 pred=0.073 sid=0.000 geo=0.489 tmp=0.361 motif=-0.029 | act@1=0.341 pri@1=0.590 sec@1=0.573 poi@1=0.000
+04:06:41 | INFO    | gemma.pretrain | == epoch 6 mean: loss=4.4275 pred=0.0780 sid=0.0000 geo=0.4650 tmp=0.4073 act@1=0.3742 pri@1=0.5786 sec@1=0.5165 poi@1=0.0000
+04:06:50 | INFO    | gemma.pretrain | e7 s504 lr9.58e-04 loss=3.994 pred=0.079 sid=0.000 geo=0.408 tmp=0.355 motif=-0.029 | act@1=0.387 pri@1=0.601 sec@1=0.569 poi@1=0.000
+04:08:58 | INFO    | gemma.pretrain | e7 s554 lr9.46e-04 loss=4.105 pred=0.066 sid=0.000 geo=0.460 tmp=0.358 motif=-0.029 | act@1=0.338 pri@1=0.555 sec@1=0.576 poi@1=0.000
+04:09:52 | INFO    | gemma.pretrain | == epoch 7 mean: loss=4.2224 pred=0.0792 sid=0.0000 geo=0.4547 tmp=0.3953 act@1=0.3835 pri@1=0.5792 sec@1=0.5237 poi@1=0.0000
+04:10:01 | INFO    | gemma.pretrain | e8 s576 lr9.40e-04 loss=3.825 pred=0.075 sid=0.000 geo=0.430 tmp=0.347 motif=-0.029 | act@1=0.337 pri@1=0.635 sec@1=0.550 poi@1=0.000
+04:12:10 | INFO    | gemma.pretrain | e8 s626 lr9.25e-04 loss=3.976 pred=0.067 sid=0.000 geo=0.462 tmp=0.414 motif=-0.029 | act@1=0.374 pri@1=0.592 sec@1=0.565 poi@1=0.000
+04:13:04 | INFO    | gemma.pretrain | == epoch 8 mean: loss=4.0445 pred=0.0763 sid=0.0000 geo=0.4490 tmp=0.3902 act@1=0.3787 pri@1=0.5897 sec@1=0.5333 poi@1=0.0000
+04:13:13 | INFO    | gemma.pretrain | e9 s648 lr9.19e-04 loss=3.707 pred=0.069 sid=0.000 geo=0.451 tmp=0.371 motif=-0.029 | act@1=0.418 pri@1=0.647 sec@1=0.570 poi@1=0.000
+04:15:22 | INFO    | gemma.pretrain | e9 s698 lr9.02e-04 loss=3.806 pred=0.069 sid=0.000 geo=0.462 tmp=0.341 motif=-0.029 | act@1=0.324 pri@1=0.574 sec@1=0.580 poi@1=0.000
+04:16:15 | INFO    | gemma.pretrain | == epoch 9 mean: loss=3.8636 pred=0.0766 sid=0.0000 geo=0.4557 tmp=0.3703 act@1=0.3884 pri@1=0.5926 sec@1=0.5405 poi@1=0.0000
+04:16:24 | INFO    | gemma.pretrain | e10 s720 lr8.95e-04 loss=3.605 pred=0.090 sid=0.000 geo=0.402 tmp=0.358 motif=-0.029 | act@1=0.402 pri@1=0.609 sec@1=0.565 poi@1=0.000
+04:18:33 | INFO    | gemma.pretrain | e10 s770 lr8.76e-04 loss=3.675 pred=0.067 sid=0.000 geo=0.470 tmp=0.334 motif=-0.029 | act@1=0.343 pri@1=0.623 sec@1=0.571 poi@1=0.000
+04:19:27 | INFO    | gemma.pretrain | == epoch 10 mean: loss=3.7564 pred=0.0752 sid=0.0000 geo=0.4494 tmp=0.3760 act@1=0.3867 pri@1=0.5941 sec@1=0.5388 poi@1=0.0000
+04:19:36 | INFO    | gemma.pretrain | e11 s792 lr8.68e-04 loss=3.415 pred=0.075 sid=0.000 geo=0.413 tmp=0.363 motif=-0.029 | act@1=0.405 pri@1=0.625 sec@1=0.554 poi@1=0.000
+04:21:45 | INFO    | gemma.pretrain | e11 s842 lr8.48e-04 loss=3.536 pred=0.073 sid=0.000 geo=0.496 tmp=0.338 motif=-0.029 | act@1=0.360 pri@1=0.621 sec@1=0.576 poi@1=0.000
+04:22:39 | INFO    | gemma.pretrain | == epoch 11 mean: loss=3.6071 pred=0.0749 sid=0.0000 geo=0.4465 tmp=0.3705 act@1=0.3913 pri@1=0.6033 sec@1=0.5516 poi@1=0.0000
+04:22:48 | INFO    | gemma.pretrain | e12 s864 lr8.39e-04 loss=3.483 pred=0.066 sid=0.000 geo=0.427 tmp=0.398 motif=-0.029 | act@1=0.354 pri@1=0.603 sec@1=0.582 poi@1=0.000
+04:25:02 | INFO    | gemma.pretrain | e12 s914 lr8.17e-04 loss=3.403 pred=0.075 sid=0.000 geo=0.466 tmp=0.342 motif=-0.029 | act@1=0.364 pri@1=0.614 sec@1=0.630 poi@1=0.000
+04:25:56 | INFO    | gemma.pretrain | == epoch 12 mean: loss=3.4964 pred=0.0726 sid=0.0000 geo=0.4447 tmp=0.3673 act@1=0.3970 pri@1=0.6100 sec@1=0.5567 poi@1=0.0000
+04:26:05 | INFO    | gemma.pretrain | e13 s936 lr8.07e-04 loss=3.222 pred=0.074 sid=0.000 geo=0.393 tmp=0.365 motif=-0.029 | act@1=0.396 pri@1=0.594 sec@1=0.558 poi@1=0.000
+04:28:14 | INFO    | gemma.pretrain | e13 s986 lr7.84e-04 loss=3.421 pred=0.068 sid=0.000 geo=0.463 tmp=0.350 motif=-0.029 | act@1=0.352 pri@1=0.594 sec@1=0.582 poi@1=0.000
+04:29:08 | INFO    | gemma.pretrain | == epoch 13 mean: loss=3.4575 pred=0.0720 sid=0.0000 geo=0.4470 tmp=0.3734 act@1=0.3943 pri@1=0.6043 sec@1=0.5589 poi@1=0.0000
+04:29:17 | INFO    | gemma.pretrain | e14 s1008 lr7.73e-04 loss=3.121 pred=0.078 sid=0.000 geo=0.421 tmp=0.355 motif=-0.029 | act@1=0.409 pri@1=0.621 sec@1=0.590 poi@1=0.000
+04:31:31 | INFO    | gemma.pretrain | e14 s1058 lr7.49e-04 loss=3.329 pred=0.066 sid=0.000 geo=0.481 tmp=0.355 motif=-0.029 | act@1=0.369 pri@1=0.606 sec@1=0.604 poi@1=0.000
+04:32:33 | INFO    | gemma.pretrain | == epoch 14 mean: loss=3.3526 pred=0.0713 sid=0.0000 geo=0.4472 tmp=0.3667 act@1=0.3949 pri@1=0.6120 sec@1=0.5650 poi@1=0.0000
+04:32:42 | INFO    | gemma.pretrain | e15 s1080 lr7.38e-04 loss=3.080 pred=0.077 sid=0.000 geo=0.427 tmp=0.339 motif=-0.029 | act@1=0.412 pri@1=0.639 sec@1=0.574 poi@1=0.000
+04:34:50 | INFO    | gemma.pretrain | e15 s1130 lr7.12e-04 loss=3.194 pred=0.066 sid=0.000 geo=0.445 tmp=0.351 motif=-0.029 | act@1=0.338 pri@1=0.590 sec@1=0.635 poi@1=0.000
+04:35:44 | INFO    | gemma.pretrain | == epoch 15 mean: loss=3.2645 pred=0.0703 sid=0.0000 geo=0.4468 tmp=0.3582 act@1=0.3920 pri@1=0.6159 sec@1=0.5663 poi@1=0.0000
+04:35:53 | INFO    | gemma.pretrain | e16 s1152 lr7.01e-04 loss=3.009 pred=0.066 sid=0.000 geo=0.401 tmp=0.348 motif=-0.029 | act@1=0.419 pri@1=0.597 sec@1=0.568 poi@1=0.000
+04:38:01 | INFO    | gemma.pretrain | e16 s1202 lr6.74e-04 loss=3.185 pred=0.069 sid=0.000 geo=0.474 tmp=0.332 motif=-0.029 | act@1=0.347 pri@1=0.619 sec@1=0.609 poi@1=0.000
+04:38:55 | INFO    | gemma.pretrain | == epoch 16 mean: loss=3.1829 pred=0.0695 sid=0.0000 geo=0.4428 tmp=0.3579 act@1=0.4022 pri@1=0.6142 sec@1=0.5688 poi@1=0.0000
+04:39:04 | INFO    | gemma.pretrain | e17 s1224 lr6.62e-04 loss=3.062 pred=0.070 sid=0.000 geo=0.427 tmp=0.362 motif=-0.029 | act@1=0.399 pri@1=0.629 sec@1=0.591 poi@1=0.000
+04:41:13 | INFO    | gemma.pretrain | e17 s1274 lr6.35e-04 loss=2.990 pred=0.066 sid=0.000 geo=0.458 tmp=0.334 motif=-0.029 | act@1=0.398 pri@1=0.616 sec@1=0.601 poi@1=0.000
+04:42:06 | INFO    | gemma.pretrain | == epoch 17 mean: loss=3.1109 pred=0.0689 sid=0.0000 geo=0.4434 tmp=0.3573 act@1=0.4019 pri@1=0.6149 sec@1=0.5781 poi@1=0.0000
+04:42:15 | INFO    | gemma.pretrain | e18 s1296 lr6.23e-04 loss=2.816 pred=0.073 sid=0.000 geo=0.413 tmp=0.356 motif=-0.029 | act@1=0.395 pri@1=0.645 sec@1=0.619 poi@1=0.000
+04:44:24 | INFO    | gemma.pretrain | e18 s1346 lr5.95e-04 loss=2.998 pred=0.063 sid=0.000 geo=0.460 tmp=0.326 motif=-0.029 | act@1=0.373 pri@1=0.605 sec@1=0.594 poi@1=0.000
+04:45:17 | INFO    | gemma.pretrain | == epoch 18 mean: loss=3.0517 pred=0.0681 sid=0.0000 geo=0.4431 tmp=0.3549 act@1=0.4031 pri@1=0.6195 sec@1=0.5785 poi@1=0.0000
+04:45:26 | INFO    | gemma.pretrain | e19 s1368 lr5.82e-04 loss=2.711 pred=0.068 sid=0.000 geo=0.416 tmp=0.328 motif=-0.029 | act@1=0.422 pri@1=0.634 sec@1=0.593 poi@1=0.000
+04:47:34 | INFO    | gemma.pretrain | e19 s1418 lr5.54e-04 loss=3.040 pred=0.061 sid=0.000 geo=0.472 tmp=0.344 motif=-0.029 | act@1=0.362 pri@1=0.642 sec@1=0.614 poi@1=0.000
+04:48:28 | INFO    | gemma.pretrain | == epoch 19 mean: loss=3.0083 pred=0.0662 sid=0.0000 geo=0.4427 tmp=0.3528 act@1=0.3959 pri@1=0.6225 sec@1=0.5783 poi@1=0.0000
+04:48:37 | INFO    | gemma.pretrain | e20 s1440 lr5.41e-04 loss=2.596 pred=0.065 sid=0.000 geo=0.411 tmp=0.340 motif=-0.029 | act@1=0.409 pri@1=0.666 sec@1=0.627 poi@1=0.000
+04:50:46 | INFO    | gemma.pretrain | e20 s1490 lr5.13e-04 loss=3.019 pred=0.064 sid=0.000 geo=0.463 tmp=0.342 motif=-0.029 | act@1=0.354 pri@1=0.619 sec@1=0.604 poi@1=0.000
+04:51:39 | INFO    | gemma.pretrain | == epoch 20 mean: loss=2.9304 pred=0.0656 sid=0.0000 geo=0.4426 tmp=0.3513 act@1=0.4078 pri@1=0.6250 sec@1=0.5864 poi@1=0.0000
+04:51:48 | INFO    | gemma.pretrain | e21 s1512 lr5.00e-04 loss=2.793 pred=0.070 sid=0.000 geo=0.409 tmp=0.348 motif=-0.029 | act@1=0.400 pri@1=0.662 sec@1=0.581 poi@1=0.000
+04:53:57 | INFO    | gemma.pretrain | e21 s1562 lr4.71e-04 loss=2.947 pred=0.063 sid=0.000 geo=0.468 tmp=0.335 motif=-0.029 | act@1=0.343 pri@1=0.637 sec@1=0.603 poi@1=0.000
+04:54:50 | INFO    | gemma.pretrain | == epoch 21 mean: loss=2.8817 pred=0.0651 sid=0.0000 geo=0.4410 tmp=0.3513 act@1=0.4099 pri@1=0.6280 sec@1=0.5882 poi@1=0.0000
+04:54:59 | INFO    | gemma.pretrain | e22 s1584 lr4.59e-04 loss=2.714 pred=0.064 sid=0.000 geo=0.426 tmp=0.365 motif=-0.029 | act@1=0.397 pri@1=0.665 sec@1=0.596 poi@1=0.000
+04:57:07 | INFO    | gemma.pretrain | e22 s1634 lr4.30e-04 loss=2.945 pred=0.060 sid=0.000 geo=0.472 tmp=0.347 motif=-0.029 | act@1=0.386 pri@1=0.613 sec@1=0.617 poi@1=0.000
+04:58:01 | INFO    | gemma.pretrain | == epoch 22 mean: loss=2.8485 pred=0.0636 sid=0.0000 geo=0.4415 tmp=0.3518 act@1=0.4102 pri@1=0.6297 sec@1=0.5870 poi@1=0.0000
+04:58:10 | INFO    | gemma.pretrain | e23 s1656 lr4.18e-04 loss=2.578 pred=0.065 sid=0.000 geo=0.415 tmp=0.347 motif=-0.029 | act@1=0.416 pri@1=0.660 sec@1=0.590 poi@1=0.000
+05:00:18 | INFO    | gemma.pretrain | e23 s1706 lr3.90e-04 loss=2.869 pred=0.061 sid=0.000 geo=0.477 tmp=0.319 motif=-0.029 | act@1=0.323 pri@1=0.609 sec@1=0.626 poi@1=0.000
+05:01:12 | INFO    | gemma.pretrain | == epoch 23 mean: loss=2.8067 pred=0.0635 sid=0.0000 geo=0.4403 tmp=0.3485 act@1=0.4075 pri@1=0.6301 sec@1=0.5897 poi@1=0.0000
+05:01:21 | INFO    | gemma.pretrain | e24 s1728 lr3.77e-04 loss=2.579 pred=0.066 sid=0.000 geo=0.396 tmp=0.347 motif=-0.029 | act@1=0.439 pri@1=0.616 sec@1=0.580 poi@1=0.000
+05:03:29 | INFO    | gemma.pretrain | e24 s1778 lr3.50e-04 loss=2.755 pred=0.058 sid=0.000 geo=0.451 tmp=0.329 motif=-0.029 | act@1=0.369 pri@1=0.624 sec@1=0.612 poi@1=0.000
+05:04:23 | INFO    | gemma.pretrain | == epoch 24 mean: loss=2.7618 pred=0.0627 sid=0.0000 geo=0.4401 tmp=0.3456 act@1=0.4114 pri@1=0.6286 sec@1=0.5890 poi@1=0.0000
+05:04:33 | INFO    | gemma.pretrain | e25 s1800 lr3.38e-04 loss=2.564 pred=0.060 sid=0.000 geo=0.414 tmp=0.336 motif=-0.029 | act@1=0.397 pri@1=0.633 sec@1=0.601 poi@1=0.000
+05:06:41 | INFO    | gemma.pretrain | e25 s1850 lr3.11e-04 loss=2.845 pred=0.060 sid=0.000 geo=0.464 tmp=0.334 motif=-0.029 | act@1=0.401 pri@1=0.605 sec@1=0.597 poi@1=0.000
+05:07:34 | INFO    | gemma.pretrain | == epoch 25 mean: loss=2.7308 pred=0.0621 sid=0.0000 geo=0.4384 tmp=0.3477 act@1=0.4144 pri@1=0.6285 sec@1=0.5923 poi@1=0.0000
+05:07:43 | INFO    | gemma.pretrain | e26 s1872 lr2.99e-04 loss=2.448 pred=0.061 sid=0.000 geo=0.396 tmp=0.345 motif=-0.029 | act@1=0.431 pri@1=0.646 sec@1=0.598 poi@1=0.000
+05:09:52 | INFO    | gemma.pretrain | e26 s1922 lr2.73e-04 loss=2.707 pred=0.059 sid=0.000 geo=0.478 tmp=0.333 motif=-0.029 | act@1=0.365 pri@1=0.642 sec@1=0.646 poi@1=0.000
+05:10:45 | INFO    | gemma.pretrain | == epoch 26 mean: loss=2.6783 pred=0.0613 sid=0.0000 geo=0.4395 tmp=0.3440 act@1=0.4119 pri@1=0.6325 sec@1=0.5972 poi@1=0.0000
+05:10:54 | INFO    | gemma.pretrain | e27 s1944 lr2.62e-04 loss=2.521 pred=0.061 sid=0.000 geo=0.434 tmp=0.341 motif=-0.029 | act@1=0.411 pri@1=0.633 sec@1=0.611 poi@1=0.000
+05:13:03 | INFO    | gemma.pretrain | e27 s1994 lr2.37e-04 loss=2.706 pred=0.058 sid=0.000 geo=0.464 tmp=0.342 motif=-0.029 | act@1=0.375 pri@1=0.614 sec@1=0.608 poi@1=0.000
+05:13:57 | INFO    | gemma.pretrain | == epoch 27 mean: loss=2.6507 pred=0.0607 sid=0.0000 geo=0.4383 tmp=0.3440 act@1=0.4168 pri@1=0.6337 sec@1=0.5966 poi@1=0.0000
+05:14:06 | INFO    | gemma.pretrain | e28 s2016 lr2.27e-04 loss=2.512 pred=0.061 sid=0.000 geo=0.416 tmp=0.356 motif=-0.029 | act@1=0.404 pri@1=0.669 sec@1=0.604 poi@1=0.000
+05:16:14 | INFO    | gemma.pretrain | e28 s2066 lr2.03e-04 loss=2.716 pred=0.057 sid=0.000 geo=0.481 tmp=0.331 motif=-0.029 | act@1=0.377 pri@1=0.643 sec@1=0.615 poi@1=0.000
+05:17:08 | INFO    | gemma.pretrain | == epoch 28 mean: loss=2.6313 pred=0.0598 sid=0.0000 geo=0.4409 tmp=0.3433 act@1=0.4160 pri@1=0.6325 sec@1=0.5984 poi@1=0.0000
+05:17:17 | INFO    | gemma.pretrain | e29 s2088 lr1.93e-04 loss=2.425 pred=0.060 sid=0.000 geo=0.432 tmp=0.352 motif=-0.029 | act@1=0.426 pri@1=0.682 sec@1=0.613 poi@1=0.000
+05:19:25 | INFO    | gemma.pretrain | e29 s2138 lr1.71e-04 loss=2.736 pred=0.057 sid=0.000 geo=0.456 tmp=0.346 motif=-0.029 | act@1=0.383 pri@1=0.615 sec@1=0.608 poi@1=0.000
+05:20:19 | INFO    | gemma.pretrain | == epoch 29 mean: loss=2.6000 pred=0.0592 sid=0.0000 geo=0.4409 tmp=0.3420 act@1=0.4156 pri@1=0.6348 sec@1=0.6012 poi@1=0.0000
+05:20:28 | INFO    | gemma.pretrain | e30 s2160 lr1.61e-04 loss=2.303 pred=0.059 sid=0.000 geo=0.424 tmp=0.326 motif=-0.029 | act@1=0.419 pri@1=0.690 sec@1=0.629 poi@1=0.000
+05:22:36 | INFO    | gemma.pretrain | e30 s2210 lr1.41e-04 loss=2.634 pred=0.056 sid=0.000 geo=0.464 tmp=0.324 motif=-0.029 | act@1=0.356 pri@1=0.643 sec@1=0.624 poi@1=0.000
+05:23:30 | INFO    | gemma.pretrain | == epoch 30 mean: loss=2.5824 pred=0.0587 sid=0.0000 geo=0.4375 tmp=0.3420 act@1=0.4159 pri@1=0.6352 sec@1=0.6002 poi@1=0.0000
+05:23:39 | INFO    | gemma.pretrain | e31 s2232 lr1.32e-04 loss=2.257 pred=0.058 sid=0.000 geo=0.410 tmp=0.329 motif=-0.029 | act@1=0.397 pri@1=0.661 sec@1=0.621 poi@1=0.000
+05:25:47 | INFO    | gemma.pretrain | e31 s2282 lr1.13e-04 loss=2.674 pred=0.056 sid=0.000 geo=0.470 tmp=0.335 motif=-0.029 | act@1=0.373 pri@1=0.621 sec@1=0.636 poi@1=0.000
+05:26:41 | INFO    | gemma.pretrain | == epoch 31 mean: loss=2.5562 pred=0.0584 sid=0.0000 geo=0.4380 tmp=0.3403 act@1=0.4175 pri@1=0.6376 sec@1=0.5992 poi@1=0.0000
+05:26:50 | INFO    | gemma.pretrain | e32 s2304 lr1.05e-04 loss=2.472 pred=0.059 sid=0.000 geo=0.436 tmp=0.340 motif=-0.029 | act@1=0.414 pri@1=0.648 sec@1=0.587 poi@1=0.000
+05:29:00 | INFO    | gemma.pretrain | e32 s2354 lr8.85e-05 loss=2.627 pred=0.056 sid=0.000 geo=0.469 tmp=0.328 motif=-0.029 | act@1=0.354 pri@1=0.641 sec@1=0.622 poi@1=0.000
+05:29:53 | INFO    | gemma.pretrain | == epoch 32 mean: loss=2.5530 pred=0.0579 sid=0.0000 geo=0.4392 tmp=0.3421 act@1=0.4163 pri@1=0.6342 sec@1=0.6021 poi@1=0.0000
+05:30:03 | INFO    | gemma.pretrain | e33 s2376 lr8.14e-05 loss=2.418 pred=0.057 sid=0.000 geo=0.424 tmp=0.343 motif=-0.029 | act@1=0.424 pri@1=0.611 sec@1=0.604 poi@1=0.000
+05:32:11 | INFO    | gemma.pretrain | e33 s2426 lr6.64e-05 loss=2.670 pred=0.056 sid=0.000 geo=0.475 tmp=0.341 motif=-0.029 | act@1=0.370 pri@1=0.631 sec@1=0.637 poi@1=0.000
+05:33:05 | INFO    | gemma.pretrain | == epoch 33 mean: loss=2.5320 pred=0.0577 sid=0.0000 geo=0.4378 tmp=0.3396 act@1=0.4168 pri@1=0.6356 sec@1=0.6030 poi@1=0.0000
+05:33:14 | INFO    | gemma.pretrain | e34 s2448 lr6.03e-05 loss=2.392 pred=0.056 sid=0.000 geo=0.396 tmp=0.352 motif=-0.029 | act@1=0.424 pri@1=0.605 sec@1=0.627 poi@1=0.000
+05:35:22 | INFO    | gemma.pretrain | e34 s2498 lr4.73e-05 loss=2.603 pred=0.055 sid=0.000 geo=0.470 tmp=0.344 motif=-0.029 | act@1=0.391 pri@1=0.627 sec@1=0.609 poi@1=0.000
+05:36:16 | INFO    | gemma.pretrain | == epoch 34 mean: loss=2.5086 pred=0.0574 sid=0.0000 geo=0.4347 tmp=0.3392 act@1=0.4203 pri@1=0.6364 sec@1=0.6045 poi@1=0.0000
+05:36:25 | INFO    | gemma.pretrain | e35 s2520 lr4.21e-05 loss=2.331 pred=0.056 sid=0.000 geo=0.411 tmp=0.320 motif=-0.029 | act@1=0.453 pri@1=0.613 sec@1=0.586 poi@1=0.000
+05:38:33 | INFO    | gemma.pretrain | e35 s2570 lr3.13e-05 loss=2.548 pred=0.055 sid=0.000 geo=0.450 tmp=0.318 motif=-0.029 | act@1=0.397 pri@1=0.630 sec@1=0.591 poi@1=0.000
+05:39:29 | INFO    | gemma.pretrain | == epoch 35 mean: loss=2.4967 pred=0.0573 sid=0.0000 geo=0.4366 tmp=0.3394 act@1=0.4212 pri@1=0.6402 sec@1=0.6068 poi@1=0.0000
+05:39:38 | INFO    | gemma.pretrain | e36 s2592 lr2.71e-05 loss=2.322 pred=0.057 sid=0.000 geo=0.418 tmp=0.354 motif=-0.029 | act@1=0.429 pri@1=0.660 sec@1=0.615 poi@1=0.000
+05:41:48 | INFO    | gemma.pretrain | e36 s2642 lr1.86e-05 loss=2.546 pred=0.055 sid=0.000 geo=0.454 tmp=0.340 motif=-0.029 | act@1=0.384 pri@1=0.619 sec@1=0.639 poi@1=0.000
+05:42:42 | INFO    | gemma.pretrain | == epoch 36 mean: loss=2.4961 pred=0.0572 sid=0.0000 geo=0.4357 tmp=0.3382 act@1=0.4145 pri@1=0.6394 sec@1=0.6053 poi@1=0.0000
+05:42:51 | INFO    | gemma.pretrain | e37 s2664 lr1.53e-05 loss=2.376 pred=0.057 sid=0.000 geo=0.434 tmp=0.326 motif=-0.029 | act@1=0.448 pri@1=0.673 sec@1=0.569 poi@1=0.000
+05:44:59 | INFO    | gemma.pretrain | e37 s2714 lr9.06e-06 loss=2.617 pred=0.054 sid=0.000 geo=0.465 tmp=0.343 motif=-0.029 | act@1=0.371 pri@1=0.626 sec@1=0.612 poi@1=0.000
+05:45:53 | INFO    | gemma.pretrain | == epoch 37 mean: loss=2.5043 pred=0.0571 sid=0.0000 geo=0.4373 tmp=0.3398 act@1=0.4186 pri@1=0.6393 sec@1=0.6042 poi@1=0.0000
+05:46:02 | INFO    | gemma.pretrain | e38 s2736 lr6.82e-06 loss=2.350 pred=0.057 sid=0.000 geo=0.428 tmp=0.308 motif=-0.029 | act@1=0.374 pri@1=0.636 sec@1=0.616 poi@1=0.000
+05:48:11 | INFO    | gemma.pretrain | e38 s2786 lr2.91e-06 loss=2.447 pred=0.054 sid=0.000 geo=0.456 tmp=0.330 motif=-0.029 | act@1=0.359 pri@1=0.659 sec@1=0.671 poi@1=0.000
+05:49:05 | INFO    | gemma.pretrain | == epoch 38 mean: loss=2.4948 pred=0.0570 sid=0.0000 geo=0.4382 tmp=0.3379 act@1=0.4188 pri@1=0.6419 sec@1=0.6064 poi@1=0.0000
+05:49:14 | INFO    | gemma.pretrain | e39 s2808 lr1.71e-06 loss=2.204 pred=0.056 sid=0.000 geo=0.404 tmp=0.352 motif=-0.029 | act@1=0.412 pri@1=0.682 sec@1=0.638 poi@1=0.000
+05:51:22 | INFO    | gemma.pretrain | e39 s2858 lr1.60e-07 loss=2.556 pred=0.055 sid=0.000 geo=0.467 tmp=0.320 motif=-0.029 | act@1=0.355 pri@1=0.632 sec@1=0.623 poi@1=0.000
+05:52:16 | INFO    | gemma.pretrain | == epoch 39 mean: loss=2.4974 pred=0.0570 sid=0.0000 geo=0.4379 tmp=0.3387 act@1=0.4158 pri@1=0.6421 sec@1=0.6053 poi@1=0.0000
+05:52:16 | INFO    | gemma.pretrain | saved backbone -> runs/gemma_v4/gemma.pt

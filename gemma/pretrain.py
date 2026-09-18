@@ -1,6 +1,8 @@
 """gemma.pretrain -- SSL pretraining of the GEMMA v2 backbone on source cities."""
 from __future__ import annotations
 
+import numpy as np
+
 import json
 import math
 import os
@@ -39,6 +41,26 @@ def pretrain(cfg: Config):
         f"taxonomy collapsed to {fsq.n_activity} activities -- check --fsq_csv path/format")
     enc = POIEncoder(cfg, logger)
     cfg.poi_emb_dim = enc.dim
+
+    # auto-detect semantic-ID geometry from the built cache so the leaf head is
+    # sized to match the codes (prevents the levels/codebook mismatch crash)
+    if cfg.use_semantic_id:
+        import glob
+        npzs = glob.glob(os.path.join(cfg.sid_cache, "*_codes.npz"))
+        if npzs:
+            z = np.load(npzs[0], allow_pickle=True)
+            det_levels = int(z["codes"].shape[1])
+            det_K = int(z["codes"].max()) + 1
+            if det_levels != cfg.sid_levels or det_K > cfg.sid_codebook:
+                logger.info(f"semantic-ID cache -> levels={det_levels} "
+                            f"max_code+1={det_K}; overriding config "
+                            f"(was levels={cfg.sid_levels}, K={cfg.sid_codebook})")
+            cfg.sid_levels = det_levels
+            cfg.sid_codebook = max(cfg.sid_codebook, det_K)
+        else:
+            logger.warning(f"use_semantic_id=True but no *_codes.npz in "
+                            f"{cfg.sid_cache} -> disabling; run build_semantic_ids.py")
+            cfg.use_semantic_id = False
 
     cities, dsets = [], []
     for c in cfg.pretrain_cities:

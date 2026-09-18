@@ -13,25 +13,33 @@ from gemma.semantic_id import RQVAE
 from gemma.utils import get_logger, set_seed
 
 def poi_features(city):
-    """Block-balanced feature vector so the 1536-d LLM block doesn't drown the
-    geo/time/hier signal (diagnosed: name ||.||=1.0 vs geo/time/hier ||.||=1.9)."""
+    """Block-balanced feature vector.  Missing-coordinate POIs (Massive-STEPS
+    privacy fallback) get a deterministic venue-id hash in the geo block + a
+    coord-valid flag, so they stay DISTINCT instead of all collapsing to (0,0)."""
     pt = city.poi_table
     def l2(a):
         return a / (np.linalg.norm(a, axis=1, keepdims=True) + 1e-8)
-    name = l2(pt["name_emb"].astype(np.float32))                      # unit block
+    name = l2(pt["name_emb"].astype(np.float32))
     lat = pt["lat"].astype(np.float32); lon = pt["lon"].astype(np.float32)
-    clat, clon = np.nanmean(lat), np.nanmean(lon)
-    # higher-precision geography: multi-scale sinusoids of relative lat/lon
+    valid = pt.get("coord_valid", np.ones(len(lat), np.float32))
+    clat, clon = np.nanmean(lat[valid > 0.5]) if (valid > 0.5).any() else 0.0, \
+                 np.nanmean(lon[valid > 0.5]) if (valid > 0.5).any() else 0.0
     geo_feats = []
     for scale in (1.0, 8.0, 64.0):
         geo_feats += [np.sin((lat - clat) * scale), np.cos((lat - clat) * scale),
                       np.sin((lon - clon) * scale), np.cos((lon - clon) * scale)]
-    geo = l2(np.stack(geo_feats, 1).astype(np.float32))
+    geo = np.stack(geo_feats, 1).astype(np.float32)
+    # per-POI hash fallback where coords are missing -> distinct, not collapsed
+    vids = pt["venue_ids"].astype(np.int64)
+    rng = np.random.RandomState(0)
+    hashv = np.stack([np.sin(vids * (k + 1) * 0.9161 + k) for k in range(geo.shape[1])], 1).astype(np.float32)
+    geo = np.where(valid[:, None] > 0.5, geo, hashv)
+    geo = l2(geo)
     h = pt.get("hour"); h = np.full(len(lat), 12.0, np.float32) if h is None else h
     tod = l2(np.stack([np.sin(2*np.pi*h/24), np.cos(2*np.pi*h/24)], 1).astype(np.float32))
     hier = l2(np.stack([pt["act"], pt["pri"], pt["sec"]], 1).astype(np.float32) + 1.0)
-    # weights balance block magnitudes (name gets the most, but not 200x geo)
-    return np.concatenate([1.0*name, 1.0*geo, 0.5*tod, 0.5*hier], 1).astype(np.float32)
+    flag = valid[:, None].astype(np.float32)                          # coord-valid flag
+    return np.concatenate([1.0*name, 1.0*geo, 0.5*tod, 0.5*hier, flag], 1).astype(np.float32)
 
 def main():
     ap=argparse.ArgumentParser()
@@ -42,6 +50,7 @@ def main():
     ap.add_argument("--levels",type=int,default=3); ap.add_argument("--codebook",type=int,default=256)
     ap.add_argument("--epochs",type=int,default=40); ap.add_argument("--cache",default="sid_cache")
     ap.add_argument("--bottleneck",type=int,default=32)
+    ap.add_argument("--gamma",type=float,default=2.0); ap.add_argument("--ema",type=float,default=0.95)
     ap.add_argument("--device",default="auto")
     a=ap.parse_args(); set_seed(42); os.makedirs(a.cache,exist_ok=True)
     cfg=Config(data_root=a.data_root,fsq_csv=a.fsq_csv,poi_encoder=a.poi_encoder,
@@ -58,7 +67,7 @@ def main():
         citydata[c]=cd
     Xtr=np.concatenate([poi_features(citydata[c]) for c in a.train_cities])
     logger.info(f"training RQ-VAE on {len(Xtr)} POIs, feat_dim={Xtr.shape[1]}")
-    model=RQVAE(Xtr.shape[1], d=a.bottleneck, n_levels=a.levels, codebook_size=a.codebook).to(dev)
+    model=RQVAE(Xtr.shape[1], d=a.bottleneck, n_levels=a.levels, codebook_size=a.codebook, gamma=a.gamma, ema=a.ema).to(dev)
     opt=torch.optim.AdamW(model.parameters(),lr=1e-3)
     Xt=torch.as_tensor(Xtr).to(dev)
     model.kmeans_init(Xt[torch.randperm(len(Xt))[:4096]])

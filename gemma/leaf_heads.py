@@ -60,6 +60,23 @@ class ARHead(nn.Module):
             h = z + self.tok[l](c)
         return torch.stack(out, 1)                           # (B,L)
 
+    @torch.no_grad()
+    def score_codes(self, z, codes):
+        """GNPR-SID-style ranking: log P(code | z) for each candidate code,
+        teacher-forced with the candidate's OWN code sequence.
+        z:(B,d), codes:(C,L) -> logprob:(B,C).  This replaces full-vocab softmax:
+        we rank existing POIs by the model's likelihood of generating their code."""
+        B = z.size(0); C = codes.size(0)
+        lp = z.new_zeros(B, C)
+        zc = z.unsqueeze(1).expand(B, C, -1)                 # (B,C,d)
+        h = zc
+        for l in range(self.L):
+            logp = F.log_softmax(self.step[l](h), dim=-1)    # (B,C,K)
+            cl = codes[:, l]                                 # (C,)
+            lp = lp + logp.gather(-1, cl.view(1, C, 1).expand(B, C, 1)).squeeze(-1)
+            h = zc + self.tok[l](cl).unsqueeze(0)            # chain candidate's token
+        return lp
+
 
 class DiffusionHead(nn.Module):
     """Discrete absorbing-state diffusion over code tokens (MaskGIT-style)."""

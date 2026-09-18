@@ -50,14 +50,20 @@ class Config:
     sid_levels: int = 3
     sid_codebook: int = 256
     sid_cache: str = "sid_cache"                    # {city: {venue_id: code}} + codebooks
-    leaf_head: str = "diffusion"                    # retrieval | ar | diffusion
+    leaf_head: str = "ar"                          # ar (GNPR-SID likelihood ranking) | diffusion | retrieval                    # retrieval | ar | diffusion
     diffusion_steps: int = 4
-    lambda_sid: float = 1.0
+    # ---- hierarchical decoding + adaptation head (the "A" in GEMMA) ----
+    adapt_beam_act: int = 3            # keep candidates whose activity in top-b activities
+    adapt_beam_pri: int = 8            # ... and top-b primary (0 = skip primary prune)
+    adapt_epochs: int = 5             # per-city adapter training epochs (few/full)
+    adapt_hidden: int = 32
+    lambda_sid: float = 2.0
     # ---- geo / temporal prediction heads (JEPA multi-feature) ----
     lambda_geo: float = 1.0
     lambda_temporal: float = 1.0
     # ---- dynamic (uncertainty) weighting of the multi-task JEPA loss ----
     uncertainty_weighting: bool = True
+    uw_min_w: float = 0.5          # floor on learned task weights (anti-starvation)
     # ---- motif dummy nodes (HOME closure) ----
     # inference score blend (next-POI): tower.sim + hierarchy path + geo + temporal + revisit
     w_tower: float = 1.0
