@@ -102,7 +102,26 @@ def _candidate_bank(bb, city, device):
         hours[k] = tod[sel].mean() if sel.any() else 12.0
     return {"p": np.concatenate(P), "act": pt["act"], "pri": pt["pri"], "sec": pt["sec"],
             "lat": pt["lat"], "lon": pt["lon"], "hour": hours,
-            "venue_ids": pt["venue_ids"], "id2row": pt["id2row"]}
+            "venue_ids": pt["venue_ids"], "id2row": pt["id2row"],
+            "codes": _poi_codes(city)}
+
+
+def _poi_codes(city):
+    if city.codes is None:
+        return None
+    v2c = {}
+    vids = city.venue_id
+    for i in range(len(vids)):
+        v = int(vids[i])
+        if v not in v2c:
+            v2c[v] = city.codes[i]
+    L = city.codes.shape[1]
+    out = np.zeros((len(city.poi_table["venue_ids"]), L), np.int64)
+    for k, v in enumerate(city.poi_table["venue_ids"]):
+        c = v2c.get(int(v))
+        if c is not None:
+            out[k] = c
+    return out
 
 
 def _few_shot_finetune(bb, city, cfg, device, logger):
@@ -163,31 +182,34 @@ def eval_next_poi(bb, city, cfg, device, logger):
         chunk = eval_trails[s0:s0+256]
         b = _prefix_batch(city, [t["rows"][:-1] for t in chunk], device)
         with torch.no_grad():
-            _, act_d, pri_d, sec_d, q = bb.embed_prefix(b)
+            _, act_d, pri_d, sec_d, q, gen_code = bb.embed_prefix(b)
         act_d = act_d.cpu().numpy(); pri_d = pri_d.cpu().numpy()
         sec_d = sec_d.cpu().numpy(); q = q.cpu().numpy()
+        gen_code = gen_code.cpu().numpy() if gen_code is not None else None
         for i, t in enumerate(chunk):
-            tower = cand["p"] @ q[i]
             hier = (np.log(act_d[i][cand["act"]] + 1e-8)
                     + np.log(pri_d[i][cand["pri"]] + 1e-8)
                     + np.log(sec_d[i][cand["sec"]] + 1e-8))
             last = t["rows"][-2]
             dlat = cand["lat"] - lat[last]; dlon = cand["lon"] - lon[last]
-            dist = np.sqrt(dlat*dlat + dlon*dlon)
-            geo = -np.log1p(dist)
-            # temporal fit: candidate mean hour vs predicted-next tod (use last hour+delta proxy)
+            geo = -np.log1p(np.sqrt(dlat*dlat + dlon*dlon))
             last_h = city.df["timestamp"].iloc[last].hour
             temporal = -np.abs(((cand["hour"] - last_h + 12) % 24) - 12) / 12.0
-            score = (cfg.w_tower * _z(tower) + cfg.w_hier * _z(hier)
-                     + cfg.w_geo * _z(geo) + cfg.w_temporal * _z(temporal))
-            # hierarchy restriction: keep candidates whose activity in predicted top-k
+            if gen_code is not None and cand["codes"] is not None:
+                # generative leaf: match the generated semantic ID prefix
+                sid_match = (cand["codes"] == gen_code[i][None, :]).sum(1).astype(np.float32)
+                score = (cfg.w_hier * _z(hier) + cfg.w_geo * _z(geo)
+                         + cfg.w_temporal * _z(temporal)
+                         + cfg.w_tower * _z(sid_match))          # w_tower reused as w_sid
+            else:
+                tower = cand["p"] @ q[i]
+                score = (cfg.w_tower * _z(tower) + cfg.w_hier * _z(hier)
+                         + cfg.w_geo * _z(geo) + cfg.w_temporal * _z(temporal))
             topk_act = set(np.argsort(-act_d[i])[:cfg.hier_restrict_topk])
             keep = np.array([a in topk_act for a in cand["act"]])
             if keep.any():
                 score = np.where(keep, score, score.min() - 10.0)
-            # personal revisit
-            prefix_vids = [int(city.venue_id[r]) for r in t["rows"][:-1]]
-            for v in prefix_vids:
+            for v in [int(city.venue_id[r]) for r in t["rows"][:-1]]:
                 r = cand["id2row"].get(v)
                 if r is not None:
                     score[r] += cfg.w_revisit
@@ -214,7 +236,7 @@ def eval_next_activity(bb, city, cfg, device):
         chunk = eval_trails[s0:s0+256]
         b = _prefix_batch(city, [t["rows"][:-1] for t in chunk], device)
         with torch.no_grad():
-            _, act_d, _, _, _ = bb.embed_prefix(b)
+            _, act_d, _, _, _, _ = bb.embed_prefix(b)
         yp += list(act_d.argmax(-1).cpu().numpy())
         yt += [city.act_id[t["rows"][-1]] for t in chunk]
     return classification_metrics(yt, yp)

@@ -30,8 +30,13 @@ def pretrain(cfg: Config):
     logger.info(f"device={device} pretrain_cities={cfg.pretrain_cities}")
 
     fsq = FSQTaxonomy(cfg.fsq_csv)
+    if not os.path.exists(cfg.fsq_csv):
+        raise FileNotFoundError(f"--fsq_csv not found: {cfg.fsq_csv} (this silently "
+                                f"collapses the hierarchy to 1 class -- fix the path)")
     logger.info(f"FSQ taxonomy: {fsq.n_activity} activities, {fsq.n_primary} "
                 f"primary, {fsq.n_secondary} secondary")
+    assert fsq.n_activity >= 5, (
+        f"taxonomy collapsed to {fsq.n_activity} activities -- check --fsq_csv path/format")
     enc = POIEncoder(cfg, logger)
     cfg.poi_emb_dim = enc.dim
 
@@ -94,20 +99,21 @@ def pretrain(cfg: Config):
             torch.nn.utils.clip_grad_norm_(model.parameters(), cfg.grad_clip)
             scaler.step(opt); scaler.update()
             model.ema_update(cfg.ema_decay)
-            rec = {k: float(v.detach()) for k, v in out.items()}
+            rec = {k: (float(v.detach()) if hasattr(v, "detach") else float(v))
+                   for k, v in out.items()}
             for k, v in rec.items():
                 agg[k] = agg.get(k, 0.0) + v
             hist.write(json.dumps({"step": gstep, **{k: round(v, 4) for k, v in rec.items()}}) + "\n")
             if it % 50 == 0:
                 logger.info(f"e{epoch} s{gstep} lr{cfg.lr*lr_at(gstep):.2e} "
-                            f"loss={rec['loss']:.3f} pred={rec['pred']:.3f} "
-                            f"nce={rec['nce']:.3f} reg={rec['reg']:.3f} motif={rec['motif']:.3f} | "
+                            f"loss={rec['loss']:.3f} pred={rec['pred']:.3f} sid={rec['sid']:.3f} "
+                            f"geo={rec['geo']:.3f} tmp={rec['tmp']:.3f} motif={rec['motif']:.3f} | "
                             f"act@1={rec['act@1']:.3f} pri@1={rec['pri@1']:.3f} "
                             f"sec@1={rec['sec@1']:.3f} poi@1={rec['poi@1']:.3f}")
             gstep += 1
         n = max(1, steps_per_epoch)
         logger.info(f"== epoch {epoch} mean: " + " ".join(
-            f"{k}={agg.get(k,0)/n:.4f}" for k in ["loss", "pred", "nce", "act@1", "pri@1", "sec@1", "poi@1"]))
+            f"{k}={agg.get(k,0)/n:.4f}" for k in ["loss","pred","sid","geo","tmp","act@1","pri@1","sec@1","poi@1"]))
     hist.close()
 
     ckpt = os.path.join(run_dir, "gemma.pt")

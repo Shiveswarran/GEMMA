@@ -25,7 +25,7 @@ def gen(city, n_users, days, seed):
     rng = np.random.RandomState(seed)
     clat, clon = rng.uniform(-40,40), rng.uniform(-100,100)
     pois = {c:[(f"{n} {i}", clat+rng.randn()*.05, clon+rng.randn()*.05,
-               (hash(city)%9000)+ci*100+i) for i in range(6)]
+               (hash(city)%9000)+ci*100+i) for i in range(40)]
             for ci,(c,n) in enumerate(CATS)}
     rows=[]; tid=0
     for u in range(n_users):
@@ -35,7 +35,7 @@ def gen(city, n_users, days, seed):
             tour = TOURS[rng.choice(len(TOURS), p=pref)]
             t = day0+pd.Timedelta(hours=7)
             for step,cid in enumerate(tour):
-                name,la,lo,vid = pois[cid][rng.randint(6)]
+                name,la,lo,vid = pois[cid][rng.randint(40)]
                 cname = dict(CATS)[cid]
                 rows.append(dict(trail_id=tid,user_id=u,venue_id=int(vid),
                     latitude=la,longitude=lo,name=name,address="n/a",

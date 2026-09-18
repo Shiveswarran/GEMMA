@@ -92,6 +92,7 @@ class CityData:
     sec_id: np.ndarray
     trails: List[dict]        # [{user_id, trail_id, rows:[...]}]
     poi_table: Dict           # per-POI static attrs for retrieval / candidates
+    codes: np.ndarray = None  # (N, sid_levels) per-check-in semantic code (or None)
 
     @property
     def cont_dim(self):
@@ -153,8 +154,26 @@ def build_city_data(cfg, city, splits, fsq: FSQTaxonomy, poi_encoder,
                   for t in ts]
 
     poi_table = _poi_table(df, name_emb, act_id, pri_id, sec_id, lat, lon)
+
+    # per-check-in semantic codes (from offline RQ-VAE cache), if present
+    codes = None
+    sid_path = os.path.join(getattr(cfg, "sid_cache", "sid_cache"), f"{city}_codes.npz")
+    if getattr(cfg, "use_semantic_id", False) and os.path.exists(sid_path):
+        z = np.load(sid_path, allow_pickle=True)
+        v2c = {int(v): c for v, c in zip(z["venue_ids"], z["codes"])}
+        L = z["codes"].shape[1]
+        codes = np.zeros((len(df), L), np.int64)
+        vids = df["venue_id"].values.astype(np.int64)
+        for i in range(len(df)):
+            c = v2c.get(int(vids[i]))
+            if c is not None:
+                codes[i] = c
+        if logger:
+            logger.info(f"[{city}] loaded semantic codes ({L} levels) for "
+                        f"{len(v2c)} POIs")
+
     return CityData(city, df, cont, name_emb, df["venue_id"].values.astype(np.int64),
-                    act_id, pri_id, sec_id, trails, poi_table)
+                    act_id, pri_id, sec_id, trails, poi_table, codes)
 
 
 def _poi_table(df, name_emb, act, pri, sec, lat, lon):
@@ -249,6 +268,8 @@ def collate(batch, city: CityData, cfg):
     act = np.zeros((B, L), np.int64); pri = np.zeros((B, L), np.int64)
     sec = np.zeros((B, L), np.int64); typ = np.zeros((B, L), np.int64)
     vid = np.full((B, L), -1, np.int64)
+    Lc = city.codes.shape[1] if city.codes is not None else 0
+    code = np.zeros((B, L, Lc), np.int64) if Lc else None
     ctx_mask = np.zeros((B, L), np.float32); tgt_mask = np.zeros((B, L), np.float32)
     for i, (rows, types, ctx, tm) in enumerate(batch):
         for j, r in enumerate(rows):
@@ -257,9 +278,14 @@ def collate(batch, city: CityData, cfg):
                 cont[i, j] = city.cont[r]
                 act[i, j] = city.act_id[r]; pri[i, j] = city.pri_id[r]; sec[i, j] = city.sec_id[r]
                 vid[i, j] = int(city.venue_id[r])
+                if code is not None:
+                    code[i, j] = city.codes[r]
         ctx_mask[i, :len(rows)] = ctx.astype(np.float32)
         tgt_mask[i, :len(rows)] = tm.astype(np.float32)
     t = lambda x: torch.as_tensor(x)
-    return {"cont": t(cont), "act": t(act), "pri": t(pri), "sec": t(sec),
-            "types": t(typ), "vid": t(vid),
-            "ctx_mask": t(ctx_mask), "tgt_mask": t(tgt_mask)}
+    out = {"cont": t(cont), "act": t(act), "pri": t(pri), "sec": t(sec),
+           "types": t(typ), "vid": t(vid),
+           "ctx_mask": t(ctx_mask), "tgt_mask": t(tgt_mask)}
+    if code is not None:
+        out["code"] = t(code)
+    return out
