@@ -1,0 +1,37 @@
+14:29:09 | INFO    | gemma.sid | loaded 228910 cached LLM embeddings
+14:29:09 | INFO    | gemma.sid | [shanghai] 546/7375 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:29:11 | INFO    | gemma.sid | [new_york] 13806/190740 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:29:26 | INFO    | gemma.sid | [moscow] 11233/74113 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:29:32 | INFO    | gemma.sid | [kuwait_city] 20988/162716 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:29:45 | INFO    | gemma.sid | [tokyo] 273/9691 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:29:46 | INFO    | gemma.sid | [sydney] 1563/21027 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:29:48 | INFO    | gemma.sid | [tangerang] 9064/32085 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:29:51 | INFO    | gemma.sid | [sao_paulo] 13145/179771 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:30:06 | INFO    | gemma.sid | [bandung] 26534/113058 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:30:15 | INFO    | gemma.sid | [melbourne] 797/15419 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:30:16 | INFO    | gemma.sid | [beijing] 80/1044 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:30:18 | INFO    | gemma.sid | [jakarta] 55163/288339 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:30:41 | INFO    | gemma.sid | [palembang] 2952/10132 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:30:43 | INFO    | gemma.sid | [petaling_jaya] 44052/354817 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:31:13 | INFO    | gemma.sid | [istanbul] 43712/380986 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:31:48 | INFO    | gemma.sid | training RQ-VAE on 221468 POIs, feat_dim=1554
+14:31:51 | INFO    | gemma.sid | ep0 loss=1841.927 recon=0.0007 commit=0.0000 kl=14.793 usage(lvl0)=0.00
+14:31:53 | INFO    | gemma.sid | ep5 loss=534.776 recon=0.0004 commit=0.0000 kl=6.299 usage(lvl0)=0.37
+14:31:55 | INFO    | gemma.sid | ep10 loss=518.699 recon=0.0003 commit=0.0000 kl=6.365 usage(lvl0)=0.39
+14:31:56 | INFO    | gemma.sid | ep11 loss=520.771 recon=0.0003 commit=0.0000 kl=6.365 usage(lvl0)=0.35
+14:31:56 | INFO    | gemma.sid | [istanbul] 36403 POIs -> 26679 distinct semantic IDs (collision rate 26.71%)
+14:31:57 | INFO    | gemma.sid | [petaling_jaya] 45631 POIs -> 33636 distinct semantic IDs (collision rate 26.29%)
+14:31:58 | INFO    | gemma.sid | [jakarta] 58938 POIs -> 41029 distinct semantic IDs (collision rate 30.39%)
+14:31:59 | INFO    | gemma.sid | [new_york] 39113 POIs -> 34155 distinct semantic IDs (collision rate 12.68%)
+14:31:59 | INFO    | gemma.sid | [kuwait_city] 11532 POIs -> 9096 distinct semantic IDs (collision rate 21.12%)
+14:32:00 | INFO    | gemma.sid | [sao_paulo] 29851 POIs -> 26745 distinct semantic IDs (collision rate 10.41%)
+14:32:00 | INFO    | gemma.sid | [tokyo] 2494 POIs -> 2333 distinct semantic IDs (collision rate 6.46%)
+14:32:00 | INFO    | gemma.sid | [bandung] 22058 POIs -> 15101 distinct semantic IDs (collision rate 31.54%)
+14:32:00 | INFO    | gemma.sid | [beijing] 498 POIs -> 492 distinct semantic IDs (collision rate 1.20%)
+14:32:00 | INFO    | gemma.sid | [melbourne] 5639 POIs -> 5245 distinct semantic IDs (collision rate 6.99%)
+14:32:01 | INFO    | gemma.sid | [moscow] 11894 POIs -> 9726 distinct semantic IDs (collision rate 18.23%)
+14:32:01 | INFO    | gemma.sid | [palembang] 3348 POIs -> 3075 distinct semantic IDs (collision rate 8.15%)
+14:32:01 | INFO    | gemma.sid | [shanghai] 2893 POIs -> 2802 distinct semantic IDs (collision rate 3.15%)
+14:32:01 | INFO    | gemma.sid | [sydney] 6790 POIs -> 6215 distinct semantic IDs (collision rate 8.47%)
+14:32:01 | INFO    | gemma.sid | [tangerang] 8298 POIs -> 6927 distinct semantic IDs (collision rate 16.52%)
+14:32:01 | INFO    | gemma.sid | done -> sid_cache

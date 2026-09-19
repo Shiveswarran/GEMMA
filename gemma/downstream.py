@@ -230,8 +230,12 @@ def train_adapter(bb, city, cand, cfg, device, logger, covis):
                 loss=loss+F.cross_entropy(scores.unsqueeze(0),
                      torch.tensor([pos],device=device)); used+=1
             if used>0:
-                loss=loss/used; opt.zero_grad(); loss.backward(); opt.step()
-                tot+=float(loss.detach()); nb+=1
+                loss=loss/used
+                if torch.isfinite(loss):
+                    opt.zero_grad(); loss.backward()
+                    torch.nn.utils.clip_grad_norm_(adapter.parameters(), 1.0)
+                    opt.step()
+                    tot+=float(loss.detach()); nb+=1
         logger.info(f"[{city.city}] adapter epoch {ep} loss={tot/max(1,nb):.4f}")
     return adapter
 

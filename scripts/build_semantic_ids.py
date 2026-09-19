@@ -71,17 +71,35 @@ def main():
     opt=torch.optim.AdamW(model.parameters(),lr=1e-3)
     Xt=torch.as_tensor(Xtr).to(dev)
     model.kmeans_init(Xt[torch.randperm(len(Xt))[:4096]])
+    import copy
+    best_score, best_state, best_ep = -1.0, None, -1
+    Xeval = Xt[torch.randperm(len(Xt))[:20000]]              # fixed-ish eval subset
     for ep in range(a.epochs):
+        model.train()
         perm=torch.randperm(len(Xt))
         tot=0
         for s in range(0,len(Xt),4096):
             idx=perm[s:s+4096]; out=model(Xt[idx])
             opt.zero_grad(); out["loss"].backward(); opt.step(); tot+=float(out["loss"].detach())
         model.revive_dead(Xt[torch.randperm(len(Xt))[:8192]])
-        if ep%5==0 or ep==a.epochs-1:
-            logger.info(f"ep{ep} loss={tot:.3f} recon={float(out['recon']):.4f} "
-                        f"commit={float(out['commit']):.4f} kl={float(out['kl']):.3f} "
-                        f"usage(lvl0)={out['usage']:.2f}")
+        # selection metric = # DISTINCT semantic IDs on the eval subset (not loss!)
+        model.eval()
+        with torch.no_grad():
+            codes_e = model.encode_codes(Xeval).cpu().numpy()
+        distinct = len({tuple(c) for c in codes_e})
+        score = distinct / len(codes_e)                     # fraction unique (higher=better)
+        if score > best_score:
+            best_score, best_ep = score, ep
+            best_state = copy.deepcopy(model.state_dict())
+        if ep%2==0 or ep==a.epochs-1:
+            logger.info(f"ep{ep} loss={tot:.1f} recon={float(out['recon']):.4f} "
+                        f"kl={float(out['kl']):.2f} usage(lvl0)={out['usage']:.2f} "
+                        f"distinct={score:.3f} (best ep{best_ep}={best_score:.3f})")
+    if best_state is not None:
+        model.load_state_dict(best_state)
+        logger.info(f"restoring best checkpoint from ep{best_ep} "
+                    f"(distinct-fraction={best_score:.3f})")
+    model.eval()
     torch.save(model.state_dict(), os.path.join(a.cache,"rqvae.pt"))
     # quantize every city with the FROZEN codebooks
     model.eval()

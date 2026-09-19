@@ -1,0 +1,100 @@
+17:52:29 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:70: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+17:52:30 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:52:30 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:52:32 | INFO    | gemma.down | [tokyo/next_poi/zero_shot] acc@1=0.0474 acc@5=0.1541 acc@10=0.1996 ndcg@5=0.1029 ndcg@10=0.1173 mrr=0.1012 act@1=0.3637 pri@1=0.2242 sec@1=0.1376
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:70: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+17:52:32 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:52:33 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:52:33 | INFO    | gemma.down | [tokyo] 273/9691 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:52:34 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:52:50 | INFO    | gemma.down | [tokyo] adapter epoch 0 loss=5.3603
+17:53:05 | INFO    | gemma.down | [tokyo] adapter epoch 1 loss=2.8627
+17:53:20 | INFO    | gemma.down | [tokyo] adapter epoch 2 loss=2.3052
+17:53:35 | INFO    | gemma.down | [tokyo] adapter epoch 3 loss=2.1583
+17:53:51 | INFO    | gemma.down | [tokyo] adapter epoch 4 loss=2.0434
+17:53:53 | INFO    | gemma.down | [tokyo/next_poi/few_shot] acc@1=0.1185 acc@5=0.2343 acc@10=0.3017 ndcg@5=0.1778 ndcg@10=0.1995 mrr=0.1794 act@1=0.3637 pri@1=0.2242 sec@1=0.1376
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:70: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+17:53:53 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:53:53 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:53:54 | INFO    | gemma.down | [tokyo] 311/11048 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:53:54 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:54:13 | INFO    | gemma.down | [tokyo] adapter epoch 0 loss=4.9604
+17:54:31 | INFO    | gemma.down | [tokyo] adapter epoch 1 loss=2.5961
+17:54:48 | INFO    | gemma.down | [tokyo] adapter epoch 2 loss=2.3010
+17:55:06 | INFO    | gemma.down | [tokyo] adapter epoch 3 loss=2.1578
+17:55:24 | INFO    | gemma.down | [tokyo] adapter epoch 4 loss=2.0267
+17:55:27 | INFO    | gemma.down | [tokyo/next_poi/full] acc@1=0.1203 acc@5=0.2416 acc@10=0.2999 ndcg@5=0.1813 ndcg@10=0.2003 mrr=0.1808 act@1=0.3637 pri@1=0.2242 sec@1=0.1376
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:70: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+17:55:27 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:55:27 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:55:27 | INFO    | gemma.down | [tokyo/next_activity/zero_shot] accuracy=0.3637 macro_f1=0.1663
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:70: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+17:55:27 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:55:27 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:55:28 | INFO    | gemma.down | [tokyo/next_activity/few_shot] accuracy=0.3637 macro_f1=0.1663
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:70: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+17:55:28 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:55:28 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:55:28 | INFO    | gemma.down | [tokyo/next_activity/full] accuracy=0.3637 macro_f1=0.1663
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:70: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+17:55:28 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:55:38 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+[W918 17:55:42.363713674 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5186256896 bytes (free: 3534880768, total: 23593091072).
+[W918 17:55:42.688309859 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5186256896 bytes (free: 4692508672, total: 23593091072).
+18:04:20 | INFO    | gemma.down | [istanbul/next_poi/zero_shot] acc@1=0.0208 acc@5=0.0575 acc@10=0.0826 ndcg@5=0.0395 ndcg@10=0.0476 mrr=0.0433 act@1=0.3095 pri@1=0.1641 sec@1=0.0838
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:70: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+18:04:21 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+18:04:30 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+18:04:31 | INFO    | gemma.down | [istanbul] 43712/380986 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+18:05:01 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+[W918 18:05:19.500320927 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 9544138752 bytes (free: 1976696832, total: 23593091072).
+[W918 18:05:19.880666678 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 9544138752 bytes (free: 8146518016, total: 23593091072).
+[W918 18:05:19.881639175 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 9544138752 bytes (free: 8146518016, total: 23593091072).
+Traceback (most recent call last):
+  File "/scratch/umni5/a/shives/POI_RecSys/GEMMA/scripts/run_downstream.py", line 44, in <module>
+    if __name__=="__main__": main()
+                             ^^^^^^
+  File "/scratch/umni5/a/shives/POI_RecSys/GEMMA/scripts/run_downstream.py", line 31, in main
+    m=run_downstream(bb,fsq,enc,cfg,city,a.run_dir,task=task,shot=shot,logger=logger)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/downstream.py", line 323, in run_downstream
+    adapter = train_adapter(bb, train, cand_tr, cfg, device, logger, covis)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/downstream.py", line 215, in train_adapter
+    ar=bb.leaf.score_codes(zb, codes_t).cpu().numpy()   # (B, Ncand)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/umni5/a/shives/anaconda3/envs/gemma/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/leaf_heads.py", line 74, in score_codes
+    logp = F.log_softmax(self.step[l](h), dim=-1)    # (B,C,K)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/umni5/a/shives/anaconda3/envs/gemma/lib/python3.11/site-packages/torch/nn/functional.py", line 2321, in log_softmax
+    ret = input.log_softmax(dim)
+          ^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 8.89 GiB. GPU 0 has a total capacity of 21.97 GiB of which 7.59 GiB is free. Process 2510659 has 228.00 MiB memory in use. Including non-PyTorch memory, this process has 14.16 GiB memory in use. Of the allocated memory 9.11 GiB is allocated by PyTorch, and 4.84 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.3637192342752963,
+  "macro_f1": 0.16630388680691943,
+  "city": "tokyo",
+  "task": "next_activity",
+  "shot": "full"
+}

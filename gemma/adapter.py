@@ -67,8 +67,11 @@ def user_activity_profile(city, prefix_rows, n_act):
 
 
 def _z(x):
-    m, s = x.mean(), x.std()
-    return (x - m) / (s + 1e-6)
+    x = np.nan_to_num(np.asarray(x, np.float32), nan=0.0, posinf=0.0, neginf=0.0)
+    s = x.std()
+    if s < 1e-6:                       # constant column -> no signal, return zeros
+        return np.zeros_like(x)
+    return np.clip((x - x.mean()) / s, -10.0, 10.0)
 
 
 def candidate_features(cand, q_idx, act_d, pri_d, sec_d, ar_ll_row,
@@ -103,4 +106,5 @@ def candidate_features(cand, q_idx, act_d, pri_d, sec_d, ar_ll_row,
     f[:, 5] = cov
     f[:, 6] = _z(cand["pop"][idx])
     f[:, 7] = uprof[cand["act"][idx]]
+    f = np.nan_to_num(f, nan=0.0, posinf=0.0, neginf=0.0).astype(np.float32)
     return f, idx
