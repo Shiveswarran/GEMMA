@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.35172413793103446,
+  "macro_f1": 0.1719798474553379,
+  "city": "sydney",
+  "task": "next_activity",
+  "shot": "full"
+}

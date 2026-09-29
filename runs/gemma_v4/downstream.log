@@ -59,3 +59,755 @@
 18:04:30 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
 18:04:31 | INFO    | gemma.down | [istanbul] 43712/380986 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
 18:05:01 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+21:41:19 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+21:41:20 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:41:20 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:41:24 | INFO    | gemma.down | [tokyo/next_poi/zero_shot] acc@1=0.0479 acc@5=0.1521 acc@10=0.1967 ndcg@5=0.1021 ndcg@10=0.1163 mrr=0.1006 act@1=0.361 pri@1=0.2249 sec@1=0.1366
+21:41:25 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:41:25 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:41:25 | INFO    | gemma.down | [tokyo] 273/9691 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:41:26 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:41:58 | INFO    | gemma.down | [tokyo] adapter epoch 0 loss=4.1058
+21:42:28 | INFO    | gemma.down | [tokyo] adapter epoch 1 loss=2.2432
+21:42:59 | INFO    | gemma.down | [tokyo] adapter epoch 2 loss=2.0301
+21:43:29 | INFO    | gemma.down | [tokyo] adapter epoch 3 loss=1.8663
+21:44:00 | INFO    | gemma.down | [tokyo] adapter epoch 4 loss=1.7700
+21:44:05 | INFO    | gemma.down | [tokyo/next_poi/few_shot] acc@1=0.1178 acc@5=0.2371 acc@10=0.2915 ndcg@5=0.1783 ndcg@10=0.1962 mrr=0.1776 act@1=0.361 pri@1=0.2249 sec@1=0.1366
+21:44:05 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:44:05 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:44:06 | INFO    | gemma.down | [tokyo] 311/11048 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:44:07 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:44:44 | INFO    | gemma.down | [tokyo] adapter epoch 0 loss=3.9705
+21:45:20 | INFO    | gemma.down | [tokyo] adapter epoch 1 loss=2.2769
+21:45:55 | INFO    | gemma.down | [tokyo] adapter epoch 2 loss=2.0226
+21:46:31 | INFO    | gemma.down | [tokyo] adapter epoch 3 loss=1.8421
+21:47:08 | INFO    | gemma.down | [tokyo] adapter epoch 4 loss=1.7687
+21:47:13 | INFO    | gemma.down | [tokyo/next_poi/full] acc@1=0.1066 acc@5=0.2296 acc@10=0.2869 ndcg@5=0.1702 ndcg@10=0.1889 mrr=0.1689 act@1=0.361 pri@1=0.2249 sec@1=0.1366
+21:47:13 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:47:13 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:47:13 | INFO    | gemma.down | [tokyo/next_activity/zero_shot] accuracy=0.3637 macro_f1=0.1663
+21:47:13 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:47:13 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:47:14 | INFO    | gemma.down | [tokyo/next_activity/few_shot] accuracy=0.3637 macro_f1=0.1663
+21:47:14 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:47:14 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:47:14 | INFO    | gemma.down | [tokyo/next_activity/full] accuracy=0.3637 macro_f1=0.1663
+21:47:15 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:47:27 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+22:04:51 | INFO    | gemma.down | [istanbul/next_poi/zero_shot] acc@1=0.0208 acc@5=0.0575 acc@10=0.0826 ndcg@5=0.0395 ndcg@10=0.0476 mrr=0.0434 act@1=0.3094 pri@1=0.1641 sec@1=0.0838
+22:04:52 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:05:05 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+22:05:07 | INFO    | gemma.down | [istanbul] 43712/380986 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:05:49 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+00:31:00 | INFO    | gemma.down | [istanbul] adapter epoch 0 loss=3.6080
+02:55:49 | INFO    | gemma.down | [istanbul] adapter epoch 1 loss=3.2185
+05:20:46 | INFO    | gemma.down | [istanbul] adapter epoch 2 loss=3.1452
+07:45:33 | INFO    | gemma.down | [istanbul] adapter epoch 3 loss=3.1064
+10:10:00 | INFO    | gemma.down | [istanbul] adapter epoch 4 loss=3.0851
+10:33:19 | INFO    | gemma.down | [istanbul/next_poi/few_shot] acc@1=0.0667 acc@5=0.1547 acc@10=0.2016 ndcg@5=0.1125 ndcg@10=0.1277 mrr=0.1117 act@1=0.3094 pri@1=0.1641 sec@1=0.0838
+10:33:19 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+10:33:32 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+10:33:34 | INFO    | gemma.down | [istanbul] 49921/435586 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+10:34:21 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+13:33:45 | INFO    | gemma.down | [istanbul] adapter epoch 0 loss=3.6403
+16:39:36 | INFO    | gemma.down | [istanbul] adapter epoch 1 loss=3.2692
+19:42:25 | INFO    | gemma.down | [istanbul] adapter epoch 2 loss=3.2079
+22:40:13 | INFO    | gemma.down | [istanbul] adapter epoch 3 loss=3.1715
+01:39:37 | INFO    | gemma.down | [istanbul] adapter epoch 4 loss=3.1513
+02:03:26 | INFO    | gemma.down | [istanbul/next_poi/full] acc@1=0.0659 acc@5=0.1487 acc@10=0.1952 ndcg@5=0.1091 ndcg@10=0.1241 mrr=0.1088 act@1=0.3094 pri@1=0.1641 sec@1=0.0838
+02:03:27 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+02:03:40 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+02:03:42 | INFO    | gemma.down | [istanbul/next_activity/zero_shot] accuracy=0.3095 macro_f1=0.1704
+02:03:42 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+02:03:55 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+02:03:57 | INFO    | gemma.down | [istanbul/next_activity/few_shot] accuracy=0.3095 macro_f1=0.1704
+02:03:57 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+02:04:10 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+02:04:12 | INFO    | gemma.down | [istanbul/next_activity/full] accuracy=0.3095 macro_f1=0.1704
+02:04:12 | INFO    | gemma.down | [jakarta] 15759/82483 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+02:04:21 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+02:20:49 | INFO    | gemma.down | [jakarta/next_poi/zero_shot] acc@1=0.0118 acc@5=0.0391 acc@10=0.0521 ndcg@5=0.0262 ndcg@10=0.0304 mrr=0.0271 act@1=0.2793 pri@1=0.1408 sec@1=0.0824
+02:20:49 | INFO    | gemma.down | [jakarta] 15759/82483 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+02:20:59 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+02:21:00 | INFO    | gemma.down | [jakarta] 55163/288339 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+02:21:30 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+04:56:47 | INFO    | gemma.down | [jakarta] adapter epoch 0 loss=2.7790
+07:31:05 | INFO    | gemma.down | [jakarta] adapter epoch 1 loss=2.2711
+10:05:06 | INFO    | gemma.down | [jakarta] adapter epoch 2 loss=2.2063
+12:40:06 | INFO    | gemma.down | [jakarta] adapter epoch 3 loss=2.1698
+15:20:51 | INFO    | gemma.down | [jakarta] adapter epoch 4 loss=2.1500
+15:44:00 | INFO    | gemma.down | [jakarta/next_poi/few_shot] acc@1=0.0587 acc@5=0.1204 acc@10=0.1503 ndcg@5=0.0911 ndcg@10=0.1008 mrr=0.0897 act@1=0.2793 pri@1=0.1408 sec@1=0.0824
+15:44:01 | INFO    | gemma.down | [jakarta] 15759/82483 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:44:10 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+15:44:12 | INFO    | gemma.down | [jakarta] 63150/329617 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:44:46 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+19:09:20 | INFO    | gemma.down | [jakarta] adapter epoch 0 loss=2.8009
+22:28:39 | INFO    | gemma.down | [jakarta] adapter epoch 1 loss=2.3557
+01:42:53 | INFO    | gemma.down | [jakarta] adapter epoch 2 loss=2.2877
+04:52:28 | INFO    | gemma.down | [jakarta] adapter epoch 3 loss=2.2465
+08:02:11 | INFO    | gemma.down | [jakarta] adapter epoch 4 loss=2.2221
+08:23:33 | INFO    | gemma.down | [jakarta/next_poi/full] acc@1=0.0598 acc@5=0.1237 acc@10=0.1523 ndcg@5=0.0932 ndcg@10=0.1025 mrr=0.0917 act@1=0.2793 pri@1=0.1408 sec@1=0.0824
+08:23:34 | INFO    | gemma.down | [jakarta] 15759/82483 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+08:23:43 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+08:23:45 | INFO    | gemma.down | [jakarta/next_activity/zero_shot] accuracy=0.2793 macro_f1=0.1593
+08:23:46 | INFO    | gemma.down | [jakarta] 15759/82483 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+08:23:55 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+08:23:58 | INFO    | gemma.down | [jakarta/next_activity/few_shot] accuracy=0.2793 macro_f1=0.1593
+08:23:58 | INFO    | gemma.down | [jakarta] 15759/82483 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+08:24:07 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+08:24:10 | INFO    | gemma.down | [jakarta/next_activity/full] accuracy=0.2793 macro_f1=0.1593
+08:24:10 | INFO    | gemma.down | [new_york] 4011/54427 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+08:24:16 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+08:32:35 | INFO    | gemma.down | [new_york/next_poi/zero_shot] acc@1=0.0065 acc@5=0.0201 acc@10=0.0315 ndcg@5=0.0134 ndcg@10=0.017 mrr=0.0161 act@1=0.3301 pri@1=0.138 sec@1=0.0591
+08:32:35 | INFO    | gemma.down | [new_york] 4011/54427 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+08:32:41 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+08:32:42 | INFO    | gemma.down | [new_york] 13806/190740 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+08:33:03 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+09:46:28 | INFO    | gemma.down | [new_york] adapter epoch 0 loss=2.2216
+10:59:50 | INFO    | gemma.down | [new_york] adapter epoch 1 loss=1.6728
+12:13:37 | INFO    | gemma.down | [new_york] adapter epoch 2 loss=1.6265
+13:30:07 | INFO    | gemma.down | [new_york] adapter epoch 3 loss=1.6068
+14:44:50 | INFO    | gemma.down | [new_york] adapter epoch 4 loss=1.5980
+14:56:24 | INFO    | gemma.down | [new_york/next_poi/few_shot] acc@1=0.0465 acc@5=0.0891 acc@10=0.1061 ndcg@5=0.0689 ndcg@10=0.0744 mrr=0.0669 act@1=0.3301 pri@1=0.138 sec@1=0.0591
+14:56:25 | INFO    | gemma.down | [new_york] 4011/54427 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:56:31 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+14:56:32 | INFO    | gemma.down | [new_york] 15823/217941 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:56:55 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+16:28:01 | INFO    | gemma.down | [new_york] adapter epoch 0 loss=2.2149
+16:57:57 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+16:57:57 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:57:58 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+16:58:02 | INFO    | gemma.down | [tokyo/next_poi/zero_shot] acc@1=0.0479 acc@5=0.1521 acc@10=0.1967 ndcg@5=0.1021 ndcg@10=0.1163 mrr=0.1006 act@1=0.361 pri@1=0.2249 sec@1=0.1366
+16:58:02 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:58:02 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+16:58:02 | INFO    | gemma.down | [tokyo] 273/9691 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:58:04 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+16:58:42 | INFO    | gemma.down | [tokyo] adapter epoch 0 loss=4.0345
+16:59:16 | INFO    | gemma.down | [tokyo] adapter epoch 1 loss=2.2184
+16:59:51 | INFO    | gemma.down | [tokyo] adapter epoch 2 loss=1.9658
+17:00:25 | INFO    | gemma.down | [tokyo] adapter epoch 3 loss=1.7993
+17:00:59 | INFO    | gemma.down | [tokyo] adapter epoch 4 loss=1.7345
+17:01:05 | INFO    | gemma.down | [tokyo/next_poi/few_shot] acc@1=0.116 acc@5=0.2357 acc@10=0.2962 ndcg@5=0.1766 ndcg@10=0.1963 mrr=0.1758 act@1=0.361 pri@1=0.2249 sec@1=0.1366
+17:01:05 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:01:05 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:01:05 | INFO    | gemma.down | [tokyo] 311/11048 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:01:07 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:01:47 | INFO    | gemma.down | [tokyo] adapter epoch 0 loss=3.9337
+17:02:28 | INFO    | gemma.down | [tokyo] adapter epoch 1 loss=2.2867
+17:03:09 | INFO    | gemma.down | [tokyo] adapter epoch 2 loss=1.9905
+17:03:49 | INFO    | gemma.down | [tokyo] adapter epoch 3 loss=1.8329
+17:04:30 | INFO    | gemma.down | [tokyo] adapter epoch 4 loss=1.7645
+17:04:35 | INFO    | gemma.down | [tokyo/next_poi/full] acc@1=0.1103 acc@5=0.23 acc@10=0.2873 ndcg@5=0.1711 ndcg@10=0.1898 mrr=0.1701 act@1=0.361 pri@1=0.2249 sec@1=0.1366
+17:04:36 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:04:36 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:04:36 | INFO    | gemma.down | [tokyo/next_activity/zero_shot] accuracy=0.3637 macro_f1=0.1663
+17:04:36 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:04:37 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:04:37 | INFO    | gemma.down | [tokyo/next_activity/few_shot] accuracy=0.3637 macro_f1=0.1663
+17:04:37 | INFO    | gemma.down | [tokyo] 87/2791 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:04:37 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+17:04:37 | INFO    | gemma.down | [tokyo/next_activity/full] accuracy=0.3637 macro_f1=0.1663
+17:04:38 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:04:50 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+17:24:01 | INFO    | gemma.down | [istanbul/next_poi/zero_shot] acc@1=0.0208 acc@5=0.0575 acc@10=0.0826 ndcg@5=0.0395 ndcg@10=0.0476 mrr=0.0434 act@1=0.3094 pri@1=0.1641 sec@1=0.0838
+17:24:02 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:24:14 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+17:24:16 | INFO    | gemma.down | [istanbul] 43712/380986 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:24:57 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+18:01:51 | INFO    | gemma.down | [new_york] adapter epoch 1 loss=1.7518
+19:39:25 | INFO    | gemma.down | [new_york] adapter epoch 2 loss=1.7000
+20:04:17 | INFO    | gemma.down | [istanbul] adapter epoch 0 loss=3.6713
+21:15:31 | INFO    | gemma.down | [new_york] adapter epoch 3 loss=1.6809
+22:42:04 | INFO    | gemma.down | [istanbul] adapter epoch 1 loss=3.2519
+22:51:48 | INFO    | gemma.down | [new_york] adapter epoch 4 loss=1.6716
+23:04:13 | INFO    | gemma.down | [new_york/next_poi/full] acc@1=0.0464 acc@5=0.088 acc@10=0.1085 ndcg@5=0.0683 ndcg@10=0.075 mrr=0.0674 act@1=0.3301 pri@1=0.138 sec@1=0.0591
+23:04:13 | INFO    | gemma.down | [new_york] 4011/54427 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:04:20 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+23:04:21 | INFO    | gemma.down | [new_york/next_activity/zero_shot] accuracy=0.3301 macro_f1=0.17
+23:04:22 | INFO    | gemma.down | [new_york] 4011/54427 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:04:28 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+23:04:30 | INFO    | gemma.down | [new_york/next_activity/few_shot] accuracy=0.3301 macro_f1=0.17
+23:04:30 | INFO    | gemma.down | [new_york] 4011/54427 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:04:37 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+23:04:39 | INFO    | gemma.down | [new_york/next_activity/full] accuracy=0.3301 macro_f1=0.17
+23:04:39 | INFO    | gemma.down | [kuwait_city] 6007/46614 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:04:44 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+23:07:50 | INFO    | gemma.down | [kuwait_city/next_poi/zero_shot] acc@1=0.0219 acc@5=0.0872 acc@10=0.1739 ndcg@5=0.055 ndcg@10=0.0825 mrr=0.0686 act@1=0.3315 pri@1=0.1743 sec@1=0.1005
+23:07:50 | INFO    | gemma.down | [kuwait_city] 6007/46614 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:07:56 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+23:07:56 | INFO    | gemma.down | [kuwait_city] 20988/162716 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:08:14 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+23:33:17 | INFO    | gemma.down | [kuwait_city] adapter epoch 0 loss=3.8767
+23:57:39 | INFO    | gemma.down | [kuwait_city] adapter epoch 1 loss=3.4790
+00:22:38 | INFO    | gemma.down | [kuwait_city] adapter epoch 2 loss=3.3857
+00:47:43 | INFO    | gemma.down | [kuwait_city] adapter epoch 3 loss=3.3315
+01:12:37 | INFO    | gemma.down | [kuwait_city] adapter epoch 4 loss=3.2904
+01:16:44 | INFO    | gemma.down | [kuwait_city/next_poi/few_shot] acc@1=0.077 acc@5=0.1907 acc@10=0.2622 ndcg@5=0.1351 ndcg@10=0.1582 mrr=0.1374 act@1=0.3315 pri@1=0.1743 sec@1=0.1005
+01:16:45 | INFO    | gemma.down | [kuwait_city] 6007/46614 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+01:16:50 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+01:16:51 | INFO    | gemma.down | [kuwait_city] 23987/186092 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+01:17:11 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+01:20:05 | INFO    | gemma.down | [istanbul] adapter epoch 2 loss=3.1789
+01:46:44 | INFO    | gemma.down | [kuwait_city] adapter epoch 0 loss=3.9045
+02:16:49 | INFO    | gemma.down | [kuwait_city] adapter epoch 1 loss=3.5137
+02:46:34 | INFO    | gemma.down | [kuwait_city] adapter epoch 2 loss=3.4372
+03:15:53 | INFO    | gemma.down | [kuwait_city] adapter epoch 3 loss=3.3891
+03:45:53 | INFO    | gemma.down | [kuwait_city] adapter epoch 4 loss=3.3531
+03:50:12 | INFO    | gemma.down | [kuwait_city/next_poi/full] acc@1=0.0816 acc@5=0.1967 acc@10=0.2706 ndcg@5=0.1404 ndcg@10=0.1643 mrr=0.1433 act@1=0.3315 pri@1=0.1743 sec@1=0.1005
+03:50:13 | INFO    | gemma.down | [kuwait_city] 6007/46614 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:50:18 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+03:50:19 | INFO    | gemma.down | [kuwait_city/next_activity/zero_shot] accuracy=0.3316 macro_f1=0.1463
+03:50:19 | INFO    | gemma.down | [kuwait_city] 6007/46614 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:50:25 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+03:50:26 | INFO    | gemma.down | [kuwait_city/next_activity/few_shot] accuracy=0.3316 macro_f1=0.1463
+03:50:26 | INFO    | gemma.down | [kuwait_city] 6007/46614 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:50:31 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+03:50:32 | INFO    | gemma.down | [kuwait_city/next_activity/full] accuracy=0.3316 macro_f1=0.1463
+03:50:33 | INFO    | gemma.down | [petaling_jaya] 12278/101105 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:50:44 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+03:58:57 | INFO    | gemma.down | [istanbul] adapter epoch 3 loss=3.1343
+04:11:30 | INFO    | gemma.down | [petaling_jaya/next_poi/zero_shot] acc@1=0.0132 acc@5=0.0534 acc@10=0.0692 ndcg@5=0.0343 ndcg@10=0.0394 mrr=0.0348 act@1=0.2707 pri@1=0.1455 sec@1=0.0801
+04:11:31 | INFO    | gemma.down | [petaling_jaya] 12278/101105 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:11:42 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+04:11:44 | INFO    | gemma.down | [petaling_jaya] 44052/354817 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:12:21 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+06:38:22 | INFO    | gemma.down | [istanbul] adapter epoch 4 loss=3.1026
+07:05:02 | INFO    | gemma.down | [istanbul/next_poi/few_shot] acc@1=0.0657 acc@5=0.1534 acc@10=0.1977 ndcg@5=0.1113 ndcg@10=0.1256 mrr=0.1097 act@1=0.3094 pri@1=0.1641 sec@1=0.0838
+07:05:02 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+07:05:15 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+07:05:17 | INFO    | gemma.down | [istanbul] 49921/435586 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+07:06:04 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+07:12:27 | INFO    | gemma.down | [petaling_jaya] adapter epoch 0 loss=3.2658
+10:14:05 | INFO    | gemma.down | [petaling_jaya] adapter epoch 1 loss=2.8641
+10:21:37 | INFO    | gemma.down | [istanbul] adapter epoch 0 loss=3.6600
+13:09:00 | INFO    | gemma.down | [petaling_jaya] adapter epoch 2 loss=2.7857
+13:28:18 | INFO    | gemma.down | [istanbul] adapter epoch 1 loss=3.2748
+16:01:25 | INFO    | gemma.down | [petaling_jaya] adapter epoch 3 loss=2.7276
+16:32:38 | INFO    | gemma.down | [istanbul] adapter epoch 2 loss=3.2033
+18:54:06 | INFO    | gemma.down | [petaling_jaya] adapter epoch 4 loss=2.7007
+19:20:36 | INFO    | gemma.down | [petaling_jaya/next_poi/few_shot] acc@1=0.0575 acc@5=0.1248 acc@10=0.16 ndcg@5=0.0925 ndcg@10=0.1039 mrr=0.0924 act@1=0.2707 pri@1=0.1455 sec@1=0.0801
+19:20:37 | INFO    | gemma.down | [petaling_jaya] 12278/101105 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+19:20:48 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+19:20:50 | INFO    | gemma.down | [petaling_jaya] 50496/405325 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+19:21:34 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+19:36:47 | INFO    | gemma.down | [istanbul] adapter epoch 3 loss=3.1656
+22:40:58 | INFO    | gemma.down | [istanbul] adapter epoch 4 loss=3.1458
+22:50:36 | INFO    | gemma.down | [petaling_jaya] adapter epoch 0 loss=3.2812
+23:05:47 | INFO    | gemma.down | [istanbul/next_poi/full] acc@1=0.0667 acc@5=0.1518 acc@10=0.1993 ndcg@5=0.1109 ndcg@10=0.1262 mrr=0.1102 act@1=0.3094 pri@1=0.1641 sec@1=0.0838
+23:05:48 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:06:00 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+23:06:02 | INFO    | gemma.down | [istanbul/next_activity/zero_shot] accuracy=0.3095 macro_f1=0.1704
+23:06:02 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:06:14 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+23:06:16 | INFO    | gemma.down | [istanbul/next_activity/few_shot] accuracy=0.3095 macro_f1=0.1704
+23:06:17 | INFO    | gemma.down | [istanbul] 12700/108885 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:06:28 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+23:06:31 | INFO    | gemma.down | [istanbul/next_activity/full] accuracy=0.3095 macro_f1=0.1704
+23:06:32 | INFO    | gemma.down | [jakarta] 15759/82483 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:06:41 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+23:23:57 | INFO    | gemma.down | [jakarta/next_poi/zero_shot] acc@1=0.0118 acc@5=0.0391 acc@10=0.0521 ndcg@5=0.0262 ndcg@10=0.0304 mrr=0.0271 act@1=0.2793 pri@1=0.1408 sec@1=0.0824
+23:23:58 | INFO    | gemma.down | [jakarta] 15759/82483 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:24:07 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+23:24:08 | INFO    | gemma.down | [jakarta] 55163/288339 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:24:37 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+02:06:53 | INFO    | gemma.down | [jakarta] adapter epoch 0 loss=2.7441
+02:19:02 | INFO    | gemma.down | [petaling_jaya] adapter epoch 1 loss=2.8897
+04:48:59 | INFO    | gemma.down | [jakarta] adapter epoch 1 loss=2.2792
+05:47:16 | INFO    | gemma.down | [petaling_jaya] adapter epoch 2 loss=2.8222
+07:30:51 | INFO    | gemma.down | [jakarta] adapter epoch 2 loss=2.2120
+09:15:27 | INFO    | gemma.down | [petaling_jaya] adapter epoch 3 loss=2.7846
+10:12:49 | INFO    | gemma.down | [jakarta] adapter epoch 3 loss=2.1705
+12:43:34 | INFO    | gemma.down | [petaling_jaya] adapter epoch 4 loss=2.7627
+12:54:48 | INFO    | gemma.down | [jakarta] adapter epoch 4 loss=2.1481
+13:10:01 | INFO    | gemma.down | [petaling_jaya/next_poi/full] acc@1=0.0584 acc@5=0.1285 acc@10=0.1703 ndcg@5=0.0948 ndcg@10=0.1082 mrr=0.0954 act@1=0.2707 pri@1=0.1455 sec@1=0.0801
+13:10:01 | INFO    | gemma.down | [petaling_jaya] 12278/101105 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+13:10:12 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+13:10:15 | INFO    | gemma.down | [petaling_jaya/next_activity/zero_shot] accuracy=0.2707 macro_f1=0.1516
+13:10:15 | INFO    | gemma.down | [petaling_jaya] 12278/101105 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+13:10:27 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+13:10:30 | INFO    | gemma.down | [petaling_jaya/next_activity/few_shot] accuracy=0.2707 macro_f1=0.1516
+13:10:30 | INFO    | gemma.down | [petaling_jaya] 12278/101105 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+13:10:41 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+13:10:44 | INFO    | gemma.down | [petaling_jaya/next_activity/full] accuracy=0.2707 macro_f1=0.1516
+13:10:44 | INFO    | gemma.down | [sao_paulo] 3781/51428 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+13:10:50 | INFO    | gemma.down | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+13:17:03 | INFO    | gemma.down | [sao_paulo/next_poi/zero_shot] acc@1=0.0119 acc@5=0.0321 acc@10=0.0456 ndcg@5=0.0222 ndcg@10=0.0265 mrr=0.0254 act@1=0.2382 pri@1=0.1336 sec@1=0.0772
+13:17:04 | INFO    | gemma.down | [sao_paulo] 3781/51428 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+13:17:08 | INFO    | gemma.down | [jakarta/next_poi/few_shot] acc@1=0.0597 acc@5=0.1208 acc@10=0.1502 ndcg@5=0.0917 ndcg@10=0.1012 mrr=0.09 act@1=0.2793 pri@1=0.1408 sec@1=0.0824
+13:17:09 | INFO    | gemma.down | [jakarta] 15759/82483 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+13:17:09 | INFO    | gemma.down | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+13:17:11 | INFO    | gemma.down | [sao_paulo] 13145/179771 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+13:17:17 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+13:17:19 | INFO    | gemma.down | [jakarta] 63150/329617 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+13:17:31 | INFO    | gemma.down | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+13:17:52 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+14:10:12 | INFO    | gemma.down | [sao_paulo] adapter epoch 0 loss=2.5909
+15:02:48 | INFO    | gemma.down | [sao_paulo] adapter epoch 1 loss=1.9504
+15:55:22 | INFO    | gemma.down | [sao_paulo] adapter epoch 2 loss=1.8599
+16:37:27 | INFO    | gemma.down | [jakarta] adapter epoch 0 loss=2.7603
+16:47:56 | INFO    | gemma.down | [sao_paulo] adapter epoch 3 loss=1.8245
+17:40:25 | INFO    | gemma.down | [sao_paulo] adapter epoch 4 loss=1.8071
+17:48:31 | INFO    | gemma.down | [sao_paulo/next_poi/few_shot] acc@1=0.0704 acc@5=0.1453 acc@10=0.1776 ndcg@5=0.1096 ndcg@10=0.12 mrr=0.107 act@1=0.2382 pri@1=0.1336 sec@1=0.0772
+17:48:31 | INFO    | gemma.down | [sao_paulo] 3781/51428 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:48:37 | INFO    | gemma.down | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+17:48:38 | INFO    | gemma.down | [sao_paulo] 15075/205396 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:48:59 | INFO    | gemma.down | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+18:52:27 | INFO    | gemma.down | [sao_paulo] adapter epoch 0 loss=2.5886
+19:55:40 | INFO    | gemma.down | [sao_paulo] adapter epoch 1 loss=2.0171
+19:56:14 | INFO    | gemma.down | [jakarta] adapter epoch 1 loss=2.3158
+20:59:10 | INFO    | gemma.down | [sao_paulo] adapter epoch 2 loss=1.9408
+22:02:24 | INFO    | gemma.down | [sao_paulo] adapter epoch 3 loss=1.8977
+23:05:50 | INFO    | gemma.down | [sao_paulo] adapter epoch 4 loss=1.8708
+23:14:00 | INFO    | gemma.down | [sao_paulo/next_poi/full] acc@1=0.0721 acc@5=0.1525 acc@10=0.1936 ndcg@5=0.1139 ndcg@10=0.1272 mrr=0.1117 act@1=0.2382 pri@1=0.1336 sec@1=0.0772
+23:14:00 | INFO    | gemma.down | [sao_paulo] 3781/51428 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:14:06 | INFO    | gemma.down | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+23:14:07 | INFO    | gemma.down | [sao_paulo/next_activity/zero_shot] accuracy=0.2383 macro_f1=0.1548
+23:14:08 | INFO    | gemma.down | [sao_paulo] 3781/51428 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:14:13 | INFO    | gemma.down | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+23:14:14 | INFO    | gemma.down | [sao_paulo/next_activity/few_shot] accuracy=0.2383 macro_f1=0.1548
+23:14:15 | INFO    | gemma.down | [sao_paulo] 3781/51428 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:14:21 | INFO    | gemma.down | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+23:14:22 | INFO    | gemma.down | [sao_paulo/next_activity/full] accuracy=0.2383 macro_f1=0.1548
+23:14:22 | INFO    | gemma.down | [bandung] 7567/32208 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:14:26 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+23:16:19 | INFO    | gemma.down | [jakarta] adapter epoch 2 loss=2.2530
+23:17:17 | INFO    | gemma.down | [bandung/next_poi/zero_shot] acc@1=0.0137 acc@5=0.0451 acc@10=0.07 ndcg@5=0.0297 ndcg@10=0.0377 mrr=0.0327 act@1=0.3165 pri@1=0.1398 sec@1=0.0802
+23:17:17 | INFO    | gemma.down | [bandung] 7567/32208 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:17:21 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+23:17:21 | INFO    | gemma.down | [bandung] 26534/113058 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:17:34 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+23:43:35 | INFO    | gemma.down | [bandung] adapter epoch 0 loss=3.1510
+00:09:27 | INFO    | gemma.down | [bandung] adapter epoch 1 loss=2.3938
+00:35:24 | INFO    | gemma.down | [bandung] adapter epoch 2 loss=2.3080
+01:01:18 | INFO    | gemma.down | [bandung] adapter epoch 3 loss=2.2669
+01:27:14 | INFO    | gemma.down | [bandung] adapter epoch 4 loss=2.2386
+01:31:00 | INFO    | gemma.down | [bandung/next_poi/few_shot] acc@1=0.0619 acc@5=0.1234 acc@10=0.1546 ndcg@5=0.0939 ndcg@10=0.1041 mrr=0.0931 act@1=0.3165 pri@1=0.1398 sec@1=0.0802
+01:31:00 | INFO    | gemma.down | [bandung] 7567/32208 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+01:31:04 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+01:31:06 | INFO    | gemma.down | [bandung] 30370/129076 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+01:31:19 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+02:03:04 | INFO    | gemma.down | [bandung] adapter epoch 0 loss=3.1031
+02:34:41 | INFO    | gemma.down | [bandung] adapter epoch 1 loss=2.4206
+02:35:09 | INFO    | gemma.down | [jakarta] adapter epoch 3 loss=2.2214
+03:06:17 | INFO    | gemma.down | [bandung] adapter epoch 2 loss=2.3461
+03:37:55 | INFO    | gemma.down | [bandung] adapter epoch 3 loss=2.3068
+04:09:31 | INFO    | gemma.down | [bandung] adapter epoch 4 loss=2.2774
+04:13:17 | INFO    | gemma.down | [bandung/next_poi/full] acc@1=0.0629 acc@5=0.1282 acc@10=0.1604 ndcg@5=0.0972 ndcg@10=0.1076 mrr=0.0959 act@1=0.3165 pri@1=0.1398 sec@1=0.0802
+04:13:18 | INFO    | gemma.down | [bandung] 7567/32208 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:13:22 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+04:13:22 | INFO    | gemma.down | [bandung/next_activity/zero_shot] accuracy=0.3169 macro_f1=0.1828
+04:13:23 | INFO    | gemma.down | [bandung] 7567/32208 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:13:26 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+04:13:27 | INFO    | gemma.down | [bandung/next_activity/few_shot] accuracy=0.3169 macro_f1=0.1828
+04:13:27 | INFO    | gemma.down | [bandung] 7567/32208 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:13:31 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+04:13:32 | INFO    | gemma.down | [bandung/next_activity/full] accuracy=0.3169 macro_f1=0.1828
+04:13:32 | INFO    | gemma.down | [beijing] 14/285 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:13:32 | INFO    | gemma.down | [beijing] loaded semantic codes (4 levels) for 498 POIs
+04:13:33 | INFO    | gemma.down | [beijing/next_poi/zero_shot] acc@1=0.0181 acc@5=0.1687 acc@10=0.2108 ndcg@5=0.0958 ndcg@10=0.1096 mrr=0.0932 act@1=0.1807 pri@1=0.0723 sec@1=0.0422
+04:13:33 | INFO    | gemma.down | [beijing] 14/285 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:13:33 | INFO    | gemma.down | [beijing] loaded semantic codes (4 levels) for 498 POIs
+04:13:33 | INFO    | gemma.down | [beijing] 80/1044 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:13:33 | INFO    | gemma.down | [beijing] loaded semantic codes (4 levels) for 498 POIs
+04:13:34 | INFO    | gemma.down | [beijing] adapter epoch 0 loss=6.9969
+04:13:36 | INFO    | gemma.down | [beijing] adapter epoch 1 loss=4.6131
+04:13:38 | INFO    | gemma.down | [beijing] adapter epoch 2 loss=2.8929
+04:13:40 | INFO    | gemma.down | [beijing] adapter epoch 3 loss=2.3232
+04:13:41 | INFO    | gemma.down | [beijing] adapter epoch 4 loss=1.7636
+04:13:42 | INFO    | gemma.down | [beijing/next_poi/few_shot] acc@1=0.1867 acc@5=0.3434 acc@10=0.3735 ndcg@5=0.2704 ndcg@10=0.2797 mrr=0.2592 act@1=0.1807 pri@1=0.0723 sec@1=0.0422
+04:13:42 | INFO    | gemma.down | [beijing] 14/285 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:13:42 | INFO    | gemma.down | [beijing] loaded semantic codes (4 levels) for 498 POIs
+04:13:42 | INFO    | gemma.down | [beijing] 86/1185 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:13:42 | INFO    | gemma.down | [beijing] loaded semantic codes (4 levels) for 498 POIs
+04:13:44 | INFO    | gemma.down | [beijing] adapter epoch 0 loss=6.1124
+04:13:47 | INFO    | gemma.down | [beijing] adapter epoch 1 loss=4.0431
+04:13:48 | INFO    | gemma.down | [beijing] adapter epoch 2 loss=2.6163
+04:13:50 | INFO    | gemma.down | [beijing] adapter epoch 3 loss=2.1839
+04:13:53 | INFO    | gemma.down | [beijing] adapter epoch 4 loss=1.5187
+04:13:53 | INFO    | gemma.down | [beijing/next_poi/full] acc@1=0.2169 acc@5=0.3554 acc@10=0.3916 ndcg@5=0.2939 ndcg@10=0.3057 mrr=0.2873 act@1=0.1807 pri@1=0.0723 sec@1=0.0422
+04:13:53 | INFO    | gemma.down | [beijing] 14/285 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:13:53 | INFO    | gemma.down | [beijing] loaded semantic codes (4 levels) for 498 POIs
+04:13:53 | INFO    | gemma.down | [beijing/next_activity/zero_shot] accuracy=0.1739 macro_f1=0.1207
+04:13:53 | INFO    | gemma.down | [beijing] 14/285 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:13:53 | INFO    | gemma.down | [beijing] loaded semantic codes (4 levels) for 498 POIs
+04:13:53 | INFO    | gemma.down | [beijing/next_activity/few_shot] accuracy=0.1739 macro_f1=0.1207
+04:13:53 | INFO    | gemma.down | [beijing] 14/285 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:13:54 | INFO    | gemma.down | [beijing] loaded semantic codes (4 levels) for 498 POIs
+04:13:54 | INFO    | gemma.down | [beijing/next_activity/full] accuracy=0.1739 macro_f1=0.1207
+04:13:54 | INFO    | gemma.down | [melbourne] 243/4475 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:13:54 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+04:14:03 | INFO    | gemma.down | [melbourne/next_poi/zero_shot] acc@1=0.011 acc@5=0.0445 acc@10=0.0795 ndcg@5=0.0272 ndcg@10=0.0384 mrr=0.033 act@1=0.3108 pri@1=0.1324 sec@1=0.0613
+04:14:03 | INFO    | gemma.down | [melbourne] 243/4475 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:14:03 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+04:14:03 | INFO    | gemma.down | [melbourne] 797/15419 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:14:05 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+04:15:25 | INFO    | gemma.down | [melbourne] adapter epoch 0 loss=3.6344
+04:16:43 | INFO    | gemma.down | [melbourne] adapter epoch 1 loss=1.4718
+04:18:02 | INFO    | gemma.down | [melbourne] adapter epoch 2 loss=1.2867
+04:19:21 | INFO    | gemma.down | [melbourne] adapter epoch 3 loss=1.1167
+04:20:39 | INFO    | gemma.down | [melbourne] adapter epoch 4 loss=1.0529
+04:20:52 | INFO    | gemma.down | [melbourne/next_poi/few_shot] acc@1=0.0587 acc@5=0.1155 acc@10=0.1437 ndcg@5=0.0881 ndcg@10=0.0972 mrr=0.089 act@1=0.3108 pri@1=0.1324 sec@1=0.0613
+04:20:52 | INFO    | gemma.down | [melbourne] 243/4475 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:20:52 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+04:20:52 | INFO    | gemma.down | [melbourne] 900/17575 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:20:55 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+04:22:30 | INFO    | gemma.down | [melbourne] adapter epoch 0 loss=3.5402
+04:24:05 | INFO    | gemma.down | [melbourne] adapter epoch 1 loss=1.5137
+04:25:39 | INFO    | gemma.down | [melbourne] adapter epoch 2 loss=1.2737
+04:27:14 | INFO    | gemma.down | [melbourne] adapter epoch 3 loss=1.1487
+04:28:50 | INFO    | gemma.down | [melbourne] adapter epoch 4 loss=1.1114
+04:29:03 | INFO    | gemma.down | [melbourne/next_poi/full] acc@1=0.0526 acc@5=0.0993 acc@10=0.1165 ndcg@5=0.0772 ndcg@10=0.0827 mrr=0.0775 act@1=0.3108 pri@1=0.1324 sec@1=0.0613
+04:29:03 | INFO    | gemma.down | [melbourne] 243/4475 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:29:03 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+04:29:04 | INFO    | gemma.down | [melbourne/next_activity/zero_shot] accuracy=0.309 macro_f1=0.1917
+04:29:04 | INFO    | gemma.down | [melbourne] 243/4475 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:29:05 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+04:29:05 | INFO    | gemma.down | [melbourne/next_activity/few_shot] accuracy=0.309 macro_f1=0.1917
+04:29:05 | INFO    | gemma.down | [melbourne] 243/4475 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:29:06 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+04:29:06 | INFO    | gemma.down | [melbourne/next_activity/full] accuracy=0.309 macro_f1=0.1917
+04:29:06 | INFO    | gemma.down | [moscow] 3175/21034 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:29:09 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+04:30:24 | INFO    | gemma.down | [moscow/next_poi/zero_shot] acc@1=0.0126 acc@5=0.0467 acc@10=0.0798 ndcg@5=0.0298 ndcg@10=0.0404 mrr=0.0351 act@1=0.2705 pri@1=0.1625 sec@1=0.0831
+04:30:25 | INFO    | gemma.down | [moscow] 3175/21034 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:30:28 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+04:30:28 | INFO    | gemma.down | [moscow] 11233/74113 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+04:30:38 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+04:40:32 | INFO    | gemma.down | [moscow] adapter epoch 0 loss=2.7984
+04:50:24 | INFO    | gemma.down | [moscow] adapter epoch 1 loss=1.9928
+05:00:16 | INFO    | gemma.down | [moscow] adapter epoch 2 loss=1.9199
+05:10:04 | INFO    | gemma.down | [moscow] adapter epoch 3 loss=1.8743
+05:19:55 | INFO    | gemma.down | [moscow] adapter epoch 4 loss=1.8506
+05:21:35 | INFO    | gemma.down | [moscow/next_poi/few_shot] acc@1=0.0769 acc@5=0.1582 acc@10=0.1953 ndcg@5=0.1201 ndcg@10=0.1322 mrr=0.118 act@1=0.2705 pri@1=0.1625 sec@1=0.0831
+05:21:35 | INFO    | gemma.down | [moscow] 3175/21034 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+05:21:37 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+05:21:38 | INFO    | gemma.down | [moscow] 12851/84586 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+05:21:47 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+05:33:39 | INFO    | gemma.down | [moscow] adapter epoch 0 loss=2.7638
+05:45:27 | INFO    | gemma.down | [moscow] adapter epoch 1 loss=2.0179
+05:54:37 | INFO    | gemma.down | [jakarta] adapter epoch 4 loss=2.2036
+05:57:14 | INFO    | gemma.down | [moscow] adapter epoch 2 loss=1.9450
+06:08:59 | INFO    | gemma.down | [moscow] adapter epoch 3 loss=1.9090
+06:17:17 | INFO    | gemma.down | [jakarta/next_poi/full] acc@1=0.0604 acc@5=0.1242 acc@10=0.1536 ndcg@5=0.0939 ndcg@10=0.1035 mrr=0.0921 act@1=0.2793 pri@1=0.1408 sec@1=0.0824
+06:17:17 | INFO    | gemma.down | [jakarta] 15759/82483 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:17:27 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+06:17:29 | INFO    | gemma.down | [jakarta/next_activity/zero_shot] accuracy=0.2793 macro_f1=0.1593
+06:17:30 | INFO    | gemma.down | [jakarta] 15759/82483 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:17:39 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+06:17:41 | INFO    | gemma.down | [jakarta/next_activity/few_shot] accuracy=0.2793 macro_f1=0.1593
+06:17:42 | INFO    | gemma.down | [jakarta] 15759/82483 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:17:51 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+06:17:53 | INFO    | gemma.down | [jakarta/next_activity/full] accuracy=0.2793 macro_f1=0.1593
+06:17:54 | INFO    | gemma.down | [new_york] 4011/54427 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:18:00 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+06:20:42 | INFO    | gemma.down | [moscow] adapter epoch 4 loss=1.8866
+06:22:22 | INFO    | gemma.down | [moscow/next_poi/full] acc@1=0.0742 acc@5=0.1488 acc@10=0.1819 ndcg@5=0.1135 ndcg@10=0.1243 mrr=0.111 act@1=0.2705 pri@1=0.1625 sec@1=0.0831
+06:22:22 | INFO    | gemma.down | [moscow] 3175/21034 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:22:25 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+06:22:26 | INFO    | gemma.down | [moscow/next_activity/zero_shot] accuracy=0.2702 macro_f1=0.1946
+06:22:26 | INFO    | gemma.down | [moscow] 3175/21034 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:22:28 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+06:22:29 | INFO    | gemma.down | [moscow/next_activity/few_shot] accuracy=0.2702 macro_f1=0.1946
+06:22:29 | INFO    | gemma.down | [moscow] 3175/21034 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:22:32 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+06:22:32 | INFO    | gemma.down | [moscow/next_activity/full] accuracy=0.2702 macro_f1=0.1946
+06:22:32 | INFO    | gemma.down | [palembang] 861/2848 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:22:33 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+06:22:36 | INFO    | gemma.down | [palembang/next_poi/zero_shot] acc@1=0.0132 acc@5=0.0622 acc@10=0.0903 ndcg@5=0.0376 ndcg@10=0.0465 mrr=0.04 act@1=0.2522 pri@1=0.1107 sec@1=0.0562
+06:22:36 | INFO    | gemma.down | [palembang] 861/2848 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:22:37 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+06:22:37 | INFO    | gemma.down | [palembang] 2952/10132 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:22:38 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+06:23:11 | INFO    | gemma.down | [palembang] adapter epoch 0 loss=4.6804
+06:23:43 | INFO    | gemma.down | [palembang] adapter epoch 1 loss=1.8326
+06:24:16 | INFO    | gemma.down | [palembang] adapter epoch 2 loss=1.7166
+06:24:48 | INFO    | gemma.down | [palembang] adapter epoch 3 loss=1.6179
+06:25:20 | INFO    | gemma.down | [palembang] adapter epoch 4 loss=1.4750
+06:25:26 | INFO    | gemma.down | [palembang/next_poi/few_shot] acc@1=0.0578 acc@5=0.1013 acc@10=0.1184 ndcg@5=0.0804 ndcg@10=0.0858 mrr=0.0815 act@1=0.2522 pri@1=0.1107 sec@1=0.0562
+06:25:26 | INFO    | gemma.down | [palembang] 861/2848 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:25:26 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+06:25:26 | INFO    | gemma.down | [palembang] 3403/11619 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:25:27 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+06:26:07 | INFO    | gemma.down | [palembang] adapter epoch 0 loss=4.5593
+06:26:45 | INFO    | gemma.down | [palembang] adapter epoch 1 loss=1.9004
+06:26:53 | INFO    | gemma.down | [new_york/next_poi/zero_shot] acc@1=0.0065 acc@5=0.0201 acc@10=0.0315 ndcg@5=0.0134 ndcg@10=0.017 mrr=0.0161 act@1=0.3301 pri@1=0.138 sec@1=0.0591
+06:26:54 | INFO    | gemma.down | [new_york] 4011/54427 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:27:00 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+06:27:01 | INFO    | gemma.down | [new_york] 13806/190740 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:27:20 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+06:27:20 | INFO    | gemma.down | [palembang] adapter epoch 2 loss=1.8118
+06:27:58 | INFO    | gemma.down | [palembang] adapter epoch 3 loss=1.7064
+06:28:35 | INFO    | gemma.down | [palembang] adapter epoch 4 loss=1.5855
+06:28:41 | INFO    | gemma.down | [palembang/next_poi/full] acc@1=0.0655 acc@5=0.1189 acc@10=0.1498 ndcg@5=0.0945 ndcg@10=0.1046 mrr=0.0978 act@1=0.2522 pri@1=0.1107 sec@1=0.0562
+06:28:41 | INFO    | gemma.down | [palembang] 861/2848 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:28:41 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+06:28:41 | INFO    | gemma.down | [palembang/next_activity/zero_shot] accuracy=0.2532 macro_f1=0.1538
+06:28:41 | INFO    | gemma.down | [palembang] 861/2848 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:28:42 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+06:28:42 | INFO    | gemma.down | [palembang/next_activity/few_shot] accuracy=0.2532 macro_f1=0.1538
+06:28:42 | INFO    | gemma.down | [palembang] 861/2848 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:28:43 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+06:28:43 | INFO    | gemma.down | [palembang/next_activity/full] accuracy=0.2532 macro_f1=0.1538
+06:28:43 | INFO    | gemma.down | [shanghai] 153/2090 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:28:43 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+06:28:46 | INFO    | gemma.down | [shanghai/next_poi/zero_shot] acc@1=0.0287 acc@5=0.0668 acc@10=0.0984 ndcg@5=0.048 ndcg@10=0.0582 mrr=0.0545 act@1=0.2974 pri@1=0.1264 sec@1=0.079
+06:28:46 | INFO    | gemma.down | [shanghai] 153/2090 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:28:46 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+06:28:46 | INFO    | gemma.down | [shanghai] 546/7375 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:28:47 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+06:29:11 | INFO    | gemma.down | [shanghai] adapter epoch 0 loss=5.3079
+06:29:36 | INFO    | gemma.down | [shanghai] adapter epoch 1 loss=1.6349
+06:30:00 | INFO    | gemma.down | [shanghai] adapter epoch 2 loss=1.3464
+06:30:25 | INFO    | gemma.down | [shanghai] adapter epoch 3 loss=1.2609
+06:30:49 | INFO    | gemma.down | [shanghai] adapter epoch 4 loss=1.1846
+06:30:53 | INFO    | gemma.down | [shanghai/next_poi/few_shot] acc@1=0.0654 acc@5=0.1523 acc@10=0.1983 ndcg@5=0.1098 ndcg@10=0.1246 mrr=0.1106 act@1=0.2974 pri@1=0.1264 sec@1=0.079
+06:30:53 | INFO    | gemma.down | [shanghai] 153/2090 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:30:53 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+06:30:53 | INFO    | gemma.down | [shanghai] 612/8401 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:30:54 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+06:31:23 | INFO    | gemma.down | [shanghai] adapter epoch 0 loss=4.4876
+06:31:51 | INFO    | gemma.down | [shanghai] adapter epoch 1 loss=1.5606
+06:32:20 | INFO    | gemma.down | [shanghai] adapter epoch 2 loss=1.3920
+06:32:49 | INFO    | gemma.down | [shanghai] adapter epoch 3 loss=1.2922
+06:33:17 | INFO    | gemma.down | [shanghai] adapter epoch 4 loss=1.1720
+06:33:21 | INFO    | gemma.down | [shanghai/next_poi/full] acc@1=0.069 acc@5=0.1286 acc@10=0.1602 ndcg@5=0.1018 ndcg@10=0.1118 mrr=0.1068 act@1=0.2974 pri@1=0.1264 sec@1=0.079
+06:33:21 | INFO    | gemma.down | [shanghai] 153/2090 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:33:22 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+06:33:22 | INFO    | gemma.down | [shanghai/next_activity/zero_shot] accuracy=0.2926 macro_f1=0.1725
+06:33:22 | INFO    | gemma.down | [shanghai] 153/2090 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:33:22 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+06:33:22 | INFO    | gemma.down | [shanghai/next_activity/few_shot] accuracy=0.2926 macro_f1=0.1725
+06:33:22 | INFO    | gemma.down | [shanghai] 153/2090 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:33:22 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+06:33:23 | INFO    | gemma.down | [shanghai/next_activity/full] accuracy=0.2926 macro_f1=0.1725
+06:33:23 | INFO    | gemma.down | [sydney] 435/5896 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:33:23 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+06:33:36 | INFO    | gemma.down | [sydney/next_poi/zero_shot] acc@1=0.0088 acc@5=0.0385 acc@10=0.0646 ndcg@5=0.0237 ndcg@10=0.0321 mrr=0.0299 act@1=0.3506 pri@1=0.1301 sec@1=0.0596
+06:33:36 | INFO    | gemma.down | [sydney] 435/5896 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:33:37 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+06:33:37 | INFO    | gemma.down | [sydney] 1563/21027 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:33:39 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+06:35:34 | INFO    | gemma.down | [sydney] adapter epoch 0 loss=3.0778
+06:37:28 | INFO    | gemma.down | [sydney] adapter epoch 1 loss=1.5802
+06:39:23 | INFO    | gemma.down | [sydney] adapter epoch 2 loss=1.2345
+06:41:17 | INFO    | gemma.down | [sydney] adapter epoch 3 loss=1.1489
+06:43:11 | INFO    | gemma.down | [sydney] adapter epoch 4 loss=1.1087
+06:43:29 | INFO    | gemma.down | [sydney/next_poi/few_shot] acc@1=0.0763 acc@5=0.1246 acc@10=0.1424 ndcg@5=0.1027 ndcg@10=0.1084 mrr=0.102 act@1=0.3506 pri@1=0.1301 sec@1=0.0596
+06:43:29 | INFO    | gemma.down | [sydney] 435/5896 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:43:30 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+06:43:30 | INFO    | gemma.down | [sydney] 1808/24004 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:43:33 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+06:45:51 | INFO    | gemma.down | [sydney] adapter epoch 0 loss=3.1953
+06:48:08 | INFO    | gemma.down | [sydney] adapter epoch 1 loss=1.5009
+06:50:25 | INFO    | gemma.down | [sydney] adapter epoch 2 loss=1.2338
+06:52:43 | INFO    | gemma.down | [sydney] adapter epoch 3 loss=1.1838
+06:55:00 | INFO    | gemma.down | [sydney] adapter epoch 4 loss=1.1626
+06:55:17 | INFO    | gemma.down | [sydney/next_poi/full] acc@1=0.0826 acc@5=0.1364 acc@10=0.1554 ndcg@5=0.1112 ndcg@10=0.1173 mrr=0.1099 act@1=0.3506 pri@1=0.1301 sec@1=0.0596
+06:55:17 | INFO    | gemma.down | [sydney] 435/5896 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:55:18 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+06:55:18 | INFO    | gemma.down | [sydney/next_activity/zero_shot] accuracy=0.3517 macro_f1=0.172
+06:55:19 | INFO    | gemma.down | [sydney] 435/5896 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:55:19 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+06:55:19 | INFO    | gemma.down | [sydney/next_activity/few_shot] accuracy=0.3517 macro_f1=0.172
+06:55:20 | INFO    | gemma.down | [sydney] 435/5896 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:55:20 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+06:55:20 | INFO    | gemma.down | [sydney/next_activity/full] accuracy=0.3517 macro_f1=0.172
+06:55:21 | INFO    | gemma.down | [tangerang] 2434/8937 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:55:22 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+06:55:44 | INFO    | gemma.down | [tangerang/next_poi/zero_shot] acc@1=0.0246 acc@5=0.0561 acc@10=0.0885 ndcg@5=0.0404 ndcg@10=0.0509 mrr=0.0463 act@1=0.3204 pri@1=0.1711 sec@1=0.1191
+06:55:44 | INFO    | gemma.down | [tangerang] 2434/8937 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:55:45 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+06:55:46 | INFO    | gemma.down | [tangerang] 9064/32085 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+06:55:49 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+06:59:12 | INFO    | gemma.down | [tangerang] adapter epoch 0 loss=3.2077
+07:02:33 | INFO    | gemma.down | [tangerang] adapter epoch 1 loss=1.9121
+07:05:54 | INFO    | gemma.down | [tangerang] adapter epoch 2 loss=1.7636
+07:09:16 | INFO    | gemma.down | [tangerang] adapter epoch 3 loss=1.7013
+07:12:35 | INFO    | gemma.down | [tangerang] adapter epoch 4 loss=1.6647
+07:13:06 | INFO    | gemma.down | [tangerang/next_poi/few_shot] acc@1=0.1152 acc@5=0.1959 acc@10=0.2264 ndcg@5=0.1583 ndcg@10=0.1684 mrr=0.1555 act@1=0.3204 pri@1=0.1711 sec@1=0.1191
+07:13:07 | INFO    | gemma.down | [tangerang] 2434/8937 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+07:13:08 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+07:13:08 | INFO    | gemma.down | [tangerang] 10294/36584 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+07:13:13 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+07:17:15 | INFO    | gemma.down | [tangerang] adapter epoch 0 loss=3.3240
+07:21:16 | INFO    | gemma.down | [tangerang] adapter epoch 1 loss=1.9913
+07:25:17 | INFO    | gemma.down | [tangerang] adapter epoch 2 loss=1.8278
+07:29:18 | INFO    | gemma.down | [tangerang] adapter epoch 3 loss=1.7654
+07:33:18 | INFO    | gemma.down | [tangerang] adapter epoch 4 loss=1.7249
+07:33:50 | INFO    | gemma.down | [tangerang/next_poi/full] acc@1=0.1163 acc@5=0.197 acc@10=0.2354 ndcg@5=0.1601 ndcg@10=0.1727 mrr=0.1589 act@1=0.3204 pri@1=0.1711 sec@1=0.1191
+07:33:50 | INFO    | gemma.down | [tangerang] 2434/8937 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+07:33:51 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+07:33:51 | INFO    | gemma.down | [tangerang/next_activity/zero_shot] accuracy=0.3206 macro_f1=0.1614
+07:33:52 | INFO    | gemma.down | [tangerang] 2434/8937 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+07:33:53 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+07:33:53 | INFO    | gemma.down | [tangerang/next_activity/few_shot] accuracy=0.3206 macro_f1=0.1614
+07:33:54 | INFO    | gemma.down | [tangerang] 2434/8937 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+07:33:55 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+07:33:55 | INFO    | gemma.down | [tangerang/next_activity/full] accuracy=0.3206 macro_f1=0.1614
+07:33:55 | INFO    | gemma.down | === BENCHMARK SUMMARY ===
+07:33:55 | INFO    | gemma.down |          tokyo next_poi/zero_shot acc@1=0.0479 acc@5=0.1521 ndcg@5=0.1021 mrr=0.1006 | act@1=0.361 pri@1=0.225 sec@1=0.137
+07:33:55 | INFO    | gemma.down |          tokyo next_poi/few_shot  acc@1=0.1178 acc@5=0.2371 ndcg@5=0.1783 mrr=0.1776 | act@1=0.361 pri@1=0.225 sec@1=0.137
+07:33:55 | INFO    | gemma.down |          tokyo next_poi/full      acc@1=0.1066 acc@5=0.2296 ndcg@5=0.1702 mrr=0.1689 | act@1=0.361 pri@1=0.225 sec@1=0.137
+07:33:55 | INFO    | gemma.down |          tokyo next_activity/zero_shot acc=0.3637 f1=0.1663
+07:33:55 | INFO    | gemma.down |          tokyo next_activity/few_shot  acc=0.3637 f1=0.1663
+07:33:55 | INFO    | gemma.down |          tokyo next_activity/full      acc=0.3637 f1=0.1663
+07:33:55 | INFO    | gemma.down |       istanbul next_poi/zero_shot acc@1=0.0208 acc@5=0.0575 ndcg@5=0.0395 mrr=0.0434 | act@1=0.309 pri@1=0.164 sec@1=0.084
+07:33:55 | INFO    | gemma.down |       istanbul next_poi/few_shot  acc@1=0.0667 acc@5=0.1547 ndcg@5=0.1125 mrr=0.1117 | act@1=0.309 pri@1=0.164 sec@1=0.084
+07:33:55 | INFO    | gemma.down |       istanbul next_poi/full      acc@1=0.0659 acc@5=0.1487 ndcg@5=0.1091 mrr=0.1088 | act@1=0.309 pri@1=0.164 sec@1=0.084
+07:33:55 | INFO    | gemma.down |       istanbul next_activity/zero_shot acc=0.3095 f1=0.1704
+07:33:55 | INFO    | gemma.down |       istanbul next_activity/few_shot  acc=0.3095 f1=0.1704
+07:33:55 | INFO    | gemma.down |       istanbul next_activity/full      acc=0.3095 f1=0.1704
+07:33:55 | INFO    | gemma.down |        jakarta next_poi/zero_shot acc@1=0.0118 acc@5=0.0391 ndcg@5=0.0262 mrr=0.0271 | act@1=0.279 pri@1=0.141 sec@1=0.082
+07:33:55 | INFO    | gemma.down |        jakarta next_poi/few_shot  acc@1=0.0587 acc@5=0.1204 ndcg@5=0.0911 mrr=0.0897 | act@1=0.279 pri@1=0.141 sec@1=0.082
+07:33:55 | INFO    | gemma.down |        jakarta next_poi/full      acc@1=0.0598 acc@5=0.1237 ndcg@5=0.0932 mrr=0.0917 | act@1=0.279 pri@1=0.141 sec@1=0.082
+07:33:55 | INFO    | gemma.down |        jakarta next_activity/zero_shot acc=0.2793 f1=0.1593
+07:33:55 | INFO    | gemma.down |        jakarta next_activity/few_shot  acc=0.2793 f1=0.1593
+07:33:55 | INFO    | gemma.down |        jakarta next_activity/full      acc=0.2793 f1=0.1593
+07:33:55 | INFO    | gemma.down |       new_york next_poi/zero_shot acc@1=0.0065 acc@5=0.0201 ndcg@5=0.0134 mrr=0.0161 | act@1=0.330 pri@1=0.138 sec@1=0.059
+07:33:55 | INFO    | gemma.down |       new_york next_poi/few_shot  acc@1=0.0465 acc@5=0.0891 ndcg@5=0.0689 mrr=0.0669 | act@1=0.330 pri@1=0.138 sec@1=0.059
+07:33:55 | INFO    | gemma.down |       new_york next_poi/full      acc@1=0.0464 acc@5=0.0880 ndcg@5=0.0683 mrr=0.0674 | act@1=0.330 pri@1=0.138 sec@1=0.059
+07:33:55 | INFO    | gemma.down |       new_york next_activity/zero_shot acc=0.3301 f1=0.1700
+07:33:55 | INFO    | gemma.down |       new_york next_activity/few_shot  acc=0.3301 f1=0.1700
+07:33:55 | INFO    | gemma.down |       new_york next_activity/full      acc=0.3301 f1=0.1700
+07:33:55 | INFO    | gemma.down |    kuwait_city next_poi/zero_shot acc@1=0.0219 acc@5=0.0872 ndcg@5=0.0550 mrr=0.0686 | act@1=0.332 pri@1=0.174 sec@1=0.100
+07:33:55 | INFO    | gemma.down |    kuwait_city next_poi/few_shot  acc@1=0.0770 acc@5=0.1907 ndcg@5=0.1351 mrr=0.1374 | act@1=0.332 pri@1=0.174 sec@1=0.100
+07:33:55 | INFO    | gemma.down |    kuwait_city next_poi/full      acc@1=0.0816 acc@5=0.1967 ndcg@5=0.1404 mrr=0.1433 | act@1=0.332 pri@1=0.174 sec@1=0.100
+07:33:55 | INFO    | gemma.down |    kuwait_city next_activity/zero_shot acc=0.3316 f1=0.1463
+07:33:55 | INFO    | gemma.down |    kuwait_city next_activity/few_shot  acc=0.3316 f1=0.1463
+07:33:55 | INFO    | gemma.down |    kuwait_city next_activity/full      acc=0.3316 f1=0.1463
+07:33:55 | INFO    | gemma.down |  petaling_jaya next_poi/zero_shot acc@1=0.0132 acc@5=0.0534 ndcg@5=0.0343 mrr=0.0348 | act@1=0.271 pri@1=0.145 sec@1=0.080
+07:33:55 | INFO    | gemma.down |  petaling_jaya next_poi/few_shot  acc@1=0.0575 acc@5=0.1248 ndcg@5=0.0925 mrr=0.0924 | act@1=0.271 pri@1=0.145 sec@1=0.080
+07:33:55 | INFO    | gemma.down |  petaling_jaya next_poi/full      acc@1=0.0584 acc@5=0.1285 ndcg@5=0.0948 mrr=0.0954 | act@1=0.271 pri@1=0.145 sec@1=0.080
+07:33:55 | INFO    | gemma.down |  petaling_jaya next_activity/zero_shot acc=0.2707 f1=0.1516
+07:33:55 | INFO    | gemma.down |  petaling_jaya next_activity/few_shot  acc=0.2707 f1=0.1516
+07:33:55 | INFO    | gemma.down |  petaling_jaya next_activity/full      acc=0.2707 f1=0.1516
+07:33:55 | INFO    | gemma.down |      sao_paulo next_poi/zero_shot acc@1=0.0119 acc@5=0.0321 ndcg@5=0.0222 mrr=0.0254 | act@1=0.238 pri@1=0.134 sec@1=0.077
+07:33:55 | INFO    | gemma.down |      sao_paulo next_poi/few_shot  acc@1=0.0704 acc@5=0.1453 ndcg@5=0.1096 mrr=0.1070 | act@1=0.238 pri@1=0.134 sec@1=0.077
+07:33:55 | INFO    | gemma.down |      sao_paulo next_poi/full      acc@1=0.0721 acc@5=0.1525 ndcg@5=0.1139 mrr=0.1117 | act@1=0.238 pri@1=0.134 sec@1=0.077
+07:33:55 | INFO    | gemma.down |      sao_paulo next_activity/zero_shot acc=0.2383 f1=0.1548
+07:33:55 | INFO    | gemma.down |      sao_paulo next_activity/few_shot  acc=0.2383 f1=0.1548
+07:33:55 | INFO    | gemma.down |      sao_paulo next_activity/full      acc=0.2383 f1=0.1548
+07:33:55 | INFO    | gemma.down |        bandung next_poi/zero_shot acc@1=0.0137 acc@5=0.0451 ndcg@5=0.0297 mrr=0.0327 | act@1=0.316 pri@1=0.140 sec@1=0.080
+07:33:55 | INFO    | gemma.down |        bandung next_poi/few_shot  acc@1=0.0619 acc@5=0.1234 ndcg@5=0.0939 mrr=0.0931 | act@1=0.316 pri@1=0.140 sec@1=0.080
+07:33:55 | INFO    | gemma.down |        bandung next_poi/full      acc@1=0.0629 acc@5=0.1282 ndcg@5=0.0972 mrr=0.0959 | act@1=0.316 pri@1=0.140 sec@1=0.080
+07:33:55 | INFO    | gemma.down |        bandung next_activity/zero_shot acc=0.3169 f1=0.1828
+07:33:55 | INFO    | gemma.down |        bandung next_activity/few_shot  acc=0.3169 f1=0.1828
+07:33:55 | INFO    | gemma.down |        bandung next_activity/full      acc=0.3169 f1=0.1828
+07:33:55 | INFO    | gemma.down |        beijing next_poi/zero_shot acc@1=0.0181 acc@5=0.1687 ndcg@5=0.0958 mrr=0.0932 | act@1=0.181 pri@1=0.072 sec@1=0.042
+07:33:55 | INFO    | gemma.down |        beijing next_poi/few_shot  acc@1=0.1867 acc@5=0.3434 ndcg@5=0.2704 mrr=0.2592 | act@1=0.181 pri@1=0.072 sec@1=0.042
+07:33:55 | INFO    | gemma.down |        beijing next_poi/full      acc@1=0.2169 acc@5=0.3554 ndcg@5=0.2939 mrr=0.2873 | act@1=0.181 pri@1=0.072 sec@1=0.042
+07:33:55 | INFO    | gemma.down |        beijing next_activity/zero_shot acc=0.1739 f1=0.1207
+07:33:55 | INFO    | gemma.down |        beijing next_activity/few_shot  acc=0.1739 f1=0.1207
+07:33:55 | INFO    | gemma.down |        beijing next_activity/full      acc=0.1739 f1=0.1207
+07:33:55 | INFO    | gemma.down |      melbourne next_poi/zero_shot acc@1=0.0110 acc@5=0.0445 ndcg@5=0.0272 mrr=0.0330 | act@1=0.311 pri@1=0.132 sec@1=0.061
+07:33:55 | INFO    | gemma.down |      melbourne next_poi/few_shot  acc@1=0.0587 acc@5=0.1155 ndcg@5=0.0881 mrr=0.0890 | act@1=0.311 pri@1=0.132 sec@1=0.061
+07:33:55 | INFO    | gemma.down |      melbourne next_poi/full      acc@1=0.0526 acc@5=0.0993 ndcg@5=0.0772 mrr=0.0775 | act@1=0.311 pri@1=0.132 sec@1=0.061
+07:33:55 | INFO    | gemma.down |      melbourne next_activity/zero_shot acc=0.3090 f1=0.1917
+07:33:55 | INFO    | gemma.down |      melbourne next_activity/few_shot  acc=0.3090 f1=0.1917
+07:33:55 | INFO    | gemma.down |      melbourne next_activity/full      acc=0.3090 f1=0.1917
+07:33:55 | INFO    | gemma.down |         moscow next_poi/zero_shot acc@1=0.0126 acc@5=0.0467 ndcg@5=0.0298 mrr=0.0351 | act@1=0.271 pri@1=0.162 sec@1=0.083
+07:33:55 | INFO    | gemma.down |         moscow next_poi/few_shot  acc@1=0.0769 acc@5=0.1582 ndcg@5=0.1201 mrr=0.1180 | act@1=0.271 pri@1=0.162 sec@1=0.083
+07:33:55 | INFO    | gemma.down |         moscow next_poi/full      acc@1=0.0742 acc@5=0.1488 ndcg@5=0.1135 mrr=0.1110 | act@1=0.271 pri@1=0.162 sec@1=0.083
+07:33:55 | INFO    | gemma.down |         moscow next_activity/zero_shot acc=0.2702 f1=0.1946
+07:33:55 | INFO    | gemma.down |         moscow next_activity/few_shot  acc=0.2702 f1=0.1946
+07:33:55 | INFO    | gemma.down |         moscow next_activity/full      acc=0.2702 f1=0.1946
+07:33:55 | INFO    | gemma.down |      palembang next_poi/zero_shot acc@1=0.0132 acc@5=0.0622 ndcg@5=0.0376 mrr=0.0400 | act@1=0.252 pri@1=0.111 sec@1=0.056
+07:33:55 | INFO    | gemma.down |      palembang next_poi/few_shot  acc@1=0.0578 acc@5=0.1013 ndcg@5=0.0804 mrr=0.0815 | act@1=0.252 pri@1=0.111 sec@1=0.056
+07:33:55 | INFO    | gemma.down |      palembang next_poi/full      acc@1=0.0655 acc@5=0.1189 ndcg@5=0.0945 mrr=0.0978 | act@1=0.252 pri@1=0.111 sec@1=0.056
+07:33:55 | INFO    | gemma.down |      palembang next_activity/zero_shot acc=0.2532 f1=0.1538
+07:33:55 | INFO    | gemma.down |      palembang next_activity/few_shot  acc=0.2532 f1=0.1538
+07:33:55 | INFO    | gemma.down |      palembang next_activity/full      acc=0.2532 f1=0.1538
+07:33:55 | INFO    | gemma.down |       shanghai next_poi/zero_shot acc@1=0.0287 acc@5=0.0668 ndcg@5=0.0480 mrr=0.0545 | act@1=0.297 pri@1=0.126 sec@1=0.079
+07:33:55 | INFO    | gemma.down |       shanghai next_poi/few_shot  acc@1=0.0654 acc@5=0.1523 ndcg@5=0.1098 mrr=0.1106 | act@1=0.297 pri@1=0.126 sec@1=0.079
+07:33:55 | INFO    | gemma.down |       shanghai next_poi/full      acc@1=0.0690 acc@5=0.1286 ndcg@5=0.1018 mrr=0.1068 | act@1=0.297 pri@1=0.126 sec@1=0.079
+07:33:55 | INFO    | gemma.down |       shanghai next_activity/zero_shot acc=0.2926 f1=0.1725
+07:33:55 | INFO    | gemma.down |       shanghai next_activity/few_shot  acc=0.2926 f1=0.1725
+07:33:55 | INFO    | gemma.down |       shanghai next_activity/full      acc=0.2926 f1=0.1725
+07:33:55 | INFO    | gemma.down |         sydney next_poi/zero_shot acc@1=0.0088 acc@5=0.0385 ndcg@5=0.0237 mrr=0.0299 | act@1=0.351 pri@1=0.130 sec@1=0.060
+07:33:55 | INFO    | gemma.down |         sydney next_poi/few_shot  acc@1=0.0763 acc@5=0.1246 ndcg@5=0.1027 mrr=0.1020 | act@1=0.351 pri@1=0.130 sec@1=0.060
+07:33:55 | INFO    | gemma.down |         sydney next_poi/full      acc@1=0.0826 acc@5=0.1364 ndcg@5=0.1112 mrr=0.1099 | act@1=0.351 pri@1=0.130 sec@1=0.060
+07:33:55 | INFO    | gemma.down |         sydney next_activity/zero_shot acc=0.3517 f1=0.1720
+07:33:55 | INFO    | gemma.down |         sydney next_activity/few_shot  acc=0.3517 f1=0.1720
+07:33:55 | INFO    | gemma.down |         sydney next_activity/full      acc=0.3517 f1=0.1720
+07:33:55 | INFO    | gemma.down |      tangerang next_poi/zero_shot acc@1=0.0246 acc@5=0.0561 ndcg@5=0.0404 mrr=0.0463 | act@1=0.320 pri@1=0.171 sec@1=0.119
+07:33:55 | INFO    | gemma.down |      tangerang next_poi/few_shot  acc@1=0.1152 acc@5=0.1959 ndcg@5=0.1583 mrr=0.1555 | act@1=0.320 pri@1=0.171 sec@1=0.119
+07:33:55 | INFO    | gemma.down |      tangerang next_poi/full      acc@1=0.1163 acc@5=0.1970 ndcg@5=0.1601 mrr=0.1589 | act@1=0.320 pri@1=0.171 sec@1=0.119
+07:33:55 | INFO    | gemma.down |      tangerang next_activity/zero_shot acc=0.3206 f1=0.1614
+07:33:55 | INFO    | gemma.down |      tangerang next_activity/few_shot  acc=0.3206 f1=0.1614
+07:33:55 | INFO    | gemma.down |      tangerang next_activity/full      acc=0.3206 f1=0.1614
+07:43:36 | INFO    | gemma.down | [new_york] adapter epoch 0 loss=2.2362
+08:55:54 | INFO    | gemma.down | [new_york] adapter epoch 1 loss=1.6850
+10:08:22 | INFO    | gemma.down | [new_york] adapter epoch 2 loss=1.6359
+11:20:50 | INFO    | gemma.down | [new_york] adapter epoch 3 loss=1.6129
+12:33:15 | INFO    | gemma.down | [new_york] adapter epoch 4 loss=1.6017
+12:44:21 | INFO    | gemma.down | [new_york/next_poi/few_shot] acc@1=0.0464 acc@5=0.0882 acc@10=0.1049 ndcg@5=0.0685 ndcg@10=0.0739 mrr=0.0665 act@1=0.3301 pri@1=0.138 sec@1=0.0591
+12:44:21 | INFO    | gemma.down | [new_york] 4011/54427 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+12:44:27 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+12:44:28 | INFO    | gemma.down | [new_york] 15823/217941 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+12:44:51 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+14:12:31 | INFO    | gemma.down | [new_york] adapter epoch 0 loss=2.2611
+15:39:59 | INFO    | gemma.down | [new_york] adapter epoch 1 loss=1.7741
+17:07:42 | INFO    | gemma.down | [new_york] adapter epoch 2 loss=1.7171
+18:35:25 | INFO    | gemma.down | [new_york] adapter epoch 3 loss=1.6925
+20:02:49 | INFO    | gemma.down | [new_york] adapter epoch 4 loss=1.6775
+20:14:04 | INFO    | gemma.down | [new_york/next_poi/full] acc@1=0.0465 acc@5=0.0889 acc@10=0.1077 ndcg@5=0.0689 ndcg@10=0.075 mrr=0.0677 act@1=0.3301 pri@1=0.138 sec@1=0.0591
+20:14:05 | INFO    | gemma.down | [new_york] 4011/54427 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:14:12 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+20:14:13 | INFO    | gemma.down | [new_york/next_activity/zero_shot] accuracy=0.3301 macro_f1=0.17
+20:14:14 | INFO    | gemma.down | [new_york] 4011/54427 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:14:21 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+20:14:23 | INFO    | gemma.down | [new_york/next_activity/few_shot] accuracy=0.3301 macro_f1=0.17
+20:14:23 | INFO    | gemma.down | [new_york] 4011/54427 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:14:30 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+20:14:31 | INFO    | gemma.down | [new_york/next_activity/full] accuracy=0.3301 macro_f1=0.17
+20:14:32 | INFO    | gemma.down | [kuwait_city] 6007/46614 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:14:38 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+20:17:27 | INFO    | gemma.down | [kuwait_city/next_poi/zero_shot] acc@1=0.0219 acc@5=0.0872 acc@10=0.1739 ndcg@5=0.055 ndcg@10=0.0825 mrr=0.0686 act@1=0.3315 pri@1=0.1743 sec@1=0.1005
+20:17:27 | INFO    | gemma.down | [kuwait_city] 6007/46614 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:17:34 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+20:17:34 | INFO    | gemma.down | [kuwait_city] 20988/162716 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:17:55 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+20:39:54 | INFO    | gemma.down | [kuwait_city] adapter epoch 0 loss=3.8922
+21:01:40 | INFO    | gemma.down | [kuwait_city] adapter epoch 1 loss=3.5063
+21:23:30 | INFO    | gemma.down | [kuwait_city] adapter epoch 2 loss=3.4060
+21:45:22 | INFO    | gemma.down | [kuwait_city] adapter epoch 3 loss=3.3463
+22:07:15 | INFO    | gemma.down | [kuwait_city] adapter epoch 4 loss=3.3063
+22:10:57 | INFO    | gemma.down | [kuwait_city/next_poi/few_shot] acc@1=0.0786 acc@5=0.1905 acc@10=0.2611 ndcg@5=0.1359 ndcg@10=0.1587 mrr=0.1383 act@1=0.3315 pri@1=0.1743 sec@1=0.1005
+22:10:57 | INFO    | gemma.down | [kuwait_city] 6007/46614 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:11:02 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+22:11:03 | INFO    | gemma.down | [kuwait_city] 23987/186092 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:11:22 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+22:37:37 | INFO    | gemma.down | [kuwait_city] adapter epoch 0 loss=3.8523
+23:03:38 | INFO    | gemma.down | [kuwait_city] adapter epoch 1 loss=3.4768
+23:29:43 | INFO    | gemma.down | [kuwait_city] adapter epoch 2 loss=3.3988
+23:55:50 | INFO    | gemma.down | [kuwait_city] adapter epoch 3 loss=3.3517
+00:21:54 | INFO    | gemma.down | [kuwait_city] adapter epoch 4 loss=3.3212
+00:25:36 | INFO    | gemma.down | [kuwait_city/next_poi/full] acc@1=0.0803 acc@5=0.1971 acc@10=0.2695 ndcg@5=0.1396 ndcg@10=0.163 mrr=0.1407 act@1=0.3315 pri@1=0.1743 sec@1=0.1005
+00:25:36 | INFO    | gemma.down | [kuwait_city] 6007/46614 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+00:25:41 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+00:25:42 | INFO    | gemma.down | [kuwait_city/next_activity/zero_shot] accuracy=0.3316 macro_f1=0.1463
+00:25:42 | INFO    | gemma.down | [kuwait_city] 6007/46614 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+00:25:47 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+00:25:48 | INFO    | gemma.down | [kuwait_city/next_activity/few_shot] accuracy=0.3316 macro_f1=0.1463
+00:25:49 | INFO    | gemma.down | [kuwait_city] 6007/46614 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+00:25:53 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+00:25:54 | INFO    | gemma.down | [kuwait_city/next_activity/full] accuracy=0.3316 macro_f1=0.1463
+00:25:55 | INFO    | gemma.down | [petaling_jaya] 12278/101105 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+00:26:06 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+00:44:34 | INFO    | gemma.down | [petaling_jaya/next_poi/zero_shot] acc@1=0.0132 acc@5=0.0534 acc@10=0.0692 ndcg@5=0.0343 ndcg@10=0.0394 mrr=0.0348 act@1=0.2707 pri@1=0.1455 sec@1=0.0801
+00:44:35 | INFO    | gemma.down | [petaling_jaya] 12278/101105 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+00:44:46 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+00:44:48 | INFO    | gemma.down | [petaling_jaya] 44052/354817 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+00:45:23 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+03:27:19 | INFO    | gemma.down | [petaling_jaya] adapter epoch 0 loss=3.2624
+06:08:48 | INFO    | gemma.down | [petaling_jaya] adapter epoch 1 loss=2.8486
+08:50:36 | INFO    | gemma.down | [petaling_jaya] adapter epoch 2 loss=2.7811
+11:33:11 | INFO    | gemma.down | [petaling_jaya] adapter epoch 3 loss=2.7335
+14:15:52 | INFO    | gemma.down | [petaling_jaya] adapter epoch 4 loss=2.7048
+14:40:56 | INFO    | gemma.down | [petaling_jaya/next_poi/few_shot] acc@1=0.0575 acc@5=0.1242 acc@10=0.1593 ndcg@5=0.0921 ndcg@10=0.1034 mrr=0.0913 act@1=0.2707 pri@1=0.1455 sec@1=0.0801
+14:40:56 | INFO    | gemma.down | [petaling_jaya] 12278/101105 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:41:07 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+14:41:09 | INFO    | gemma.down | [petaling_jaya] 50496/405325 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+14:41:50 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+17:59:54 | INFO    | gemma.down | [petaling_jaya] adapter epoch 0 loss=3.2793
+21:17:07 | INFO    | gemma.down | [petaling_jaya] adapter epoch 1 loss=2.9075

@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.3315513855553131,
+  "macro_f1": 0.14631610985982818,
+  "city": "kuwait_city",
+  "task": "next_activity",
+  "shot": "few_shot"
+}

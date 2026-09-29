@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.3095210590763117,
+  "macro_f1": 0.1704375431874215,
+  "city": "istanbul",
+  "task": "next_activity",
+  "shot": "zero_shot"
+}

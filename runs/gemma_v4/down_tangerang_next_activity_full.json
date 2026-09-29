@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.3206130747575852,
+  "macro_f1": 0.1613671033065736,
+  "city": "tangerang",
+  "task": "next_activity",
+  "shot": "full"
+}

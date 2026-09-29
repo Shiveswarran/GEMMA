@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.2702292009623908,
+  "macro_f1": 0.19460175777198147,
+  "city": "moscow",
+  "task": "next_activity",
+  "shot": "few_shot"
+}

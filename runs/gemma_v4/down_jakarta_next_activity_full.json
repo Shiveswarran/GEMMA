@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.2792576419213974,
+  "macro_f1": 0.15932622814031247,
+  "city": "jakarta",
+  "task": "next_activity",
+  "shot": "full"
+}

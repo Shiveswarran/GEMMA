@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.23826513546660721,
+  "macro_f1": 0.15476199882224287,
+  "city": "sao_paulo",
+  "task": "next_activity",
+  "shot": "few_shot"
+}

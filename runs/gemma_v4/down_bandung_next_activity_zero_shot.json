@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.31688804554079697,
+  "macro_f1": 0.1828153582375915,
+  "city": "bandung",
+  "task": "next_activity",
+  "shot": "zero_shot"
+}

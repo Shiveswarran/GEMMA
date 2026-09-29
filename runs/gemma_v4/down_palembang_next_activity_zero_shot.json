@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.2531914893617021,
+  "macro_f1": 0.15377639667108917,
+  "city": "palembang",
+  "task": "next_activity",
+  "shot": "zero_shot"
+}

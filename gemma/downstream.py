@@ -207,7 +207,7 @@ def train_adapter(bb, city, cand, cfg, device, logger, covis):
     for ep in range(cfg.adapt_epochs):
         order=np.random.RandomState(ep).permutation(len(trails))
         tot=0.0; nb=0
-        for bi in range(0,len(order),128):
+        for bi in range(0,len(order),64):
             batch=order[bi:bi+128]
             loss=torch.zeros((),device=device); used=0
             # AR log-lik for this mini-batch of queries over ALL candidates once
@@ -248,7 +248,7 @@ def eval_next_poi(bb, city, cfg, device, logger, adapter=None, covis=None):
     A,Pp,Sp,Z=_encode_all(bb,city,eval_trails,device)
     ranks=[]; a_hit=p_hit=s_hit=0
     fixed=adapter is None
-    for s0 in range(0,len(eval_trails),128):
+    for s0 in range(0,len(eval_trails),64):
         batch=list(range(s0,min(s0+128,len(eval_trails))))
         zb=Z[batch]
         ar=bb.leaf.score_codes(zb, codes_t).cpu().numpy()       # (B,Ncand) GNPR-SID likelihood

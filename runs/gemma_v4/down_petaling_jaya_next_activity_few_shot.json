@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.27066127154814035,
+  "macro_f1": 0.15160673617508885,
+  "city": "petaling_jaya",
+  "task": "next_activity",
+  "shot": "few_shot"
+}
