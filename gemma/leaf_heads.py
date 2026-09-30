@@ -82,6 +82,23 @@ class ARHead(nn.Module):
         return out
 
 
+def _ar_score_pairs(self, z, codes):
+    """log P(code_{b,m} | z_b) for a PER-QUERY shortlist.  z:(B,d), codes:(B,M,L)
+    -> (B,M).  Differentiable (used to fine-tune the reranker)."""
+    B, M, L = codes.shape
+    zc = z.unsqueeze(1).expand(B, M, -1)
+    h = zc; lp = z.new_zeros(B, M)
+    for l in range(self.L):
+        logp = F.log_softmax(self.step[l](h).float(), dim=-1)
+        cl = codes[:, :, l]
+        lp = lp + logp.gather(-1, cl.unsqueeze(-1)).squeeze(-1)
+        h = zc + self.tok[l](cl)
+    return lp
+
+
+ARHead.score_pairs = _ar_score_pairs
+
+
 class DiffusionHead(nn.Module):
     """Discrete absorbing-state diffusion over code tokens (MaskGIT-style)."""
     def __init__(self, d, n_levels, K, steps=4):

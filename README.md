@@ -1,4 +1,37 @@
-# GEMMA v2 — a self-supervised mobility foundation model for Massive-STEPS
+# GEMMA v5 — Global Embeddings for urban Mobility Modelling and Adaptation
+
+**v5 changes (read first).** v4 evaluation had four structural caps that no
+tokenizer/JEPA/AR change could fix:
+1. the user's **history was never in context** (the benchmark task is
+   `f(current trajectory, user history) -> rank`; LLM baselines get 15 history
+   trajectories) -> v5 feeds `[hist_1] SEP ... SEP [prefix]`, the diary format
+   GEMMA is pretrained on;
+2. the predictor was queried at **offset 1** instead of the next position -> fixed
+   (`GEMMA.encode_query`), plus an I-JEPA **cross-attention predictor** and a
+   **`trail_end`/`mixed` masking** that rehearses the downstream query, with fresh
+   masks every epoch (v4 reused one fixed mask per diary);
+3. "few-shot" used the whole train split and adaptation was an 8-input MLP on the
+   last step only (full == few) -> v5 **GEMMA-R** fine-tunes backbone + a
+   realization head on every next-step pair; few-shot = <=3 trajectories/user;
+4. hard top-3 activity pruning (rank=|V| outside) and a test-only POI vocabulary ->
+   soft exact hierarchical path likelihood, ranking over **all** city POIs, and the
+   LLM **200-user** protocol reported separately (mean+-std, 5 seeds) with three
+   candidate sets: 100-nearest, 100-nearest + injected truth (headline), and
+   truth + 100 random (original LLM-Move). The LLM tables rank ~101 candidates,
+   NOT the city vocabulary: Istanbul LLM-Move Acc@1 0.205 exceeds the 16.4%
+   100-nearest coverage, so the truth must be in the list.
+5. Test metrics are split into **revisit** (target already in the user's
+   history/prefix) and **explore** (new POI for that user) — heuristics score ~0
+   on explore; that is where the foundation model has to earn its keep.
+
+Pipeline: `diagnose_caps.py` (model-free ceilings) -> pretrain -> 
+`train_realizer_source.py` (source-city post-training = zero-shot model) ->
+`run_downstream.py` (zero/few/full, both protocols, next-POI + next-activity).
+Method details: `gemma/realize.py` docstring. Run commands: `docs_RUN.md`.
+
+---
+
+## Background (v2-v4 design, still the backbone)
 
 GEMMA is a JEPA-style, self-supervised **backbone** for human mobility. It is
 pretrained once on the high-resource Massive-STEPS cities and then plugs into the

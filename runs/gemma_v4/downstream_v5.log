@@ -1,0 +1,104 @@
+23:59:30 | INFO    | gemma.down | predictor=pooled hist_trails=15 few_shot_k=3 lr_bb=0.0001 rerank_m=100
+23:59:34 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+23:59:34 | INFO    | gemma.down | source-city realizer: runs/gemma_v4/zs_realizer.pt
+23:59:34 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+23:59:36 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+23:59:36 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+23:59:41 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2261 acc@5=0.4084 acc@10=0.4585 ndcg@5=0.3239 mrr=0.3089 | next-activity acc=0.4986 f1=0.2448 | STHGCN 0.250/0.350 || LLM-200 acc@1=0.120+-0.007 acc@5=0.202 ndcg@5=0.165 | LLM-Move best 0.255/0.368
+23:59:41 | INFO    | gemma.down | [tokyo/few_shot] fine-tune on 2989 next-step queries from 2010 trajectories (visible=2010)
+23:59:44 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 0 loss=13.6870 (2s) | w0: hist=2.15 prefix=0.35 is_last=-1.08 ptrans=1.34 geo=1.50 hier=0.36 covis=1.00 pop=0.20 hour=0.29 alpha_ar=-0.66 tau=11.2
+23:59:46 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 1 loss=12.6565 (2s) | w0: hist=2.15 prefix=0.35 is_last=-1.09 ptrans=1.35 geo=1.49 hier=0.36 covis=0.99 pop=0.21 hour=0.29 alpha_ar=-0.62 tau=11.4
+23:59:48 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 2 loss=11.9595 (2s) | w0: hist=2.16 prefix=0.36 is_last=-1.08 ptrans=1.33 geo=1.49 hier=0.35 covis=0.98 pop=0.20 hour=0.29 alpha_ar=-0.58 tau=12.1
+23:59:49 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 3 loss=11.1394 (2s) | w0: hist=2.16 prefix=0.38 is_last=-1.09 ptrans=1.32 geo=1.49 hier=0.35 covis=0.98 pop=0.20 hour=0.29 alpha_ar=-0.54 tau=12.9
+23:59:51 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 4 loss=9.9666 (2s) | w0: hist=2.13 prefix=0.38 is_last=-1.12 ptrans=1.28 geo=1.49 hier=0.35 covis=0.97 pop=0.19 hour=0.29 alpha_ar=-0.51 tau=13.8
+23:59:53 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 5 loss=8.7860 (2s) | w0: hist=2.07 prefix=0.36 is_last=-1.16 ptrans=1.25 geo=1.49 hier=0.34 covis=0.96 pop=0.19 hour=0.29 alpha_ar=-0.49 tau=14.5
+23:59:55 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 6 loss=7.7883 (2s) | w0: hist=1.99 prefix=0.34 is_last=-1.21 ptrans=1.21 geo=1.49 hier=0.33 covis=0.95 pop=0.18 hour=0.29 alpha_ar=-0.47 tau=15.0
+23:59:56 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 7 loss=7.0968 (2s) | w0: hist=1.93 prefix=0.32 is_last=-1.26 ptrans=1.18 geo=1.48 hier=0.32 covis=0.94 pop=0.18 hour=0.29 alpha_ar=-0.46 tau=15.4
+23:59:58 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 8 loss=6.6912 (2s) | w0: hist=1.88 prefix=0.30 is_last=-1.30 ptrans=1.16 geo=1.48 hier=0.32 covis=0.93 pop=0.18 hour=0.29 alpha_ar=-0.45 tau=15.7
+00:00:00 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 9 loss=6.3906 (2s) | w0: hist=1.85 prefix=0.30 is_last=-1.33 ptrans=1.14 geo=1.48 hier=0.31 covis=0.92 pop=0.18 hour=0.29 alpha_ar=-0.44 tau=15.8
+00:00:02 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 10 loss=6.1879 (2s) | w0: hist=1.83 prefix=0.29 is_last=-1.35 ptrans=1.13 geo=1.48 hier=0.31 covis=0.92 pop=0.17 hour=0.29 alpha_ar=-0.44 tau=16.0
+00:00:03 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 11 loss=6.0623 (2s) | w0: hist=1.82 prefix=0.29 is_last=-1.36 ptrans=1.12 geo=1.48 hier=0.31 covis=0.92 pop=0.17 hour=0.29 alpha_ar=-0.43 tau=16.1
+00:00:05 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 12 loss=5.9872 (2s) | w0: hist=1.81 prefix=0.29 is_last=-1.37 ptrans=1.11 geo=1.48 hier=0.31 covis=0.92 pop=0.17 hour=0.29 alpha_ar=-0.43 tau=16.1
+00:00:06 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 13 loss=5.9121 (2s) | w0: hist=1.81 prefix=0.29 is_last=-1.37 ptrans=1.11 geo=1.48 hier=0.30 covis=0.92 pop=0.17 hour=0.29 alpha_ar=-0.43 tau=16.1
+00:00:08 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 14 loss=5.9198 (2s) | w0: hist=1.81 prefix=0.29 is_last=-1.37 ptrans=1.11 geo=1.48 hier=0.30 covis=0.92 pop=0.17 hour=0.29 alpha_ar=-0.43 tau=16.1
+00:00:09 | INFO    | gemma.down | [tokyo/few_shot] FULL-VOCAB acc@1=0.1869 acc@5=0.3181 acc@10=0.3637 ndcg@5=0.2559 mrr=0.2492 | next-activity acc=0.4649 f1=0.2039 | STHGCN 0.250/0.350 || LLM-200 acc@1=0.117+-0.012 acc@5=0.199 ndcg@5=0.161 | LLM-Move best 0.255/0.368
+00:00:09 | INFO    | gemma.down | [tokyo/full] fine-tune on 5855 next-step queries from 3836 trajectories (visible=4385)
+00:00:18 | INFO    | gemma.down | [tokyo/full] ft epoch 0 loss=12.7875 (9s) | val acc@1=0.1894 acc@5=0.3625 act@1=0.454 | w0: hist=2.15 prefix=0.35 is_last=-1.08 ptrans=1.31 geo=1.48 hier=0.36 covis=0.98 pop=0.20 hour=0.29 alpha_ar=-0.62 tau=10.9
+00:00:27 | INFO    | gemma.down | [tokyo/full] ft epoch 1 loss=11.7095 (9s) | val acc@1=0.2077 acc@5=0.3843 act@1=0.446 | w0: hist=2.16 prefix=0.36 is_last=-1.07 ptrans=1.31 geo=1.48 hier=0.36 covis=0.98 pop=0.20 hour=0.29 alpha_ar=-0.54 tau=11.6
+00:00:35 | INFO    | gemma.down | [tokyo/full] ft epoch 2 loss=10.9848 (7s) | val acc@1=0.1913 acc@5=0.3661 act@1=0.444 | w0: hist=2.17 prefix=0.37 is_last=-1.09 ptrans=1.31 geo=1.49 hier=0.36 covis=0.97 pop=0.19 hour=0.29 alpha_ar=-0.49 tau=12.9
+00:00:43 | INFO    | gemma.down | [tokyo/full] ft epoch 3 loss=10.1881 (7s) | val acc@1=0.1894 acc@5=0.3789 act@1=0.434 | w0: hist=2.16 prefix=0.38 is_last=-1.10 ptrans=1.29 geo=1.49 hier=0.36 covis=0.96 pop=0.19 hour=0.29 alpha_ar=-0.45 tau=14.0
+00:00:43 | INFO    | gemma.down | [tokyo/full] early stop at epoch 3
+00:00:43 | INFO    | gemma.down | [tokyo/full] restored best epoch (val acc@1=0.2077)
+00:00:45 | INFO    | gemma.down | [tokyo/full] FULL-VOCAB acc@1=0.2562 acc@5=0.4403 acc@10=0.4923 ndcg@5=0.3541 mrr=0.3398 | next-activity acc=0.5123 f1=0.2816 | STHGCN 0.250/0.350 || LLM-200 acc@1=0.144+-0.009 acc@5=0.231 ndcg@5=0.192 | LLM-Move best 0.255/0.368
+00:00:45 | INFO    | gemma.down | === GEMMA v5 SUMMARY (A@1 / N@5; ref = STHGCN for few/full, LLM-Move for zero-shot) ===
+00:00:45 | INFO    | gemma.down |           city shot           full-vocab         LLM-200           ref next-act
+00:00:45 | INFO    | gemma.down |          tokyo zero_shot     0.226/0.324     0.120/0.165 0.255/0.368    0.499
+00:00:45 | INFO    | gemma.down |          tokyo few_shot      0.187/0.256     0.117/0.161 0.250/0.350    0.465
+00:00:45 | INFO    | gemma.down |          tokyo full          0.256/0.354     0.144/0.192 0.250/0.350    0.512
+20:27:34 | INFO    | gemma.down | predictor=pooled hist_trails=15 few_shot_k=3 lr_bb=0.0001 rerank_m=100
+20:27:38 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+20:27:38 | INFO    | gemma.down | source-city realizer: runs/gemma_v4/zs_realizer.pt
+20:27:38 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:27:41 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+20:27:41 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+20:27:47 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2261 acc@5=0.4084 acc@10=0.4585 ndcg@5=0.3239 mrr=0.3089 | next-activity acc=0.4986 f1=0.2448 | STHGCN 0.250/0.350 || LLM-200 acc@1=0.120+-0.007 acc@5=0.202 ndcg@5=0.165 | LLM-Move best 0.255/0.368
+20:27:48 | INFO    | gemma.down | [tokyo/few_shot] fine-tune on 2989 next-step queries from 2010 trajectories (visible=2010)
+20:27:50 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 0 loss=13.6871 (2s) | w0: hist=2.15 prefix=0.35 is_last=-1.08 ptrans=1.34 geo=1.50 hier=0.36 covis=1.00 pop=0.20 hour=0.29 alpha_ar=-0.66 tau=11.2
+20:27:52 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 1 loss=12.6566 (2s) | w0: hist=2.15 prefix=0.35 is_last=-1.09 ptrans=1.35 geo=1.49 hier=0.36 covis=0.99 pop=0.21 hour=0.29 alpha_ar=-0.62 tau=11.4
+20:27:54 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 2 loss=11.9628 (2s) | w0: hist=2.16 prefix=0.37 is_last=-1.08 ptrans=1.33 geo=1.49 hier=0.35 covis=0.98 pop=0.20 hour=0.29 alpha_ar=-0.58 tau=12.1
+20:27:56 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 3 loss=11.1342 (2s) | w0: hist=2.16 prefix=0.38 is_last=-1.08 ptrans=1.32 geo=1.49 hier=0.35 covis=0.98 pop=0.20 hour=0.29 alpha_ar=-0.54 tau=12.9
+20:27:58 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 4 loss=9.9769 (2s) | w0: hist=2.13 prefix=0.38 is_last=-1.11 ptrans=1.29 geo=1.49 hier=0.35 covis=0.97 pop=0.19 hour=0.29 alpha_ar=-0.51 tau=13.8
+20:28:00 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 5 loss=8.8190 (2s) | w0: hist=2.07 prefix=0.37 is_last=-1.16 ptrans=1.25 geo=1.49 hier=0.34 covis=0.96 pop=0.19 hour=0.29 alpha_ar=-0.49 tau=14.5
+20:28:02 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 6 loss=7.7945 (2s) | w0: hist=1.99 prefix=0.34 is_last=-1.21 ptrans=1.22 geo=1.49 hier=0.33 covis=0.95 pop=0.18 hour=0.29 alpha_ar=-0.47 tau=15.0
+20:28:04 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 7 loss=7.1362 (2s) | w0: hist=1.93 prefix=0.32 is_last=-1.26 ptrans=1.18 geo=1.49 hier=0.32 covis=0.94 pop=0.18 hour=0.29 alpha_ar=-0.46 tau=15.4
+20:28:06 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 8 loss=6.7302 (2s) | w0: hist=1.89 prefix=0.31 is_last=-1.30 ptrans=1.16 geo=1.48 hier=0.32 covis=0.93 pop=0.18 hour=0.29 alpha_ar=-0.45 tau=15.6
+20:28:08 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 9 loss=6.4342 (2s) | w0: hist=1.85 prefix=0.30 is_last=-1.33 ptrans=1.14 geo=1.48 hier=0.31 covis=0.92 pop=0.18 hour=0.29 alpha_ar=-0.45 tau=15.8
+20:28:10 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 10 loss=6.2206 (2s) | w0: hist=1.83 prefix=0.29 is_last=-1.35 ptrans=1.13 geo=1.48 hier=0.31 covis=0.92 pop=0.17 hour=0.29 alpha_ar=-0.44 tau=16.0
+20:28:12 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 11 loss=6.0926 (2s) | w0: hist=1.82 prefix=0.29 is_last=-1.36 ptrans=1.12 geo=1.48 hier=0.31 covis=0.92 pop=0.17 hour=0.29 alpha_ar=-0.44 tau=16.1
+20:28:14 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 12 loss=6.0141 (2s) | w0: hist=1.81 prefix=0.29 is_last=-1.37 ptrans=1.12 geo=1.48 hier=0.31 covis=0.92 pop=0.17 hour=0.29 alpha_ar=-0.43 tau=16.1
+20:28:16 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 13 loss=5.9443 (2s) | w0: hist=1.81 prefix=0.29 is_last=-1.37 ptrans=1.11 geo=1.48 hier=0.30 covis=0.92 pop=0.17 hour=0.29 alpha_ar=-0.43 tau=16.1
+20:28:18 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 14 loss=5.9563 (2s) | w0: hist=1.81 prefix=0.29 is_last=-1.37 ptrans=1.11 geo=1.48 hier=0.30 covis=0.92 pop=0.17 hour=0.29 alpha_ar=-0.43 tau=16.1
+20:28:18 | INFO    | gemma.down | [tokyo/few_shot] FULL-VOCAB acc@1=0.1832 acc@5=0.3209 acc@10=0.3637 ndcg@5=0.2555 mrr=0.2473 | next-activity acc=0.4649 f1=0.2020 | STHGCN 0.250/0.350 || LLM-200 acc@1=0.117+-0.012 acc@5=0.201 ndcg@5=0.163 | LLM-Move best 0.255/0.368
+20:28:19 | INFO    | gemma.down | [tokyo/full] fine-tune on 5855 next-step queries from 3836 trajectories (visible=4385)
+20:28:28 | INFO    | gemma.down | [tokyo/full] ft epoch 0 loss=12.7876 (9s) | val acc@1=0.1876 acc@5=0.3643 act@1=0.454 | w0: hist=2.15 prefix=0.35 is_last=-1.08 ptrans=1.31 geo=1.48 hier=0.36 covis=0.98 pop=0.20 hour=0.29 alpha_ar=-0.62 tau=10.9
+20:28:38 | INFO    | gemma.down | [tokyo/full] ft epoch 1 loss=11.7095 (9s) | val acc@1=0.2077 acc@5=0.3843 act@1=0.448 | w0: hist=2.16 prefix=0.36 is_last=-1.08 ptrans=1.31 geo=1.48 hier=0.36 covis=0.98 pop=0.20 hour=0.29 alpha_ar=-0.54 tau=11.6
+20:28:47 | INFO    | gemma.down | [tokyo/full] ft epoch 2 loss=10.9827 (9s) | val acc@1=0.1913 acc@5=0.3643 act@1=0.444 | w0: hist=2.17 prefix=0.37 is_last=-1.10 ptrans=1.31 geo=1.49 hier=0.36 covis=0.96 pop=0.19 hour=0.29 alpha_ar=-0.49 tau=12.9
+20:28:56 | INFO    | gemma.down | [tokyo/full] ft epoch 3 loss=10.1888 (9s) | val acc@1=0.1858 acc@5=0.3789 act@1=0.430 | w0: hist=2.16 prefix=0.38 is_last=-1.10 ptrans=1.29 geo=1.49 hier=0.36 covis=0.96 pop=0.19 hour=0.29 alpha_ar=-0.45 tau=14.0
+20:28:56 | INFO    | gemma.down | [tokyo/full] early stop at epoch 3
+20:28:56 | INFO    | gemma.down | [tokyo/full] restored best epoch (val acc@1=0.2077)
+20:28:58 | INFO    | gemma.down | [tokyo/full] FULL-VOCAB acc@1=0.2562 acc@5=0.4394 acc@10=0.4941 ndcg@5=0.3537 mrr=0.3398 | next-activity acc=0.5132 f1=0.2819 | STHGCN 0.250/0.350 || LLM-200 acc@1=0.144+-0.009 acc@5=0.231 ndcg@5=0.192 | LLM-Move best 0.255/0.368
+20:28:58 | INFO    | gemma.down | === GEMMA v5 SUMMARY (A@1 / N@5; ref = STHGCN for few/full, LLM-Move for zero-shot) ===
+20:28:58 | INFO    | gemma.down |           city shot           full-vocab         LLM-200           ref next-act
+20:28:58 | INFO    | gemma.down |          tokyo zero_shot     0.226/0.324     0.120/0.165 0.255/0.368    0.499
+20:28:58 | INFO    | gemma.down |          tokyo few_shot      0.183/0.256     0.117/0.163 0.250/0.350    0.465
+20:28:58 | INFO    | gemma.down |          tokyo full          0.256/0.354     0.144/0.192 0.250/0.350    0.513
+21:01:42 | INFO    | gemma.down | predictor=pooled hist_trails=15 few_shot_k=3 lr_bb=0.0001 rerank_m=100
+21:01:46 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+21:01:46 | INFO    | gemma.down | source-city realizer: runs/gemma_v4/zs_realizer.pt
+21:01:46 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:01:49 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:01:49 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+21:01:53 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2261 acc@5=0.4084 acc@10=0.4585 ndcg@5=0.3239 mrr=0.3089 | next-activity acc=0.4986 f1=0.2448 | revisit(0.52) acc@1=0.437 explore acc@1=0.000 | STHGCN 0.250/0.350 || LLM-200[gt+near100] acc@1=0.282+-0.019 acc@5=0.455 ndcg@5=0.376 [near100 0.120] [gt+rand100 0.474] | LLM-Move best 0.255/0.368
+21:01:54 | INFO    | gemma.down | [tokyo/few_shot] fine-tune on 2689 next-step queries from 1809 trajectories (visible=2010)
+21:01:55 | INFO    | gemma.down | [tokyo/few_shot] init val acc@1=0.1990
+21:01:59 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 0 loss=13.4840 (4s) | val acc@1=0.1741 acc@5=0.3582 act@1=0.507 | w0: hist=2.15 prefix=0.35 is_last=-1.11 ptrans=1.34 geo=1.49 hier=0.36 covis=0.99 pop=0.20 hour=0.29 alpha_ar=-0.67 tau=11.3
+21:02:02 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 1 loss=12.3753 (3s) | val acc@1=0.1741 acc@5=0.3632 act@1=0.527 | w0: hist=2.15 prefix=0.35 is_last=-1.11 ptrans=1.35 geo=1.48 hier=0.36 covis=0.99 pop=0.20 hour=0.29 alpha_ar=-0.63 tau=11.5
+21:02:05 | INFO    | gemma.down | [tokyo/few_shot] ft epoch 2 loss=11.4627 (3s) | val acc@1=0.1791 acc@5=0.3632 act@1=0.507 | w0: hist=2.17 prefix=0.36 is_last=-1.09 ptrans=1.34 geo=1.49 hier=0.36 covis=0.98 pop=0.20 hour=0.30 alpha_ar=-0.59 tau=12.1
+21:02:05 | INFO    | gemma.down | [tokyo/few_shot] early stop at epoch 2
+21:02:05 | INFO    | gemma.down | [tokyo/few_shot] restored best epoch (val acc@1=0.1990)
+21:02:07 | INFO    | gemma.down | [tokyo/few_shot] FULL-VOCAB acc@1=0.2288 acc@5=0.4239 acc@10=0.4731 ndcg@5=0.3335 mrr=0.3166 | next-activity acc=0.4986 f1=0.2448 | revisit(0.52) acc@1=0.440 explore acc@1=0.002 | STHGCN 0.250/0.350 || LLM-200[gt+near100] acc@1=0.293+-0.030 acc@5=0.481 ndcg@5=0.395 [near100 0.141] [gt+rand100 0.485] | LLM-Move best 0.255/0.368
+21:02:07 | INFO    | gemma.down | [tokyo/full] fine-tune on 5855 next-step queries from 3836 trajectories (visible=4385)
+21:02:08 | INFO    | gemma.down | [tokyo/full] init val acc@1=0.1803
+21:02:17 | INFO    | gemma.down | [tokyo/full] ft epoch 0 loss=12.7946 (9s) | val acc@1=0.1858 acc@5=0.3607 act@1=0.450 | w0: hist=2.15 prefix=0.35 is_last=-1.08 ptrans=1.31 geo=1.48 hier=0.36 covis=0.98 pop=0.20 hour=0.29 alpha_ar=-0.62 tau=10.9
+21:02:26 | INFO    | gemma.down | [tokyo/full] ft epoch 1 loss=11.7122 (9s) | val acc@1=0.2077 acc@5=0.3843 act@1=0.446 | w0: hist=2.16 prefix=0.36 is_last=-1.07 ptrans=1.31 geo=1.48 hier=0.36 covis=0.97 pop=0.20 hour=0.29 alpha_ar=-0.54 tau=11.7
+21:02:35 | INFO    | gemma.down | [tokyo/full] ft epoch 2 loss=10.9939 (9s) | val acc@1=0.1949 acc@5=0.3643 act@1=0.450 | w0: hist=2.18 prefix=0.37 is_last=-1.09 ptrans=1.31 geo=1.49 hier=0.36 covis=0.97 pop=0.19 hour=0.29 alpha_ar=-0.49 tau=12.9
+21:02:44 | INFO    | gemma.down | [tokyo/full] ft epoch 3 loss=10.1848 (8s) | val acc@1=0.1840 acc@5=0.3698 act@1=0.434 | w0: hist=2.17 prefix=0.38 is_last=-1.09 ptrans=1.29 geo=1.49 hier=0.36 covis=0.96 pop=0.19 hour=0.29 alpha_ar=-0.45 tau=14.0
+21:02:53 | INFO    | gemma.down | [tokyo/full] ft epoch 4 loss=9.4926 (8s) | val acc@1=0.1621 acc@5=0.3643 act@1=0.437 | w0: hist=2.15 prefix=0.38 is_last=-1.12 ptrans=1.28 geo=1.49 hier=0.35 covis=0.95 pop=0.18 hour=0.29 alpha_ar=-0.43 tau=14.8
+21:02:53 | INFO    | gemma.down | [tokyo/full] early stop at epoch 4
+21:02:53 | INFO    | gemma.down | [tokyo/full] restored best epoch (val acc@1=0.2077)
+21:02:55 | INFO    | gemma.down | [tokyo/full] FULL-VOCAB acc@1=0.2562 acc@5=0.4385 acc@10=0.4941 ndcg@5=0.3527 mrr=0.3388 | next-activity acc=0.5160 f1=0.2892 | revisit(0.53) acc@1=0.474 explore acc@1=0.006 | STHGCN 0.250/0.350 || LLM-200[gt+near100] acc@1=0.308+-0.017 acc@5=0.493 ndcg@5=0.407 [near100 0.147] [gt+rand100 0.534] | LLM-Move best 0.255/0.368
+21:02:55 | INFO    | gemma.down | === GEMMA v5 SUMMARY (A@1 / N@5; ref = STHGCN for few/full, LLM-Move for zero-shot) ===
+21:02:55 | INFO    | gemma.down |           city shot           full-vocab         LLM-200           ref next-act
+21:02:55 | INFO    | gemma.down |          tokyo zero_shot     0.226/0.324     0.282/0.376 0.255/0.368    0.499
+21:02:55 | INFO    | gemma.down |          tokyo few_shot      0.229/0.334     0.293/0.395 0.250/0.350    0.499
+21:02:55 | INFO    | gemma.down |          tokyo full          0.256/0.353     0.308/0.407 0.250/0.350    0.516

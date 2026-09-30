@@ -4,7 +4,7 @@ from gemma.config import Config
 from gemma.pretrain import pretrain
 def main():
     p=argparse.ArgumentParser()
-    for f in ["data_root","fsq_csv","poi_encoder","masking","regularizer","geometry","run_name","device","leaf_head","sid_cache"]:
+    for f in ["data_root","fsq_csv","poi_encoder","masking","regularizer","geometry","run_name","device","leaf_head","sid_cache","predictor_type","out_dir"]:
         p.add_argument("--"+f)
     p.add_argument("--pretrain_cities",nargs="+"); p.add_argument("--epochs",type=int)
     p.add_argument("--batch_size",type=int); p.add_argument("--d_model",type=int)

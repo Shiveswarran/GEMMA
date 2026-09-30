@@ -40,6 +40,7 @@ class Config:
     dropout: float = 0.1
     ema_decay: float = 0.996
     geometry: str = "euclidean"                    # euclidean | poincare (ablation)
+    predictor_type: str = "xattn"                  # xattn (v5, I-JEPA cross-attn) | pooled (v4)
     # ---- two-tower next-POI ranker ----
     d_tower: int = 256
     nce_temp: float = 0.1
@@ -75,9 +76,25 @@ class Config:
     # ---- few-shot ----
     few_shot_trails_per_user: int = 2
     few_shot_epochs: int = 3
+    # ---- GEMMA realization (v5 downstream: history-conditioned, fine-tuned) ----
+    hist_trails: int = 15             # user's most recent history trajectories in context
+    hist_max_tokens: int = 200        # token cap for [history SEP ... SEP prefix]
+    use_history: bool = True        # ablation: False = v4-style prefix-only context
+    causal_history: bool = False      # True: only history trajectories that START earlier
+    few_shot_k: int = 3               # few-shot = <=k train trajectories per user (all else hidden)
+    ft_epochs: int = 8                # full-shot fine-tune epochs (early-stopped on validation)
+    ft_epochs_few: int = 15
+    ft_lr_head: float = 2e-3
+    ft_lr_backbone: float = 1e-4      # 0 -> frozen backbone
+    ft_batch: int = 128
+    ft_all_positions: bool = True     # train on EVERY next-step pair, not only the last
+    ft_max_queries: int = 400000      # cap per epoch (subsampled) for huge cities
+    rerank_m: int = 100               # AR-likelihood rerank on the top-m shortlist only
+    d_real: int = 256                 # realization POI-embedding dim
+    val_queries: int = 3000           # validation queries for early stopping
 
     # ---- SSL masking (ablation axis) ----
-    masking: str = "block_future"                  # block_future | random_span | activity_block | causal_next
+    masking: str = "mixed"                         # mixed | trail_end | block_future | random_span | activity_block | causal_next
     mask_ratio: float = 0.25
     mask_block_max: int = 8
 

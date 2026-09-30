@@ -33,3 +33,10 @@ frozen features | finetune | prefix-token | LoRA-on-backbone
 - trajectory user-identification (who) — probe over user bank
 - next-POI time / dwell regression (auxiliary)
 - weekday/weekend + time-of-day-bucket classification (Massive-STEPS §4.3)
+
+## v5 downstream ablations (run_downstream.py flags)
+- context: full history (default) | `--no_history` | `--causal_history` | `--hist_trails 5/15/30`
+- realization: `--rerank_m 0/50/100/200` | `--ft_lr_backbone 0/1e-4/3e-4` | `--last_position_only`
+- zero-shot: source realizer with/without `--tune_backbone` | none (hand fusion)
+- few-shot curve: `--few_shot_k 1 3 5 10`
+- backbone: gemma_v4 (pooled, block_future) vs gemma_v5 (xattn, mixed)

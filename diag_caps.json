@@ -1,0 +1,1022 @@
+{
+  "tokyo": {
+    "n_pois_all_splits": 2982,
+    "n_pois_test_split": 1183,
+    "n_test_traj": 1097,
+    "n_queries_used": 1097,
+    "mean_prefix_len": 1.544211485870556,
+    "mean_hist_trajectories": 12.394712853236099,
+    "coverage": {
+      "in_prefix": 0.0675,
+      "in_hist15": 0.4904,
+      "in_hist_all": 0.5278,
+      "in_near100": 0.3929,
+      "in_markov10": 0.2516,
+      "in_union": 0.7411
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.175,
+        "acc@5": 0.4038,
+        "acc@10": 0.4895,
+        "ndcg@5": 0.2957,
+        "mrr": 0.28
+      },
+      "markov": {
+        "acc@1": 0.1294,
+        "acc@5": 0.237,
+        "acc@10": 0.2944,
+        "ndcg@5": 0.1856,
+        "mrr": 0.1843
+      },
+      "nearest": {
+        "acc@1": 0.041,
+        "acc@5": 0.0994,
+        "acc@10": 0.1331,
+        "ndcg@5": 0.0694,
+        "mrr": 0.0736
+      },
+      "combo": {
+        "acc@1": 0.1686,
+        "acc@5": 0.4066,
+        "acc@10": 0.4986,
+        "ndcg@5": 0.2923,
+        "mrr": 0.2763
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.080+-0.011",
+        "acc@5": "0.200+-0.017",
+        "ndcg@5": "0.146+-0.012"
+      },
+      "markov": {
+        "acc@1": "0.121+-0.011",
+        "acc@5": "0.203+-0.009",
+        "ndcg@5": "0.162+-0.009"
+      },
+      "nearest": {
+        "acc@1": "0.041+-0.011",
+        "acc@5": "0.094+-0.010",
+        "ndcg@5": "0.068+-0.009"
+      },
+      "combo": {
+        "acc@1": "0.105+-0.009",
+        "acc@5": "0.216+-0.019",
+        "ndcg@5": "0.165+-0.014"
+      }
+    }
+  },
+  "istanbul": {
+    "n_pois_all_splits": 42795,
+    "n_pois_test_split": 19782,
+    "n_test_traj": 43283,
+    "n_queries_used": 5000,
+    "mean_prefix_len": 1.4926,
+    "mean_hist_trajectories": 16.5652,
+    "coverage": {
+      "in_prefix": 0.0376,
+      "in_hist15": 0.4312,
+      "in_hist_all": 0.4744,
+      "in_near100": 0.1638,
+      "in_markov10": 0.2486,
+      "in_union": 0.6138
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.116,
+        "acc@5": 0.3136,
+        "acc@10": 0.388,
+        "ndcg@5": 0.2211,
+        "mrr": 0.2084
+      },
+      "markov": {
+        "acc@1": 0.0944,
+        "acc@5": 0.2068,
+        "acc@10": 0.2646,
+        "ndcg@5": 0.1535,
+        "mrr": 0.1522
+      },
+      "nearest": {
+        "acc@1": 0.0202,
+        "acc@5": 0.0384,
+        "acc@10": 0.0534,
+        "ndcg@5": 0.0291,
+        "mrr": 0.0331
+      },
+      "combo": {
+        "acc@1": 0.1344,
+        "acc@5": 0.301,
+        "acc@10": 0.3784,
+        "ndcg@5": 0.2207,
+        "mrr": 0.2162
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.019+-0.006",
+        "acc@5": "0.069+-0.007",
+        "ndcg@5": "0.047+-0.004"
+      },
+      "markov": {
+        "acc@1": "0.049+-0.017",
+        "acc@5": "0.100+-0.016",
+        "ndcg@5": "0.076+-0.016"
+      },
+      "nearest": {
+        "acc@1": "0.007+-0.004",
+        "acc@5": "0.020+-0.005",
+        "ndcg@5": "0.014+-0.005"
+      },
+      "combo": {
+        "acc@1": "0.056+-0.010",
+        "acc@5": "0.107+-0.018",
+        "ndcg@5": "0.083+-0.015"
+      }
+    }
+  },
+  "jakarta": {
+    "n_pois_all_splits": 71150,
+    "n_pois_test_split": 28644,
+    "n_test_traj": 27480,
+    "n_queries_used": 5000,
+    "mean_prefix_len": 2.0254,
+    "mean_hist_trajectories": 30.2072,
+    "coverage": {
+      "in_prefix": 0.0294,
+      "in_hist15": 0.379,
+      "in_hist_all": 0.4574,
+      "in_near100": 0.166,
+      "in_markov10": 0.1742,
+      "in_union": 0.5988
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.1088,
+        "acc@5": 0.2446,
+        "acc@10": 0.301,
+        "ndcg@5": 0.1811,
+        "mrr": 0.1775
+      },
+      "markov": {
+        "acc@1": 0.0796,
+        "acc@5": 0.1582,
+        "acc@10": 0.1928,
+        "ndcg@5": 0.1215,
+        "mrr": 0.1204
+      },
+      "nearest": {
+        "acc@1": 0.0386,
+        "acc@5": 0.0608,
+        "acc@10": 0.077,
+        "ndcg@5": 0.0498,
+        "mrr": 0.0529
+      },
+      "combo": {
+        "acc@1": 0.1026,
+        "acc@5": 0.2518,
+        "acc@10": 0.3206,
+        "ndcg@5": 0.1795,
+        "mrr": 0.1744
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.013+-0.008",
+        "acc@5": "0.063+-0.015",
+        "ndcg@5": "0.040+-0.007"
+      },
+      "markov": {
+        "acc@1": "0.030+-0.017",
+        "acc@5": "0.076+-0.025",
+        "ndcg@5": "0.054+-0.020"
+      },
+      "nearest": {
+        "acc@1": "0.004+-0.004",
+        "acc@5": "0.024+-0.007",
+        "ndcg@5": "0.014+-0.004"
+      },
+      "combo": {
+        "acc@1": "0.034+-0.015",
+        "acc@5": "0.089+-0.020",
+        "ndcg@5": "0.062+-0.016"
+      }
+    }
+  },
+  "new_york": {
+    "n_pois_all_splits": 45804,
+    "n_pois_test_split": 20416,
+    "n_test_traj": 18409,
+    "n_queries_used": 5000,
+    "mean_prefix_len": 1.9512,
+    "mean_hist_trajectories": 33.0898,
+    "coverage": {
+      "in_prefix": 0.0212,
+      "in_hist15": 0.3126,
+      "in_hist_all": 0.3974,
+      "in_near100": 0.1684,
+      "in_markov10": 0.1432,
+      "in_union": 0.5096
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.0728,
+        "acc@5": 0.202,
+        "acc@10": 0.2482,
+        "ndcg@5": 0.1416,
+        "mrr": 0.1365
+      },
+      "markov": {
+        "acc@1": 0.0754,
+        "acc@5": 0.1366,
+        "acc@10": 0.1608,
+        "ndcg@5": 0.1071,
+        "mrr": 0.104
+      },
+      "nearest": {
+        "acc@1": 0.007,
+        "acc@5": 0.0318,
+        "acc@10": 0.0496,
+        "ndcg@5": 0.0194,
+        "mrr": 0.0227
+      },
+      "combo": {
+        "acc@1": 0.103,
+        "acc@5": 0.2186,
+        "acc@10": 0.2736,
+        "ndcg@5": 0.1628,
+        "mrr": 0.159
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.010+-0.007",
+        "acc@5": "0.054+-0.016",
+        "ndcg@5": "0.035+-0.010"
+      },
+      "markov": {
+        "acc@1": "0.022+-0.013",
+        "acc@5": "0.048+-0.017",
+        "ndcg@5": "0.036+-0.015"
+      },
+      "nearest": {
+        "acc@1": "0.007+-0.002",
+        "acc@5": "0.031+-0.005",
+        "ndcg@5": "0.019+-0.002"
+      },
+      "combo": {
+        "acc@1": "0.019+-0.013",
+        "acc@5": "0.059+-0.022",
+        "ndcg@5": "0.040+-0.017"
+      }
+    }
+  },
+  "kuwait_city": {
+    "n_pois_all_splits": 13455,
+    "n_pois_test_split": 6294,
+    "n_test_traj": 18332,
+    "n_queries_used": 5000,
+    "mean_prefix_len": 1.5528,
+    "mean_hist_trajectories": 17.4274,
+    "coverage": {
+      "in_prefix": 0.0394,
+      "in_hist15": 0.4804,
+      "in_hist_all": 0.5344,
+      "in_near100": 0.1416,
+      "in_markov10": 0.2862,
+      "in_union": 0.6588
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.1344,
+        "acc@5": 0.33,
+        "acc@10": 0.4238,
+        "ndcg@5": 0.2364,
+        "mrr": 0.2272
+      },
+      "markov": {
+        "acc@1": 0.0942,
+        "acc@5": 0.2168,
+        "acc@10": 0.2994,
+        "ndcg@5": 0.1575,
+        "mrr": 0.1629
+      },
+      "nearest": {
+        "acc@1": 0.0274,
+        "acc@5": 0.0402,
+        "acc@10": 0.0546,
+        "ndcg@5": 0.0337,
+        "mrr": 0.0377
+      },
+      "combo": {
+        "acc@1": 0.141,
+        "acc@5": 0.3392,
+        "acc@10": 0.4352,
+        "ndcg@5": 0.244,
+        "mrr": 0.2382
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.033+-0.019",
+        "acc@5": "0.081+-0.017",
+        "ndcg@5": "0.060+-0.016"
+      },
+      "markov": {
+        "acc@1": "0.057+-0.008",
+        "acc@5": "0.117+-0.015",
+        "ndcg@5": "0.089+-0.009"
+      },
+      "nearest": {
+        "acc@1": "0.020+-0.012",
+        "acc@5": "0.035+-0.016",
+        "ndcg@5": "0.027+-0.013"
+      },
+      "combo": {
+        "acc@1": "0.067+-0.019",
+        "acc@5": "0.125+-0.018",
+        "ndcg@5": "0.098+-0.018"
+      }
+    }
+  },
+  "petaling_jaya": {
+    "n_pois_all_splits": 53650,
+    "n_pois_test_split": 24120,
+    "n_test_traj": 36082,
+    "n_queries_used": 5000,
+    "mean_prefix_len": 1.8234,
+    "mean_hist_trajectories": 24.8342,
+    "coverage": {
+      "in_prefix": 0.0262,
+      "in_hist15": 0.337,
+      "in_hist_all": 0.4168,
+      "in_near100": 0.164,
+      "in_markov10": 0.1906,
+      "in_union": 0.567
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.0846,
+        "acc@5": 0.2106,
+        "acc@10": 0.2688,
+        "ndcg@5": 0.1503,
+        "mrr": 0.1476
+      },
+      "markov": {
+        "acc@1": 0.0716,
+        "acc@5": 0.1618,
+        "acc@10": 0.2086,
+        "ndcg@5": 0.1186,
+        "mrr": 0.1179
+      },
+      "nearest": {
+        "acc@1": 0.0198,
+        "acc@5": 0.0376,
+        "acc@10": 0.051,
+        "ndcg@5": 0.0287,
+        "mrr": 0.0327
+      },
+      "combo": {
+        "acc@1": 0.099,
+        "acc@5": 0.237,
+        "acc@10": 0.3138,
+        "ndcg@5": 0.1707,
+        "mrr": 0.1693
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.009+-0.004",
+        "acc@5": "0.044+-0.007",
+        "ndcg@5": "0.029+-0.005"
+      },
+      "markov": {
+        "acc@1": "0.039+-0.013",
+        "acc@5": "0.071+-0.011",
+        "ndcg@5": "0.055+-0.013"
+      },
+      "nearest": {
+        "acc@1": "0.004+-0.004",
+        "acc@5": "0.016+-0.004",
+        "ndcg@5": "0.010+-0.003"
+      },
+      "combo": {
+        "acc@1": "0.034+-0.006",
+        "acc@5": "0.074+-0.013",
+        "ndcg@5": "0.055+-0.010"
+      }
+    }
+  },
+  "sao_paulo": {
+    "n_pois_all_splits": 34881,
+    "n_pois_test_split": 15785,
+    "n_test_traj": 17938,
+    "n_queries_used": 5000,
+    "mean_prefix_len": 1.8514,
+    "mean_hist_trajectories": 31.277,
+    "coverage": {
+      "in_prefix": 0.0352,
+      "in_hist15": 0.4874,
+      "in_hist_all": 0.5782,
+      "in_near100": 0.226,
+      "in_markov10": 0.2556,
+      "in_union": 0.6894
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.1154,
+        "acc@5": 0.341,
+        "acc@10": 0.418,
+        "ndcg@5": 0.2343,
+        "mrr": 0.2198
+      },
+      "markov": {
+        "acc@1": 0.1124,
+        "acc@5": 0.2182,
+        "acc@10": 0.2696,
+        "ndcg@5": 0.1685,
+        "mrr": 0.1644
+      },
+      "nearest": {
+        "acc@1": 0.0118,
+        "acc@5": 0.0428,
+        "acc@10": 0.0648,
+        "ndcg@5": 0.0275,
+        "mrr": 0.032
+      },
+      "combo": {
+        "acc@1": 0.1586,
+        "acc@5": 0.3362,
+        "acc@10": 0.4184,
+        "ndcg@5": 0.2509,
+        "mrr": 0.2431
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.022+-0.012",
+        "acc@5": "0.101+-0.028",
+        "ndcg@5": "0.066+-0.020"
+      },
+      "markov": {
+        "acc@1": "0.046+-0.013",
+        "acc@5": "0.094+-0.017",
+        "ndcg@5": "0.072+-0.014"
+      },
+      "nearest": {
+        "acc@1": "0.003+-0.002",
+        "acc@5": "0.035+-0.016",
+        "ndcg@5": "0.019+-0.010"
+      },
+      "combo": {
+        "acc@1": "0.056+-0.019",
+        "acc@5": "0.124+-0.026",
+        "ndcg@5": "0.090+-0.021"
+      }
+    }
+  },
+  "bandung": {
+    "n_pois_all_splits": 26559,
+    "n_pois_test_split": 10813,
+    "n_test_traj": 11067,
+    "n_queries_used": 5000,
+    "mean_prefix_len": 1.9006,
+    "mean_hist_trajectories": 27.9312,
+    "coverage": {
+      "in_prefix": 0.0418,
+      "in_hist15": 0.415,
+      "in_hist_all": 0.4954,
+      "in_near100": 0.1516,
+      "in_markov10": 0.1866,
+      "in_union": 0.61
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.126,
+        "acc@5": 0.2756,
+        "acc@10": 0.3338,
+        "ndcg@5": 0.2054,
+        "mrr": 0.1998
+      },
+      "markov": {
+        "acc@1": 0.086,
+        "acc@5": 0.1688,
+        "acc@10": 0.213,
+        "ndcg@5": 0.1291,
+        "mrr": 0.1281
+      },
+      "nearest": {
+        "acc@1": 0.0464,
+        "acc@5": 0.0676,
+        "acc@10": 0.081,
+        "ndcg@5": 0.0569,
+        "mrr": 0.0592
+      },
+      "combo": {
+        "acc@1": 0.1304,
+        "acc@5": 0.2728,
+        "acc@10": 0.3454,
+        "ndcg@5": 0.2056,
+        "mrr": 0.2022
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.010+-0.007",
+        "acc@5": "0.060+-0.025",
+        "ndcg@5": "0.036+-0.016"
+      },
+      "markov": {
+        "acc@1": "0.033+-0.010",
+        "acc@5": "0.073+-0.007",
+        "ndcg@5": "0.053+-0.008"
+      },
+      "nearest": {
+        "acc@1": "0.001+-0.002",
+        "acc@5": "0.027+-0.014",
+        "ndcg@5": "0.014+-0.008"
+      },
+      "combo": {
+        "acc@1": "0.036+-0.015",
+        "acc@5": "0.080+-0.010",
+        "ndcg@5": "0.060+-0.010"
+      }
+    }
+  },
+  "beijing": {
+    "n_pois_all_splits": 598,
+    "n_pois_test_split": 183,
+    "n_test_traj": 115,
+    "n_queries_used": 115,
+    "mean_prefix_len": 1.4782608695652173,
+    "mean_hist_trajectories": 20.417391304347827,
+    "coverage": {
+      "in_prefix": 0.0348,
+      "in_hist15": 0.5826,
+      "in_hist_all": 0.6174,
+      "in_near100": 0.7739,
+      "in_markov10": 0.3478,
+      "in_union": 0.887
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.1304,
+        "acc@5": 0.4609,
+        "acc@10": 0.5652,
+        "ndcg@5": 0.3118,
+        "mrr": 0.292
+      },
+      "markov": {
+        "acc@1": 0.2696,
+        "acc@5": 0.3913,
+        "acc@10": 0.4087,
+        "ndcg@5": 0.337,
+        "mrr": 0.3287
+      },
+      "nearest": {
+        "acc@1": 0.0174,
+        "acc@5": 0.2348,
+        "acc@10": 0.3913,
+        "ndcg@5": 0.1309,
+        "mrr": 0.1332
+      },
+      "combo": {
+        "acc@1": 0.2609,
+        "acc@5": 0.5217,
+        "acc@10": 0.6,
+        "ndcg@5": 0.3983,
+        "mrr": 0.3778
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.050+-0.020",
+        "acc@5": "0.350+-0.022",
+        "ndcg@5": "0.217+-0.020"
+      },
+      "markov": {
+        "acc@1": "0.146+-0.015",
+        "acc@5": "0.215+-0.008",
+        "ndcg@5": "0.182+-0.011"
+      },
+      "nearest": {
+        "acc@1": "0.000+-0.000",
+        "acc@5": "0.250+-0.017",
+        "ndcg@5": "0.132+-0.008"
+      },
+      "combo": {
+        "acc@1": "0.150+-0.026",
+        "acc@5": "0.331+-0.022",
+        "ndcg@5": "0.241+-0.020"
+      }
+    }
+  },
+  "melbourne": {
+    "n_pois_all_splits": 6901,
+    "n_pois_test_split": 2522,
+    "n_test_traj": 1573,
+    "n_queries_used": 1573,
+    "mean_prefix_len": 1.8448823903369358,
+    "mean_hist_trajectories": 21.33248569612206,
+    "coverage": {
+      "in_prefix": 0.0267,
+      "in_hist15": 0.3465,
+      "in_hist_all": 0.4158,
+      "in_near100": 0.3217,
+      "in_markov10": 0.1182,
+      "in_union": 0.6116
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.0776,
+        "acc@5": 0.2225,
+        "acc@10": 0.2772,
+        "ndcg@5": 0.1554,
+        "mrr": 0.1522
+      },
+      "markov": {
+        "acc@1": 0.0674,
+        "acc@5": 0.1221,
+        "acc@10": 0.1545,
+        "ndcg@5": 0.097,
+        "mrr": 0.0987
+      },
+      "nearest": {
+        "acc@1": 0.007,
+        "acc@5": 0.0731,
+        "acc@10": 0.1151,
+        "ndcg@5": 0.0411,
+        "mrr": 0.0445
+      },
+      "combo": {
+        "acc@1": 0.103,
+        "acc@5": 0.2378,
+        "acc@10": 0.3058,
+        "ndcg@5": 0.1724,
+        "mrr": 0.1695
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.026+-0.008",
+        "acc@5": "0.126+-0.027",
+        "ndcg@5": "0.079+-0.017"
+      },
+      "markov": {
+        "acc@1": "0.040+-0.007",
+        "acc@5": "0.081+-0.009",
+        "ndcg@5": "0.061+-0.009"
+      },
+      "nearest": {
+        "acc@1": "0.003+-0.004",
+        "acc@5": "0.070+-0.010",
+        "ndcg@5": "0.038+-0.007"
+      },
+      "combo": {
+        "acc@1": "0.044+-0.009",
+        "acc@5": "0.115+-0.026",
+        "ndcg@5": "0.081+-0.016"
+      }
+    }
+  },
+  "moscow": {
+    "n_pois_all_splits": 13994,
+    "n_pois_test_split": 6377,
+    "n_test_traj": 7897,
+    "n_queries_used": 5000,
+    "mean_prefix_len": 1.674,
+    "mean_hist_trajectories": 16.124,
+    "coverage": {
+      "in_prefix": 0.0518,
+      "in_hist15": 0.4566,
+      "in_hist_all": 0.5054,
+      "in_near100": 0.2622,
+      "in_markov10": 0.2302,
+      "in_union": 0.6516
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.1414,
+        "acc@5": 0.338,
+        "acc@10": 0.4118,
+        "ndcg@5": 0.2464,
+        "mrr": 0.2355
+      },
+      "markov": {
+        "acc@1": 0.1038,
+        "acc@5": 0.2046,
+        "acc@10": 0.251,
+        "ndcg@5": 0.1561,
+        "mrr": 0.1531
+      },
+      "nearest": {
+        "acc@1": 0.037,
+        "acc@5": 0.073,
+        "acc@10": 0.1024,
+        "ndcg@5": 0.0555,
+        "mrr": 0.061
+      },
+      "combo": {
+        "acc@1": 0.1638,
+        "acc@5": 0.3508,
+        "acc@10": 0.4292,
+        "ndcg@5": 0.2622,
+        "mrr": 0.2529
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.033+-0.012",
+        "acc@5": "0.129+-0.029",
+        "ndcg@5": "0.089+-0.021"
+      },
+      "markov": {
+        "acc@1": "0.066+-0.021",
+        "acc@5": "0.130+-0.027",
+        "ndcg@5": "0.100+-0.023"
+      },
+      "nearest": {
+        "acc@1": "0.018+-0.011",
+        "acc@5": "0.057+-0.019",
+        "ndcg@5": "0.039+-0.016"
+      },
+      "combo": {
+        "acc@1": "0.083+-0.023",
+        "acc@5": "0.152+-0.030",
+        "ndcg@5": "0.120+-0.026"
+      }
+    }
+  },
+  "palembang": {
+    "n_pois_all_splits": 4117,
+    "n_pois_test_split": 1525,
+    "n_test_traj": 940,
+    "n_queries_used": 940,
+    "mean_prefix_len": 2.029787234042553,
+    "mean_hist_trajectories": 29.301063829787235,
+    "coverage": {
+      "in_prefix": 0.0234,
+      "in_hist15": 0.4766,
+      "in_hist_all": 0.5766,
+      "in_near100": 0.1649,
+      "in_markov10": 0.1319,
+      "in_union": 0.6628
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.1468,
+        "acc@5": 0.3096,
+        "acc@10": 0.3702,
+        "ndcg@5": 0.2302,
+        "mrr": 0.2234
+      },
+      "markov": {
+        "acc@1": 0.0787,
+        "acc@5": 0.1447,
+        "acc@10": 0.183,
+        "ndcg@5": 0.1134,
+        "mrr": 0.1161
+      },
+      "nearest": {
+        "acc@1": 0.0574,
+        "acc@5": 0.0787,
+        "acc@10": 0.1032,
+        "ndcg@5": 0.0687,
+        "mrr": 0.0734
+      },
+      "combo": {
+        "acc@1": 0.1266,
+        "acc@5": 0.283,
+        "acc@10": 0.3628,
+        "ndcg@5": 0.2069,
+        "mrr": 0.2021
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.012+-0.007",
+        "acc@5": "0.056+-0.008",
+        "ndcg@5": "0.036+-0.008"
+      },
+      "markov": {
+        "acc@1": "0.025+-0.003",
+        "acc@5": "0.062+-0.014",
+        "ndcg@5": "0.045+-0.010"
+      },
+      "nearest": {
+        "acc@1": "0.004+-0.004",
+        "acc@5": "0.024+-0.009",
+        "ndcg@5": "0.015+-0.006"
+      },
+      "combo": {
+        "acc@1": "0.030+-0.010",
+        "acc@5": "0.078+-0.012",
+        "ndcg@5": "0.055+-0.010"
+      }
+    }
+  },
+  "shanghai": {
+    "n_pois_all_splits": 3610,
+    "n_pois_test_split": 1248,
+    "n_test_traj": 728,
+    "n_queries_used": 728,
+    "mean_prefix_len": 1.870879120879121,
+    "mean_hist_trajectories": 32.22115384615385,
+    "coverage": {
+      "in_prefix": 0.0302,
+      "in_hist15": 0.3242,
+      "in_hist_all": 0.3929,
+      "in_near100": 0.3599,
+      "in_markov10": 0.1223,
+      "in_union": 0.6291
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.0893,
+        "acc@5": 0.2253,
+        "acc@10": 0.2582,
+        "ndcg@5": 0.1603,
+        "mrr": 0.1547
+      },
+      "markov": {
+        "acc@1": 0.0783,
+        "acc@5": 0.1429,
+        "acc@10": 0.1662,
+        "ndcg@5": 0.1122,
+        "mrr": 0.1117
+      },
+      "nearest": {
+        "acc@1": 0.0096,
+        "acc@5": 0.0879,
+        "acc@10": 0.1374,
+        "ndcg@5": 0.0499,
+        "mrr": 0.0532
+      },
+      "combo": {
+        "acc@1": 0.1154,
+        "acc@5": 0.2431,
+        "acc@10": 0.3022,
+        "ndcg@5": 0.1835,
+        "mrr": 0.1798
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.043+-0.005",
+        "acc@5": "0.137+-0.019",
+        "ndcg@5": "0.094+-0.010"
+      },
+      "markov": {
+        "acc@1": "0.064+-0.006",
+        "acc@5": "0.111+-0.006",
+        "ndcg@5": "0.089+-0.005"
+      },
+      "nearest": {
+        "acc@1": "0.011+-0.005",
+        "acc@5": "0.078+-0.012",
+        "ndcg@5": "0.047+-0.008"
+      },
+      "combo": {
+        "acc@1": "0.061+-0.008",
+        "acc@5": "0.138+-0.011",
+        "ndcg@5": "0.103+-0.008"
+      }
+    }
+  },
+  "sydney": {
+    "n_pois_all_splits": 8189,
+    "n_pois_test_split": 3039,
+    "n_test_traj": 2030,
+    "n_queries_used": 2030,
+    "mean_prefix_len": 1.904433497536946,
+    "mean_hist_trajectories": 33.813793103448276,
+    "coverage": {
+      "in_prefix": 0.0261,
+      "in_hist15": 0.3837,
+      "in_hist_all": 0.4665,
+      "in_near100": 0.335,
+      "in_markov10": 0.1887,
+      "in_union": 0.6502
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.1044,
+        "acc@5": 0.2498,
+        "acc@10": 0.3217,
+        "ndcg@5": 0.1809,
+        "mrr": 0.1791
+      },
+      "markov": {
+        "acc@1": 0.1113,
+        "acc@5": 0.1847,
+        "acc@10": 0.2039,
+        "ndcg@5": 0.1505,
+        "mrr": 0.1463
+      },
+      "nearest": {
+        "acc@1": 0.0039,
+        "acc@5": 0.0704,
+        "acc@10": 0.1123,
+        "ndcg@5": 0.0378,
+        "mrr": 0.0419
+      },
+      "combo": {
+        "acc@1": 0.1483,
+        "acc@5": 0.2887,
+        "acc@10": 0.3571,
+        "ndcg@5": 0.2195,
+        "mrr": 0.2151
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.019+-0.004",
+        "acc@5": "0.114+-0.018",
+        "ndcg@5": "0.069+-0.011"
+      },
+      "markov": {
+        "acc@1": "0.035+-0.014",
+        "acc@5": "0.081+-0.004",
+        "ndcg@5": "0.059+-0.006"
+      },
+      "nearest": {
+        "acc@1": "0.003+-0.002",
+        "acc@5": "0.067+-0.014",
+        "ndcg@5": "0.034+-0.008"
+      },
+      "combo": {
+        "acc@1": "0.034+-0.004",
+        "acc@5": "0.117+-0.009",
+        "ndcg@5": "0.076+-0.005"
+      }
+    }
+  },
+  "tangerang": {
+    "n_pois_all_splits": 9975,
+    "n_pois_test_split": 3957,
+    "n_test_traj": 3197,
+    "n_queries_used": 3197,
+    "mean_prefix_len": 1.7954332186424773,
+    "mean_hist_trajectories": 22.26024397873006,
+    "coverage": {
+      "in_prefix": 0.0597,
+      "in_hist15": 0.5508,
+      "in_hist_all": 0.6056,
+      "in_near100": 0.2055,
+      "in_markov10": 0.2521,
+      "in_union": 0.7401
+    },
+    "full_vocab_rankers": {
+      "user_freq": {
+        "acc@1": 0.1942,
+        "acc@5": 0.4238,
+        "acc@10": 0.5002,
+        "ndcg@5": 0.3173,
+        "mrr": 0.3019
+      },
+      "markov": {
+        "acc@1": 0.147,
+        "acc@5": 0.2446,
+        "acc@10": 0.2809,
+        "ndcg@5": 0.199,
+        "mrr": 0.1946
+      },
+      "nearest": {
+        "acc@1": 0.0848,
+        "acc@5": 0.1114,
+        "acc@10": 0.1398,
+        "ndcg@5": 0.0982,
+        "mrr": 0.1034
+      },
+      "combo": {
+        "acc@1": 0.1883,
+        "acc@5": 0.4073,
+        "acc@10": 0.4911,
+        "ndcg@5": 0.3036,
+        "mrr": 0.2888
+      }
+    },
+    "llm_protocol_rankers": {
+      "user_freq": {
+        "acc@1": "0.016+-0.004",
+        "acc@5": "0.082+-0.021",
+        "ndcg@5": "0.053+-0.011"
+      },
+      "markov": {
+        "acc@1": "0.042+-0.012",
+        "acc@5": "0.084+-0.012",
+        "ndcg@5": "0.064+-0.008"
+      },
+      "nearest": {
+        "acc@1": "0.009+-0.004",
+        "acc@5": "0.035+-0.010",
+        "ndcg@5": "0.022+-0.006"
+      },
+      "combo": {
+        "acc@1": "0.043+-0.008",
+        "acc@5": "0.099+-0.019",
+        "ndcg@5": "0.072+-0.009"
+      }
+    }
+  }
+}

@@ -39,7 +39,9 @@ def load_city_csv(root, city, splits) -> pd.DataFrame:
     for sp in splits:
         p = _path(root, city, sp)
         if os.path.exists(p):
-            frames.append(pd.read_csv(p))
+            d = pd.read_csv(p)
+            d["_split"] = sp                  # remember provenance (history vs query)
+            frames.append(d)
     if not frames:
         raise FileNotFoundError(f"no splits {splits} for {city} under {root}")
     df = pd.concat(frames, ignore_index=True) if len(frames) > 1 else frames[0]
@@ -152,7 +154,9 @@ def build_city_data(cfg, city, splits, fsq: FSQTaxonomy, poi_encoder,
         rows = g.index.to_numpy()
         if len(rows) < cfg.min_trail_len:
             continue
-        trails.append({"user_id": int(uid), "trail_id": int(tid), "rows": rows})
+        sp = g["_split"].iloc[0] if "_split" in g else "train"
+        trails.append({"user_id": int(uid), "trail_id": int(tid), "rows": rows,
+                       "split": sp, "t0": g["timestamp"].iloc[0]})
     if filter_users:
         by_user = {}
         for t in trails:
@@ -238,10 +242,10 @@ class DiaryDataset(torch.utils.data.Dataset):
     def __len__(self):
         return len(self.diaries)
 
-    def _mask(self, n_ck, rng):
+    def _mask(self, n_ck, rng, strat=None):
         """Return boolean mask over positions that are TARGETS (predicted)."""
         m = np.zeros(n_ck, bool)
-        strat = self.cfg.masking
+        strat = strat or self.cfg.masking
         if strat == "causal_next":
             m[-1] = True
         elif strat == "random_span":
@@ -258,11 +262,38 @@ class DiaryDataset(torch.utils.data.Dataset):
         m[0] = False
         return m
 
+    def _trail_end(self, types, rng):
+        """'trail_end' masking = the downstream query, rehearsed in pretraining:
+        pick one trail of the diary, mask its last k check-ins as targets, and
+        let the context be STRICTLY the past (earlier trails = user history, plus
+        the trail's own prefix).  Tokens after the targets are dropped."""
+        L = len(types)
+        seps = [-1] + [i for i in range(L) if types[i] == TT_SEP] + [L]
+        segs = [(seps[j] + 1, seps[j + 1]) for j in range(len(seps) - 1)
+                if seps[j + 1] - (seps[j] + 1) >= 2]
+        if not segs:
+            return None
+        a, b = segs[rng.randint(len(segs))]
+        n = b - a
+        k = rng.randint(1, min(self.cfg.mask_block_max, n - 1) + 1)
+        tmask = np.zeros(L, bool); tmask[b - k:b] = True
+        ctx = np.zeros(L, bool); ctx[:b - k] = True
+        return ctx, tmask
+
     def __getitem__(self, idx):
         rows, types = self.diaries[idx]
-        rng = np.random.RandomState(idx)
+        # FRESH mask every time (v4 used RandomState(idx) -> the same mask for a
+        # diary in every epoch, i.e. one fixed view per user)
+        rng = np.random.RandomState(int(torch.randint(0, 2**31 - 1, (1,))))
+        strat = self.cfg.masking
+        if strat == "trail_end" or (strat == "mixed" and rng.rand() < 0.5):
+            out = self._trail_end(types, rng)
+            if out is not None:
+                ctx, tmask = out
+                return rows, types, ctx, tmask
         ck_pos = np.where(types == TT_CHECKIN)[0]
-        tmask_ck = self._mask(len(ck_pos), rng)
+        fb = "block_future" if strat in ("mixed", "trail_end") else None
+        tmask_ck = self._mask(len(ck_pos), rng, fb)
         tmask = np.zeros(len(rows), bool)
         tmask[ck_pos[tmask_ck]] = True
         ctx = ~tmask                                          # context positions

@@ -62,6 +62,8 @@ class SeqEncoder(nn.Module):
 
 
 class Predictor(nn.Module):
+    """v4 'pooled' predictor: pooled context summary + target-position embedding.
+    Kept for backward compatibility with gemma_v4 checkpoints."""
     def __init__(self, d, n_layers, dropout, max_offset=256):
         super().__init__()
         self.off = nn.Embedding(max_offset + 1, d)
@@ -69,10 +71,31 @@ class Predictor(nn.Module):
                                            norm_first=True)
         self.enc = nn.TransformerEncoder(layer, n_layers)
 
-    def forward(self, summ, offsets):
+    def forward(self, summ, offsets, mem=None, mem_mask=None):
         B, T = offsets.shape
         q = summ.unsqueeze(1).expand(B, T, -1) + self.off(offsets.clamp(max=self.off.num_embeddings - 1))
         return self.enc(q)
+
+
+class XPredictor(nn.Module):
+    """v5 I-JEPA predictor: learnable [MASK] query + target-position embedding,
+    cross-attending to EVERY context state (not a pooled vector) -> the latent
+    of a future check-in depends on *which* past check-ins (e.g. the last one)
+    are relevant, which is what next-POI needs."""
+    def __init__(self, d, n_layers, dropout, max_offset=256):
+        super().__init__()
+        self.off = nn.Embedding(max_offset + 1, d)
+        self.mask_tok = nn.Parameter(torch.zeros(d))
+        layer = nn.TransformerDecoderLayer(d, 4, d * 2, dropout, batch_first=True,
+                                           norm_first=True)
+        self.dec = nn.TransformerDecoder(layer, n_layers)
+
+    def forward(self, summ, offsets, mem=None, mem_mask=None):
+        B, T = offsets.shape
+        q = (self.mask_tok + self.off(offsets.clamp(max=self.off.num_embeddings - 1))
+             + summ.unsqueeze(1))
+        pad = None if mem_mask is None else (mem_mask < 0.5)
+        return self.dec(q, mem, memory_key_padding_mask=pad)
 
 
 class MotifCodebook(nn.Module):
@@ -137,7 +160,9 @@ class GEMMA(nn.Module):
         self.enc_t = copy.deepcopy(self.enc)
         for p in list(self.embed_t.parameters()) + list(self.enc_t.parameters()):
             p.requires_grad_(False)
-        self.predictor = Predictor(d, cfg.n_pred_layers, cfg.dropout)
+        self.pred_type = getattr(cfg, "predictor_type", "pooled")
+        P = XPredictor if self.pred_type == "xattn" else Predictor
+        self.predictor = P(d, cfg.n_pred_layers, cfg.dropout)
         self.tnorm = nn.LayerNorm(d, elementwise_affine=False)
         dh = d // 2
         self.dh = dh
@@ -207,7 +232,7 @@ class GEMMA(nn.Module):
 
         L = ctx_states.size(1)
         offsets = torch.arange(L, device=summ.device).unsqueeze(0).expand(summ.size(0), L)
-        pred = self.tnorm(self.predictor(summ, offsets))
+        pred = self.tnorm(self.predictor(summ, offsets, ctx_states, ctx_mask))
         mse = ((pred - tgt) ** 2).mean(-1)
         L_pred = (mse * tgt_mask).sum() / tgt_mask.sum().clamp_min(1e-6)
 
@@ -297,13 +322,45 @@ class GEMMA(nn.Module):
         sec = F.softmax(self.sec_head(torch.cat([z, self.pri_emb(p)], -1)), -1)
         return act, pri, sec
 
+    @staticmethod
+    def _head3(head, x):
+        B, T, D = x.shape
+        return head(x.reshape(B * T, D)).reshape(B, T, -1)
+
+    def path_logprob(self, z, cand_act, cand_pri, cand_sec):
+        """EXACT hierarchical chain rule for every candidate POI v:
+            log p(v's path) = log p(a_v|z) + log p(p_v|z,a_v) + log p(s_v|z,p_v)
+        computed with all parents enumerated (n_act and n_pri are small), instead
+        of the greedy argmax parent of _hier_dists.  z:(B,d) -> (B,P).  This is a
+        SOFT hierarchical prior: nothing is pruned, so no recall ceiling."""
+        B, d = z.shape
+        la = F.log_softmax(self.act_head(z), -1)                          # (B,A)
+        A = la.size(1)
+        za = z.unsqueeze(1).expand(B, A, d)
+        ea = self.act_emb.weight.unsqueeze(0).expand(B, A, -1)
+        lp = F.log_softmax(self._head3(self.pri_head, torch.cat([za, ea], -1)), -1)  # (B,A,Pr)
+        Pr = lp.size(2)
+        zp = z.unsqueeze(1).expand(B, Pr, d)
+        ep = self.pri_emb.weight.unsqueeze(0).expand(B, Pr, -1)
+        ls = F.log_softmax(self._head3(self.sec_head, torch.cat([zp, ep], -1)), -1)  # (B,Pr,S)
+        return (la[:, cand_act] + lp[:, cand_act, cand_pri] + ls[:, cand_pri, cand_sec])
+
+    def encode_query(self, b):
+        """Differentiable query encoder for downstream (history diary + prefix).
+        Returns z1 = predicted latent of the NEXT position, h_last = state of the
+        last real token, summ = pooled context.  The predictor is queried at the
+        true next position n (= number of real tokens) -- v4 queried offset 1."""
+        h, summ = self._encode(self.embed, self.enc, b, b["ctx_mask"])
+        n = b["ctx_mask"].sum(1).long().clamp(min=1)                       # (B,)
+        z1 = self.tnorm(self.predictor(summ, n.unsqueeze(1), h, b["ctx_mask"]))[:, 0]
+        h_last = h[torch.arange(h.size(0), device=h.device), n - 1]
+        return z1, h_last, summ
+
     @torch.no_grad()
     def embed_prefix(self, b):
         """Inference: encode a prefix -> summary, next-level dists, query vector,
         and (if generative) the generated semantic-ID code."""
-        h, summ = self._encode(self.embed, self.enc, b, b["ctx_mask"])
-        ones = torch.ones(summ.size(0), 1, dtype=torch.long, device=summ.device)
-        z1 = self.tnorm(self.predictor(summ, ones))[:, 0]
+        z1, h_last, summ = self.encode_query(b)
         act, pri, sec = self._hier_dists(z1)
         q = F.normalize(self.query_tower(z1), dim=-1)
         code = None

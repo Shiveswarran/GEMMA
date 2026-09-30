@@ -1,0 +1,287 @@
+
+===== tokyo =====  POIs(all)=2982  POIs(test-only)=1183  test traj=1097  prefix_len=1.54  hist_traj=12.4
+coverage: {'in_prefix': 0.0675, 'in_hist15': 0.4904, 'in_hist_all': 0.5278, 'in_near100': 0.3929, 'in_markov10': 0.2516, 'in_union': 0.7411}
+  full-vocab user_freq  acc@1=0.1750 acc@5=0.4038 acc@10=0.4895 ndcg@5=0.2957 mrr=0.2800
+  full-vocab markov     acc@1=0.1294 acc@5=0.2370 acc@10=0.2944 ndcg@5=0.1856 mrr=0.1843
+  full-vocab nearest    acc@1=0.0410 acc@5=0.0994 acc@10=0.1331 ndcg@5=0.0694 mrr=0.0736
+  full-vocab combo      acc@1=0.1686 acc@5=0.4066 acc@10=0.4986 ndcg@5=0.2923 mrr=0.2763
+  LLM[near100   ] user_freq  acc@1=0.086+-0.010 acc@5=0.214+-0.023 ndcg@5=0.156+-0.015
+  LLM[near100   ] markov     acc@1=0.127+-0.012 acc@5=0.214+-0.011 ndcg@5=0.171+-0.011
+  LLM[near100   ] nearest    acc@1=0.040+-0.009 acc@5=0.096+-0.014 ndcg@5=0.068+-0.010
+  LLM[near100   ] combo      acc@1=0.114+-0.012 acc@5=0.231+-0.018 ndcg@5=0.177+-0.014
+  LLM[gt+near100] user_freq  acc@1=0.194+-0.017 acc@5=0.495+-0.015 ndcg@5=0.366+-0.012
+  LLM[gt+near100] markov     acc@1=0.198+-0.016 acc@5=0.459+-0.012 ndcg@5=0.333+-0.008
+  LLM[gt+near100] nearest    acc@1=0.040+-0.009 acc@5=0.096+-0.014 ndcg@5=0.068+-0.010
+  LLM[gt+near100] combo      acc@1=0.178+-0.012 acc@5=0.492+-0.018 ndcg@5=0.348+-0.011
+  LLM[gt+rand100] user_freq  acc@1=0.518+-0.015 acc@5=0.720+-0.014 ndcg@5=0.627+-0.008
+  LLM[gt+rand100] markov     acc@1=0.362+-0.016 acc@5=0.529+-0.014 ndcg@5=0.449+-0.012
+  LLM[gt+rand100] nearest    acc@1=0.202+-0.018 acc@5=0.469+-0.027 ndcg@5=0.340+-0.017
+  LLM[gt+rand100] combo      acc@1=0.530+-0.019 acc@5=0.726+-0.019 ndcg@5=0.634+-0.009
+
+===== istanbul =====  POIs(all)=42795  POIs(test-only)=19782  test traj=43283  prefix_len=1.49  hist_traj=16.6
+coverage: {'in_prefix': 0.0376, 'in_hist15': 0.4312, 'in_hist_all': 0.4744, 'in_near100': 0.1638, 'in_markov10': 0.2486, 'in_union': 0.6138}
+  full-vocab user_freq  acc@1=0.1160 acc@5=0.3136 acc@10=0.3880 ndcg@5=0.2211 mrr=0.2084
+  full-vocab markov     acc@1=0.0944 acc@5=0.2068 acc@10=0.2646 ndcg@5=0.1535 mrr=0.1522
+  full-vocab nearest    acc@1=0.0202 acc@5=0.0384 acc@10=0.0534 ndcg@5=0.0291 mrr=0.0331
+  full-vocab combo      acc@1=0.1344 acc@5=0.3010 acc@10=0.3784 ndcg@5=0.2207 mrr=0.2162
+  LLM[near100   ] user_freq  acc@1=0.019+-0.009 acc@5=0.068+-0.005 ndcg@5=0.047+-0.005
+  LLM[near100   ] markov     acc@1=0.052+-0.005 acc@5=0.097+-0.005 ndcg@5=0.076+-0.005
+  LLM[near100   ] nearest    acc@1=0.009+-0.008 acc@5=0.022+-0.012 ndcg@5=0.016+-0.010
+  LLM[near100   ] combo      acc@1=0.059+-0.004 acc@5=0.103+-0.008 ndcg@5=0.082+-0.004
+  LLM[gt+near100] user_freq  acc@1=0.129+-0.018 acc@5=0.372+-0.015 ndcg@5=0.274+-0.016
+  LLM[gt+near100] markov     acc@1=0.219+-0.009 acc@5=0.474+-0.024 ndcg@5=0.354+-0.012
+  LLM[gt+near100] nearest    acc@1=0.024+-0.007 acc@5=0.037+-0.011 ndcg@5=0.031+-0.009
+  LLM[gt+near100] combo      acc@1=0.194+-0.015 acc@5=0.467+-0.016 ndcg@5=0.338+-0.008
+  LLM[gt+rand100] user_freq  acc@1=0.533+-0.029 acc@5=0.684+-0.027 ndcg@5=0.613+-0.026
+  LLM[gt+rand100] markov     acc@1=0.497+-0.020 acc@5=0.683+-0.031 ndcg@5=0.598+-0.022
+  LLM[gt+rand100] nearest    acc@1=0.285+-0.029 acc@5=0.529+-0.025 ndcg@5=0.414+-0.021
+  LLM[gt+rand100] combo      acc@1=0.659+-0.035 acc@5=0.842+-0.026 ndcg@5=0.760+-0.031
+
+===== jakarta =====  POIs(all)=71150  POIs(test-only)=28644  test traj=27480  prefix_len=2.03  hist_traj=30.2
+coverage: {'in_prefix': 0.0294, 'in_hist15': 0.379, 'in_hist_all': 0.4574, 'in_near100': 0.166, 'in_markov10': 0.1742, 'in_union': 0.5988}
+  full-vocab user_freq  acc@1=0.1088 acc@5=0.2446 acc@10=0.3010 ndcg@5=0.1811 mrr=0.1775
+  full-vocab markov     acc@1=0.0796 acc@5=0.1582 acc@10=0.1928 ndcg@5=0.1215 mrr=0.1204
+  full-vocab nearest    acc@1=0.0386 acc@5=0.0608 acc@10=0.0770 ndcg@5=0.0498 mrr=0.0529
+  full-vocab combo      acc@1=0.1026 acc@5=0.2518 acc@10=0.3206 ndcg@5=0.1795 mrr=0.1744
+  LLM[near100   ] user_freq  acc@1=0.009+-0.007 acc@5=0.058+-0.016 ndcg@5=0.036+-0.012
+  LLM[near100   ] markov     acc@1=0.026+-0.012 acc@5=0.067+-0.015 ndcg@5=0.048+-0.012
+  LLM[near100   ] nearest    acc@1=0.004+-0.002 acc@5=0.024+-0.008 ndcg@5=0.014+-0.005
+  LLM[near100   ] combo      acc@1=0.031+-0.018 acc@5=0.081+-0.011 ndcg@5=0.057+-0.014
+  LLM[gt+near100] user_freq  acc@1=0.159+-0.037 acc@5=0.347+-0.036 ndcg@5=0.269+-0.035
+  LLM[gt+near100] markov     acc@1=0.175+-0.034 acc@5=0.398+-0.032 ndcg@5=0.291+-0.028
+  LLM[gt+near100] nearest    acc@1=0.028+-0.007 acc@5=0.048+-0.011 ndcg@5=0.038+-0.009
+  LLM[gt+near100] combo      acc@1=0.164+-0.048 acc@5=0.367+-0.048 ndcg@5=0.270+-0.048
+  LLM[gt+rand100] user_freq  acc@1=0.531+-0.038 acc@5=0.681+-0.032 ndcg@5=0.613+-0.034
+  LLM[gt+rand100] markov     acc@1=0.399+-0.038 acc@5=0.565+-0.037 ndcg@5=0.488+-0.035
+  LLM[gt+rand100] nearest    acc@1=0.311+-0.036 acc@5=0.499+-0.027 ndcg@5=0.412+-0.031
+  LLM[gt+rand100] combo      acc@1=0.585+-0.039 acc@5=0.723+-0.027 ndcg@5=0.660+-0.031
+
+===== new_york =====  POIs(all)=45804  POIs(test-only)=20416  test traj=18409  prefix_len=1.95  hist_traj=33.1
+coverage: {'in_prefix': 0.0212, 'in_hist15': 0.3126, 'in_hist_all': 0.3974, 'in_near100': 0.1684, 'in_markov10': 0.1432, 'in_union': 0.5096}
+  full-vocab user_freq  acc@1=0.0728 acc@5=0.2020 acc@10=0.2482 ndcg@5=0.1416 mrr=0.1365
+  full-vocab markov     acc@1=0.0754 acc@5=0.1366 acc@10=0.1608 ndcg@5=0.1071 mrr=0.1040
+  full-vocab nearest    acc@1=0.0070 acc@5=0.0318 acc@10=0.0496 ndcg@5=0.0194 mrr=0.0227
+  full-vocab combo      acc@1=0.1030 acc@5=0.2186 acc@10=0.2736 ndcg@5=0.1628 mrr=0.1590
+  LLM[near100   ] user_freq  acc@1=0.010+-0.006 acc@5=0.054+-0.011 ndcg@5=0.034+-0.006
+  LLM[near100   ] markov     acc@1=0.021+-0.012 acc@5=0.048+-0.022 ndcg@5=0.036+-0.017
+  LLM[near100   ] nearest    acc@1=0.008+-0.004 acc@5=0.035+-0.005 ndcg@5=0.021+-0.002
+  LLM[near100   ] combo      acc@1=0.019+-0.009 acc@5=0.059+-0.022 ndcg@5=0.040+-0.015
+  LLM[gt+near100] user_freq  acc@1=0.086+-0.017 acc@5=0.267+-0.023 ndcg@5=0.190+-0.015
+  LLM[gt+near100] markov     acc@1=0.150+-0.022 acc@5=0.360+-0.026 ndcg@5=0.256+-0.024
+  LLM[gt+near100] nearest    acc@1=0.010+-0.004 acc@5=0.037+-0.005 ndcg@5=0.023+-0.002
+  LLM[gt+near100] combo      acc@1=0.092+-0.011 acc@5=0.283+-0.039 ndcg@5=0.194+-0.023
+  LLM[gt+rand100] user_freq  acc@1=0.441+-0.035 acc@5=0.596+-0.037 ndcg@5=0.522+-0.037
+  LLM[gt+rand100] markov     acc@1=0.259+-0.033 acc@5=0.463+-0.016 ndcg@5=0.367+-0.020
+  LLM[gt+rand100] nearest    acc@1=0.260+-0.030 acc@5=0.463+-0.032 ndcg@5=0.367+-0.031
+  LLM[gt+rand100] combo      acc@1=0.497+-0.046 acc@5=0.694+-0.059 ndcg@5=0.602+-0.051
+
+===== kuwait_city =====  POIs(all)=13455  POIs(test-only)=6294  test traj=18332  prefix_len=1.55  hist_traj=17.4
+coverage: {'in_prefix': 0.0394, 'in_hist15': 0.4804, 'in_hist_all': 0.5344, 'in_near100': 0.1416, 'in_markov10': 0.2862, 'in_union': 0.6588}
+  full-vocab user_freq  acc@1=0.1344 acc@5=0.3300 acc@10=0.4238 ndcg@5=0.2364 mrr=0.2272
+  full-vocab markov     acc@1=0.0942 acc@5=0.2168 acc@10=0.2994 ndcg@5=0.1575 mrr=0.1629
+  full-vocab nearest    acc@1=0.0274 acc@5=0.0402 acc@10=0.0546 ndcg@5=0.0337 mrr=0.0377
+  full-vocab combo      acc@1=0.1410 acc@5=0.3392 acc@10=0.4352 ndcg@5=0.2440 mrr=0.2382
+  LLM[near100   ] user_freq  acc@1=0.034+-0.012 acc@5=0.089+-0.016 ndcg@5=0.065+-0.014
+  LLM[near100   ] markov     acc@1=0.063+-0.009 acc@5=0.127+-0.014 ndcg@5=0.097+-0.011
+  LLM[near100   ] nearest    acc@1=0.021+-0.008 acc@5=0.036+-0.010 ndcg@5=0.028+-0.009
+  LLM[near100   ] combo      acc@1=0.071+-0.020 acc@5=0.136+-0.016 ndcg@5=0.106+-0.017
+  LLM[gt+near100] user_freq  acc@1=0.158+-0.022 acc@5=0.418+-0.010 ndcg@5=0.313+-0.012
+  LLM[gt+near100] markov     acc@1=0.218+-0.023 acc@5=0.548+-0.035 ndcg@5=0.386+-0.029
+  LLM[gt+near100] nearest    acc@1=0.027+-0.010 acc@5=0.042+-0.012 ndcg@5=0.034+-0.011
+  LLM[gt+near100] combo      acc@1=0.202+-0.016 acc@5=0.529+-0.028 ndcg@5=0.374+-0.017
+  LLM[gt+rand100] user_freq  acc@1=0.485+-0.012 acc@5=0.598+-0.023 ndcg@5=0.547+-0.019
+  LLM[gt+rand100] markov     acc@1=0.550+-0.030 acc@5=0.792+-0.030 ndcg@5=0.685+-0.027
+  LLM[gt+rand100] nearest    acc@1=0.183+-0.030 acc@5=0.332+-0.034 ndcg@5=0.261+-0.032
+  LLM[gt+rand100] combo      acc@1=0.631+-0.015 acc@5=0.849+-0.027 ndcg@5=0.754+-0.020
+
+===== petaling_jaya =====  POIs(all)=53650  POIs(test-only)=24120  test traj=36082  prefix_len=1.82  hist_traj=24.8
+coverage: {'in_prefix': 0.0262, 'in_hist15': 0.337, 'in_hist_all': 0.4168, 'in_near100': 0.164, 'in_markov10': 0.1906, 'in_union': 0.567}
+  full-vocab user_freq  acc@1=0.0846 acc@5=0.2106 acc@10=0.2688 ndcg@5=0.1503 mrr=0.1476
+  full-vocab markov     acc@1=0.0716 acc@5=0.1618 acc@10=0.2086 ndcg@5=0.1186 mrr=0.1179
+  full-vocab nearest    acc@1=0.0198 acc@5=0.0376 acc@10=0.0510 ndcg@5=0.0287 mrr=0.0327
+  full-vocab combo      acc@1=0.0990 acc@5=0.2370 acc@10=0.3138 ndcg@5=0.1707 mrr=0.1693
+  LLM[near100   ] user_freq  acc@1=0.011+-0.002 acc@5=0.046+-0.016 ndcg@5=0.031+-0.008
+  LLM[near100   ] markov     acc@1=0.037+-0.018 acc@5=0.071+-0.017 ndcg@5=0.055+-0.017
+  LLM[near100   ] nearest    acc@1=0.004+-0.004 acc@5=0.013+-0.004 ndcg@5=0.009+-0.002
+  LLM[near100   ] combo      acc@1=0.040+-0.011 acc@5=0.074+-0.015 ndcg@5=0.058+-0.012
+  LLM[gt+near100] user_freq  acc@1=0.112+-0.017 acc@5=0.277+-0.020 ndcg@5=0.211+-0.018
+  LLM[gt+near100] markov     acc@1=0.166+-0.026 acc@5=0.438+-0.027 ndcg@5=0.312+-0.025
+  LLM[gt+near100] nearest    acc@1=0.014+-0.007 acc@5=0.023+-0.006 ndcg@5=0.019+-0.005
+  LLM[gt+near100] combo      acc@1=0.142+-0.015 acc@5=0.380+-0.033 ndcg@5=0.268+-0.022
+  LLM[gt+rand100] user_freq  acc@1=0.479+-0.012 acc@5=0.639+-0.020 ndcg@5=0.565+-0.012
+  LLM[gt+rand100] markov     acc@1=0.437+-0.040 acc@5=0.631+-0.034 ndcg@5=0.539+-0.034
+  LLM[gt+rand100] nearest    acc@1=0.297+-0.028 acc@5=0.500+-0.021 ndcg@5=0.405+-0.022
+  LLM[gt+rand100] combo      acc@1=0.576+-0.031 acc@5=0.759+-0.016 ndcg@5=0.675+-0.024
+
+===== sao_paulo =====  POIs(all)=34881  POIs(test-only)=15785  test traj=17938  prefix_len=1.85  hist_traj=31.3
+coverage: {'in_prefix': 0.0352, 'in_hist15': 0.4874, 'in_hist_all': 0.5782, 'in_near100': 0.226, 'in_markov10': 0.2556, 'in_union': 0.6894}
+  full-vocab user_freq  acc@1=0.1154 acc@5=0.3410 acc@10=0.4180 ndcg@5=0.2343 mrr=0.2198
+  full-vocab markov     acc@1=0.1124 acc@5=0.2182 acc@10=0.2696 ndcg@5=0.1685 mrr=0.1644
+  full-vocab nearest    acc@1=0.0118 acc@5=0.0428 acc@10=0.0648 ndcg@5=0.0275 mrr=0.0320
+  full-vocab combo      acc@1=0.1586 acc@5=0.3362 acc@10=0.4184 ndcg@5=0.2509 mrr=0.2431
+  LLM[near100   ] user_freq  acc@1=0.021+-0.012 acc@5=0.100+-0.020 ndcg@5=0.066+-0.016
+  LLM[near100   ] markov     acc@1=0.046+-0.010 acc@5=0.088+-0.015 ndcg@5=0.068+-0.013
+  LLM[near100   ] nearest    acc@1=0.002+-0.002 acc@5=0.039+-0.014 ndcg@5=0.021+-0.008
+  LLM[near100   ] combo      acc@1=0.052+-0.019 acc@5=0.118+-0.017 ndcg@5=0.086+-0.017
+  LLM[gt+near100] user_freq  acc@1=0.175+-0.031 acc@5=0.435+-0.039 ndcg@5=0.329+-0.028
+  LLM[gt+near100] markov     acc@1=0.170+-0.033 acc@5=0.398+-0.047 ndcg@5=0.286+-0.042
+  LLM[gt+near100] nearest    acc@1=0.010+-0.007 acc@5=0.048+-0.016 ndcg@5=0.029+-0.011
+  LLM[gt+near100] combo      acc@1=0.180+-0.024 acc@5=0.418+-0.031 ndcg@5=0.304+-0.026
+  LLM[gt+rand100] user_freq  acc@1=0.564+-0.033 acc@5=0.697+-0.024 ndcg@5=0.635+-0.027
+  LLM[gt+rand100] markov     acc@1=0.355+-0.035 acc@5=0.526+-0.034 ndcg@5=0.444+-0.031
+  LLM[gt+rand100] nearest    acc@1=0.269+-0.035 acc@5=0.461+-0.026 ndcg@5=0.370+-0.021
+  LLM[gt+rand100] combo      acc@1=0.572+-0.022 acc@5=0.758+-0.030 ndcg@5=0.670+-0.025
+
+===== bandung =====  POIs(all)=26559  POIs(test-only)=10813  test traj=11067  prefix_len=1.90  hist_traj=27.9
+coverage: {'in_prefix': 0.0418, 'in_hist15': 0.415, 'in_hist_all': 0.4954, 'in_near100': 0.1516, 'in_markov10': 0.1866, 'in_union': 0.61}
+  full-vocab user_freq  acc@1=0.1260 acc@5=0.2756 acc@10=0.3338 ndcg@5=0.2054 mrr=0.1998
+  full-vocab markov     acc@1=0.0860 acc@5=0.1688 acc@10=0.2130 ndcg@5=0.1291 mrr=0.1281
+  full-vocab nearest    acc@1=0.0464 acc@5=0.0676 acc@10=0.0810 ndcg@5=0.0569 mrr=0.0592
+  full-vocab combo      acc@1=0.1304 acc@5=0.2728 acc@10=0.3454 ndcg@5=0.2056 mrr=0.2022
+  LLM[near100   ] user_freq  acc@1=0.012+-0.005 acc@5=0.060+-0.013 ndcg@5=0.037+-0.008
+  LLM[near100   ] markov     acc@1=0.033+-0.006 acc@5=0.076+-0.016 ndcg@5=0.055+-0.012
+  LLM[near100   ] nearest    acc@1=0.000+-0.000 acc@5=0.024+-0.007 ndcg@5=0.012+-0.004
+  LLM[near100   ] combo      acc@1=0.033+-0.010 acc@5=0.080+-0.013 ndcg@5=0.058+-0.012
+  LLM[gt+near100] user_freq  acc@1=0.210+-0.029 acc@5=0.408+-0.033 ndcg@5=0.323+-0.030
+  LLM[gt+near100] markov     acc@1=0.203+-0.012 acc@5=0.417+-0.043 ndcg@5=0.313+-0.026
+  LLM[gt+near100] nearest    acc@1=0.040+-0.013 acc@5=0.064+-0.009 ndcg@5=0.052+-0.010
+  LLM[gt+near100] combo      acc@1=0.210+-0.008 acc@5=0.424+-0.016 ndcg@5=0.321+-0.008
+  LLM[gt+rand100] user_freq  acc@1=0.507+-0.031 acc@5=0.625+-0.028 ndcg@5=0.572+-0.024
+  LLM[gt+rand100] markov     acc@1=0.385+-0.038 acc@5=0.572+-0.046 ndcg@5=0.485+-0.045
+  LLM[gt+rand100] nearest    acc@1=0.242+-0.017 acc@5=0.370+-0.017 ndcg@5=0.310+-0.013
+  LLM[gt+rand100] combo      acc@1=0.543+-0.034 acc@5=0.699+-0.023 ndcg@5=0.629+-0.028
+
+===== beijing =====  POIs(all)=598  POIs(test-only)=183  test traj=115  prefix_len=1.48  hist_traj=20.4
+coverage: {'in_prefix': 0.0348, 'in_hist15': 0.5826, 'in_hist_all': 0.6174, 'in_near100': 0.7739, 'in_markov10': 0.3478, 'in_union': 0.887}
+  full-vocab user_freq  acc@1=0.1304 acc@5=0.4609 acc@10=0.5652 ndcg@5=0.3118 mrr=0.2920
+  full-vocab markov     acc@1=0.2696 acc@5=0.3913 acc@10=0.4087 ndcg@5=0.3370 mrr=0.3287
+  full-vocab nearest    acc@1=0.0174 acc@5=0.2348 acc@10=0.3913 ndcg@5=0.1309 mrr=0.1332
+  full-vocab combo      acc@1=0.2609 acc@5=0.5217 acc@10=0.6000 ndcg@5=0.3983 mrr=0.3778
+  LLM[near100   ] user_freq  acc@1=0.069+-0.020 acc@5=0.354+-0.026 ndcg@5=0.229+-0.022
+  LLM[near100   ] markov     acc@1=0.154+-0.017 acc@5=0.219+-0.020 ndcg@5=0.186+-0.019
+  LLM[near100   ] nearest    acc@1=0.008+-0.009 acc@5=0.258+-0.020 ndcg@5=0.139+-0.010
+  LLM[near100   ] combo      acc@1=0.165+-0.026 acc@5=0.323+-0.028 ndcg@5=0.248+-0.023
+  LLM[gt+near100] user_freq  acc@1=0.092+-0.028 acc@5=0.458+-0.022 ndcg@5=0.300+-0.024
+  LLM[gt+near100] markov     acc@1=0.223+-0.020 acc@5=0.312+-0.022 ndcg@5=0.267+-0.018
+  LLM[gt+near100] nearest    acc@1=0.008+-0.009 acc@5=0.258+-0.020 ndcg@5=0.139+-0.010
+  LLM[gt+near100] combo      acc@1=0.185+-0.034 acc@5=0.427+-0.028 ndcg@5=0.314+-0.026
+  LLM[gt+rand100] user_freq  acc@1=0.335+-0.038 acc@5=0.715+-0.033 ndcg@5=0.538+-0.027
+  LLM[gt+rand100] markov     acc@1=0.235+-0.022 acc@5=0.312+-0.026 ndcg@5=0.274+-0.020
+  LLM[gt+rand100] nearest    acc@1=0.262+-0.026 acc@5=0.592+-0.043 ndcg@5=0.438+-0.034
+  LLM[gt+rand100] combo      acc@1=0.365+-0.042 acc@5=0.581+-0.035 ndcg@5=0.482+-0.026
+
+===== melbourne =====  POIs(all)=6901  POIs(test-only)=2522  test traj=1573  prefix_len=1.84  hist_traj=21.3
+coverage: {'in_prefix': 0.0267, 'in_hist15': 0.3465, 'in_hist_all': 0.4158, 'in_near100': 0.3217, 'in_markov10': 0.1182, 'in_union': 0.6116}
+  full-vocab user_freq  acc@1=0.0776 acc@5=0.2225 acc@10=0.2772 ndcg@5=0.1554 mrr=0.1522
+  full-vocab markov     acc@1=0.0674 acc@5=0.1221 acc@10=0.1545 ndcg@5=0.0970 mrr=0.0987
+  full-vocab nearest    acc@1=0.0070 acc@5=0.0731 acc@10=0.1151 ndcg@5=0.0411 mrr=0.0445
+  full-vocab combo      acc@1=0.1030 acc@5=0.2378 acc@10=0.3058 ndcg@5=0.1724 mrr=0.1695
+  LLM[near100   ] user_freq  acc@1=0.026+-0.010 acc@5=0.119+-0.013 ndcg@5=0.075+-0.008
+  LLM[near100   ] markov     acc@1=0.038+-0.009 acc@5=0.077+-0.011 ndcg@5=0.058+-0.008
+  LLM[near100   ] nearest    acc@1=0.005+-0.006 acc@5=0.069+-0.007 ndcg@5=0.038+-0.005
+  LLM[near100   ] combo      acc@1=0.039+-0.007 acc@5=0.108+-0.017 ndcg@5=0.074+-0.009
+  LLM[gt+near100] user_freq  acc@1=0.083+-0.017 acc@5=0.309+-0.038 ndcg@5=0.208+-0.028
+  LLM[gt+near100] markov     acc@1=0.114+-0.028 acc@5=0.281+-0.028 ndcg@5=0.199+-0.028
+  LLM[gt+near100] nearest    acc@1=0.005+-0.006 acc@5=0.069+-0.007 ndcg@5=0.038+-0.005
+  LLM[gt+near100] combo      acc@1=0.090+-0.028 acc@5=0.276+-0.029 ndcg@5=0.186+-0.026
+  LLM[gt+rand100] user_freq  acc@1=0.384+-0.022 acc@5=0.572+-0.019 ndcg@5=0.486+-0.021
+  LLM[gt+rand100] markov     acc@1=0.200+-0.023 acc@5=0.353+-0.038 ndcg@5=0.279+-0.032
+  LLM[gt+rand100] nearest    acc@1=0.221+-0.025 acc@5=0.423+-0.018 ndcg@5=0.328+-0.021
+  LLM[gt+rand100] combo      acc@1=0.376+-0.029 acc@5=0.617+-0.034 ndcg@5=0.501+-0.030
+
+===== moscow =====  POIs(all)=13994  POIs(test-only)=6377  test traj=7897  prefix_len=1.67  hist_traj=16.1
+coverage: {'in_prefix': 0.0518, 'in_hist15': 0.4566, 'in_hist_all': 0.5054, 'in_near100': 0.2622, 'in_markov10': 0.2302, 'in_union': 0.6516}
+  full-vocab user_freq  acc@1=0.1414 acc@5=0.3380 acc@10=0.4118 ndcg@5=0.2464 mrr=0.2355
+  full-vocab markov     acc@1=0.1038 acc@5=0.2046 acc@10=0.2510 ndcg@5=0.1561 mrr=0.1531
+  full-vocab nearest    acc@1=0.0370 acc@5=0.0730 acc@10=0.1024 ndcg@5=0.0555 mrr=0.0610
+  full-vocab combo      acc@1=0.1638 acc@5=0.3508 acc@10=0.4292 ndcg@5=0.2622 mrr=0.2529
+  LLM[near100   ] user_freq  acc@1=0.033+-0.007 acc@5=0.128+-0.025 ndcg@5=0.087+-0.017
+  LLM[near100   ] markov     acc@1=0.069+-0.021 acc@5=0.132+-0.029 ndcg@5=0.103+-0.024
+  LLM[near100   ] nearest    acc@1=0.014+-0.007 acc@5=0.052+-0.010 ndcg@5=0.034+-0.009
+  LLM[near100   ] combo      acc@1=0.076+-0.024 acc@5=0.152+-0.027 ndcg@5=0.117+-0.023
+  LLM[gt+near100] user_freq  acc@1=0.152+-0.022 acc@5=0.412+-0.052 ndcg@5=0.303+-0.039
+  LLM[gt+near100] markov     acc@1=0.189+-0.029 acc@5=0.394+-0.051 ndcg@5=0.295+-0.040
+  LLM[gt+near100] nearest    acc@1=0.023+-0.011 acc@5=0.061+-0.015 ndcg@5=0.043+-0.013
+  LLM[gt+near100] combo      acc@1=0.181+-0.020 acc@5=0.431+-0.059 ndcg@5=0.314+-0.038
+  LLM[gt+rand100] user_freq  acc@1=0.518+-0.032 acc@5=0.676+-0.040 ndcg@5=0.604+-0.033
+  LLM[gt+rand100] markov     acc@1=0.379+-0.061 acc@5=0.590+-0.037 ndcg@5=0.489+-0.045
+  LLM[gt+rand100] nearest    acc@1=0.265+-0.040 acc@5=0.496+-0.049 ndcg@5=0.389+-0.043
+  LLM[gt+rand100] combo      acc@1=0.584+-0.050 acc@5=0.786+-0.023 ndcg@5=0.690+-0.027
+
+===== palembang =====  POIs(all)=4117  POIs(test-only)=1525  test traj=940  prefix_len=2.03  hist_traj=29.3
+coverage: {'in_prefix': 0.0234, 'in_hist15': 0.4766, 'in_hist_all': 0.5766, 'in_near100': 0.1649, 'in_markov10': 0.1319, 'in_union': 0.6628}
+  full-vocab user_freq  acc@1=0.1468 acc@5=0.3096 acc@10=0.3702 ndcg@5=0.2302 mrr=0.2234
+  full-vocab markov     acc@1=0.0787 acc@5=0.1447 acc@10=0.1830 ndcg@5=0.1134 mrr=0.1161
+  full-vocab nearest    acc@1=0.0574 acc@5=0.0787 acc@10=0.1032 ndcg@5=0.0687 mrr=0.0734
+  full-vocab combo      acc@1=0.1266 acc@5=0.2830 acc@10=0.3628 ndcg@5=0.2069 mrr=0.2021
+  LLM[near100   ] user_freq  acc@1=0.011+-0.005 acc@5=0.070+-0.011 ndcg@5=0.042+-0.007
+  LLM[near100   ] markov     acc@1=0.027+-0.005 acc@5=0.066+-0.008 ndcg@5=0.047+-0.006
+  LLM[near100   ] nearest    acc@1=0.006+-0.004 acc@5=0.019+-0.010 ndcg@5=0.013+-0.007
+  LLM[near100   ] combo      acc@1=0.031+-0.008 acc@5=0.084+-0.010 ndcg@5=0.058+-0.007
+  LLM[gt+near100] user_freq  acc@1=0.241+-0.017 acc@5=0.478+-0.013 ndcg@5=0.373+-0.012
+  LLM[gt+near100] markov     acc@1=0.169+-0.018 acc@5=0.330+-0.011 ndcg@5=0.252+-0.015
+  LLM[gt+near100] nearest    acc@1=0.074+-0.006 acc@5=0.087+-0.007 ndcg@5=0.081+-0.006
+  LLM[gt+near100] combo      acc@1=0.187+-0.012 acc@5=0.359+-0.009 ndcg@5=0.279+-0.007
+  LLM[gt+rand100] user_freq  acc@1=0.439+-0.014 acc@5=0.594+-0.017 ndcg@5=0.527+-0.013
+  LLM[gt+rand100] markov     acc@1=0.202+-0.011 acc@5=0.366+-0.011 ndcg@5=0.286+-0.011
+  LLM[gt+rand100] nearest    acc@1=0.169+-0.016 acc@5=0.276+-0.013 ndcg@5=0.226+-0.013
+  LLM[gt+rand100] combo      acc@1=0.399+-0.023 acc@5=0.545+-0.011 ndcg@5=0.476+-0.009
+
+===== shanghai =====  POIs(all)=3610  POIs(test-only)=1248  test traj=728  prefix_len=1.87  hist_traj=32.2
+coverage: {'in_prefix': 0.0302, 'in_hist15': 0.3242, 'in_hist_all': 0.3929, 'in_near100': 0.3599, 'in_markov10': 0.1223, 'in_union': 0.6291}
+  full-vocab user_freq  acc@1=0.0893 acc@5=0.2253 acc@10=0.2582 ndcg@5=0.1603 mrr=0.1547
+  full-vocab markov     acc@1=0.0783 acc@5=0.1429 acc@10=0.1662 ndcg@5=0.1122 mrr=0.1117
+  full-vocab nearest    acc@1=0.0096 acc@5=0.0879 acc@10=0.1374 ndcg@5=0.0499 mrr=0.0532
+  full-vocab combo      acc@1=0.1154 acc@5=0.2431 acc@10=0.3022 ndcg@5=0.1835 mrr=0.1798
+  LLM[near100   ] user_freq  acc@1=0.029+-0.008 acc@5=0.125+-0.010 ndcg@5=0.081+-0.006
+  LLM[near100   ] markov     acc@1=0.056+-0.009 acc@5=0.099+-0.010 ndcg@5=0.079+-0.009
+  LLM[near100   ] nearest    acc@1=0.007+-0.004 acc@5=0.078+-0.020 ndcg@5=0.045+-0.011
+  LLM[near100   ] combo      acc@1=0.049+-0.004 acc@5=0.119+-0.012 ndcg@5=0.087+-0.007
+  LLM[gt+near100] user_freq  acc@1=0.116+-0.020 acc@5=0.309+-0.010 ndcg@5=0.222+-0.012
+  LLM[gt+near100] markov     acc@1=0.122+-0.015 acc@5=0.284+-0.026 ndcg@5=0.205+-0.019
+  LLM[gt+near100] nearest    acc@1=0.007+-0.004 acc@5=0.078+-0.020 ndcg@5=0.045+-0.011
+  LLM[gt+near100] combo      acc@1=0.110+-0.007 acc@5=0.289+-0.021 ndcg@5=0.202+-0.015
+  LLM[gt+rand100] user_freq  acc@1=0.336+-0.011 acc@5=0.572+-0.027 ndcg@5=0.464+-0.019
+  LLM[gt+rand100] markov     acc@1=0.153+-0.023 acc@5=0.323+-0.022 ndcg@5=0.241+-0.020
+  LLM[gt+rand100] nearest    acc@1=0.215+-0.034 acc@5=0.412+-0.021 ndcg@5=0.319+-0.024
+  LLM[gt+rand100] combo      acc@1=0.327+-0.024 acc@5=0.529+-0.017 ndcg@5=0.435+-0.009
+
+===== sydney =====  POIs(all)=8189  POIs(test-only)=3039  test traj=2030  prefix_len=1.90  hist_traj=33.8
+coverage: {'in_prefix': 0.0261, 'in_hist15': 0.3837, 'in_hist_all': 0.4665, 'in_near100': 0.335, 'in_markov10': 0.1887, 'in_union': 0.6502}
+  full-vocab user_freq  acc@1=0.1044 acc@5=0.2498 acc@10=0.3217 ndcg@5=0.1809 mrr=0.1791
+  full-vocab markov     acc@1=0.1113 acc@5=0.1847 acc@10=0.2039 ndcg@5=0.1505 mrr=0.1463
+  full-vocab nearest    acc@1=0.0039 acc@5=0.0704 acc@10=0.1123 ndcg@5=0.0378 mrr=0.0419
+  full-vocab combo      acc@1=0.1483 acc@5=0.2887 acc@10=0.3571 ndcg@5=0.2195 mrr=0.2151
+  LLM[near100   ] user_freq  acc@1=0.021+-0.005 acc@5=0.111+-0.011 ndcg@5=0.069+-0.007
+  LLM[near100   ] markov     acc@1=0.031+-0.005 acc@5=0.073+-0.009 ndcg@5=0.053+-0.006
+  LLM[near100   ] nearest    acc@1=0.005+-0.004 acc@5=0.068+-0.006 ndcg@5=0.037+-0.003
+  LLM[near100   ] combo      acc@1=0.031+-0.011 acc@5=0.103+-0.009 ndcg@5=0.069+-0.007
+  LLM[gt+near100] user_freq  acc@1=0.081+-0.014 acc@5=0.294+-0.010 ndcg@5=0.201+-0.013
+  LLM[gt+near100] markov     acc@1=0.104+-0.025 acc@5=0.263+-0.021 ndcg@5=0.186+-0.022
+  LLM[gt+near100] nearest    acc@1=0.005+-0.004 acc@5=0.068+-0.006 ndcg@5=0.037+-0.003
+  LLM[gt+near100] combo      acc@1=0.076+-0.019 acc@5=0.264+-0.016 ndcg@5=0.175+-0.012
+  LLM[gt+rand100] user_freq  acc@1=0.410+-0.013 acc@5=0.640+-0.018 ndcg@5=0.533+-0.014
+  LLM[gt+rand100] markov     acc@1=0.194+-0.017 acc@5=0.351+-0.027 ndcg@5=0.275+-0.020
+  LLM[gt+rand100] nearest    acc@1=0.252+-0.023 acc@5=0.514+-0.029 ndcg@5=0.388+-0.022
+  LLM[gt+rand100] combo      acc@1=0.376+-0.023 acc@5=0.618+-0.012 ndcg@5=0.506+-0.016
+
+===== tangerang =====  POIs(all)=9975  POIs(test-only)=3957  test traj=3197  prefix_len=1.80  hist_traj=22.3
+coverage: {'in_prefix': 0.0597, 'in_hist15': 0.5508, 'in_hist_all': 0.6056, 'in_near100': 0.2055, 'in_markov10': 0.2521, 'in_union': 0.7401}
+  full-vocab user_freq  acc@1=0.1942 acc@5=0.4238 acc@10=0.5002 ndcg@5=0.3173 mrr=0.3019
+  full-vocab markov     acc@1=0.1470 acc@5=0.2446 acc@10=0.2809 ndcg@5=0.1990 mrr=0.1946
+  full-vocab nearest    acc@1=0.0848 acc@5=0.1114 acc@10=0.1398 ndcg@5=0.0982 mrr=0.1034
+  full-vocab combo      acc@1=0.1883 acc@5=0.4073 acc@10=0.4911 ndcg@5=0.3036 mrr=0.2888
+  LLM[near100   ] user_freq  acc@1=0.017+-0.004 acc@5=0.075+-0.030 ndcg@5=0.049+-0.017
+  LLM[near100   ] markov     acc@1=0.038+-0.013 acc@5=0.084+-0.014 ndcg@5=0.062+-0.012
+  LLM[near100   ] nearest    acc@1=0.008+-0.004 acc@5=0.031+-0.014 ndcg@5=0.020+-0.009
+  LLM[near100   ] combo      acc@1=0.040+-0.010 acc@5=0.096+-0.018 ndcg@5=0.070+-0.013
+  LLM[gt+near100] user_freq  acc@1=0.252+-0.031 acc@5=0.478+-0.035 ndcg@5=0.382+-0.032
+  LLM[gt+near100] markov     acc@1=0.245+-0.050 acc@5=0.413+-0.034 ndcg@5=0.329+-0.040
+  LLM[gt+near100] nearest    acc@1=0.063+-0.022 acc@5=0.086+-0.031 ndcg@5=0.075+-0.027
+  LLM[gt+near100] combo      acc@1=0.225+-0.035 acc@5=0.470+-0.039 ndcg@5=0.360+-0.035
+  LLM[gt+rand100] user_freq  acc@1=0.572+-0.018 acc@5=0.744+-0.032 ndcg@5=0.666+-0.024
+  LLM[gt+rand100] markov     acc@1=0.358+-0.018 acc@5=0.508+-0.015 ndcg@5=0.439+-0.018
+  LLM[gt+rand100] nearest    acc@1=0.241+-0.030 acc@5=0.485+-0.033 ndcg@5=0.371+-0.031
+  LLM[gt+rand100] combo      acc@1=0.593+-0.035 acc@5=0.741+-0.029 ndcg@5=0.673+-0.032
+
+wrote diag_caps_v2.json
