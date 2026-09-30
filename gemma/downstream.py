@@ -52,7 +52,11 @@ def load_config(run_dir):
 def load_backbone(cfg, run_dir, device, state=None):
     ck = torch.load(os.path.join(run_dir, "gemma.pt"), map_location="cpu", weights_only=False)
     bb = GEMMA(cfg, ck["cont_dim"], ck["n_act"], ck["n_pri"], ck["n_sec"]).to(device)
-    bb.load_state_dict(state if state is not None else ck["model"])
+    if state is not None:                 # e.g. source post-trained backbone
+        bb.load_state_dict(state)
+    elif not getattr(cfg, "random_backbone", False):
+        bb.load_state_dict(ck["model"])
+    # else: ablation -- same architecture, NO pretraining (does pretraining matter?)
     bb.eval()
     return bb
 
@@ -64,8 +68,11 @@ def split_ids(city):
     return ids
 
 
-def few_shot_subset(city, train_ids, k, seed):
+def few_shot_subset(city, train_ids, k, seed, frac=0.0):
     rng = np.random.RandomState(seed)
+    if frac and frac > 0:                       # budget = fraction of labelled trajectories
+        n = max(2, int(round(frac * len(train_ids))))
+        return sorted(int(i) for i in rng.choice(train_ids, min(n, len(train_ids)), replace=False))
     by_u = {}
     for i in train_ids:
         by_u.setdefault(city.trails[i]["user_id"], []).append(i)
@@ -104,7 +111,8 @@ def run_city(cfg, run_dir, fsq, enc, city_name, shots, protocols, logger, zs=Non
             # what 'few' restricts is the LABELLED data used for gradient updates
             # and for target-city statistics (covis / pop / hour).
             if shot == "few_shot":
-                few = few_shot_subset(city, ids["train"], cfg.few_shot_k, cfg.seed)
+                few = few_shot_subset(city, ids["train"], cfg.few_shot_k, cfg.seed,
+                                      getattr(cfg, "few_shot_frac", 0.0))
                 rng = np.random.RandomState(cfg.seed)
                 perm = rng.permutation(len(few))
                 n_va = max(1, int(0.1 * len(few)))

@@ -27,10 +27,12 @@ def main():
     for k, t in [("hist_trails", int), ("hist_max_tokens", int), ("few_shot_k", int),
                  ("ft_epochs", int), ("ft_epochs_few", int), ("ft_lr_head", float),
                  ("ft_lr_backbone", float), ("ft_batch", int), ("ft_max_queries", int),
-                 ("rerank_m", int), ("val_queries", int), ("seed", int)]:
+                 ("rerank_m", int), ("val_queries", int), ("seed", int),
+                 ("few_shot_frac", float)]:
         p.add_argument("--" + k, type=t)
     p.add_argument("--causal_history", action="store_true")
     p.add_argument("--no_history", action="store_true", help="ablation: prefix-only context")
+    p.add_argument("--random_backbone", action="store_true", help="ablation: no pretraining")
     p.add_argument("--last_position_only", action="store_true")
     a = p.parse_args()
 
@@ -41,13 +43,14 @@ def main():
     if a.device: cfg.device = a.device
     if a.causal_history: cfg.causal_history = True
     if a.no_history: cfg.use_history = False
+    if a.random_backbone: cfg.random_backbone = True
     if a.last_position_only: cfg.ft_all_positions = False
     device = cfg.resolved_device()
     if device.startswith("cuda"):
         torch.backends.cuda.matmul.allow_tf32 = True
     logger = get_logger("gemma.down", os.path.join(a.run_dir, "downstream_v5.log"))
     logger.info(f"predictor={cfg.predictor_type} hist_trails={cfg.hist_trails} "
-                f"few_shot_k={cfg.few_shot_k} lr_bb={cfg.ft_lr_backbone} rerank_m={cfg.rerank_m}")
+                f"few_shot_k={cfg.few_shot_k} few_shot_frac={cfg.few_shot_frac} lr_bb={cfg.ft_lr_backbone} rerank_m={cfg.rerank_m}")
     fsq = FSQTaxonomy(cfg.fsq_csv); enc = POIEncoder(cfg, logger); cfg.poi_emb_dim = enc.dim
 
     zs_path = a.zs_ckpt or os.path.join(a.run_dir, "zs_realizer.pt")

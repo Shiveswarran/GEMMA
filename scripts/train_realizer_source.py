@@ -33,11 +33,13 @@ def main():
     p.add_argument("--lr_backbone", type=float, default=5e-5)
     p.add_argument("--batch", type=int, default=128)
     p.add_argument("--device"); p.add_argument("--out", default=None)
+    p.add_argument("--random_backbone", action="store_true", help="ablation: no pretraining")
     a = p.parse_args()
     cfg = load_config(a.run_dir)
     if a.data_root: cfg.data_root = a.data_root
     if a.device: cfg.device = a.device
     cfg.ft_batch = a.batch; cfg.ft_max_queries = a.max_queries_per_city
+    cfg.random_backbone = a.random_backbone
     device = cfg.resolved_device(); set_seed(cfg.seed)
     logger = get_logger("gemma.zs", os.path.join(a.run_dir, "train_realizer_source.log"))
     fsq = FSQTaxonomy(cfg.fsq_csv); enc = POIEncoder(cfg, logger); cfg.poi_emb_dim = enc.dim

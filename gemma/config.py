@@ -79,9 +79,11 @@ class Config:
     # ---- GEMMA realization (v5 downstream: history-conditioned, fine-tuned) ----
     hist_trails: int = 15             # user's most recent history trajectories in context
     hist_max_tokens: int = 200        # token cap for [history SEP ... SEP prefix]
+    random_backbone: bool = False   # ablation: untrained backbone of identical architecture
     use_history: bool = True        # ablation: False = v4-style prefix-only context
     causal_history: bool = False      # True: only history trajectories that START earlier
-    few_shot_k: int = 3               # few-shot = <=k train trajectories per user (all else hidden)
+    few_shot_k: int = 3               # few-shot = <=k labelled train trajectories per user
+    few_shot_frac: float = 0.0        # >0 overrides k: this fraction of train trajectories (e.g. 0.05)
     ft_epochs: int = 8                # full-shot fine-tune epochs (early-stopped on validation)
     ft_epochs_few: int = 15
     ft_lr_head: float = 2e-3

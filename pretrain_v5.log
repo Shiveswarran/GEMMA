@@ -1,0 +1,13 @@
+usage: run_pretrain.py [-h] [--data_root DATA_ROOT] [--fsq_csv FSQ_CSV]
+                       [--poi_encoder POI_ENCODER] [--masking MASKING]
+                       [--regularizer REGULARIZER] [--geometry GEOMETRY]
+                       [--run_name RUN_NAME] [--device DEVICE]
+                       [--leaf_head LEAF_HEAD] [--sid_cache SID_CACHE]
+                       [--predictor_type PREDICTOR_TYPE] [--out_dir OUT_DIR]
+                       [--pretrain_cities PRETRAIN_CITIES [PRETRAIN_CITIES ...]]
+                       [--epochs EPOCHS] [--batch_size BATCH_SIZE]
+                       [--d_model D_MODEL] [--num_workers NUM_WORKERS]
+                       [--no_amp] [--sid_levels SID_LEVELS]
+                       [--sid_codebook SID_CODEBOOK] [--no_semantic_id]
+                       [--no_uncertainty]
+run_pretrain.py: error: argument --pretrain_cities: expected at least one argument

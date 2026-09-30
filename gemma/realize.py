@@ -586,7 +586,7 @@ def finetune(bb, head, jobs, cfg, device, logger, epochs, lr_head, lr_bb,
         with torch.no_grad():
             w = head.weights(torch.zeros(1, head.d_real, device=device))[0].tolist()
         msg += " | w0: " + " ".join(f"{k}={v:.2f}" for k, v in zip(FEATS, w)) + \
-               f" alpha_ar={float(head.alpha_ar):.2f} tau={float(head.log_tau.exp()):.1f}"
+               f" alpha_ar={head.alpha_ar.item():.2f} tau={head.log_tau.exp().item():.1f}"
         logger.info(msg)
         if val is not None and bad >= 3:
             logger.info(f"[{tag}] early stop at epoch {ep}")
