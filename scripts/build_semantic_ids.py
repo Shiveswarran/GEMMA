@@ -4,6 +4,7 @@ into an L-level semantic ID.  Caches {city}_codes.npz {venue_ids, codes} + the
 RQ-VAE state.  Run ONCE before pretraining with use_semantic_id=True."""
 import argparse, os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from gemma.gpu_env import pin_gpu; pin_gpu()      # before torch is imported
 import numpy as np, torch
 from gemma.config import Config
 from gemma.fsq import FSQTaxonomy

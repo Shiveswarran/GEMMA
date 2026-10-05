@@ -16,7 +16,7 @@ from .config import Config
 from .data import DiaryDataset, build_city_data, collate
 from .fsq import FSQTaxonomy
 from .poi_encoder import POIEncoder
-from .utils import get_logger, set_seed
+from .utils import amp_dtype_for, check_device, get_logger, set_seed
 
 
 def pretrain(cfg: Config):
@@ -24,7 +24,7 @@ def pretrain(cfg: Config):
     run_dir = os.path.join(cfg.out_dir, cfg.run_name)
     os.makedirs(run_dir, exist_ok=True)
     logger = get_logger("gemma.pretrain", os.path.join(run_dir, "pretrain.log"))
-    device = cfg.resolved_device()
+    device = check_device(cfg, logger)
     use_cuda = device.startswith("cuda")
     if use_cuda:
         torch.backends.cuda.matmul.allow_tf32 = True
@@ -93,7 +93,7 @@ def pretrain(cfg: Config):
         p = (s - warm) / max(1, total - warm)
         return 0.5 * (1 + math.cos(math.pi * p))
     amp_on = cfg.amp and use_cuda
-    amp_dtype = (torch.bfloat16 if amp_on and torch.cuda.is_bf16_supported() else torch.float16)
+    amp_dtype = amp_dtype_for(device) if amp_on else torch.float16
     scaler = torch.amp.GradScaler("cuda", enabled=(amp_on and amp_dtype == torch.float16))
 
     gstep = 0

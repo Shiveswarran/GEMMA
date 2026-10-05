@@ -77,10 +77,30 @@ class Config:
     few_shot_trails_per_user: int = 2
     few_shot_epochs: int = 3
     # ---- GEMMA realization (v5 downstream: history-conditioned, fine-tuned) ----
+    retriever: str = "hrem"         # wm (HS-JEPA world model) | hrem (return-explore mixture) | realize (v5)
+    # ---- HS-JEPA world model (retriever=wm) ----
+    wm_H: int = 3                     # predict the next H check-ins
+    wm_flat: bool = False             # ablation: only the place-level latent target (no hierarchy)
+    wm_infill: float = 0.15           # fraction of HISTORY tokens hidden for the infill view
+    wm_pred_layers: int = 3
+    lambda_wm_jepa: float = 1.0
+    lambda_wm_infill: float = 0.5
+    lambda_wm_probe: float = 0.5
+    lambda_wm_reg: float = 0.1
+    lambda_wm_lat: float = 0.5       # latent-only explore retrieval (world model -> new place)
+    lambda_wm_ptr: float = 0.3       # latent pointer into history (world model -> return)
+    min_epochs: int = 0               # no early stopping before this many epochs
     hist_trails: int = 15             # user's most recent history trajectories in context
     hist_max_tokens: int = 200        # token cap for [history SEP ... SEP prefix]
     random_backbone: bool = False   # ablation: untrained backbone of identical architecture
     use_history: bool = True        # ablation: False = v4-style prefix-only context
+    hist_budget: int = -1             # cold-start simulation: only the k most recent PAST
+                                      # trajectories of the user exist (-1 = all, 0 = none)
+    evidence: str = "full"            # full | none.  none = NO hand-built user/city statistics:
+                                      # the backbone must find returns (latent pointer) and new
+                                      # places (latent match) itself; only distance-to-current-
+                                      # location is kept as a physical prior ("strong backbone" test)
+    out_tag: str = ""                 # suffix for result/rank files of one downstream run
     causal_history: bool = False      # True: only history trajectories that START earlier
     few_shot_k: int = 3               # few-shot = <=k labelled train trajectories per user
     few_shot_frac: float = 0.0        # >0 overrides k: this fraction of train trajectories (e.g. 0.05)
@@ -88,6 +108,11 @@ class Config:
     ft_epochs_few: int = 15
     ft_lr_head: float = 2e-3
     ft_lr_backbone: float = 1e-4      # 0 -> frozen backbone
+    ft_lr_resid: float = 3e-4         # per-POI / per-user residual embeddings (memorise fastest)
+    val_every: int = 500              # validate every N steps (0 = end of epoch only)
+    patience: int = 3                 # early stop after N validations without improvement
+    log_every: int = 200              # progress line every N steps (with ETA)
+    allow_cpu: bool = False           # refuse to train on CPU unless explicitly allowed
     ft_batch: int = 128
     ft_all_positions: bool = True     # train on EVERY next-step pair, not only the last
     ft_max_queries: int = 400000      # cap per epoch (subsampled) for huge cities

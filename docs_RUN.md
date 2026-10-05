@@ -65,3 +65,32 @@ summary json between runs or use a separate --run_dir copy)
 | `--causal_history` | only history trajectories that start earlier (stricter) |
 | `--few_shot_k 1/3/5` | few-shot curve |
 | no `zs_realizer.pt` | zero-shot with hand-initialised fusion only |
+
+## v7.1 changes before the first HS-JEPA run (after the v6 HREM analysis)
+* **Schedule**: `--min_epochs 3 --patience 4 --val_every 2000 --val_per_city 2000` for every
+  world-model pretraining (v6 stopped in epoch 1: the head plateaus at once, the world model does not).
+* **World-model retrieval losses** (`lambda_wm_lat`=0.5, `lambda_wm_ptr`=0.3): the predicted latent
+  must (i) find the true NEW place among the user's unvisited POIs and (ii) point at the right history
+  token for a return. In v6 the mixture switched the latent pointer off (lptr 0.47 -> 0.02), so the
+  backbone received almost no retrieval gradient. Ablation `noRetAux` turns them off.
+* **Downstream fine-tuning keeps the pretraining objective** (`lambda_wm_*` copied from `zs_wm.pt`),
+  so the noJEPA ablation is noJEPA at fine-tune time too.
+* **Diagnostics** in every eval line: `cond: explore@1/@10` (new target ranked among unvisited POIs),
+  `revisit@1`, `lat-explore@10` (latent-only), `ptr@1`, `pi(exp/rev)` (gate calibration).
+* **Per-query ranks** `ranks_<retriever>_<city>_<shot>.npy` + `scripts/paired_test.py` (paired
+  bootstrap CI + McNemar). Use it for every "X helps" claim.
+* `SMOKE=1 bash scripts/run_wm.sh` = 10-minute crash test before the long run.
+
+## v8: go/no-go suite (run this BEFORE run_wm.sh)
+`nohup bash scripts/run_gonogo.sh > gonogo.out 2>&1 &` (≈ one night on one RTX 6000), then
+`python scripts/gonogo_report.py`. Subsets: `ONLY="G0 G2" bash scripts/run_gonogo.sh`.
+* G0 zero-shot on the 9 held-out cities (pooled, paired): hand evidence / v6 HREM / no-JEPA.
+* G1 value of target labels (zero / 5% / full; transfer vs in-city).
+* G2 cold start: `--hist_budget 0|1|3` (only the k most recent PAST trajectories exist).
+* G3 source scaling 1 -> 3 -> 6 cities, fixed recipe (`EP`, `QPC`).
+* G4 backbone only: `--evidence none` removes every hand-built user/city statistic; returns must
+  come from the latent pointer, new places from the latent match (mobility-CLIP: InfoNCE between
+  the predicted next-place latent and text-grounded POI embeddings). Arms: JEPA-init, random-init,
+  GEMMA-G (generative recipe: retrieval losses core, JEPA 0.2 auxiliary), 1 vs 6 source cities.
+New flags: `--hist_budget`, `--evidence full|none`, `--out_tag` (downstream);
+`--evidence` (source training, stored in zs_*.pt and re-applied downstream).

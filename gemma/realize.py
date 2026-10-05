@@ -57,6 +57,7 @@ from __future__ import annotations
 
 import copy
 import math
+import os
 import time
 from collections import defaultdict
 
@@ -97,6 +98,12 @@ class CityIndex:
         id2row = pt["id2row"]
         self.row_pi = np.array([id2row[int(v)] for v in city.venue_id], np.int64)
         self.hour_row = city.df["timestamp"].dt.hour.values.astype(np.int64)
+        ts = city.df["timestamp"]
+        self.day_row = ((ts - ts.min()).dt.total_seconds().values / 86400.0).astype(np.float64)
+        self.wkend_row = (ts.dt.dayofweek.values >= 5).astype(np.int64)
+        self.act_row = np.asarray(city.act_id, np.int64)
+        self.n_act = int(max(int(np.max(pt["act"])), int(np.max(self.act_row)))) + 1
+        self._act_groups = None
         t = lambda x, dt=torch.float32: torch.as_tensor(np.asarray(x), dtype=dt, device=device)
         self.lat = t(pt["lat"]); self.lon = t(pt["lon"])
         self.act = t(pt["act"], torch.long); self.pri = t(pt["pri"], torch.long)
@@ -150,6 +157,11 @@ class CityIndex:
         hs = [j for j in self.user_trails.get(tr["user_id"], []) if j != ti]
         if self.cfg.causal_history:
             hs = [j for j in hs if self.trails[j]["t0"] < tr["t0"]]
+        k = getattr(self.cfg, "hist_budget", -1)
+        if k is not None and k >= 0:      # cold start: the k most recent trajectories BEFORE the query
+            hs = sorted((j for j in hs if self.trails[j]["t0"] < tr["t0"]),
+                        key=lambda j: self.trails[j]["t0"])
+            hs = hs[-k:] if k > 0 else []
         return hs
 
     def queries(self, trail_ids, all_positions):
@@ -171,7 +183,12 @@ class CityIndex:
         cfg, city = self.cfg, self.city
         B = len(qs)
         toks, meta = [], defaultdict(list)
-        sp = {k: ([], [], []) for k in ("hist", "prefix", "ptrans", "c_cov", "c_pop", "c_hour")}
+        sp = {k: ([], [], []) for k in ("hist", "prefix", "ptrans", "c_cov", "c_pop", "c_hour",
+                                        "tod", "dow", "rec")}
+        A = self.n_act
+        u_act = np.zeros((B, A), np.float32); u_atr = np.zeros((B, A), np.float32)
+        u_new = np.zeros((B, A), np.float32); u_S = np.zeros(B, np.float32)
+        u_pnew = np.zeros(B, np.float32); anchors = np.zeros((B, 5), np.int64)
         for b, (ti, j) in enumerate(qs):
             tr = self.trails[ti]; rows = tr["rows"]
             prefix = rows[:j]; last = int(prefix[-1])
@@ -198,7 +215,42 @@ class CityIndex:
                 if len(nx):
                     sp["ptrans"][0].extend([b] * len(nx)); sp["ptrans"][1].extend(pis[nx + 1].tolist())
                     sp["ptrans"][2].extend([1.0] * len(nx))
+            # ---- user-level behaviour statistics (return/explore + activity profile)
+            qh, qw, qd = int(self.hour_row[last]), int(self.wkend_row[last]), float(self.day_row[last])
+            la_ = int(self.act_row[last])
+            seen, cnt, recd = set(), defaultdict(float), {}
+            hrows = [self.trails[h]["rows"] for h in hs]
+            for rws in hrows:
+                pis = self.row_pi[rws]; acts = self.act_row[rws]
+                for k in range(len(rws)):
+                    v = int(pis[k]); a = int(acts[k]); r = int(rws[k])
+                    u_act[b, a] += 1.0
+                    if v not in seen:
+                        u_new[b, a] += 1.0; seen.add(v)
+                    cnt[v] += 1.0
+                    dd = abs(qd - float(self.day_row[r]))
+                    if dd < recd.get(v, 1e9):
+                        recd[v] = dd
+                    hd = abs(int(self.hour_row[r]) - qh); hd = min(hd, 24 - hd)
+                    if hd <= 2:
+                        sp["tod"][0].append(b); sp["tod"][1].append(v); sp["tod"][2].append(1.0)
+                    if int(self.wkend_row[r]) == qw:
+                        sp["dow"][0].append(b); sp["dow"][1].append(v); sp["dow"][2].append(1.0)
+                for k in range(len(rws) - 1):
+                    if int(acts[k]) == la_:
+                        u_atr[b, int(acts[k + 1])] += 1.0
+            for v, dd in recd.items():
+                sp["rec"][0].append(b); sp["rec"][1].append(v); sp["rec"][2].append(float(np.exp(-dd / 14.0)))
             ppis = self.row_pi[prefix]
+            pacts = self.act_row[prefix]
+            for k in range(len(prefix) - 1):
+                if int(pacts[k]) == la_:
+                    u_atr[b, int(pacts[k + 1])] += 1.0
+            u_S[b] = float(len(seen))
+            u_pnew[b] = float(np.mean([int(v) not in seen for v in ppis])) if len(ppis) else 0.0
+            top = sorted(cnt.items(), key=lambda x: -x[1])[:5]
+            anc = [v for v, _ in top] + [last_pi] * (5 - len(top))
+            anchors[b] = anc
             sp["prefix"][0].extend([b] * len(ppis)); sp["prefix"][1].extend(ppis.tolist())
             sp["prefix"][2].extend([1.0] * len(ppis))
             nx = np.where(ppis[:-1] == last_pi)[0]
@@ -244,10 +296,23 @@ class CityIndex:
         m = {k: tt(np.asarray(v, np.int64)) for k, v in meta.items()}
         m["sparse"] = {k: (tt(np.asarray(v[0], np.int64)), tt(np.asarray(v[1], np.int64)),
                            tt(np.asarray(v[2], np.float32))) for k, v in sp.items()}
+        m["u_act"] = tt(u_act); m["u_atr"] = tt(u_atr); m["u_new"] = tt(u_new)
+        m["u_S"] = tt(u_S); m["u_pnew"] = tt(u_pnew); m["anchors"] = tt(anchors)
+        m["wkend"] = tt(np.asarray([int(self.wkend_row[self.trails[ti]["rows"][j - 1]])
+                                    for ti, j in qs], np.int64))
+        tok_pi = np.where(real, self.row_pi[Rc], -1)
+        m["tok_pi"] = tt(tok_pi.astype(np.int64))
         if with_target and self.codes is not None:
             m["tgt_code"] = self.codes[m["tgt_pi"]]
         m["B"] = B
         return bb_in, m
+
+    def act_groups(self):
+        if self._act_groups is None:
+            a = self.act.cpu().numpy()
+            self._act_groups = [torch.as_tensor(np.where(a == k)[0], device=self.device)
+                                for k in range(self.n_act)]
+        return self._act_groups
 
     # ------------------------------------------------------------------ #
     def dense(self, m, hier):
@@ -359,6 +424,12 @@ class RealizationHead(nn.Module):
 
 # =========================================================================== #
 def _forward(bb, head, ci, qs, train, amp_dtype, rerank_m, with_target=True):
+    if getattr(head, "kind", "") == "hrem":
+        from .hrem import hrem_forward
+        return hrem_forward(bb, head, ci, qs, train, amp_dtype, with_target)
+    if getattr(head, "kind", "") == "wm":
+        from .hsjepa import wm_forward
+        return wm_forward(bb, head, ci, qs, train, amp_dtype, with_target)
     bb_in, m = ci.batch(qs, with_target=with_target)
     dev = ci.device
     amp_on = dev.startswith("cuda") and amp_dtype is not None
@@ -376,10 +447,10 @@ def _forward(bb, head, ci, qs, train, amp_dtype, rerank_m, with_target=True):
     if use_ar:
         M = min(rerank_m, ci.P)
         top = logits.detach().topk(M, dim=1).indices                      # (B,M)
-        if train and with_target:
-            tgt = m["tgt_pi"]
-            has = (top == tgt.unsqueeze(1)).any(1)
-            top[~has, -1] = tgt[~has]
+        # NOTE (v5c): the truth is NOT forced into the shortlist during training.
+        # v5b forced it in when missing; the forced items are low-dense-score
+        # 'explore' POIs, so the rerank weight learned to reward LOW AR likelihood
+        # (alpha_ar < 0) and then mis-reranked real shortlists at test time.
         ar = bb.leaf.score_pairs(z1, ci.codes[top])                        # (B,M)
         arz = (ar - ar.mean(1, keepdim=True)) / (ar.std(1, keepdim=True) + 1e-6)
         base = logits.gather(1, top)
@@ -405,11 +476,20 @@ def _ranks(out):
 
 
 def _loss(bb, out, ci, cfg, head_only=False):
+    if out.get("wm"):
+        from .hrem import hrem_loss
+        return hrem_loss(bb, out, ci, cfg, head_only) + out.get("aux_loss", 0.0)
+    if out.get("hrem"):
+        from .hrem import hrem_loss
+        return hrem_loss(bb, out, ci, cfg, head_only)
     m = out["m"]
     L = F.cross_entropy(out["logits"], m["tgt_pi"])
     if "short" in out:
-        lab = (out["top"] == m["tgt_pi"].unsqueeze(1)).float().argmax(1)
-        L = L + F.cross_entropy(out["short"], lab)
+        pos = out["top"] == m["tgt_pi"].unsqueeze(1)
+        hit = pos.any(1)                        # only queries whose truth is in the shortlist
+        if hit.any():
+            lab = pos.float().argmax(1)
+            L = L + F.cross_entropy(out["short"][hit], lab[hit])
     L = L + 0.5 * F.cross_entropy(out["act_logits"], m["tgt_act"])
     if (not head_only and "tgt_code" in m and getattr(bb, "leaf", None) is not None
             and hasattr(bb.leaf, "score_pairs")):
@@ -418,14 +498,45 @@ def _loss(bb, out, ci, cfg, head_only=False):
 
 
 # =========================================================================== #
+def _rank_of(S, tgt, ok):
+    """1-based rank of tgt under scores S (-inf = excluded); 0 where not applicable."""
+    ar = torch.arange(S.size(0), device=S.device)
+    st = S[ar, tgt]
+    r = (S > st.unsqueeze(1)).sum(1) + 1
+    return torch.where(ok & torch.isfinite(st), r, torch.zeros_like(r)).cpu().numpy()
+
+
+def _cond_ranks(out, cond):
+    m = out["m"]; tgt = m["tgt_pi"]; vis = out["visited"]
+    ar = torch.arange(tgt.size(0), device=tgt.device)
+    new_t = ~vis[ar, tgt]
+    cond["exp_cond"].append(_rank_of(out["exp_cond"].float(), tgt, new_t))
+    cond["ret_cond"].append(_rank_of(out["ret_cond"].float(), tgt, ~new_t))
+    if out.get("e_lat") is not None:
+        cond["e_lat"].append(_rank_of(out["e_lat"].float().masked_fill(vis, float("-inf")), tgt, new_t))
+    sim = out.get("ptr_sim"); tok = m["tok_pi"]
+    if sim is not None:
+        hit = (tok == tgt.unsqueeze(1)) & (tok >= 0)
+        s_ = sim.float().masked_fill(tok < 0, float("-inf"))
+        best_pos = s_.masked_fill(~hit, float("-inf")).max(1).values
+        # rank by distinct tokens: count tokens of OTHER POIs scoring above the best target token
+        r = ((s_ > best_pos.unsqueeze(1)) & ~hit).sum(1) + 1
+        cond["ptr"].append(torch.where(hit.any(1), r, torch.zeros_like(r)).cpu().numpy())
+    a_t = m["tgt_act"].clamp(max=out["gate"].size(1) - 1)
+    cond["pi"].append(torch.sigmoid(out["gate"][ar, a_t].float()).cpu().numpy())
+
+
 @torch.no_grad()
 def evaluate(bb, head, ci, qs, cfg, bs=None):
     bb.eval(); head.eval()
     bs = bs or cfg.ft_batch
     ranks, ya, pa, rev = [], [], [], []
+    cond = {k: [] for k in ("exp_cond", "ret_cond", "e_lat", "ptr", "pi")}
     for s in range(0, len(qs), bs):
         out = _forward(bb, head, ci, qs[s:s + bs], False, _amp(cfg, ci.device), cfg.rerank_m)
         ranks.append(_ranks(out))
+        if "exp_cond" in out:
+            _cond_ranks(out, cond)
         m = out["m"]; seen = torch.zeros(m["B"], ci.P, dtype=torch.bool, device=ci.device)
         for key in ("hist", "prefix"):
             b_, p_, _ = m["sparse"][key]
@@ -444,6 +555,27 @@ def evaluate(bb, head, ci, qs, cfg, bs=None):
             met[f"{name}_frac"] = float(sel.mean())
             for k in ("acc@1", "acc@5", "ndcg@5"):
                 met[f"{name}_{k}"] = mm[k]
+    # channel-conditional diagnostics (HREM / world model): is each channel any good
+    # GIVEN the branch?  explore_cond = rank of a NEW target among the user's unvisited
+    # POIs; ret_cond = rank of a revisit target among visited POIs; lat_explore = the
+    # latent-only (world-model) match; ptr = latent pointer over context tokens;
+    # pi_* = mean explore probability on explore / revisit targets (gate calibration)
+    if cond["exp_cond"]:
+        for key, name in (("exp_cond", "explore_cond"), ("ret_cond", "revisit_cond"),
+                          ("e_lat", "lat_explore"), ("ptr", "ptr_revisit")):
+            rk = np.concatenate(cond[key]) if cond[key] else np.zeros(0)
+            rk = rk[rk > 0]
+            if rk.size:
+                met[f"{name}_acc@1"] = float((rk <= 1).mean())
+                met[f"{name}_acc@10"] = float((rk <= 10).mean())
+        if os.environ.get("GEMMA_DEBUG_COND"):
+            for key in ("exp_cond", "ret_cond", "e_lat", "ptr"):
+                rk = np.concatenate(cond[key]) if cond[key] else np.zeros(0)
+                print("DEBUG", key, "n=", int((rk > 0).sum()), "median rank=", np.median(rk[rk > 0]) if (rk > 0).any() else None)
+        pis = np.concatenate(cond["pi"]); rv = rev.astype(bool)
+        if (~rv).any(): met["pi_on_explore"] = float(pis[~rv].mean())
+        if rv.any(): met["pi_on_revisit"] = float(pis[rv].mean())
+    met["_ranks"] = ranks.astype(np.int32)
     act = classification_metrics(ya, pa)
     met.update({"n_queries": int(len(ranks)), "n_candidates": int(ci.P),
                 "act@1": act["accuracy"], "act_macro_f1": act["macro_f1"]})
@@ -467,7 +599,8 @@ def evaluate_llm_protocol(bb, head, ci, test_trails, cfg, n_users=200, seeds=(0,
     users = sorted(by_user)
     variants = ("near100", "gtnear100", "gtrand100")
     res = {v: [] for v in variants}
-    use_ar = ci.codes is not None and hasattr(getattr(bb, "leaf", None), "score_pairs")
+    use_ar = (ci.codes is not None and hasattr(getattr(bb, "leaf", None), "score_pairs")
+              and hasattr(head, "alpha_ar"))
     for sd in seeds:
         rng = np.random.RandomState(sd)
         g = torch.Generator(device="cpu").manual_seed(sd)
@@ -515,15 +648,19 @@ def evaluate_llm_protocol(bb, head, ci, test_trails, cfg, n_users=200, seeds=(0,
 def _amp(cfg, device):
     if not (cfg.amp and device.startswith("cuda")):
         return None
-    return torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+    from .utils import amp_dtype_for
+    return amp_dtype_for(device)
 
 
 # =========================================================================== #
 def finetune(bb, head, jobs, cfg, device, logger, epochs, lr_head, lr_bb,
              val=None, tag=""):
     """Train head (+ backbone when lr_bb>0) on one or more (CityIndex, queries).
-    jobs: list of (ci, queries); round-robin over cities each step.
-    val : (ci, queries) for early stopping on acc@1 (or None = fixed epochs)."""
+    jobs: list of (ci, queries); batches of different cities are interleaved.
+    val : (ci, queries) or a list of them -> model selection on acc@1.  The
+          initialisation is a candidate, validation runs every cfg.val_every
+          steps (and at each epoch end), early stop after cfg.patience checks
+          without improvement."""
     tune_bb = lr_bb > 0
     for p in bb.parameters():
         p.requires_grad_(False)
@@ -534,73 +671,128 @@ def finetune(bb, head, jobs, cfg, device, logger, epochs, lr_head, lr_bb,
                                 "poi_tower", "geo_head", "temporal_head")):
                 continue
             p.requires_grad_(True); bb_params.append(p)
-    groups = [{"params": [p for p in head.parameters() if p.requires_grad], "lr": lr_head,
-               "weight_decay": 1e-4}]
+    resid = [p for n_, p in head.named_parameters()
+             if (n_.startswith(("poi_res", "user_res")) or ".poi_res" in n_ or ".user_res" in n_)
+             and p.requires_grad]
+    rid = {id(p) for p in resid}
+    core = [p for p in head.parameters() if p.requires_grad and id(p) not in rid]
+    lr_res = getattr(cfg, "ft_lr_resid", lr_head)
+    groups = [{"params": core, "lr": lr_head, "weight_decay": 1e-4, "base": lr_head}]
+    if resid:   # per-POI / per-user residuals memorise fastest -> lower LR + decay
+        groups.append({"params": resid, "lr": lr_res, "weight_decay": 0.05, "base": lr_res})
     if bb_params:
-        groups.append({"params": bb_params, "lr": lr_bb, "weight_decay": 0.01})
+        groups.append({"params": bb_params, "lr": lr_bb, "weight_decay": 0.01, "base": lr_bb})
     opt = torch.optim.AdamW(groups)
     amp_dtype = _amp(cfg, device)
+    # fp16 (Turing GPUs) needs loss scaling or small backbone gradients underflow to 0
+    scaler = torch.amp.GradScaler("cuda", enabled=(amp_dtype == torch.float16))
     rng = np.random.RandomState(cfg.seed)
     steps_ep = sum(math.ceil(min(len(q), cfg.ft_max_queries) / cfg.ft_batch) for _, q in jobs)
     total = max(1, epochs * steps_ep); step = 0
-    best, best_state, bad = -1.0, None, 0
-    vals = None
-    if val is not None:                  # epoch -1: the initialisation is a candidate
-        vals = val if isinstance(val, list) else [val]
+    log_every = max(1, getattr(cfg, "log_every", 200))
+    val_every = getattr(cfg, "val_every", 0)
+    patience = getattr(cfg, "patience", 3)
+    logger.info(f"[{tag}] device={device} amp={amp_dtype} steps/epoch={steps_ep} epochs={epochs} "
+                f"lr_head={lr_head} lr_resid={lr_res if resid else '-'} lr_bb={lr_bb} "
+                f"val_every={val_every or 'epoch'} patience={patience} "
+                f"min_epochs={getattr(cfg, 'min_epochs', 0)}")
+    vals = None if val is None else (val if isinstance(val, list) else [val])
+    state = {"best": -1.0, "best_state": None, "bad": 0, "ep": 0}
+
+    def snapshot():
+        return (copy.deepcopy({k: v.cpu() for k, v in bb.state_dict().items()}),
+                copy.deepcopy({k: v.cpu() for k, v in head.state_dict().items()}))
+
+    def validate(where):
         vms = [evaluate(bb, head, vci, vq, cfg) for vci, vq in vals]
-        best = float(np.mean([x["acc@1"] for x in vms]))
-        best_state = (copy.deepcopy({k: v.cpu() for k, v in bb.state_dict().items()}),
-                      copy.deepcopy({k: v.cpu() for k, v in head.state_dict().items()}))
-        logger.info(f"[{tag}] init val acc@1={best:.4f}")
+        vm = {k: float(np.mean([x[k] for x in vms])) for k in ("acc@1", "acc@5", "act@1")}
+        improved = vm["acc@1"] > state["best"]
+        if improved:
+            state["best"], state["bad"], state["best_state"] = vm["acc@1"], 0, snapshot()
+        else:
+            state["bad"] += 1
+        logger.info(f"[{tag}] val@{where}: acc@1={vm['acc@1']:.4f} acc@5={vm['acc@5']:.4f} "
+                    f"act@1={vm['act@1']:.3f}{'  *best' if improved else ''}")
+        bb.train() if tune_bb else bb.eval(); head.train()
+        # no early stop during the first cfg.min_epochs epochs (slow-starting world-model
+        # objectives would otherwise be cut off while the head has already plateaued)
+        return state["bad"] >= patience and state["ep"] >= getattr(cfg, "min_epochs", 0)
+
+    if vals is not None:                         # the initialisation is a candidate
+        validate("init")
+    stop = False
     for ep in range(epochs):
+        state["ep"] = ep
         bb.train() if tune_bb else bb.eval(); head.train()
         order = []
         for k, (ci, q) in enumerate(jobs):
             idx = rng.permutation(len(q))[:cfg.ft_max_queries]
             order += [(k, idx[s:s + cfg.ft_batch]) for s in range(0, len(idx), cfg.ft_batch)]
         rng.shuffle(order)
-        t0 = time.time(); tot = 0.0; n = 0
-        for k, bidx in order:
+        t0 = time.time(); tot = 0.0; n = 0; win = 0.0; wn = 0
+        for it, (k, bidx) in enumerate(order):
             ci, q = jobs[k]
-            for g, base in zip(opt.param_groups, [lr_head, lr_bb]):
-                g["lr"] = base * 0.5 * (1 + math.cos(math.pi * step / total))
+            for g in opt.param_groups:
+                g["lr"] = g["base"] * 0.5 * (1 + math.cos(math.pi * step / total))
             out = _forward(bb, head, ci, [q[i] for i in bidx], True, amp_dtype, cfg.rerank_m)
             loss = _loss(bb, out, ci, cfg, head_only=not tune_bb)
             if not torch.isfinite(loss):
                 step += 1; continue
-            opt.zero_grad(set_to_none=True); loss.backward()
+            opt.zero_grad(set_to_none=True)
+            scaler.scale(loss).backward()
+            scaler.unscale_(opt)
             torch.nn.utils.clip_grad_norm_([p for g in opt.param_groups for p in g["params"]], 1.0)
-            opt.step(); step += 1
-            tot += float(loss.detach()); n += 1
-        msg = f"[{tag}] ft epoch {ep} loss={tot / max(1, n):.4f} ({time.time() - t0:.0f}s)"
-        if val is not None:
-            vms = [evaluate(bb, head, vci, vq, cfg) for vci, vq in vals]
-            vm = {k: float(np.mean([x[k] for x in vms])) for k in ("acc@1", "acc@5", "act@1")}
-            msg += f" | val acc@1={vm['acc@1']:.4f} acc@5={vm['acc@5']:.4f} act@1={vm['act@1']:.3f}"
-            if vm["acc@1"] > best:
-                best, bad = vm["acc@1"], 0
-                best_state = (copy.deepcopy({k: v.cpu() for k, v in bb.state_dict().items()}),
-                              copy.deepcopy({k: v.cpu() for k, v in head.state_dict().items()}))
-            else:
-                bad += 1
-        with torch.no_grad():
-            w = head.weights(torch.zeros(1, head.d_real, device=device))[0].tolist()
-        msg += " | w0: " + " ".join(f"{k}={v:.2f}" for k, v in zip(FEATS, w)) + \
-               f" alpha_ar={head.alpha_ar.item():.2f} tau={head.log_tau.exp().item():.1f}"
-        logger.info(msg)
-        if val is not None and bad >= 3:
+            scaler.step(opt); scaler.update(); step += 1
+            if hasattr(head, "after_step"):
+                head.after_step(bb, cfg, tune_bb)
+            lv = float(loss.detach()); tot += lv; n += 1; win += lv; wn += 1
+            if (it + 1) % log_every == 0:
+                el = time.time() - t0
+                eta = el / (it + 1) * (len(order) - it - 1)
+                logger.info(f"[{tag}] ep{ep} step {it + 1}/{len(order)} loss={win / wn:.4f} "
+                            f"({el / (it + 1):.2f}s/step, epoch ETA {eta / 60:.1f} min) "
+                            + (f"alpha_ar={head.alpha_ar.item():.2f}" if hasattr(head, "alpha_ar") else "")
+                            + (" " + " ".join(f"{k}={v:.3f}" for k, v in head._last.items())
+                               if getattr(head, "_last", None) else ""))
+                win = 0.0; wn = 0
+            if vals is not None and val_every and (it + 1) % val_every == 0:
+                if validate(f"ep{ep}-step{it + 1}"):
+                    stop = True; break
+        logger.info(f"[{tag}] ft epoch {ep} loss={tot / max(1, n):.4f} ({time.time() - t0:.0f}s) | "
+                    + describe_head(head, device))
+        if stop:
+            logger.info(f"[{tag}] early stop in epoch {ep}")
+            break
+        state["ep"] = ep + 1                     # epoch ep is complete
+        if vals is not None and validate(f"ep{ep}-end"):
             logger.info(f"[{tag}] early stop at epoch {ep}")
             break
-    if best_state is not None:
-        bb.load_state_dict(best_state[0]); head.load_state_dict(best_state[1])
-        logger.info(f"[{tag}] restored best epoch (val acc@1={best:.4f})")
+    if state["best_state"] is not None:
+        bb.load_state_dict(state["best_state"][0]); head.load_state_dict(state["best_state"][1])
+        logger.info(f"[{tag}] restored best checkpoint (val acc@1={state['best']:.4f})")
     for p in bb.parameters():
         p.requires_grad_(False)
     bb.eval(); head.eval()
     return head
 
 
+def describe_head(head, device):
+    if hasattr(head, "describe"):
+        return head.describe()
+    with torch.no_grad():
+        w = head.weights(torch.zeros(1, head.d_real, device=device))[0].tolist()
+    return ("w0: " + " ".join(f"{k}={v:.2f}" for k, v in zip(FEATS, w))
+            + f" alpha_ar={head.alpha_ar.item():.2f} tau={head.log_tau.exp().item():.1f}")
+
+
 def new_head(bb, ci, cfg, device):
-    return RealizationHead(cfg.d_model, ci.name.size(1), bb.n_act, bb.n_pri, bb.n_sec,
-                           cfg.sid_levels if cfg.use_semantic_id else 0,
-                           cfg.sid_codebook, cfg.d_real).to(device)
+    args = (cfg.d_model, ci.name.size(1), bb.n_act, bb.n_pri, bb.n_sec,
+            cfg.sid_levels if cfg.use_semantic_id else 0, cfg.sid_codebook, cfg.d_real)
+    kind = getattr(cfg, "retriever", "hrem")
+    if kind == "wm":
+        from .hsjepa import WMHead
+        return WMHead(*args, cfg).to(device)
+    if kind == "hrem":
+        from .hrem import HREMHead
+        return HREMHead(*args).to(device)
+    return RealizationHead(*args).to(device)

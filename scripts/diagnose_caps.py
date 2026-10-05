@@ -52,7 +52,8 @@ def load(root, city):
         if os.path.exists(p):
             d = pd.read_csv(p, usecols=lambda c: c in {
                 "trail_id", "user_id", "venue_id", "latitude", "longitude",
-                "venue_city_latitude", "venue_city_longitude", "timestamp"})
+                "venue_city_latitude", "venue_city_longitude", "timestamp",
+                "venue_category_id"})
             d["_split"] = sp
             fr.append(d)
     df = pd.concat(fr, ignore_index=True)
@@ -87,6 +88,78 @@ def metrics(ranks):
             "mrr": float((1 / (r + 1)).mean())}
 
 
+def activity_baselines(a, city, fsq):
+    """Next-ACTIVITY baselines (no published numbers exist for this task):
+    majority class, user's most frequent activity in history, global activity
+    Markov chain (last activity -> next, from train), and user Markov."""
+    df = load(a.data_root, city)
+    df["act"] = [fsq.activity_id(c) for c in df["venue_category_id"].values]
+    trails = {}; tpois = {}
+    for (u, tid), g in df.groupby(["user_id", "trail_id"], sort=False):
+        trails[(u, tid)] = (g["_split"].iloc[0], g["act"].values)
+        tpois[(u, tid)] = g["venue_id"].values
+    upois = defaultdict(set)
+    for k, (sp, _) in trails.items():
+        if sp in ("train", "validation"):
+            upois[k[0]].update(tpois[k].tolist())
+    A = int(df["act"].max()) + 1
+    glob = np.zeros(A); M = np.zeros((A, A)); uh = defaultdict(lambda: np.zeros(A))
+    uM = defaultdict(lambda: np.zeros((A, A)))
+    for (u, tid), (sp, acts) in trails.items():
+        if sp in ("train", "validation"):
+            np.add.at(uh[u], acts, 1)
+            for x, y in zip(acts[:-1], acts[1:]):
+                uM[u][x, y] += 1
+        if sp == "train":
+            np.add.at(glob, acts, 1)
+            for x, y in zip(acts[:-1], acts[1:]):
+                M[x, y] += 1
+    maj = int(glob.argmax())
+    yt, preds = [], defaultdict(list)
+    rev_by_act = {}
+    for (u, tid), (sp, acts) in trails.items():
+        if sp != "test" or len(acts) < 2:
+            continue
+        t, last = int(acts[-1]), int(acts[-2]); yt.append(t)
+        pv = tpois[(u, tid)]
+        ret = (pv[-1] in upois[u]) or (pv[-1] in set(pv[:-1].tolist()))
+        rev_by_act.setdefault(t, []).append(int(ret))
+        h = uh[u] + 0; h_pref = np.bincount(acts[:-1], minlength=A)
+        preds["majority"].append(maj)
+        preds["user_freq"].append(int((h + h_pref + 1e-3 * glob).argmax()))
+        preds["markov"].append(int((M[last] + 1e-3 * glob).argmax()))
+        um = uM[u][last]
+        preds["user_markov"].append(int((um + 0.5 * M[last] / max(1, M[last].sum())
+                                         + 1e-3 * glob).argmax()))
+        sc = (np.log1p(h + h_pref) + np.log1p(M[last] / max(1, M[last].sum()) * 10)
+              + np.log1p(um))
+        preds["combo"].append(int(sc.argmax()))
+    yt = np.asarray(yt); out = {}
+    for k, p in preds.items():
+        p = np.asarray(p); f1 = []
+        for c in np.unique(np.r_[yt, p]):
+            tp = ((p == c) & (yt == c)).sum(); fp = ((p == c) & (yt != c)).sum()
+            fn = ((p != c) & (yt == c)).sum()
+            pr = tp / (tp + fp + 1e-9); rc = tp / (tp + fn + 1e-9)
+            f1.append(2 * pr * rc / (pr + rc + 1e-9))
+        out[k] = {"acc": round(float((p == yt).mean()), 4), "macro_f1": round(float(np.mean(f1)), 4)}
+    names = {}
+    try:
+        names = {v: k for k, v in fsq.act2id.items()}
+    except Exception:
+        pass
+    out["revisit_rate_by_target_activity"] = {
+        str(names.get(a, a)): {"n": len(v), "revisit": round(float(np.mean(v)), 3)}
+        for a, v in sorted(rev_by_act.items(), key=lambda x: -len(x[1]))}
+    print(f"[{city}] revisit rate by target activity: " + "  ".join(
+        f"{k[:18]}={v['revisit']:.2f}(n={v['n']})" for k, v in out["revisit_rate_by_target_activity"].items()))
+    print(f"\n[{city}] next-ACTIVITY baselines (n={len(yt)}): " +
+          "  ".join(f"{k} acc={v['acc']:.3f}/f1={v['macro_f1']:.3f}" for k, v in out.items()
+                    if isinstance(v, dict) and "acc" in v))
+    sys.stdout.flush()
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data_root", default="data")
@@ -97,10 +170,22 @@ def main():
     ap.add_argument("--llm_users", type=int, default=200)
     ap.add_argument("--llm_seeds", type=int, default=5)
     ap.add_argument("--out", default="diag_caps.json")
+    ap.add_argument("--fsq_csv", default=None,
+                    help="taxonomy CSV -> also report next-ACTIVITY baselines")
+    ap.add_argument("--skip_poi", action="store_true", help="only next-activity baselines")
     a = ap.parse_args()
 
     report = {}
+    fsq = None
+    if a.fsq_csv:
+        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        from gemma.fsq import FSQTaxonomy
+        fsq = FSQTaxonomy(a.fsq_csv)
     for city in a.cities:
+        if fsq is not None:
+            report.setdefault(city, {})["next_activity"] = activity_baselines(a, city, fsq)
+            if a.skip_poi:
+                continue
         df = load(a.data_root, city)
         # ---- vocabulary = all POIs of the city (all splits), as in the benchmark
         pois = df.groupby("venue_id").agg(lat=("lat", "mean"), lon=("lon", "mean"))
@@ -227,7 +312,7 @@ def main():
                "full_vocab_rankers": {k: {kk: round(vv, 4) for kk, vv in metrics(v).items()}
                                       for k, v in ranks.items()},
                "llm_protocol_rankers": llm_sum}
-        report[city] = rep
+        report[city] = {**report.get(city, {}), **rep}
         print(f"\n===== {city} =====  POIs(all)={P}  POIs(test-only)={test_vocab}  "
               f"test traj={len(test)}  prefix_len={rep['mean_prefix_len']:.2f}  "
               f"hist_traj={rep['mean_hist_trajectories']:.1f}")

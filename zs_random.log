@@ -1,0 +1,24 @@
+17:16:53 | INFO    | gemma.zs | loaded 228910 cached LLM embeddings
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+17:16:55 | INFO    | gemma.zs | [istanbul] 49921/435586 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:18:03 | INFO    | gemma.zs | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+17:18:04 | INFO    | gemma.zs | [istanbul] source queries=229499 val=1000 POIs=38763
+17:18:06 | INFO    | gemma.zs | [petaling_jaya] 50496/405325 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:19:08 | INFO    | gemma.zs | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+17:19:09 | INFO    | gemma.zs | [petaling_jaya] source queries=228530 val=1000 POIs=48626
+17:19:10 | INFO    | gemma.zs | [jakarta] 63150/329617 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:19:58 | INFO    | gemma.zs | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+17:19:59 | INFO    | gemma.zs | [jakarta] source queries=192163 val=1000 POIs=63387
+17:20:00 | INFO    | gemma.zs | [new_york] 15823/217941 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:20:33 | INFO    | gemma.zs | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+17:20:33 | INFO    | gemma.zs | [new_york] source queries=126312 val=1000 POIs=41591
+17:20:34 | INFO    | gemma.zs | [kuwait_city] 23987/186092 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:21:03 | INFO    | gemma.zs | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+17:21:04 | INFO    | gemma.zs | [kuwait_city] source queries=98556 val=1000 POIs=12234
+17:21:05 | INFO    | gemma.zs | [sao_paulo] 15075/205396 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+17:21:35 | INFO    | gemma.zs | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+17:21:36 | INFO    | gemma.zs | [sao_paulo] source queries=116989 val=1000 POIs=31692
+17:22:09 | INFO    | gemma.zs | [source] init val acc@1=0.0873

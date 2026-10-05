@@ -5,11 +5,12 @@ python scripts/run_downstream.py --run_dir runs/gemma_v5 --data_root data \
 """
 import argparse, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from gemma.gpu_env import pin_gpu; pin_gpu()      # before torch is imported
 import torch
 from gemma.downstream import load_config, run_city, summary_table
 from gemma.fsq import FSQTaxonomy
 from gemma.poi_encoder import POIEncoder
-from gemma.utils import get_logger
+from gemma.utils import check_device, get_logger
 
 
 def main():
@@ -34,6 +35,14 @@ def main():
     p.add_argument("--no_history", action="store_true", help="ablation: prefix-only context")
     p.add_argument("--random_backbone", action="store_true", help="ablation: no pretraining")
     p.add_argument("--last_position_only", action="store_true")
+    p.add_argument("--allow_cpu", action="store_true")
+    p.add_argument("--val_every", type=int); p.add_argument("--patience", type=int)
+    p.add_argument("--ft_lr_resid", type=float)
+    p.add_argument("--retriever", choices=["wm", "hrem", "realize"])
+    for k, t in [("wm_H", int), ("wm_infill", float), ("lambda_wm_jepa", float),
+                 ("lambda_wm_infill", float), ("lambda_wm_lat", float), ("lambda_wm_ptr", float),
+                 ("min_epochs", int), ("hist_budget", int), ("evidence", str), ("out_tag", str)]:
+        p.add_argument("--" + k, type=t)
     a = p.parse_args()
 
     cfg = load_config(a.run_dir)
@@ -45,23 +54,36 @@ def main():
     if a.no_history: cfg.use_history = False
     if a.random_backbone: cfg.random_backbone = True
     if a.last_position_only: cfg.ft_all_positions = False
-    device = cfg.resolved_device()
+    if a.allow_cpu: cfg.allow_cpu = True
+    logger = get_logger("gemma.down", os.path.join(a.run_dir, f"downstream_{cfg.retriever}.log"))
+    device = check_device(cfg, logger)
     if device.startswith("cuda"):
         torch.backends.cuda.matmul.allow_tf32 = True
-    logger = get_logger("gemma.down", os.path.join(a.run_dir, "downstream_v5.log"))
-    logger.info(f"predictor={cfg.predictor_type} hist_trails={cfg.hist_trails} "
+    logger.info(f"retriever={cfg.retriever} predictor={cfg.predictor_type} hist_trails={cfg.hist_trails} "
                 f"few_shot_k={cfg.few_shot_k} few_shot_frac={cfg.few_shot_frac} lr_bb={cfg.ft_lr_backbone} rerank_m={cfg.rerank_m}")
     fsq = FSQTaxonomy(cfg.fsq_csv); enc = POIEncoder(cfg, logger); cfg.poi_emb_dim = enc.dim
 
-    zs_path = a.zs_ckpt or os.path.join(a.run_dir, "zs_realizer.pt")
+    zs_path = a.zs_ckpt or os.path.join(a.run_dir, "zs_realizer.pt" if cfg.retriever == "realize"
+                                        else f"zs_{cfg.retriever}.pt")
     zs = torch.load(zs_path, map_location="cpu", weights_only=False) if os.path.exists(zs_path) else None
+    if zs is not None and zs.get("kind", "realize") != cfg.retriever:
+        logger.warning(f"{zs_path} was trained for retriever={zs.get('kind', 'realize')} "
+                       f"but --retriever={cfg.retriever}; ignoring it")
+        zs = None
+    if zs is not None:                       # architecture knobs must match the pretrained model
+        for k, v in (zs.get("cfg_overrides") or {}).items():
+            # same objective at fine-tune time as at pretraining (ablations stay clean),
+            # unless overridden on the command line
+            if (k.startswith(("wm_", "lambda_wm_")) or k == "evidence") and getattr(a, k, None) is None:
+                setattr(cfg, k, v)
     logger.info(f"source-city realizer: {zs_path if zs else 'NONE'}")
+    logger.info(f"evidence={getattr(cfg, 'evidence', 'full')} hist_budget={getattr(cfg, 'hist_budget', -1)} tag={cfg.out_tag!r}")
 
     rows = []
     for city in a.cities:
         rows += run_city(cfg, a.run_dir, fsq, enc, city, a.shots, a.protocols, logger, zs,
                          device, init_from_zs=not a.no_init_from_zs)
-        with open(os.path.join(a.run_dir, "benchmark_summary_v5.json"), "w") as f:
+        with open(os.path.join(a.run_dir, f"benchmark_summary_{cfg.retriever}{cfg.out_tag or ''}.json"), "w") as f:
             json.dump(rows, f, indent=2)
     summary_table(rows, logger)
 

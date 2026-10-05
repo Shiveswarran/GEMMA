@@ -1,5 +1,21 @@
 # GEMMA v5 — Global Embeddings for urban Mobility Modelling and Adaptation
 
+**v7 (GEMMA-WM, `--retriever wm`).** `gemma/hsjepa.py`: HS-JEPA, a hierarchical sequential
+JEPA world model (activity → primary → secondary → place → return/explore, next H=3
+check-ins, hierarchical abstraction targets from an EMA target encoder, 15% history
+infill) trained jointly with retrieval in its own latent space (`hrem_mixture`).
+Single-stage self-supervised pretraining on the source cities; runner
+`scripts/run_wm.sh`; design rationale, survey and pre-registered plan:
+`docs/gemma_wm_design.pdf`.
+
+**v6 (HREM retriever, default `--retriever hrem`).** `gemma/hrem.py` replaces the
+additive realizer with an exact hierarchical return–explore mixture:
+`P(v|c) = P(a_v|c)·[(1−π_a)·P_ret(v|c,a_v) + π_a·P_exp(v|c,a_v)]` — next activity →
+activity-conditioned explore gate (EPR prior + personal novelty) → latent pointer
+over the user's history (return) or hierarchical semantic/geo retrieval over
+unvisited POIs (explore). Runner: `scripts/run_hrem.sh`. The v5 realizer stays
+available as the baseline row (`--retriever realize`).
+
 **v5 changes (read first).** v4 evaluation had four structural caps that no
 tokenizer/JEPA/AR change could fix:
 1. the user's **history was never in context** (the benchmark task is

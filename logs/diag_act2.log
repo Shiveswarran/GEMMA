@@ -1,0 +1,47 @@
+[tokyo] revisit rate by target activity: Dining and Drinkin=0.38(n=353)  Retail=0.56(n=266)  Travel and Transpo=0.62(n=256)  Landmarks and Outd=0.56(n=63)  Arts and Entertain=0.53(n=60)  Community and Gove=0.84(n=57)  Business and Profe=0.81(n=27)  Sports and Recreat=0.71(n=7)  Health and Medicin=0.40(n=5)  Nightlife Spot=0.67(n=3)
+
+[tokyo] next-ACTIVITY baselines (n=1097): majority acc=0.233/f1=0.038  user_freq acc=0.489/f1=0.242  markov acc=0.414/f1=0.140  user_markov acc=0.486/f1=0.332  combo acc=0.530/f1=0.331
+[beijing] revisit rate by target activity: Dining and Drinkin=0.47(n=32)  Travel and Transpo=0.77(n=30)  Business and Profe=0.80(n=15)  Community and Gove=0.83(n=12)  Retail=0.46(n=11)  Arts and Entertain=0.43(n=7)  Landmarks and Outd=0.33(n=6)  Sports and Recreat=0.50(n=2)
+
+[beijing] next-ACTIVITY baselines (n=115): majority acc=0.278/f1=0.054  user_freq acc=0.417/f1=0.295  markov acc=0.296/f1=0.091  user_markov acc=0.504/f1=0.324  combo acc=0.539/f1=0.339
+[shanghai] revisit rate by target activity: Dining and Drinkin=0.25(n=313)  Travel and Transpo=0.63(n=101)  Retail=0.26(n=80)  Community and Gove=0.76(n=72)  Landmarks and Outd=0.40(n=55)  Arts and Entertain=0.33(n=49)  Business and Profe=0.64(n=44)  Health and Medicin=0.14(n=7)  Sports and Recreat=0.71(n=7)
+
+[shanghai] next-ACTIVITY baselines (n=728): majority acc=0.430/f1=0.067  user_freq acc=0.446/f1=0.170  markov acc=0.444/f1=0.110  user_markov acc=0.485/f1=0.184  combo acc=0.470/f1=0.188
+[palembang] revisit rate by target activity: Community and Gove=0.85(n=306)  Dining and Drinkin=0.30(n=286)  Retail=0.62(n=115)  Travel and Transpo=0.69(n=71)  Arts and Entertain=0.53(n=61)  Landmarks and Outd=0.53(n=40)  Business and Profe=0.48(n=31)  Health and Medicin=0.25(n=20)  Sports and Recreat=0.67(n=9)  Nightlife Spot=0.00(n=1)
+
+[palembang] next-ACTIVITY baselines (n=940): majority acc=0.304/f1=0.047  user_freq acc=0.425/f1=0.165  markov acc=0.374/f1=0.092  user_markov acc=0.422/f1=0.141  combo acc=0.431/f1=0.156
+[melbourne] revisit rate by target activity: Dining and Drinkin=0.26(n=628)  Retail=0.43(n=212)  Community and Gove=0.70(n=198)  Travel and Transpo=0.57(n=190)  Arts and Entertain=0.34(n=113)  Landmarks and Outd=0.44(n=99)  Sports and Recreat=0.71(n=68)  Business and Profe=0.50(n=52)  Health and Medicin=0.60(n=10)  Nightlife Spot=0.67(n=3)
+
+[melbourne] next-ACTIVITY baselines (n=1573): majority acc=0.399/f1=0.057  user_freq acc=0.465/f1=0.196  markov acc=0.407/f1=0.092  user_markov acc=0.457/f1=0.180  combo acc=0.469/f1=0.218
+[sydney] revisit rate by target activity: Dining and Drinkin=0.33(n=797)  Travel and Transpo=0.59(n=327)  Retail=0.42(n=239)  Community and Gove=0.87(n=238)  Arts and Entertain=0.25(n=146)  Landmarks and Outd=0.43(n=117)  Business and Profe=0.61(n=94)  Sports and Recreat=0.78(n=51)  Health and Medicin=0.53(n=15)  Nightlife Spot=0.40(n=5)  Event=1.00(n=1)
+
+[sydney] next-ACTIVITY baselines (n=2030): majority acc=0.393/f1=0.051  user_freq acc=0.456/f1=0.167  markov acc=0.435/f1=0.096  user_markov acc=0.472/f1=0.173  combo acc=0.488/f1=0.220
+[tangerang] revisit rate by target activity: Community and Gove=0.88(n=1348)  Dining and Drinkin=0.29(n=869)  Retail=0.52(n=426)  Arts and Entertain=0.52(n=164)  Landmarks and Outd=0.54(n=106)  Business and Profe=0.59(n=98)  Travel and Transpo=0.53(n=93)  Sports and Recreat=0.58(n=59)  Health and Medicin=0.39(n=31)  Nightlife Spot=1.00(n=3)
+
+[tangerang] next-ACTIVITY baselines (n=3197): majority acc=0.422/f1=0.059  user_freq acc=0.506/f1=0.166  markov acc=0.414/f1=0.098  user_markov acc=0.469/f1=0.117  combo acc=0.525/f1=0.211
+[moscow] revisit rate by target activity: Dining and Drinkin=0.36(n=2380)  Community and Gove=0.80(n=1745)  Landmarks and Outd=0.46(n=963)  Retail=0.38(n=825)  Travel and Transpo=0.50(n=624)  Arts and Entertain=0.38(n=619)  Business and Profe=0.68(n=554)  Sports and Recreat=0.59(n=110)  Health and Medicin=0.50(n=50)  Nightlife Spot=0.63(n=27)
+
+[moscow] next-ACTIVITY baselines (n=7897): majority acc=0.301/f1=0.046  user_freq acc=0.423/f1=0.172  markov acc=0.312/f1=0.126  user_markov acc=0.387/f1=0.129  combo acc=0.441/f1=0.266
+[bandung] revisit rate by target activity: Community and Gove=0.82(n=3525)  Dining and Drinkin=0.24(n=3351)  Retail=0.44(n=1806)  Arts and Entertain=0.43(n=673)  Travel and Transpo=0.49(n=660)  Business and Profe=0.48(n=406)  Landmarks and Outd=0.45(n=250)  Health and Medicin=0.44(n=207)  Sports and Recreat=0.64(n=185)  Nightlife Spot=0.25(n=4)
+
+[bandung] next-ACTIVITY baselines (n=11067): majority acc=0.319/f1=0.048  user_freq acc=0.434/f1=0.161  markov acc=0.400/f1=0.099  user_markov acc=0.377/f1=0.118  combo acc=0.469/f1=0.206
+[kuwait_city] revisit rate by target activity: Dining and Drinkin=0.44(n=7329)  Landmarks and Outd=0.62(n=4502)  Community and Gove=0.79(n=2203)  Retail=0.48(n=1632)  Travel and Transpo=0.63(n=1037)  Health and Medicin=0.37(n=489)  Arts and Entertain=0.40(n=381)  Business and Profe=0.50(n=361)  Sports and Recreat=0.58(n=327)  Event=0.29(n=61)  Nightlife Spot=0.60(n=10)
+
+[kuwait_city] next-ACTIVITY baselines (n=18332): majority acc=0.400/f1=0.052  user_freq acc=0.443/f1=0.099  markov acc=0.411/f1=0.094  user_markov acc=0.412/f1=0.066  combo acc=0.503/f1=0.187
+[sao_paulo] revisit rate by target activity: Dining and Drinkin=0.38(n=5220)  Community and Gove=0.84(n=3100)  Travel and Transpo=0.68(n=2432)  Retail=0.43(n=2119)  Business and Profe=0.78(n=1870)  Arts and Entertain=0.37(n=1329)  Landmarks and Outd=0.65(n=1155)  Sports and Recreat=0.81(n=409)  Health and Medicin=0.49(n=273)  Nightlife Spot=0.28(n=25)  Event=0.00(n=6)
+
+[sao_paulo] next-ACTIVITY baselines (n=17938): majority acc=0.291/f1=0.041  user_freq acc=0.366/f1=0.145  markov acc=0.328/f1=0.099  user_markov acc=0.339/f1=0.105  combo acc=0.425/f1=0.247
+[new_york] revisit rate by target activity: Dining and Drinkin=0.27(n=7824)  Retail=0.34(n=1842)  Travel and Transpo=0.56(n=1823)  Community and Gove=0.78(n=1817)  Arts and Entertain=0.26(n=1665)  Landmarks and Outd=0.44(n=1584)  Business and Profe=0.65(n=1133)  Sports and Recreat=0.72(n=546)  Health and Medicin=0.55(n=138)  Nightlife Spot=0.42(n=24)  Event=0.15(n=13)
+
+[new_york] next-ACTIVITY baselines (n=18409): majority acc=0.425/f1=0.054  user_freq acc=0.445/f1=0.101  markov acc=0.427/f1=0.081  user_markov acc=0.430/f1=0.067  combo acc=0.482/f1=0.216
+[jakarta] revisit rate by target activity: Dining and Drinkin=0.21(n=8690)  Community and Gove=0.83(n=7487)  Retail=0.44(n=4655)  Arts and Entertain=0.35(n=1895)  Travel and Transpo=0.46(n=1450)  Business and Profe=0.47(n=1372)  Landmarks and Outd=0.44(n=1178)  Sports and Recreat=0.61(n=440)  Health and Medicin=0.34(n=303)  Nightlife Spot=0.44(n=9)  Event=1.00(n=1)
+
+[jakarta] next-ACTIVITY baselines (n=27480): majority acc=0.316/f1=0.044  user_freq acc=0.410/f1=0.119  markov acc=0.374/f1=0.105  user_markov acc=0.355/f1=0.073  combo acc=0.444/f1=0.186
+[petaling_jaya] revisit rate by target activity: Dining and Drinkin=0.27(n=14749)  Retail=0.41(n=6639)  Community and Gove=0.78(n=5888)  Arts and Entertain=0.35(n=2443)  Travel and Transpo=0.44(n=2243)  Business and Profe=0.50(n=1600)  Landmarks and Outd=0.49(n=1585)  Sports and Recreat=0.60(n=603)  Health and Medicin=0.34(n=282)  Nightlife Spot=0.28(n=36)  Event=0.29(n=14)
+
+[petaling_jaya] next-ACTIVITY baselines (n=36082): majority acc=0.409/f1=0.053  user_freq acc=0.418/f1=0.075  markov acc=0.414/f1=0.105  user_markov acc=0.412/f1=0.057  combo acc=0.453/f1=0.183
+[istanbul] revisit rate by target activity: Dining and Drinkin=0.35(n=16320)  Landmarks and Outd=0.52(n=9478)  Community and Gove=0.75(n=7222)  Travel and Transpo=0.40(n=2948)  Arts and Entertain=0.38(n=2361)  Retail=0.51(n=2341)  Business and Profe=0.66(n=1527)  Sports and Recreat=0.66(n=599)  Health and Medicin=0.41(n=382)  Nightlife Spot=0.30(n=81)  Event=0.25(n=24)
+
+[istanbul] next-ACTIVITY baselines (n=43283): majority acc=0.377/f1=0.050  user_freq acc=0.411/f1=0.091  markov acc=0.384/f1=0.065  user_markov acc=0.389/f1=0.066  combo acc=0.466/f1=0.213
+
+wrote logs/diag_act2.json

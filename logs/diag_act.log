@@ -1,0 +1,32 @@
+
+[tokyo] next-ACTIVITY baselines (n=1097): majority acc=0.233/f1=0.038  user_freq acc=0.489/f1=0.242  markov acc=0.414/f1=0.140  user_markov acc=0.486/f1=0.332  combo acc=0.530/f1=0.331
+
+[istanbul] next-ACTIVITY baselines (n=43283): majority acc=0.377/f1=0.050  user_freq acc=0.411/f1=0.091  markov acc=0.384/f1=0.065  user_markov acc=0.389/f1=0.066  combo acc=0.466/f1=0.213
+
+[jakarta] next-ACTIVITY baselines (n=27480): majority acc=0.316/f1=0.044  user_freq acc=0.410/f1=0.119  markov acc=0.374/f1=0.105  user_markov acc=0.355/f1=0.073  combo acc=0.444/f1=0.186
+
+[new_york] next-ACTIVITY baselines (n=18409): majority acc=0.425/f1=0.054  user_freq acc=0.445/f1=0.101  markov acc=0.427/f1=0.081  user_markov acc=0.430/f1=0.067  combo acc=0.482/f1=0.216
+
+[kuwait_city] next-ACTIVITY baselines (n=18332): majority acc=0.400/f1=0.052  user_freq acc=0.443/f1=0.099  markov acc=0.411/f1=0.094  user_markov acc=0.412/f1=0.066  combo acc=0.503/f1=0.187
+
+[petaling_jaya] next-ACTIVITY baselines (n=36082): majority acc=0.409/f1=0.053  user_freq acc=0.418/f1=0.075  markov acc=0.414/f1=0.105  user_markov acc=0.412/f1=0.057  combo acc=0.453/f1=0.183
+
+[sao_paulo] next-ACTIVITY baselines (n=17938): majority acc=0.291/f1=0.041  user_freq acc=0.366/f1=0.145  markov acc=0.328/f1=0.099  user_markov acc=0.339/f1=0.105  combo acc=0.425/f1=0.247
+
+[bandung] next-ACTIVITY baselines (n=11067): majority acc=0.319/f1=0.048  user_freq acc=0.434/f1=0.161  markov acc=0.400/f1=0.099  user_markov acc=0.377/f1=0.118  combo acc=0.469/f1=0.206
+
+[beijing] next-ACTIVITY baselines (n=115): majority acc=0.278/f1=0.054  user_freq acc=0.417/f1=0.295  markov acc=0.296/f1=0.091  user_markov acc=0.504/f1=0.324  combo acc=0.539/f1=0.339
+
+[melbourne] next-ACTIVITY baselines (n=1573): majority acc=0.399/f1=0.057  user_freq acc=0.465/f1=0.196  markov acc=0.407/f1=0.092  user_markov acc=0.457/f1=0.180  combo acc=0.469/f1=0.218
+
+[moscow] next-ACTIVITY baselines (n=7897): majority acc=0.301/f1=0.046  user_freq acc=0.423/f1=0.172  markov acc=0.312/f1=0.126  user_markov acc=0.387/f1=0.129  combo acc=0.441/f1=0.266
+
+[palembang] next-ACTIVITY baselines (n=940): majority acc=0.304/f1=0.047  user_freq acc=0.425/f1=0.165  markov acc=0.374/f1=0.092  user_markov acc=0.422/f1=0.141  combo acc=0.431/f1=0.156
+
+[shanghai] next-ACTIVITY baselines (n=728): majority acc=0.430/f1=0.067  user_freq acc=0.446/f1=0.170  markov acc=0.444/f1=0.110  user_markov acc=0.485/f1=0.184  combo acc=0.470/f1=0.188
+
+[sydney] next-ACTIVITY baselines (n=2030): majority acc=0.393/f1=0.051  user_freq acc=0.456/f1=0.167  markov acc=0.435/f1=0.096  user_markov acc=0.472/f1=0.173  combo acc=0.488/f1=0.220
+
+[tangerang] next-ACTIVITY baselines (n=3197): majority acc=0.422/f1=0.059  user_freq acc=0.506/f1=0.166  markov acc=0.414/f1=0.098  user_markov acc=0.469/f1=0.117  combo acc=0.525/f1=0.211
+
+wrote logs/diag_act.json

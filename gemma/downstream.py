@@ -113,14 +113,14 @@ def run_city(cfg, run_dir, fsq, enc, city_name, shots, protocols, logger, zs=Non
             if shot == "few_shot":
                 few = few_shot_subset(city, ids["train"], cfg.few_shot_k, cfg.seed,
                                       getattr(cfg, "few_shot_frac", 0.0))
-                rng = np.random.RandomState(cfg.seed)
-                perm = rng.permutation(len(few))
-                n_va = max(1, int(0.1 * len(few)))
-                few_va = sorted(few[i] for i in perm[:n_va])
-                few_tr = sorted(few[i] for i in perm[n_va:])
                 ci = CityIndex(city, observed=ids["train"], stat=few, cfg=cfg, device=device)
-                train_ids, vis = few_tr, few
-                q_va = ci.queries(few_va, False)
+                train_ids, vis = few, few
+                # model selection: a held-out slice of the few-shot budget is too small
+                # (Tokyo: 19 trajectories -> val acc moves in steps of 0.05), so use up
+                # to 300 validation-split trajectories (standard practice; reported).
+                rng = np.random.RandomState(cfg.seed)
+                q_va = ci.queries(ids["validation"], False)
+                q_va = [q_va[i] for i in rng.permutation(len(q_va))[:300]]
                 val, ep = ((ci, q_va) if q_va else None), cfg.ft_epochs_few
             else:
                 vis = ids["train"] + ids["validation"]
@@ -154,6 +154,12 @@ def run_city(cfg, run_dir, fsq, enc, city_name, shots, protocols, logger, zs=Non
             if "revisit_acc@1" in met:
                 msg += (f" | revisit({met['revisit_frac']:.2f}) acc@1={met['revisit_acc@1']:.3f}"
                         f" explore acc@1={met.get('explore_acc@1', float('nan')):.3f}")
+            if "explore_cond_acc@10" in met:
+                msg += (f" | cond: explore@1/@10={met['explore_cond_acc@1']:.3f}/{met['explore_cond_acc@10']:.3f}"
+                        f" revisit@1={met.get('revisit_cond_acc@1', float('nan')):.3f}"
+                        f" lat-explore@10={met.get('lat_explore_acc@10', float('nan')):.3f}"
+                        f" ptr@1={met.get('ptr_revisit_acc@1', float('nan')):.3f}"
+                        f" pi(exp/rev)={met.get('pi_on_explore', float('nan')):.2f}/{met.get('pi_on_revisit', float('nan')):.2f}")
             if sup:
                 msg += f" | STHGCN {sup[0]:.3f}/{sup[1]:.3f}"
         if "llm_acc@1" in met:
@@ -163,7 +169,14 @@ def run_city(cfg, run_dir, fsq, enc, city_name, shots, protocols, logger, zs=Non
             if zsr:
                 msg += f" | LLM-Move best {zsr[0]:.3f}/{zsr[1]:.3f}"
         logger.info(msg)
-        with open(os.path.join(run_dir, f"v5_{city_name}_{shot}.json"), "w") as f:
+        met["retriever"] = getattr(cfg, "retriever", "realize")
+        rk = met.pop("_ranks", None)
+        if rk is not None:     # per-query ranks -> paired significance tests (scripts/paired_test.py)
+            np.save(os.path.join(run_dir, f"ranks_{met['retriever']}_{city_name}_{shot}"
+                                          f"{getattr(cfg, 'out_tag', '') or ''}.npy"), rk)
+        tag = getattr(cfg, "out_tag", "") or ""
+        met["tag"] = tag
+        with open(os.path.join(run_dir, f"{met['retriever']}_{city_name}_{shot}{tag}.json"), "w") as f:
             json.dump(met, f, indent=2)
         rows.append(met)
         del bb, head, ci
