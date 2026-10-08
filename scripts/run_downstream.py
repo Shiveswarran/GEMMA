@@ -41,7 +41,7 @@ def main():
     p.add_argument("--retriever", choices=["wm", "hrem", "realize"])
     for k, t in [("wm_H", int), ("wm_infill", float), ("lambda_wm_jepa", float),
                  ("lambda_wm_infill", float), ("lambda_wm_lat", float), ("lambda_wm_ptr", float),
-                 ("min_epochs", int), ("hist_budget", int), ("evidence", str), ("out_tag", str)]:
+                 ("min_epochs", int), ("hist_budget", int), ("hist_last", int), ("evidence", str), ("out_tag", str)]:
         p.add_argument("--" + k, type=t)
     a = p.parse_args()
 

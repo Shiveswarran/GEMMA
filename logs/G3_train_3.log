@@ -1,0 +1,35 @@
+20:53:50 | INFO    | gemma.zs | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+20:53:54 | INFO    | gemma.zs | loaded 228910 cached LLM embeddings
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+20:53:57 | INFO    | gemma.zs | [istanbul] 49921/435586 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:55:06 | INFO    | gemma.zs | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+20:55:07 | INFO    | gemma.zs | [istanbul] source queries=229499 val=1000 POIs=38763
+20:55:09 | INFO    | gemma.zs | [petaling_jaya] 50496/405325 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:56:10 | INFO    | gemma.zs | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+20:56:11 | INFO    | gemma.zs | [petaling_jaya] source queries=228530 val=1000 POIs=48626
+20:56:13 | INFO    | gemma.zs | [jakarta] 63150/329617 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:57:02 | INFO    | gemma.zs | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+20:57:03 | INFO    | gemma.zs | [jakarta] source queries=192163 val=1000 POIs=63387
+20:57:04 | INFO    | gemma.zs | [source] device=cuda amp=torch.float16 steps/epoch=1173 epochs=2 lr_head=0.002 lr_resid=- lr_bb=5e-05 val_every=1000 patience=99 min_epochs=2
+20:57:12 | INFO    | gemma.zs | [source] val@init: acc@1=0.1517 acc@5=0.2837 act@1=0.448  *best
+20:58:56 | INFO    | gemma.zs | [source] ep0 step 200/1173 loss=7.9960 (0.52s/step, epoch ETA 8.4 min) 
+21:00:36 | INFO    | gemma.zs | [source] ep0 step 400/1173 loss=7.5134 (0.51s/step, epoch ETA 6.6 min) 
+21:02:18 | INFO    | gemma.zs | [source] ep0 step 600/1173 loss=7.4621 (0.51s/step, epoch ETA 4.9 min) 
+21:03:55 | INFO    | gemma.zs | [source] ep0 step 800/1173 loss=7.3798 (0.50s/step, epoch ETA 3.1 min) 
+21:05:34 | INFO    | gemma.zs | [source] ep0 step 1000/1173 loss=7.3918 (0.50s/step, epoch ETA 1.4 min) 
+21:05:41 | INFO    | gemma.zs | [source] val@ep0-step1000: acc@1=0.1783 acc@5=0.3250 act@1=0.457  *best
+21:07:06 | INFO    | gemma.zs | [source] ft epoch 0 loss=7.5091 (594s) | ret[hist=0.79 prefix=0.36 is_last=-1.33 ptrans=1.00 tod=0.48 dow=0.33 rec=1.14 geo=0.47 lptr=0.22] exp[hier=0.44 geo=1.07 anchor=0.55 covis=1.00 pop=0.30 hour=0.30] gate[nov=0.79 logS=-0.28 pref=0.84] tau=11.9
+21:07:13 | INFO    | gemma.zs | [source] val@ep0-end: acc@1=0.1773 acc@5=0.3277 act@1=0.466
+21:08:52 | INFO    | gemma.zs | [source] ep1 step 200/1173 loss=7.2522 (0.50s/step, epoch ETA 8.0 min) 
+21:10:33 | INFO    | gemma.zs | [source] ep1 step 400/1173 loss=7.2983 (0.50s/step, epoch ETA 6.4 min) 
+21:12:12 | INFO    | gemma.zs | [source] ep1 step 600/1173 loss=7.1899 (0.50s/step, epoch ETA 4.8 min) 
+21:13:56 | INFO    | gemma.zs | [source] ep1 step 800/1173 loss=7.3119 (0.50s/step, epoch ETA 3.1 min) 
+21:15:35 | INFO    | gemma.zs | [source] ep1 step 1000/1173 loss=7.2819 (0.50s/step, epoch ETA 1.4 min) 
+21:15:41 | INFO    | gemma.zs | [source] val@ep1-step1000: acc@1=0.1777 acc@5=0.3320 act@1=0.465
+21:17:00 | INFO    | gemma.zs | [source] ft epoch 1 loss=7.2715 (586s) | ret[hist=0.76 prefix=0.35 is_last=-1.33 ptrans=1.01 tod=0.48 dow=0.34 rec=1.13 geo=0.47 lptr=0.21] exp[hier=0.44 geo=1.07 anchor=0.55 covis=1.00 pop=0.30 hour=0.30] gate[nov=0.80 logS=-0.27 pref=0.86] tau=12.8
+21:17:06 | INFO    | gemma.zs | [source] val@ep1-end: acc@1=0.1773 acc@5=0.3317 act@1=0.463
+21:17:06 | INFO    | gemma.zs | [source] restored best checkpoint (val acc@1=0.1783)
+21:17:06 | INFO    | gemma.zs | saved -> runs/scale_3/zs_hrem.pt

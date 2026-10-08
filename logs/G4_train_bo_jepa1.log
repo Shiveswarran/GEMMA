@@ -1,0 +1,19 @@
+01:44:52 | INFO    | gemma.zs | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+01:44:56 | INFO    | gemma.zs | loaded 228910 cached LLM embeddings
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+01:44:59 | INFO    | gemma.zs | [istanbul] 49921/435586 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+01:46:07 | INFO    | gemma.zs | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+01:46:09 | INFO    | gemma.zs | [istanbul] source queries=229499 val=1000 POIs=38763
+01:46:10 | INFO    | gemma.zs | [source] device=cuda amp=torch.float16 steps/epoch=391 epochs=2 lr_head=0.002 lr_resid=- lr_bb=5e-05 val_every=1000 patience=99 min_epochs=2
+01:46:12 | INFO    | gemma.zs | [source] val@init: acc@1=0.0620 acc@5=0.2830 act@1=0.441  *best
+01:47:14 | INFO    | gemma.zs | [source] ep0 step 200/391 loss=7.5636 (0.31s/step, epoch ETA 1.0 min) 
+01:48:13 | INFO    | gemma.zs | [source] ft epoch 0 loss=7.4106 (121s) | ret[hist=1.00 prefix=0.50 is_last=-1.00 ptrans=1.00 tod=0.50 dow=0.30 rec=1.00 geo=0.48 lptr=0.39] exp[hier=0.45 geo=1.07 anchor=0.50 covis=1.00 pop=0.30 hour=0.30] gate[nov=1.00 logS=-0.30 pref=0.50] tau=12.9
+01:48:15 | INFO    | gemma.zs | [source] val@ep0-end: acc@1=0.1200 acc@5=0.3180 act@1=0.471  *best
+01:49:17 | INFO    | gemma.zs | [source] ep1 step 200/391 loss=7.1782 (0.31s/step, epoch ETA 1.0 min) 
+01:50:16 | INFO    | gemma.zs | [source] ft epoch 1 loss=7.1846 (122s) | ret[hist=1.00 prefix=0.50 is_last=-1.00 ptrans=1.00 tod=0.50 dow=0.30 rec=1.00 geo=0.47 lptr=0.38] exp[hier=0.44 geo=1.06 anchor=0.50 covis=1.00 pop=0.30 hour=0.30] gate[nov=1.00 logS=-0.30 pref=0.50] tau=13.3
+01:50:18 | INFO    | gemma.zs | [source] val@ep1-end: acc@1=0.1270 acc@5=0.3180 act@1=0.467  *best
+01:50:18 | INFO    | gemma.zs | [source] restored best checkpoint (val acc@1=0.1270)
+01:50:18 | INFO    | gemma.zs | saved -> runs/bo_jepa1/zs_hrem.pt

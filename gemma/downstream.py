@@ -186,15 +186,19 @@ def run_city(cfg, run_dir, fsq, enc, city_name, shots, protocols, logger, zs=Non
 
 
 def summary_table(rows, logger):
-    logger.info("=== GEMMA v5 SUMMARY (A@1 / N@5; ref = STHGCN for few/full, LLM-Move for zero-shot) ===")
-    logger.info(f"{'city':>14} {'shot':<9} {'full-vocab':>15} {'LLM-200':>15} {'ref':>13} "
-                f"{'next-act':>8}")
+    """LLM column = gt+rand100, the candidate protocol LLM-Move uses in Massive-STEPS;
+    gt+near100 (harder, our stress test) is shown next to it."""
+    logger.info("=== GEMMA SUMMARY (A@1 / N@5; ref = STHGCN for few/full, best LLM-Move for zero-shot) ===")
+    logger.info(f"{'city':>14} {'shot':<9} {'full-vocab':>13} {'LLM(rand100)':>13} {'LLM(near100)':>13} "
+                f"{'ref':>11} {'next-act':>8}")
     for m in rows:
-        fv = f"{m.get('acc@1', float('nan')):.3f}/{m.get('ndcg@5', float('nan')):.3f}"
-        lp = f"{m.get('llm_acc@1', float('nan')):.3f}/{m.get('llm_ndcg@5', float('nan')):.3f}"
+        g = lambda k: m.get(k, float("nan"))
+        fv = f"{g('acc@1'):.3f}/{g('ndcg@5'):.3f}"
+        lr = f"{g('llm_gtrand100_acc@1'):.3f}/{g('llm_gtrand100_ndcg@5'):.3f}"
+        ln = f"{g('llm_acc@1'):.3f}/{g('llm_ndcg@5'):.3f}"
         ref = (ZS if m["shot"] == "zero_shot" else SUP).get(m["city"], (float("nan"),) * 2)
-        logger.info(f"{m['city']:>14} {m['shot']:<9} {fv:>15} {lp:>15} "
-                    f"{ref[0]:.3f}/{ref[1]:.3f} {m.get('act@1', float('nan')):>8.3f}"
+        logger.info(f"{m['city']:>14} {m['shot']:<9} {fv:>13} {lr:>13} {ln:>13} "
+                    f"{ref[0]:.3f}/{ref[1]:.3f} {g('act@1'):>8.3f}"
                     f"{'  *source' if m.get('source_city') else ''}")
 
 

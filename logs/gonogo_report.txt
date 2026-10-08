@@ -1,0 +1,48 @@
+
+G0  zero-shot, held-out cities: tokyo beijing shanghai palembang melbourne sydney tangerang moscow bandung
+  hand evidence (no learning)                                micro Acc@1=0.1768 macro=0.1834 cities=9 n=28644
+  v6 HREM (JEPA-v4 + source)                                 micro Acc@1=0.1999 macro=0.2053 cities=9 n=28644
+  HREM, no JEPA (random init + source)                       micro Acc@1=0.1995 macro=0.2033 cities=9 n=28644
+  source training vs hand evidence                           A=0.1999 B=0.1768 d=+0.0231* CI[+0.0200,+0.0263] macro-d=+0.0219 cities+=9/9 n=28644
+  JEPA-v4 init vs random init (zero-shot)                    A=0.1999 B=0.1995 d=+0.0004  CI[-0.0015,+0.0023] macro-d=+0.0020 cities+=5/9 n=28644
+
+G1  value of target labels (cities: tokyo shanghai melbourne sydney moscow)
+  in-city full  vs transfer zero-shot                        A=0.1938 B=0.1879 d=+0.0059* CI[+0.0018,+0.0103] macro-d=+0.0101 cities+=4/5 n=13325
+  transfer full vs transfer zero-shot                        A=0.1961 B=0.1879 d=+0.0082* CI[+0.0050,+0.0114] macro-d=+0.0078 cities+=5/5 n=13325
+  transfer 5%   vs in-city 5%                                A=0.1875 B=0.1828 d=+0.0047* CI[+0.0004,+0.0089] macro-d=+0.0043 cities+=4/5 n=13325
+  transfer full vs in-city full                              A=0.1961 B=0.1938 d=+0.0023  CI[-0.0016,+0.0060] macro-d=-0.0023 cities+=2/5 n=13325
+
+G2  cold start (history budget k past trajectories), zero-shot
+  k=0: v6 HREM                                               micro Acc@1=0.0251 macro=0.0267 cities=9 n=28644
+  k=0: JEPA init vs random init                              A=0.0251 B=0.0270 d=-0.0020* CI[-0.0032,-0.0007] macro-d=-0.0048 cities+=4/9 n=28644
+  k=0: source-trained vs hand evidence                       A=0.0251 B=0.0224 d=+0.0026* CI[+0.0014,+0.0039] macro-d=+0.0034 cities+=8/9 n=28644
+  k=1: v6 HREM                                               micro Acc@1=0.1032 macro=0.1017 cities=9 n=28644
+  k=1: JEPA init vs random init                              A=0.1032 B=0.1017 d=+0.0015  CI[-0.0005,+0.0036] macro-d=-0.0013 cities+=4/9 n=28644
+  k=1: source-trained vs hand evidence                       A=0.1032 B=0.0906 d=+0.0126* CI[+0.0098,+0.0153] macro-d=+0.0073 cities+=6/9 n=28644
+  k=3: v6 HREM                                               micro Acc@1=0.1456 macro=0.1455 cities=9 n=28644
+  k=3: JEPA init vs random init                              A=0.1456 B=0.1421 d=+0.0035* CI[+0.0016,+0.0055] macro-d=+0.0006 cities+=6/9 n=28644
+  k=3: source-trained vs hand evidence                       A=0.1456 B=0.1239 d=+0.0217* CI[+0.0187,+0.0248] macro-d=+0.0089 cities+=7/9 n=28644
+
+G3  source scaling (zero-shot, with evidence)
+  1 source cities                                            micro Acc@1=0.1866 macro=0.1794 cities=9 n=28644
+  3 source cities                                            micro Acc@1=0.1949 macro=0.1927 cities=9 n=28644
+  6 source cities                                            micro Acc@1=0.1982 macro=0.2021 cities=9 n=28644
+  3 vs 1 source cities                                       A=0.1949 B=0.1866 d=+0.0082* CI[+0.0058,+0.0106] macro-d=+0.0133 cities+=8/9 n=28644
+  6 vs 1 source cities                                       A=0.1982 B=0.1866 d=+0.0116* CI[+0.0093,+0.0139] macro-d=+0.0226 cities+=9/9 n=28644
+
+G4  backbone only (NO hand evidence), zero-shot
+  JEPA init + source                                         micro Acc@1=0.1404 macro=0.1282 cities=9 n=28644
+  random init + source                                       micro Acc@1=0.1530 macro=0.1391 cities=9 n=28644
+  GEMMA-G generative (random init)                           micro Acc@1=0.1462 macro=0.1319 cities=9 n=28644
+  JEPA init + 1 source city                                  micro Acc@1=0.1117 macro=0.1012 cities=9 n=28644
+  JEPA init vs random init                                   A=0.1404 B=0.1530 d=-0.0126* CI[-0.0153,-0.0099] macro-d=-0.0109 cities+=1/9 n=28644
+  generative (GEMMA-G) vs random-init supervised             A=0.1462 B=0.1530 d=-0.0068* CI[-0.0090,-0.0045] macro-d=-0.0073 cities+=2/9 n=28644
+  6 vs 1 source cities (backbone only)                       A=0.1404 B=0.1117 d=+0.0287* CI[+0.0256,+0.0319] macro-d=+0.0270 cities+=9/9 n=28644
+  best backbone-only vs v6 HREM (with evidence)              A=0.1530 B=0.1999 d=-0.0469* CI[-0.0504,-0.0433] macro-d=-0.0661 cities+=0/9 n=28644
+
+================ DECISIONS (pre-registered) ================
+D1 label value = +0.006: SATURATED -> full-vocab Acc@1 cannot show a big pretraining gain; centre the paper on zero/few-shot, cold start and new places
+D2 pretraining gain at cold start = -0.002 (CI -0.003,-0.001): NO detectable transferable knowledge in the backbone
+D3 scaling 1->6 cities: with evidence 0.0116, backbone-only 0.0287: RISING -> build the STD-scale corpus (~30M check-ins) and pretrain on it
+D4 best backbone-only minus v6 HREM = -0.047: backbone is NOT the carrier -> present GEMMA as a structured return-explore model with a pretrained encoder, not as a backbone-first foundation model
+    generative (GEMMA-G) vs supervised, backbone only: -0.007 -> no evidence that the objective matters at this data scale

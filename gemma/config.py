@@ -96,6 +96,8 @@ class Config:
     use_history: bool = True        # ablation: False = v4-style prefix-only context
     hist_budget: int = -1             # cold-start simulation: only the k most recent PAST
                                       # trajectories of the user exist (-1 = all, 0 = none)
+    hist_last: int = -1               # keep only the user's last k observed trajectories
+                                      # (LLM-protocol parity: Massive-STEPS uses 15)
     evidence: str = "full"            # full | none.  none = NO hand-built user/city statistics:
                                       # the backbone must find returns (latent pointer) and new
                                       # places (latent match) itself; only distance-to-current-

@@ -157,6 +157,9 @@ class CityIndex:
         hs = [j for j in self.user_trails.get(tr["user_id"], []) if j != ti]
         if self.cfg.causal_history:
             hs = [j for j in hs if self.trails[j]["t0"] < tr["t0"]]
+        kl = getattr(self.cfg, "hist_last", -1)
+        if kl is not None and kl >= 0:    # LLM-protocol parity: only the user's last k observed
+            hs = hs[-kl:] if kl > 0 else []   # trajectories (Massive-STEPS: 15), not causal
         k = getattr(self.cfg, "hist_budget", -1)
         if k is not None and k >= 0:      # cold start: the k most recent trajectories BEFORE the query
             hs = sorted((j for j in hs if self.trails[j]["t0"] < tr["t0"]),
@@ -590,7 +593,8 @@ def evaluate_llm_protocol(bb, head, ci, test_trails, cfg, n_users=200, seeds=(0,
     candidate list, not the city vocabulary:
       near100    : 100 POIs nearest the last check-in (truth may be missing)
       gtnear100  : same, ground truth injected (replaces the farthest)
-      gtrand100  : ground truth + 100 random POIs (original LLM-Move protocol)"""
+      gtrand100  : ground truth + 100 random POIs = the Massive-STEPS LLM-Move protocol
+                   (src/prompts.py: random.sample(all POIs, 100) + target, sorted by distance)"""
     bb.eval(); head.eval()
     by_user = defaultdict(list)
     for ti in test_trails:
