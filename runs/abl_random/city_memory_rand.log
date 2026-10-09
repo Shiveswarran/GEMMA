@@ -1,0 +1,48 @@
+16:28:51 | INFO    | gemma.mem | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=<unset> | GPUs visible to torch=1
+16:28:55 | INFO    | gemma.mem | loaded 228910 cached LLM embeddings
+16:28:55 | INFO    | gemma.mem | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:28:57 | INFO    | gemma.mem | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+16:29:04 | INFO    | gemma.mem | [tokyo] memory=5855 val=549 test=1097 POIs=2982 (10s)
+16:29:04 | INFO    | gemma.mem | [tokyo] Acc@1/NDCG@5  hrem=0.2215/0.3144 | +markov=0.2315/0.3312(b=0.25,t=1.0; alone 0.1285) | +proto=0.2279/0.3232(b=1.0,t=10.0; alone 0.0784) | +knn=0.2361/0.3211(b=0.5,t=50.0; alone 0.1805) || STHGCN 0.250/0.350
+16:29:04 | INFO    | gemma.mem | [beijing] 100/1470 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:29:05 | INFO    | gemma.mem | [beijing] loaded semantic codes (4 levels) for 498 POIs
+16:29:06 | INFO    | gemma.mem | [beijing] memory=644 val=58 test=115 POIs=598 (1s)
+16:29:06 | INFO    | gemma.mem | [beijing] Acc@1/NDCG@5  hrem=0.2957/0.3974 | +markov=0.3130/0.4146(b=0.25,t=1.0; alone 0.2609) | +proto=0.3043/0.3929(b=0.25,t=10.0; alone 0.2000) | +knn=0.3217/0.3966(b=0.5,t=10.0; alone 0.2870) || STHGCN 0.453/0.552
+16:29:06 | INFO    | gemma.mem | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:29:08 | INFO    | gemma.mem | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+16:29:15 | INFO    | gemma.mem | [shanghai] memory=4831 val=364 test=728 POIs=3610 (9s)
+16:29:15 | INFO    | gemma.mem | [shanghai] Acc@1/NDCG@5  hrem=0.1305/0.1982 | +markov=0.1415/0.2078(b=0.25,t=1.0; alone 0.0783) | +proto=0.1305/0.1982(b=0.0,t=10.0; alone 0.0440) | +knn=0.1332/0.1802(b=2.0,t=20.0; alone 0.1071) || STHGCN 0.193/0.264
+16:29:15 | INFO    | gemma.mem | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:29:17 | INFO    | gemma.mem | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+16:29:29 | INFO    | gemma.mem | [palembang] memory=6843 val=470 test=940 POIs=4117 (14s)
+16:29:29 | INFO    | gemma.mem | [palembang] Acc@1/NDCG@5  hrem=0.2106/0.2834 | +markov=0.2106/0.2834(b=0.0,t=1.0; alone 0.0787) | +proto=0.2043/0.2813(b=0.25,t=10.0; alone 0.0574) | +knn=0.2106/0.2834(b=0.0,t=10.0; alone 0.1170) || STHGCN 0.246/0.341
+16:29:29 | INFO    | gemma.mem | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:29:32 | INFO    | gemma.mem | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+16:29:45 | INFO    | gemma.mem | [melbourne] memory=9915 val=787 test=1573 POIs=6901 (17s)
+16:29:46 | INFO    | gemma.mem | [melbourne] Acc@1/NDCG@5  hrem=0.1303/0.1971 | +markov=0.1182/0.1915(b=0.5,t=1.0; alone 0.0693) | +proto=0.1259/0.1946(b=0.25,t=50.0; alone 0.0572) | +knn=0.1310/0.1942(b=1.0,t=10.0; alone 0.0992) || STHGCN 0.168/0.247
+16:29:46 | INFO    | gemma.mem | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:29:50 | INFO    | gemma.mem | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+16:30:15 | INFO    | gemma.mem | [sydney] memory=13924 val=1015 test=2030 POIs=8189 (29s)
+16:30:15 | INFO    | gemma.mem | [sydney] Acc@1/NDCG@5  hrem=0.1670/0.2362 | +markov=0.1734/0.2484(b=0.25,t=1.0; alone 0.1108) | +proto=0.1601/0.2327(b=0.5,t=50.0; alone 0.0670) | +knn=0.1798/0.2396(b=2.0,t=10.0; alone 0.1394) || STHGCN 0.227/0.307
+16:30:16 | INFO    | gemma.mem | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:30:23 | INFO    | gemma.mem | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+16:31:00 | INFO    | gemma.mem | [tangerang] memory=20897 val=1599 test=3197 POIs=9975 (44s)
+16:31:00 | INFO    | gemma.mem | [tangerang] Acc@1/NDCG@5  hrem=0.2812/0.3771 | +markov=0.2812/0.3771(b=0.0,t=1.0; alone 0.1489) | +proto=0.2812/0.3771(b=0.0,t=10.0; alone 0.0741) | +knn=0.2812/0.3771(b=0.0,t=10.0; alone 0.1320) || STHGCN 0.293/0.400
+16:31:01 | INFO    | gemma.mem | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:31:18 | INFO    | gemma.mem | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+16:32:15 | INFO    | gemma.mem | [moscow] memory=46474 val=2000 test=7897 POIs=13994 (75s)
+16:32:19 | INFO    | gemma.mem | [moscow] Acc@1/NDCG@5  hrem=0.2048/0.2922 | +markov=0.2048/0.2922(b=0.0,t=1.0; alone 0.1026) | +proto=0.2087/0.2963(b=0.25,t=10.0; alone 0.0803) | +knn=0.2005/0.2783(b=0.5,t=20.0; alone 0.1412) || STHGCN 0.223/0.308
+16:32:19 | INFO    | gemma.mem | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:32:44 | INFO    | gemma.mem | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+16:34:59 | INFO    | gemma.mem | [bandung] memory=74326 val=2000 test=11067 POIs=26559 (160s)
+16:35:05 | INFO    | gemma.mem | [bandung] Acc@1/NDCG@5  hrem=0.1883/0.2631 | +markov=0.1883/0.2631(b=0.0,t=1.0; alone 0.0886) | +proto=0.1902/0.2663(b=0.25,t=10.0; alone 0.0400) | +knn=0.1883/0.2631(b=0.0,t=10.0; alone 0.0797) || STHGCN 0.219/0.302
+16:35:05 | INFO    | gemma.mem | === SUMMARY Acc@1 (test)  city | hrem | +markov | +proto | +knn | STHGCN
+16:35:05 | INFO    | gemma.mem |        tokyo | 0.222 | 0.232 | 0.228 | 0.236 | 0.250
+16:35:05 | INFO    | gemma.mem |      beijing | 0.296 | 0.313 | 0.304 | 0.322 | 0.453
+16:35:05 | INFO    | gemma.mem |     shanghai | 0.130 | 0.141 | 0.130 | 0.133 | 0.193
+16:35:05 | INFO    | gemma.mem |    palembang | 0.211 | 0.211 | 0.204 | 0.211 | 0.246
+16:35:05 | INFO    | gemma.mem |    melbourne | 0.130 | 0.118 | 0.126 | 0.131 | 0.168
+16:35:05 | INFO    | gemma.mem |       sydney | 0.167 | 0.173 | 0.160 | 0.180 | 0.227
+16:35:05 | INFO    | gemma.mem |    tangerang | 0.281 | 0.281 | 0.281 | 0.281 | 0.293
+16:35:05 | INFO    | gemma.mem |       moscow | 0.205 | 0.205 | 0.209 | 0.200 | 0.223
+16:35:05 | INFO    | gemma.mem |      bandung | 0.188 | 0.188 | 0.190 | 0.188 | 0.219

@@ -41,7 +41,9 @@ def main():
     p.add_argument("--retriever", choices=["wm", "hrem", "realize"])
     for k, t in [("wm_H", int), ("wm_infill", float), ("lambda_wm_jepa", float),
                  ("lambda_wm_infill", float), ("lambda_wm_lat", float), ("lambda_wm_ptr", float),
-                 ("min_epochs", int), ("hist_budget", int), ("hist_last", int), ("evidence", str), ("out_tag", str)]:
+                 ("min_epochs", int), ("hist_budget", int), ("hist_last", int), ("evidence", str), ("out_tag", str),
+                 ("eval_protocol", str), ("eval_split", str), ("lambda_wm_motif", float),
+                 ("lambda_wm_dt", float)]:
         p.add_argument("--" + k, type=t)
     a = p.parse_args()
 
@@ -74,7 +76,7 @@ def main():
         for k, v in (zs.get("cfg_overrides") or {}).items():
             # same objective at fine-tune time as at pretraining (ablations stay clean),
             # unless overridden on the command line
-            if (k.startswith(("wm_", "lambda_wm_")) or k == "evidence") and getattr(a, k, None) is None:
+            if (k.startswith(("wm_", "lambda_wm_")) or k in ("evidence", "ema_decay")) and getattr(a, k, None) is None:
                 setattr(cfg, k, v)
     logger.info(f"source-city realizer: {zs_path if zs else 'NONE'}")
     logger.info(f"evidence={getattr(cfg, 'evidence', 'full')} hist_budget={getattr(cfg, 'hist_budget', -1)} tag={cfg.out_tag!r}")

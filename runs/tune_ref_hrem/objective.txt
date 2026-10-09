@@ -1,0 +1,2 @@
+reference v6-HREM on kuwait_city (validation): acc@1=0.1899 ndcg@5=0.2848
+REFERENCE OBJECTIVE = 0.2611  (tuning trials must exceed this)

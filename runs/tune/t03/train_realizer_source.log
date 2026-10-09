@@ -1,0 +1,33 @@
+20:32:50 | INFO    | gemma.zs | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=<unset> | GPUs visible to torch=1
+20:32:54 | INFO    | gemma.zs | loaded 228910 cached LLM embeddings
+20:32:56 | INFO    | gemma.zs | [istanbul] 49921/435586 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:34:04 | INFO    | gemma.zs | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+20:34:06 | INFO    | gemma.zs | [istanbul] source queries=229499 val=1000 POIs=38763
+20:34:08 | INFO    | gemma.zs | [petaling_jaya] 50496/405325 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:35:08 | INFO    | gemma.zs | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+20:35:10 | INFO    | gemma.zs | [petaling_jaya] source queries=228530 val=1000 POIs=48626
+20:35:11 | INFO    | gemma.zs | [jakarta] 63150/329617 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:36:00 | INFO    | gemma.zs | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+20:36:01 | INFO    | gemma.zs | [jakarta] source queries=192163 val=1000 POIs=63387
+20:36:02 | INFO    | gemma.zs | [new_york] 15823/217941 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:36:34 | INFO    | gemma.zs | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+20:36:35 | INFO    | gemma.zs | [new_york] source queries=126312 val=1000 POIs=41591
+20:36:36 | INFO    | gemma.zs | [sao_paulo] 15075/205396 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:37:07 | INFO    | gemma.zs | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+20:37:08 | INFO    | gemma.zs | [sao_paulo] source queries=116989 val=1000 POIs=31692
+20:37:09 | INFO    | gemma.zs | [source] device=cuda amp=torch.float16 steps/epoch=980 epochs=2 lr_head=0.00156 lr_resid=- lr_bb=6.77e-05 val_every=1000 patience=99 min_epochs=2
+20:37:20 | INFO    | gemma.zs | [source] val@init: acc@1=0.1672 acc@5=0.3348 act@1=0.421  *best
+20:39:00 | INFO    | gemma.zs | [source] ep0 step 200/980 loss=25.9036 (0.50s/step, epoch ETA 6.5 min)  jepa=0.623 infill=0.696 probe=8.591 reg=0.286 lat=9.885 ptr=2.300 motif=3.337 dt=0.243
+20:40:39 | INFO    | gemma.zs | [source] ep0 step 400/980 loss=25.1383 (0.50s/step, epoch ETA 4.8 min)  jepa=0.737 infill=0.874 probe=9.166 reg=0.197 lat=10.098 ptr=2.872 motif=3.972 dt=0.238
+20:42:22 | INFO    | gemma.zs | [source] ep0 step 600/980 loss=25.1511 (0.50s/step, epoch ETA 3.2 min)  jepa=0.798 infill=0.983 probe=9.208 reg=0.169 lat=10.175 ptr=2.846 motif=3.759 dt=0.201
+20:44:06 | INFO    | gemma.zs | [source] ep0 step 800/980 loss=25.1549 (0.51s/step, epoch ETA 1.5 min)  jepa=0.820 infill=1.033 probe=9.210 reg=0.159 lat=10.196 ptr=2.906 motif=3.720 dt=0.221
+20:45:38 | INFO    | gemma.zs | [source] ft epoch 0 loss=25.2784 (498s) | wm[H=1 flat=False jepa=0.830 infill=1.027 probe=8.806 reg=0.134 lat=10.286 ptr=2.740 motif=3.665 dt=0.178] ret[hist=0.94 prefix=0.45 is_last=-1.17 ptrans=1.03 tod=0.50 dow=0.32 rec=1.05 geo=0.51 lptr=0.45] exp[hier=0.42 geo=1.13 anchor=0.52 covis=1.00 pop=0.30 hour=0.30] gate[nov=0.82 logS=-0.29 pref=0.81] tau=12.6
+20:45:49 | INFO    | gemma.zs | [source] val@ep0-end: acc@1=0.1764 acc@5=0.3524 act@1=0.461  *best
+20:47:28 | INFO    | gemma.zs | [source] ep1 step 200/980 loss=24.7131 (0.49s/step, epoch ETA 6.4 min)  jepa=0.818 infill=0.978 probe=8.271 reg=0.170 lat=9.268 ptr=2.263 motif=3.858 dt=0.232
+20:49:10 | INFO    | gemma.zs | [source] ep1 step 400/980 loss=24.6725 (0.50s/step, epoch ETA 4.9 min)  jepa=0.787 infill=0.960 probe=8.091 reg=0.181 lat=9.353 ptr=2.395 motif=3.647 dt=0.219
+20:50:53 | INFO    | gemma.zs | [source] ep1 step 600/980 loss=24.6198 (0.51s/step, epoch ETA 3.2 min)  jepa=0.769 infill=0.949 probe=8.159 reg=0.155 lat=9.333 ptr=2.431 motif=3.879 dt=0.223
+20:52:36 | INFO    | gemma.zs | [source] ep1 step 800/980 loss=24.6445 (0.51s/step, epoch ETA 1.5 min)  jepa=0.821 infill=0.992 probe=8.353 reg=0.142 lat=9.854 ptr=2.672 motif=3.755 dt=0.218
+20:54:09 | INFO    | gemma.zs | [source] ft epoch 1 loss=24.6669 (500s) | wm[H=1 flat=False jepa=0.812 infill=0.992 probe=8.601 reg=0.139 lat=9.688 ptr=2.507 motif=3.709 dt=0.188] ret[hist=0.94 prefix=0.46 is_last=-1.17 ptrans=1.03 tod=0.50 dow=0.32 rec=1.05 geo=0.51 lptr=0.46] exp[hier=0.41 geo=1.14 anchor=0.52 covis=1.00 pop=0.30 hour=0.30] gate[nov=0.80 logS=-0.30 pref=0.84] tau=13.4
+20:54:19 | INFO    | gemma.zs | [source] val@ep1-end: acc@1=0.1846 acc@5=0.3548 act@1=0.459  *best
+20:54:19 | INFO    | gemma.zs | [source] restored best checkpoint (val acc@1=0.1846)
+20:54:19 | INFO    | gemma.zs | saved -> runs/tune/t03/zs_wm.pt

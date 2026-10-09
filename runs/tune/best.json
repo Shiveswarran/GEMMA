@@ -1,0 +1,49 @@
+{
+  "hp": {
+    "init": "jepa_v4",
+    "lr_backbone": 0.0002266207089295126,
+    "lr_head": 0.00041238627819343627,
+    "lambda_wm_jepa": 1.0,
+    "lambda_wm_ptr": 2.0,
+    "lambda_wm_lat": 0.5,
+    "lambda_wm_motif": 0.0,
+    "lambda_wm_dt": 0.3,
+    "wm_H": 3,
+    "wm_infill": 0.0,
+    "ema_decay": 0.999
+  },
+  "flags": [
+    "--lr_backbone",
+    "0.000227",
+    "--lr_head",
+    "0.000412",
+    "--lambda_wm_jepa",
+    "1.0",
+    "--lambda_wm_infill",
+    "0.5",
+    "--lambda_wm_ptr",
+    "2.0",
+    "--lambda_wm_lat",
+    "0.5",
+    "--lambda_wm_motif",
+    "0.0",
+    "--lambda_wm_dt",
+    "0.3",
+    "--wm_H",
+    "3",
+    "--wm_infill",
+    "0.0",
+    "--ema_decay",
+    "0.999"
+  ],
+  "objective": 0.26722817963027146,
+  "trial": 2,
+  "dev": {
+    "kuwait_city": {
+      "acc@1": 0.19527433829376348,
+      "ndcg@5": 0.28781536534603197,
+      "act@1": 0.5038055208451664,
+      "n": 8803
+    }
+  }
+}

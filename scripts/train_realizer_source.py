@@ -19,7 +19,7 @@ from gemma.data import build_city_data
 from gemma.downstream import load_backbone, load_config, split_ids
 from gemma.fsq import FSQTaxonomy
 from gemma.poi_encoder import POIEncoder
-from gemma.realize import CityIndex, finetune, new_head
+from gemma.realize import CityIndex, finetune, new_head, sthgcn_filter
 from gemma.utils import check_device, get_logger, set_seed
 
 
@@ -40,7 +40,9 @@ def main():
     for k, t in [("wm_H", int), ("wm_infill", float), ("wm_pred_layers", int),
                  ("lambda_wm_jepa", float), ("lambda_wm_infill", float), ("lambda_wm_probe", float),
                  ("lambda_wm_reg", float), ("lambda_wm_lat", float), ("lambda_wm_ptr", float),
-                 ("seed", int), ("patience", int), ("min_epochs", int), ("log_every", int), ("evidence", str)]:
+                 ("seed", int), ("patience", int), ("min_epochs", int), ("log_every", int), ("evidence", str),
+                 ("lambda_wm_motif", float), ("lambda_wm_dt", float), ("ema_decay", float),
+                 ("eval_protocol", str)]:
         p.add_argument("--" + k, type=t)
     p.add_argument("--wm_flat", action="store_true")
     p.add_argument("--val_every", type=int, default=1000)
@@ -56,7 +58,8 @@ def main():
     if a.retriever: cfg.retriever = a.retriever
     for k in ("wm_H", "wm_infill", "wm_pred_layers", "lambda_wm_jepa", "lambda_wm_infill",
               "lambda_wm_probe", "lambda_wm_reg", "lambda_wm_lat", "lambda_wm_ptr", "seed",
-              "patience", "min_epochs", "log_every", "evidence"):
+              "patience", "min_epochs", "log_every", "evidence", "lambda_wm_motif", "lambda_wm_dt",
+              "ema_decay", "eval_protocol"):
         if getattr(a, k) is not None:
             setattr(cfg, k, getattr(a, k))
     if a.wm_flat: cfg.wm_flat = True
@@ -72,6 +75,8 @@ def main():
         q = ci.queries(ids["train"], cfg.ft_all_positions)
         rng = np.random.RandomState(cfg.seed)
         qv = ci.queries(ids["validation"], False)
+        if getattr(cfg, "eval_protocol", "sthgcn") == "sthgcn":
+            qv = sthgcn_filter(ci, qv, ids["train"])
         qv = [qv[i] for i in rng.permutation(len(qv))[:a.val_per_city]]
         jobs.append((ci, q)); vals.append((ci, qv))
         logger.info(f"[{c}] source queries={len(q)} val={len(qv)} POIs={ci.P}")
@@ -87,7 +92,8 @@ def main():
                 "cfg_overrides": {k: getattr(cfg, k) for k in (
                     "wm_H", "wm_flat", "wm_infill", "wm_pred_layers", "lambda_wm_jepa",
                     "lambda_wm_infill", "lambda_wm_probe", "lambda_wm_reg", "lambda_wm_lat",
-                    "lambda_wm_ptr", "retriever", "evidence")}}, out)
+                    "lambda_wm_ptr", "lambda_wm_motif", "lambda_wm_dt", "ema_decay", "retriever",
+                    "evidence")}}, out)
     logger.info(f"saved -> {out}")
 
 

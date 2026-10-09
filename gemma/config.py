@@ -90,6 +90,14 @@ class Config:
     lambda_wm_lat: float = 0.5       # latent-only explore retrieval (world model -> new place)
     lambda_wm_ptr: float = 0.3       # latent pointer into history (world model -> return)
     min_epochs: int = 0               # no early stopping before this many epochs
+    lambda_wm_motif: float = 0.3     # trajectory motif prediction (repeat pattern + activity chain)
+    lambda_wm_dt: float = 0.1        # time-to-next-check-in (log hours) regression
+    n_motif_buckets: int = 256        # hashed repeat-pattern motifs (ABA, ABCA, ...)
+    n_amotif_buckets: int = 512       # hashed activity-chain motifs
+    eval_protocol: str = "sthgcn"     # sthgcn: score only targets whose POI and user occur in the
+                                      # TRAIN split (Massive-STEPS STHGCN remove_unseen_user_poi);
+                                      # all: every test trajectory
+    eval_split: str = "test"          # test | validation (validation = model/HP selection only)
     hist_trails: int = 15             # user's most recent history trajectories in context
     hist_max_tokens: int = 200        # token cap for [history SEP ... SEP prefix]
     random_backbone: bool = False   # ablation: untrained backbone of identical architecture

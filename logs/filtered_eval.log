@@ -1,0 +1,35 @@
+16:57:56 | INFO    | gemma.filt | loaded 228910 cached LLM embeddings
+16:57:56 | INFO    | gemma.filt | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:57:58 | INFO    | gemma.filt | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+16:57:58 | INFO    | gemma.filt | [tokyo] test=1097 kept=946 (unseen-target 13.8%) | GEMMA-zero: all 0.231/0.321 -> seen 0.267/0.373 | hand: all 0.221/0.315 -> seen 0.256/0.365 | GEMMA+knn: all 0.236/0.330 -> seen 0.274/0.382 | GEMMA+markov: all 0.237/0.335 -> seen 0.275/0.389 | transfer-full: all 0.237/0.336 -> seen 0.273/0.388 | incity-full: all 0.244/0.341 -> seen 0.282/0.394 || STHGCN 0.250/0.350
+16:57:58 | INFO    | gemma.filt | [beijing] 100/1470 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:57:58 | INFO    | gemma.filt | [beijing] loaded semantic codes (4 levels) for 498 POIs
+16:57:58 | INFO    | gemma.filt | [beijing] test=115 kept=88 (unseen-target 23.5%) | GEMMA-zero: all 0.304/0.412 -> seen 0.398/0.539 | hand: all 0.278/0.416 -> seen 0.352/0.516 | GEMMA+knn: all 0.313/0.397 -> seen 0.409/0.519 | GEMMA+markov: all 0.322/0.417 -> seen 0.420/0.545 | transfer-full: missing | incity-full: missing || STHGCN 0.453/0.552
+16:57:58 | INFO    | gemma.filt | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:58:00 | INFO    | gemma.filt | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+16:58:00 | INFO    | gemma.filt | [shanghai] test=728 kept=530 (unseen-target 27.2%) | GEMMA-zero: all 0.130/0.199 -> seen 0.179/0.273 | hand: all 0.110/0.176 -> seen 0.151/0.242 | GEMMA+knn: all 0.130/0.199 -> seen 0.179/0.273 | GEMMA+markov: all 0.130/0.205 -> seen 0.179/0.282 | transfer-full: all 0.136/0.208 -> seen 0.187/0.284 | incity-full: all 0.148/0.209 -> seen 0.204/0.286 || STHGCN 0.193/0.264
+16:58:00 | INFO    | gemma.filt | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:58:02 | INFO    | gemma.filt | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+16:58:02 | INFO    | gemma.filt | [palembang] test=940 kept=774 (unseen-target 17.7%) | GEMMA-zero: all 0.210/0.282 -> seen 0.255/0.343 | hand: all 0.185/0.257 -> seen 0.225/0.312 | GEMMA+knn: all 0.202/0.278 -> seen 0.245/0.338 | GEMMA+markov: all 0.210/0.282 -> seen 0.255/0.343 | transfer-full: missing | incity-full: missing || STHGCN 0.246/0.341
+16:58:02 | INFO    | gemma.filt | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:58:06 | INFO    | gemma.filt | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+16:58:06 | INFO    | gemma.filt | [melbourne] test=1573 kept=1239 (unseen-target 21.2%) | GEMMA-zero: all 0.136/0.202 -> seen 0.173/0.256 | hand: all 0.117/0.177 -> seen 0.149/0.225 | GEMMA+knn: all 0.130/0.196 -> seen 0.165/0.249 | GEMMA+markov: all 0.119/0.191 -> seen 0.151/0.242 | transfer-full: all 0.143/0.212 -> seen 0.182/0.269 | incity-full: all 0.133/0.206 -> seen 0.167/0.260 || STHGCN 0.168/0.247
+16:58:06 | INFO    | gemma.filt | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:58:11 | INFO    | gemma.filt | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+16:58:11 | INFO    | gemma.filt | [sydney] test=2030 kept=1667 (unseen-target 17.9%) | GEMMA-zero: all 0.161/0.233 -> seen 0.196/0.283 | hand: all 0.140/0.206 -> seen 0.171/0.250 | GEMMA+knn: all 0.182/0.246 -> seen 0.222/0.299 | GEMMA+markov: all 0.176/0.248 -> seen 0.215/0.301 | transfer-full: all 0.173/0.243 -> seen 0.209/0.294 | incity-full: all 0.181/0.254 -> seen 0.219/0.306 || STHGCN 0.227/0.307
+16:58:11 | INFO    | gemma.filt | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:58:18 | INFO    | gemma.filt | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+16:58:18 | INFO    | gemma.filt | [tangerang] test=3197 kept=2787 (unseen-target 12.8%) | GEMMA-zero: all 0.283/0.380 -> seen 0.324/0.436 | hand: all 0.250/0.353 -> seen 0.287/0.405 | GEMMA+knn: all 0.283/0.380 -> seen 0.324/0.436 | GEMMA+markov: all 0.283/0.380 -> seen 0.324/0.436 | transfer-full: missing | incity-full: missing || STHGCN 0.293/0.400
+16:58:19 | INFO    | gemma.filt | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:58:35 | INFO    | gemma.filt | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+16:58:35 | INFO    | gemma.filt | [moscow] test=7897 kept=7288 (unseen-target 7.7%) | GEMMA-zero: all 0.205/0.293 -> seen 0.222/0.317 | hand: all 0.190/0.279 -> seen 0.206/0.302 | GEMMA+knn: all 0.211/0.293 -> seen 0.228/0.317 | GEMMA+markov: all 0.205/0.293 -> seen 0.222/0.317 | transfer-full: all 0.212/0.304 -> seen 0.230/0.328 | incity-full: all 0.207/0.300 -> seen 0.223/0.324 || STHGCN 0.223/0.308
+16:58:36 | INFO    | gemma.filt | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+16:59:00 | INFO    | gemma.filt | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+16:59:01 | INFO    | gemma.filt | [bandung] test=11067 kept=9913 (unseen-target 10.4%) | GEMMA-zero: all 0.188/0.264 -> seen 0.210/0.295 | hand: all 0.160/0.236 -> seen 0.178/0.263 | GEMMA+knn: all 0.187/0.264 -> seen 0.208/0.295 | GEMMA+markov: all 0.188/0.264 -> seen 0.210/0.295 | transfer-full: missing | incity-full: missing || STHGCN 0.219/0.302
+16:59:01 | INFO    | gemma.filt | === macro Acc@1 over cities (all -> STHGCN-style subset) ===
+16:59:01 | INFO    | gemma.filt |     GEMMA-zero: all 0.2053 | seen-subset 0.2471 | STHGCN 0.2524 | cities above STHGCN (subset): 4/9
+16:59:01 | INFO    | gemma.filt |           hand: all 0.1834 | seen-subset 0.2193 | STHGCN 0.2524 | cities above STHGCN (subset): 1/9
+16:59:01 | INFO    | gemma.filt |      GEMMA+knn: all 0.2082 | seen-subset 0.2505 | STHGCN 0.2524 | cities above STHGCN (subset): 3/9
+16:59:01 | INFO    | gemma.filt |   GEMMA+markov: all 0.2078 | seen-subset 0.2501 | STHGCN 0.2524 | cities above STHGCN (subset): 3/9
+16:59:01 | INFO    | gemma.filt |  transfer-full: all 0.1803 | seen-subset 0.2160 | STHGCN 0.2122 | cities above STHGCN (subset): 3/5
+16:59:01 | INFO    | gemma.filt |    incity-full: all 0.1826 | seen-subset 0.2191 | STHGCN 0.2122 | cities above STHGCN (subset): 3/5

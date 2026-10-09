@@ -501,6 +501,18 @@ def _loss(bb, out, ci, cfg, head_only=False):
 
 
 # =========================================================================== #
+def sthgcn_filter(ci, qs, train_ids):
+    """Keep queries whose TARGET POI and user occur in the training split -- the test set of
+    the Massive-STEPS STHGCN fork (preprocess_fn.remove_unseen_user_poi + only_keep_last)."""
+    if not qs:
+        return qs
+    rows = np.concatenate([ci.trails[i]["rows"] for i in train_ids]) if len(train_ids) else np.zeros(0, int)
+    pois = set(np.unique(ci.row_pi[rows]).tolist())
+    users = {ci.trails[i]["user_id"] for i in train_ids}
+    return [(ti, j) for ti, j in qs
+            if int(ci.row_pi[ci.trails[ti]["rows"][j]]) in pois and ci.trails[ti]["user_id"] in users]
+
+
 def _rank_of(S, tgt, ok):
     """1-based rank of tgt under scores S (-inf = excluded); 0 where not applicable."""
     ar = torch.arange(S.size(0), device=S.device)

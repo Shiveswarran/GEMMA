@@ -94,3 +94,16 @@ summary json between runs or use a separate --run_dir copy)
   GEMMA-G (generative recipe: retrieval losses core, JEPA 0.2 auxiliary), 1 vs 6 source cities.
 New flags: `--hist_budget`, `--evidence full|none`, `--out_tag` (downstream);
 `--evidence` (source training, stored in zs_*.pt and re-applied downstream).
+
+## v9: STHGCN protocol everywhere + tuned world-model pretraining (scripts/run_final.sh)
+* Default evaluation = STHGCN protocol (`--eval_protocol sthgcn`): test/validation targets whose POI or
+  user never occurs in the TRAIN split are not scored (Massive-STEPS STHGCN fork,
+  `remove_unseen_user_poi`). `--eval_protocol all` restores the stricter view. LLM protocol unchanged.
+* New pretraining objectives (world-model head): trajectory repeat-motif + activity-chain motif
+  classification (`lambda_wm_motif`), time-to-next check-in (`lambda_wm_dt`), on top of hierarchical
+  multi-horizon JEPA, return pointer, mobility-CLIP latent match, infill, probes, regulariser.
+* `scripts/tune_pretrain.py`: leakage-free search (dev = kuwait_city VALIDATION split, pretraining
+  without the dev city); Optuna TPE if installed, else seeded random search.
+* `scripts/final_report.py`: per-city tables vs published STHGCN (z-test) + paired tests.
+* Stages: B baselines+tuning reference, T tuning, F final pretraining (SEEDS), E held-out cities,
+  S source cities full-shot, A ablations, R report.  `ONLY="B T"` etc.

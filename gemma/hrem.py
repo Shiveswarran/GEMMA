@@ -170,6 +170,7 @@ def hrem_forward(bb, head, ci, qs, train, amp_dtype, with_target=True):
                        q_in=torch.cat([z1, h_last, summ], -1),
                        act_logits_wm=bb.act_head(z1), hier_in=hier_in)
     out["z1"] = z1
+    out["key"] = torch.cat([z1, h_last, summ], -1)      # context key for city-memory retrieval
     return out
 
 

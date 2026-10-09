@@ -33,7 +33,8 @@ import torch
 from .backbone import GEMMA
 from .config import Config
 from .data import build_city_data
-from .realize import (CityIndex, evaluate, evaluate_llm_protocol, finetune, new_head)
+from .realize import (CityIndex, evaluate, evaluate_llm_protocol, finetune, new_head,
+                      sthgcn_filter)
 from .sota_ref import SUP, ZS
 from .utils import get_logger, set_seed
 
@@ -87,7 +88,9 @@ def run_city(cfg, run_dir, fsq, enc, city_name, shots, protocols, logger, zs=Non
     set_seed(cfg.seed)
     city = build_city_data(cfg, city_name, ALL_SPLITS, fsq, enc, logger, filter_users=False)
     ids = split_ids(city)
-    test_ids = ids["test"]
+    test_ids = ids[getattr(cfg, "eval_split", "test")]
+    sth = getattr(cfg, "eval_protocol", "sthgcn") == "sthgcn"
+    filt = (lambda ci_, q_: sthgcn_filter(ci_, q_, ids["train"])) if sth else (lambda ci_, q_: q_)
     logger.info(f"[{city_name}] trails train={len(ids['train'])} val={len(ids['validation'])} "
                 f"test={len(test_ids)} | POIs (all splits) = {len(city.poi_table['venue_ids'])}")
     source = city_name in cfg.pretrain_cities
@@ -119,7 +122,7 @@ def run_city(cfg, run_dir, fsq, enc, city_name, shots, protocols, logger, zs=Non
                 # (Tokyo: 19 trajectories -> val acc moves in steps of 0.05), so use up
                 # to 300 validation-split trajectories (standard practice; reported).
                 rng = np.random.RandomState(cfg.seed)
-                q_va = ci.queries(ids["validation"], False)
+                q_va = filt(ci, ci.queries(ids["validation"], False))
                 q_va = [q_va[i] for i in rng.permutation(len(q_va))[:300]]
                 val, ep = ((ci, q_va) if q_va else None), cfg.ft_epochs_few
             else:
@@ -127,7 +130,7 @@ def run_city(cfg, run_dir, fsq, enc, city_name, shots, protocols, logger, zs=Non
                 ci = CityIndex(city, observed=vis, stat=vis, cfg=cfg, device=device)
                 train_ids = ids["train"]
                 rng = np.random.RandomState(cfg.seed)
-                q_va = ci.queries(ids["validation"], False)
+                q_va = filt(ci, ci.queries(ids["validation"], False))
                 q_va = [q_va[i] for i in rng.permutation(len(q_va))[:cfg.val_queries]]
                 val, ep = ((ci, q_va) if q_va else None), cfg.ft_epochs
             head = new_head(bb, ci, cfg, device)
@@ -139,8 +142,13 @@ def run_city(cfg, run_dir, fsq, enc, city_name, shots, protocols, logger, zs=Non
                         f"from {len(train_ids)} trajectories (visible={len(vis)})")
             finetune(bb, head, [(ci, q_tr)], cfg, device, logger, ep,
                      cfg.ft_lr_head, cfg.ft_lr_backbone, val=val, tag=f"{city_name}/{shot}")
-        q_te = ci.queries(test_ids, False)
-        met = {"city": city_name, "shot": shot, "source_city": source}
+        q_all = ci.queries(test_ids, False)
+        q_te = filt(ci, q_all)
+        met = {"city": city_name, "shot": shot, "source_city": source,
+               "protocol": getattr(cfg, "eval_protocol", "sthgcn"), "eval_split": getattr(cfg, "eval_split", "test"),
+               "n_test_all": len(q_all), "n_test_scored": len(q_te)}
+        logger.info(f"[{city_name}/{shot}] protocol={met['protocol']} split={met['eval_split']}: "
+                    f"scoring {len(q_te)}/{len(q_all)} targets")
         if "full" in protocols:
             met.update(evaluate(bb, head, ci, q_te, cfg))
         if "llm200" in protocols:

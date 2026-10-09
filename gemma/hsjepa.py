@@ -45,6 +45,8 @@ Total pretraining loss:
 from __future__ import annotations
 
 import numpy as np
+import zlib
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -116,7 +118,9 @@ class WMHead(nn.Module):
                     # backbone a direct retrieval gradient even if the mixture
                     # learns to down-weight the latent channels (lptr->0 in v6)
                     "lat": float(getattr(cfg, "lambda_wm_lat", 0.5)),
-                    "ptr": float(getattr(cfg, "lambda_wm_ptr", 0.3))}
+                    "ptr": float(getattr(cfg, "lambda_wm_ptr", 0.3)),
+                    "motif": float(getattr(cfg, "lambda_wm_motif", 0.3)),
+                    "dt": float(getattr(cfg, "lambda_wm_dt", 0.1))}
         self.reg_kind = getattr(cfg, "regularizer", "vicreg")
         self.hpred = HPredictor(d_model, int(getattr(cfg, "wm_pred_layers", 3)), self.H,
                                 dropout=cfg.dropout)
@@ -125,6 +129,19 @@ class WMHead(nn.Module):
         self.sec_probe = nn.Linear(d_model, n_sec)
         self.gate_probe = nn.Linear(d_model, n_act)
         nn.init.zeros_(self.gate_probe.weight); nn.init.zeros_(self.gate_probe.bias)
+        # mobility-structure objectives (city-agnostic, not next-POI specific):
+        #   motif  : repeat structure of the WHOLE current trajectory (ABA, ABCA, ...) -> where
+        #            the day is going (return / closure / exploration)
+        #   amotif : the trajectory's activity chain (Food->Shop->Food ...) = transferable unit
+        #   dt     : log time to the next check-in (rhythm / dwell)
+        self.n_motif = int(getattr(cfg, "n_motif_buckets", 256))
+        self.n_amotif = int(getattr(cfg, "n_amotif_buckets", 512))
+        self.motif_probe = nn.Sequential(nn.Linear(2 * d_model, d_model), nn.GELU(),
+                                         nn.Linear(d_model, self.n_motif))
+        self.amotif_probe = nn.Sequential(nn.Linear(2 * d_model, d_model), nn.GELU(),
+                                          nn.Linear(d_model, self.n_amotif))
+        self.dt_head = nn.Sequential(nn.Linear(2 * d_model, d_model // 2), nn.GELU(),
+                                     nn.Linear(d_model // 2, 1))
         self.hrem = HREMHead(d_model, name_dim, n_act, n_pri, n_sec, sid_levels, sid_K, d_real)
         self.d_real = d_real
         self._last = {}
@@ -268,12 +285,15 @@ def wm_forward(bb, head, ci, qs, train, amp_dtype, with_target=True):
         hv = h[online > 0.5]
         L_r = (sigreg(hv) if head.reg_kind == "sigreg" else vicreg(hv)) if hv.size(0) > 1 else zf.new_zeros(())
         L_lat, L_ptr = _wm_retrieval_losses(out, m, ar)
+        L_mo, L_dt = _wm_structure_losses(head, ci, qs, summ, z_act, dv)
         lam = head.lam
         out["aux_loss"] = (lam["jepa"] * L_j + lam["infill"] * L_i + lam["probe"] * L_p
-                           + lam["reg"] * L_r + lam["lat"] * L_lat + lam["ptr"] * L_ptr)
+                           + lam["reg"] * L_r + lam["lat"] * L_lat + lam["ptr"] * L_ptr
+                           + lam["motif"] * L_mo + lam["dt"] * L_dt)
         head._last = {"jepa": float(L_j.detach()), "infill": float(L_i.detach()),
                       "probe": float(L_p.detach()), "reg": float(L_r.detach()),
-                      "lat": float(L_lat.detach()), "ptr": float(L_ptr.detach())}
+                      "lat": float(L_lat.detach()), "ptr": float(L_ptr.detach()),
+                      "motif": float(L_mo.detach()), "dt": float(L_dt.detach())}
     return out
 
 
@@ -308,3 +328,43 @@ def _wm_retrieval_losses(out, m, ar):
             lse_pos = torch.logsumexp(s.masked_fill(~pos[rows], float("-inf")), 1)
             L_ptr = (lse_all - lse_pos).mean()
     return L_lat, L_ptr
+
+
+def _stable_bucket(key, n):
+    return zlib.crc32(repr(key).encode()) % n
+
+
+def trajectory_motifs(ci, ti, n_motif, n_amotif, max_len=8):
+    """City-agnostic motif ids of trajectory ti: (repeat pattern, activity chain)."""
+    rows = ci.trails[ti]["rows"][:max_len]
+    pis = ci.row_pi[rows]
+    first, pat = {}, []
+    for v in pis.tolist():
+        first.setdefault(v, len(first)); pat.append(first[v])      # e.g. 0,1,0 = "ABA"
+    acts = tuple(int(a) for a in ci.act_row[rows])
+    return _stable_bucket(tuple(pat), n_motif), _stable_bucket(acts, n_amotif)
+
+
+def _wm_structure_losses(head, ci, qs, summ, z_act, dv):
+    """Motif prediction from the context summary (+ predicted next-activity latent) and
+    time-to-next-check-in regression.  Targets use only the query's own trajectory."""
+    zero = summ.new_zeros(())
+    if head.lam["motif"] <= 0 and head.lam["dt"] <= 0:
+        return zero, zero
+    feat = torch.cat([summ, z_act], -1)
+    L_mo = zero
+    if head.lam["motif"] > 0:
+        mt = [trajectory_motifs(ci, ti, head.n_motif, head.n_amotif) for ti, _ in qs]
+        y1 = torch.as_tensor([a for a, _ in mt], device=dv)
+        y2 = torch.as_tensor([b for _, b in mt], device=dv)
+        L_mo = 0.5 * (F.cross_entropy(head.motif_probe(feat), y1)
+                      + F.cross_entropy(head.amotif_probe(feat), y2))
+    L_dt = zero
+    if head.lam["dt"] > 0:
+        gaps = []
+        for ti, j in qs:
+            rows = ci.trails[ti]["rows"]
+            gaps.append(max(0.0, float(ci.day_row[rows[j]] - ci.day_row[rows[j - 1]])) * 24.0)
+        y = torch.log1p(torch.as_tensor(gaps, device=dv, dtype=torch.float32))
+        L_dt = F.smooth_l1_loss(head.dt_head(feat).squeeze(-1), y)
+    return L_mo, L_dt

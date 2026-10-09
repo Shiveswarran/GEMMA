@@ -1,0 +1,13 @@
+22:24:07 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=<unset> | GPUs visible to torch=1
+22:24:07 | INFO    | gemma.down | retriever=wm predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+22:24:11 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+22:24:11 | INFO    | gemma.down | source-city realizer: runs/tune/t07/zs_wm.pt
+22:24:11 | INFO    | gemma.down | evidence=full hist_budget=-1 tag='_tune'
+22:24:12 | INFO    | gemma.down | [kuwait_city] 29994/232706 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:24:49 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+22:24:49 | INFO    | gemma.down | [kuwait_city] trails train=64160 val=9166 test=9166 | POIs (all splits) = 13455
+22:24:50 | INFO    | gemma.down | [kuwait_city/zero_shot] protocol=sthgcn split=validation: scoring 8803/9166 targets
+22:25:02 | INFO    | gemma.down | [kuwait_city/zero_shot (source)] FULL-VOCAB acc@1=0.1915 acc@5=0.3695 acc@10=0.4411 ndcg@5=0.2851 mrr=0.2740 | next-activity acc=0.4993 f1=0.2090 | revisit(0.51) acc@1=0.375 explore acc@1=0.000 | cond: explore@1/@10=0.005/0.033 revisit@1=0.371 lat-explore@10=0.005 ptr@1=0.227 pi(exp/rev)=0.65/0.40 | STHGCN 0.225/0.314
+22:25:02 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = STHGCN for few/full, best LLM-Move for zero-shot) ===
+22:25:02 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+22:25:02 | INFO    | gemma.down |    kuwait_city zero_shot   0.192/0.285       nan/nan       nan/nan 0.220/0.295    0.499  *source

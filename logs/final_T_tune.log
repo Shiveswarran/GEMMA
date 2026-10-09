@@ -1,0 +1,26 @@
+[I 2026-10-08 19:25:09,751] A new study created in memory with name: no-name-fb94bb5c-5063-4f58-8659-85ee6d445bc2
+0 finished trials found in runs/tune/trials.jsonl
+trial 0: objective=0.2617290409129743 dev={'kuwait_city': {'acc@1': 0.19107122571850504, 'ndcg@5': 0.282631260777877, 'act@1': 0.5017607633761217, 'n': 8803}} (23 min)
+trial 1: objective=0.26069264353059685 dev={'kuwait_city': {'acc@1': 0.1901624446211519, 'ndcg@5': 0.2821207956377799, 'act@1': 0.5007383846415995, 'n': 8803}} (23 min)
+trial 2: objective=0.26722817963027146 dev={'kuwait_city': {'acc@1': 0.19527433829376348, 'ndcg@5': 0.28781536534603197, 'act@1': 0.5038055208451664, 'n': 8803}} (22 min)
+trial 3: objective=0.260471287020054 dev={'kuwait_city': {'acc@1': 0.19004884698398272, 'ndcg@5': 0.28168976014428515, 'act@1': 0.5028967397478132, 'n': 8803}} (23 min)
+trial 4: objective=0.2620849724701616 dev={'kuwait_city': {'acc@1': 0.1914120186300125, 'ndcg@5': 0.2826918153605964, 'act@1': 0.5024423491991367, 'n': 8803}} (23 min)
+trial 5: objective=0.2654521809802441 dev={'kuwait_city': {'acc@1': 0.19391116664773372, 'ndcg@5': 0.2861640573300415, 'act@1': 0.5010791775531069, 'n': 8803}} (22 min)
+trial 6: objective=0.2653180492618811 dev={'kuwait_city': {'acc@1': 0.19368397137339544, 'ndcg@5': 0.28653631155394266, 'act@1': 0.5031239350221516, 'n': 8803}} (22 min)
+trial 7: objective=0.26280539720411167 dev={'kuwait_city': {'acc@1': 0.19152561626718165, 'ndcg@5': 0.28511912374771997, 'act@1': 0.4992616153584005, 'n': 8803}} (23 min)
+trial 8: objective=0.26617491682294914 dev={'kuwait_city': {'acc@1': 0.19459275247074861, 'ndcg@5': 0.286328657408802, 'act@1': 0.5049414972168579, 'n': 8803}} (22 min)
+trial 9: objective=0.2584827529907066 dev={'kuwait_city': {'acc@1': 0.18834488242644554, 'ndcg@5': 0.28055148225704424, 'act@1': 0.5056230830398728, 'n': 8803}} (22 min)
+trial 10: objective=0.2633193491342557 dev={'kuwait_city': {'acc@1': 0.19198000681585822, 'ndcg@5': 0.28535736927358984, 'act@1': 0.5027831421106441, 'n': 8803}} (22 min)
+trial 11: objective=0.2649169731945142 dev={'kuwait_city': {'acc@1': 0.19322958082471883, 'ndcg@5': 0.28674956947918145, 'act@1': 0.5034647279336589, 'n': 8803}} (22 min)
+
+=== leaderboard (dev = kuwait_city, validation split, STHGCN protocol) ===
+t02 obj=0.2672 init=jepa_v4 lr_backbone=0.0002266207089295126 lr_head=0.00041238627819343627 lambda_wm_jepa=1.0 lambda_wm_ptr=2.0 lambda_wm_lat=0.5 lambda_wm_motif=0.0 lambda_wm_dt=0.3 wm_H=3 wm_infill=0.0 ema_decay=0.999
+t08 obj=0.2662 init=jepa_v4 lr_backbone=0.00048511023136654086 lr_head=0.0003189176657534331 lambda_wm_jepa=1.0 lambda_wm_ptr=2.0 lambda_wm_lat=0.5 lambda_wm_motif=0.1 lambda_wm_dt=0.3 wm_H=2 wm_infill=0.0 ema_decay=0.999
+t05 obj=0.2655 init=jepa_v4 lr_backbone=0.00040180185068647723 lr_head=0.001113529573124875 lambda_wm_jepa=1.0 lambda_wm_ptr=2.0 lambda_wm_lat=0.5 lambda_wm_motif=0.0 lambda_wm_dt=0.3 wm_H=3 wm_infill=0.0 ema_decay=0.999
+t06 obj=0.2653 init=jepa_v4 lr_backbone=0.00012353686223579114 lr_head=0.00036073699853969994 lambda_wm_jepa=0.25 lambda_wm_ptr=2.0 lambda_wm_lat=0.5 lambda_wm_motif=0.0 lambda_wm_dt=0.3 wm_H=3 wm_infill=0.0 ema_decay=0.996
+t11 obj=0.2649 init=jepa_v4 lr_backbone=0.00044225713603789985 lr_head=0.00037172586402012665 lambda_wm_jepa=1.0 lambda_wm_ptr=0.3 lambda_wm_lat=0.5 lambda_wm_motif=0.1 lambda_wm_dt=0.3 wm_H=2 wm_infill=0.0 ema_decay=0.996
+t10 obj=0.2633 init=jepa_v4 lr_backbone=9.852761241478032e-05 lr_head=0.0005592604996795096 lambda_wm_jepa=1.0 lambda_wm_ptr=1.0 lambda_wm_lat=0.5 lambda_wm_motif=1.0 lambda_wm_dt=0.3 wm_H=3 wm_infill=0.0 ema_decay=0.999
+t07 obj=0.2628 init=random lr_backbone=0.0002867597866859675 lr_head=0.0003728206704299064 lambda_wm_jepa=1.0 lambda_wm_ptr=2.0 lambda_wm_lat=0.5 lambda_wm_motif=0.0 lambda_wm_dt=0.3 wm_H=3 wm_infill=0.3 ema_decay=0.999
+t04 obj=0.2621 init=jepa_v4 lr_backbone=0.00045191175587054746 lr_head=0.0013216347647089963 lambda_wm_jepa=0.5 lambda_wm_ptr=0.3 lambda_wm_lat=0.25 lambda_wm_motif=1.0 lambda_wm_dt=0.3 wm_H=3 wm_infill=0.0 ema_decay=0.999
+t00 obj=0.2617 init=random lr_backbone=0.00020032418309821968 lr_head=0.0010519726230559959 lambda_wm_jepa=2.0 lambda_wm_ptr=0.3 lambda_wm_lat=1.0 lambda_wm_motif=1.0 lambda_wm_dt=0.3 wm_H=1 wm_infill=0.15 ema_decay=0.99
+t01 obj=0.2607 init=random lr_backbone=0.0001429289938668487 lr_head=0.0011105936949921923 lambda_wm_jepa=0.5 lambda_wm_ptr=0.3 lambda_wm_lat=0.5 lambda_wm_motif=0.1 lambda_wm_dt=0.3 wm_H=2 wm_infill=0.3 ema_decay=0.996
