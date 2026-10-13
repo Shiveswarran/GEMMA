@@ -1,0 +1,11 @@
+         city      n  STHGCN |                  GEMMA
+-----------------------------------------------------
+     istanbul  41150   0.241 | 0.190/0.292<        
+petaling_jaya  33889   0.174 | 0.156/0.238<        
+      jakarta  24402   0.197 | 0.215/0.302>        
+     new_york  16766   0.146 | 0.155/0.233>        
+  kuwait_city  17753   0.225 | 0.208/0.313<        
+    sao_paulo  16523   0.250 | 0.246/0.358=        
+-----------------------------------------------------
+     GEMMA: macro Acc@1 0.1949 (STHGCN 0.2055, -0.0106) NDCG@5 0.2892 | above STHGCN 2/6, significantly above 2, significantly below 3
+legend: '>' / '<' = z-test vs published STHGCN Acc@1 at 95%;  d = paired Acc@1 difference vs baseline 'None', '*' = 95% bootstrap CI excludes 0

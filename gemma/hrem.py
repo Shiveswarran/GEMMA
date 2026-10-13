@@ -224,6 +224,9 @@ def hrem_mixture(head, bb, ci, m, z_ptr, h, q_in, act_logits_wm, hier_in, gate_e
     wr = head._w(head.wr0, head.gr, q, head.r_signed)
     if no_ev:
         wr = wr * torch.tensor([k in ("lptr", "geo") for k in RET], device=dv)
+    drop = [k for k in str(getattr(ci.cfg, "drop_ret", "") or "").replace(",", " ").split() if k]
+    if drop:    # eval-time diagnostic: switch off chosen return-evidence channels
+        wr = wr * torch.tensor([k not in drop for k in RET], device=dv)
     r = (fr * wr.unsqueeze(1)).sum(-1)
     NEG = torch.tensor(float("-inf"), device=dv)
     r = torch.where(visited, r, NEG)
@@ -293,7 +296,8 @@ def hrem_mixture(head, bb, ci, m, z_ptr, h, q_in, act_logits_wm, hier_in, gate_e
            "has_r": has_r, "has_e": has_e, "hrem": True,
            # channel-conditional scores (diagnostics + world-model retrieval losses)
            "ret_cond": la[:, av] + rr, "exp_cond": la[:, av] + ee,
-           "e_lat": e_lat, "ptr_sim": sim}
+           "e_lat": e_lat, "ptr_sim": sim,
+           "wr": wr, "we": we}          # per-query evidence weights (analysis / interpretability)
     return out
 
 

@@ -1,0 +1,28 @@
+[tokyo] n=946 user frequency=0.226 user recency=0.199 user transition=0.169 user time-of-day=0.177 distance=0.040 activity prior x distance=0.039 city popularity=0.039 city transition=0.142
+[beijing] n=88 user frequency=0.393 user recency=0.102 user transition=0.276 user time-of-day=0.168 distance=0.023 activity prior x distance=0.091 city popularity=0.182 city transition=0.275
+[shanghai] n=530 user frequency=0.160 user recency=0.074 user transition=0.093 user time-of-day=0.113 distance=0.009 activity prior x distance=0.043 city popularity=0.030 city transition=0.092
+[palembang] n=774 user frequency=0.207 user recency=0.092 user transition=0.091 user time-of-day=0.157 distance=0.000 activity prior x distance=0.004 city popularity=0.021 city transition=0.084
+[melbourne] n=1239 user frequency=0.132 user recency=0.048 user transition=0.088 user time-of-day=0.113 distance=0.004 activity prior x distance=0.015 city popularity=0.015 city transition=0.080
+[sydney] n=1667 user frequency=0.159 user recency=0.073 user transition=0.145 user time-of-day=0.125 distance=0.004 activity prior x distance=0.015 city popularity=0.004 city transition=0.130
+[tangerang] n=2787 user frequency=0.257 user recency=0.138 user transition=0.169 user time-of-day=0.194 distance=0.006 activity prior x distance=0.007 city popularity=0.025 city transition=0.157
+[moscow] n=5000 user frequency=0.178 user recency=0.095 user transition=0.122 user time-of-day=0.144 distance=0.010 activity prior x distance=0.015 city popularity=0.011 city transition=0.107
+[bandung] n=5000 user frequency=0.159 user recency=0.062 user transition=0.100 user time-of-day=0.123 distance=0.002 activity prior x distance=0.004 city popularity=0.013 city transition=0.092
+[table] A4_information_value
+                   signal           knowledge used by GEMMA zero-shot  macro Acc@1  macro Acc@5  macro NDCG@5
+           user frequency        user history                     yes     0.207771     0.406747      0.313520
+         user time-of-day        user history                     yes     0.145983     0.307137      0.232358
+          user transition        user history                     yes     0.139252     0.197709      0.171728
+          city transition     target-city log        no (target data)     0.128844     0.219034      0.177186
+             user recency        user history                     yes     0.097986     0.293262      0.195443
+          city popularity     target-city log        no (target data)     0.037653     0.090763      0.064137
+activity prior x distance geometry / activity                     yes     0.025990     0.082534      0.054413
+                 distance geometry / activity                     yes     0.010924     0.069002      0.040825
+
+[table] A4_coverage
+                            coverage  macro share
+              target in user history     0.599941
+target = a place of the current trip     0.045774
+ target within 1 km of current place     0.446935
+       target among 100 nearest POIs     0.344454
+
+[figure] analysis_out/figures/A4a_information_value.pdf/.png

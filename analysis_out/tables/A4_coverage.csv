@@ -1,0 +1,5 @@
+coverage,macro share
+target in user history,0.5999405959080275
+target = a place of the current trip,0.04577372973877824
+target within 1 km of current place,0.44693450081757224
+target among 100 nearest POIs,0.34445361457820406

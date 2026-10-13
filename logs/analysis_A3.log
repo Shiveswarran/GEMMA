@@ -1,0 +1,70 @@
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/analysis/a3_daily_sequences_pca.py:49: UserWarning: Sparse invariant checks are implicitly disabled. Memory errors (e.g. SEGFAULT) will occur when operating on a sparse tensor which violates the invariants, but checks incur performance overhead. To silence this warning, explicitly opt in or out. See `torch.sparse.check_sparse_tensor_invariants.__doc__` for guidance.  (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/Context.cpp:848.)
+  M = torch.sparse_coo_tensor(torch.tensor([rows, cols]), torch.ones(len(rows)), (len(items), ncol)).coalesce()
+[istanbul] user-days=40000 POIs=18186
+[petaling_jaya] user-days=40000 POIs=24718
+[jakarta] user-days=40000 POIs=34717
+[new_york] user-days=40000 POIs=28168
+[kuwait_city] user-days=40000 POIs=8872
+[sao_paulo] user-days=40000 POIs=22454
+[tokyo] user-days=6051 POIs=2982
+[beijing] user-days=595 POIs=598
+[shanghai] user-days=3769 POIs=3610
+[palembang] user-days=4921 POIs=4117
+[melbourne] user-days=8840 POIs=6901
+[sydney] user-days=11439 POIs=8189
+[tangerang] user-days=17059 POIs=9975
+[moscow] user-days=40000 POIs=13749
+[bandung] user-days=40000 POIs=21520
+[table] A3_pca_rank
+         city  user-days  poi: dims poi: k@50% poi: k@80%  cat: dims  cat: k@50% cat: k@80%  act: dims  act: k@50% act: k@80%
+     Istanbul      40000      18186        >50        >50       1245          11         47        288          25        >50
+Petaling Jaya      40000      24718        >50        >50       1245          13        >50        288          22        >50
+      Jakarta      40000      34717        >50        >50       1245          15        >50        288          25        >50
+     New York      40000      28168        >50        >50       1245          30        >50        288          29        >50
+  Kuwait City      40000       8872        >50        >50       1245           7         35        288          17        >50
+    São Paulo      40000      22454        >50        >50       1245          15        >50        288          37        >50
+        Tokyo       6051       2982        >50        >50       1245          10         43        288          25        >50
+      Beijing        595        598        >50        >50       1245           9         31        288          22        >50
+     Shanghai       3769       3610        >50        >50       1245          13        >50        288          23        >50
+    Palembang       4921       4117        >50        >50       1245          15        >50        288          25        >50
+    Melbourne       8840       6901        >50        >50       1245          23        >50        288          27        >50
+       Sydney      11439       8189        >50        >50       1245          21        >50        288          28        >50
+    Tangerang      17059       9975        >50        >50       1245          10         47        288          21        >50
+       Moscow      40000      13749        >50        >50       1245          16        >50        288          33        >50
+      Bandung      40000      21520        >50        >50       1245          15        >50        288          22        >50
+
+[table] A3_cosine
+         city  poi: same user  poi: other users  cat: same user  cat: other users  act: same user  act: other users  poi: other city  cat: other city  act: other city
+     Istanbul        0.149363          0.005604        0.238636          0.067479        0.067258          0.029074              NaN              NaN              NaN
+Petaling Jaya        0.086201          0.003761        0.211070          0.100683        0.069123          0.033511              NaN              NaN              NaN
+      Jakarta        0.096753          0.002300        0.208147          0.091180        0.062077          0.033117              NaN              NaN              NaN
+     New York        0.066019          0.000642        0.125787          0.025390        0.059125          0.027099              NaN              NaN              NaN
+  Kuwait City        0.144175          0.014740        0.254791          0.099312        0.099304          0.050087              NaN              NaN              NaN
+    São Paulo        0.141171          0.001883        0.215286          0.052546        0.076009          0.021864              NaN              NaN              NaN
+        Tokyo        0.221185          0.013633        0.344606          0.095313        0.081579          0.027951              NaN              NaN              NaN
+      Beijing        0.168027          0.006107        0.228372          0.063152        0.049056          0.031859              NaN              NaN              NaN
+     Shanghai        0.114860          0.002630        0.212248          0.064645        0.078606          0.039049              NaN              NaN              NaN
+    Palembang        0.102029          0.008208        0.179885          0.079847        0.059976          0.033897              NaN              NaN              NaN
+    Melbourne        0.088777          0.001993        0.155793          0.039080        0.071190          0.028851              NaN              NaN              NaN
+       Sydney        0.082681          0.001241        0.147933          0.038873        0.076648          0.029538              NaN              NaN              NaN
+    Tangerang        0.188011          0.008597        0.273528          0.123524        0.078297          0.036612              NaN              NaN              NaN
+       Moscow        0.142596          0.003204        0.215293          0.047061        0.064984          0.026123              NaN              NaN              NaN
+      Bandung        0.097845          0.004432        0.180509          0.078403        0.063826          0.034277              NaN              NaN              NaN
+         mean        0.125979          0.005265        0.212792          0.071099        0.070471          0.032194              0.0         0.036438         0.019784
+
+[table] A3_subspace_transfer
+target city  own top-10 PCs  source top-10 PCs  transfer ratio
+      Tokyo        0.240143           0.104505        0.435177
+    Beijing        0.323813           0.124369        0.384075
+   Shanghai        0.305454           0.164037        0.537026
+  Palembang        0.248038           0.128822        0.519362
+  Melbourne        0.270164           0.073765        0.273038
+     Sydney        0.259698           0.067609        0.260338
+  Tangerang        0.271947           0.129848        0.477474
+     Moscow        0.206869           0.173103        0.836777
+    Bandung        0.261348           0.117301        0.448831
+
+[figure] analysis_out/figures/A3a_scree.pdf/.png
+[figure] analysis_out/figures/A3b_cosine.pdf/.png
+[figure] analysis_out/figures/A3c_subspace_transfer.pdf/.png
+[figure] analysis_out/figures/A3d_eigendays.pdf/.png

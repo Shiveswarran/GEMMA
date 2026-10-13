@@ -196,7 +196,7 @@ def run_city(cfg, run_dir, fsq, enc, city_name, shots, protocols, logger, zs=Non
 def summary_table(rows, logger):
     """LLM column = gt+rand100, the candidate protocol LLM-Move uses in Massive-STEPS;
     gt+near100 (harder, our stress test) is shown next to it."""
-    logger.info("=== GEMMA SUMMARY (A@1 / N@5; ref = STHGCN for few/full, best LLM-Move for zero-shot) ===")
+    logger.info("=== GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===")
     logger.info(f"{'city':>14} {'shot':<9} {'full-vocab':>13} {'LLM(rand100)':>13} {'LLM(near100)':>13} "
                 f"{'ref':>11} {'next-act':>8}")
     for m in rows:
@@ -204,7 +204,7 @@ def summary_table(rows, logger):
         fv = f"{g('acc@1'):.3f}/{g('ndcg@5'):.3f}"
         lr = f"{g('llm_gtrand100_acc@1'):.3f}/{g('llm_gtrand100_ndcg@5'):.3f}"
         ln = f"{g('llm_acc@1'):.3f}/{g('llm_ndcg@5'):.3f}"
-        ref = (ZS if m["shot"] == "zero_shot" else SUP).get(m["city"], (float("nan"),) * 2)
+        ref = SUP.get(m["city"], (float("nan"),) * 2)
         logger.info(f"{m['city']:>14} {m['shot']:<9} {fv:>13} {lr:>13} {ln:>13} "
                     f"{ref[0]:.3f}/{ref[1]:.3f} {g('act@1'):>8.3f}"
                     f"{'  *source' if m.get('source_city') else ''}")

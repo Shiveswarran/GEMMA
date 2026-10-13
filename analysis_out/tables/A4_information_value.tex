@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering\small
+\caption{One-signal rankers on the STHGCN test protocol (macro over held-out cities). The user's own history carries most of the predictive information; GEMMA uses every signal that does not require target-city training data.}
+\label{tab:A4_information_value}
+\begin{tabular}{lrrrrr}
+\toprule
+signal & knowledge & used by GEMMA zero-shot & macro Acc@1 & macro Acc@5 & macro NDCG@5 \\
+\midrule
+user frequency & user history & yes & 0.208 & 0.407 & 0.314 \\
+user time-of-day & user history & yes & 0.146 & 0.307 & 0.232 \\
+user transition & user history & yes & 0.139 & 0.198 & 0.172 \\
+city transition & target-city log & no (target data) & 0.129 & 0.219 & 0.177 \\
+user recency & user history & yes & 0.098 & 0.293 & 0.195 \\
+city popularity & target-city log & no (target data) & 0.038 & 0.091 & 0.064 \\
+activity prior x distance & geometry / activity & yes & 0.026 & 0.083 & 0.054 \\
+distance & geometry / activity & yes & 0.011 & 0.069 & 0.041 \\
+\bottomrule
+\end{tabular}
+\end{table}

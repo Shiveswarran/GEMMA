@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering\small
+\caption{Zero-shot GEMMA (no target-city training) vs. supervised STHGCN on the STHGCN test protocol.}
+\label{tab:A7_main_zero_shot}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+city & n & STHGCN (supervised) & GEMMA zero-shot & 95\% CI +- & z vs STHGCN & hand-set & GEMMA NDCG@5 & revisit share \\
+\midrule
+Tokyo & 946.000 & 0.250 & 0.267 & 0.028 & 1.212 & 0.256 & 0.373 & 0.600 \\
+Beijing & 88.000 & 0.453 & 0.398 & 0.102 & -1.059 & 0.352 & 0.539 & 0.807 \\
+Shanghai & 530.000 & 0.193 & 0.179 & 0.033 & -0.826 & 0.151 & 0.273 & 0.528 \\
+Palembang & 774.000 & 0.246 & 0.255 & 0.031 & 0.544 & 0.225 & 0.343 & 0.667 \\
+Melbourne & 1239.000 & 0.168 & 0.173 & 0.021 & 0.440 & 0.149 & 0.256 & 0.517 \\
+Sydney & 1667.000 & 0.227 & 0.196 & 0.019 & -3.236 & 0.171 & 0.283 & 0.554 \\
+Tangerang & 2787.000 & 0.293 & 0.324 & 0.017 & 3.537 & 0.287 & 0.436 & 0.677 \\
+Moscow & 7288.000 & 0.223 & 0.222 & 0.010 & -0.288 & 0.206 & 0.317 & 0.536 \\
+Bandung & 9913.000 & 0.219 & 0.210 & 0.008 & -2.093 & 0.178 & 0.295 & 0.550 \\
+macro & -- & 0.252 & 0.247 & 0.030 & -0.197 & 0.219 & 0.346 & 0.604 \\
+\bottomrule
+\end{tabular}
+\end{table}

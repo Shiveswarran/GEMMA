@@ -96,10 +96,16 @@ if step A; then
   INIT_TOGGLE=$(echo "$FLAGS" | grep -q -- "--random_backbone" && echo "jepaInit" || echo "randomInit")
   BASEF=$(echo "$FLAGS" | sed 's/--random_backbone//')
   RB=$(echo "$FLAGS" | grep -q -- "--random_backbone" && echo "--random_backbone" || echo "")
-  for AB in "full:" "noJEPA:--lambda_wm_jepa 0 --lambda_wm_infill 0" "noPtr:--lambda_wm_ptr 0" \
-            "noLat:--lambda_wm_lat 0" "noMotif:--lambda_wm_motif 0 --lambda_wm_dt 0" "flat:--wm_flat" \
-            "H1:--wm_H 1" "$INIT_TOGGLE:TOGGLE"; do
-    NAME=${AB%%:*}; F2=${AB#*:}
+  # ABL="full noWM ..." selects a subset (order = priority).  Later flags override $BASEF.
+  ALL_ABL=("full:" "noWM:--lambda_wm_jepa 0 --lambda_wm_infill 0 --lambda_wm_ptr 0 --lambda_wm_lat 0 --lambda_wm_motif 0 --lambda_wm_dt 0" \
+           "noJEPA:--lambda_wm_jepa 0 --lambda_wm_infill 0" "noPtr:--lambda_wm_ptr 0" "noLat:--lambda_wm_lat 0" \
+           "noDT:--lambda_wm_dt 0" "addMotif:--lambda_wm_motif 0.3" "flat:--wm_flat" "H1:--wm_H 1" "$INIT_TOGGLE:TOGGLE")
+  for AB in "${ALL_ABL[@]}"; do
+    NAME=${AB%%:*}
+    [ -z "${ABL:-}" ] || [[ " ${ABL} " == *" $NAME "* ]] || continue
+    [ -f runs/abl_final_$NAME/wm_tokyo_zero_shot_abl.json ] && [ -f runs/abl_final_$NAME/wm_bandung_zero_shot_abl.json ] \
+      && { echo "skip $NAME (done)"; continue; }
+    F2=${AB#*:}
     if [ "$F2" = "TOGGLE" ]; then
       F2=""; RBA=$([ -n "$RB" ] && echo "" || echo "--random_backbone")
     else RBA=$RB; fi
@@ -124,9 +130,9 @@ if step R; then
   done
   python scripts/final_report.py --cities $SRC --shot full --runs "GEMMA=runs/gemma_final_s$S0:wm:_final_src" \
     2>&1 | tee logs/final_R_source_full.txt
-  ABL=""; for N in full noJEPA noPtr noLat noMotif flat H1 jepaInit randomInit; do
-    [ -d runs/abl_final_$N ] && ABL="$ABL $N=runs/abl_final_$N:wm:_abl"; done
-  [ -n "$ABL" ] && python scripts/final_report.py --baseline full --cities $TGT --shot zero_shot --runs $ABL \
+  AR=""; for N in full noWM noJEPA noPtr noLat noDT addMotif flat H1 jepaInit randomInit; do
+    [ -d runs/abl_final_$N ] && AR="$AR $N=runs/abl_final_$N:wm:_abl"; done
+  [ -n "$AR" ] && python scripts/final_report.py --baseline full --cities $TGT --shot zero_shot --runs $AR \
     2>&1 | tee logs/final_R_ablation.txt
 fi
 echo "=== DONE ($(date)) ==="

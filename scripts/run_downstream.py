@@ -43,7 +43,7 @@ def main():
                  ("lambda_wm_infill", float), ("lambda_wm_lat", float), ("lambda_wm_ptr", float),
                  ("min_epochs", int), ("hist_budget", int), ("hist_last", int), ("evidence", str), ("out_tag", str),
                  ("eval_protocol", str), ("eval_split", str), ("lambda_wm_motif", float),
-                 ("lambda_wm_dt", float)]:
+                 ("lambda_wm_dt", float), ("drop_ret", str)]:
         p.add_argument("--" + k, type=t)
     a = p.parse_args()
 
@@ -79,7 +79,7 @@ def main():
             if (k.startswith(("wm_", "lambda_wm_")) or k in ("evidence", "ema_decay")) and getattr(a, k, None) is None:
                 setattr(cfg, k, v)
     logger.info(f"source-city realizer: {zs_path if zs else 'NONE'}")
-    logger.info(f"evidence={getattr(cfg, 'evidence', 'full')} hist_budget={getattr(cfg, 'hist_budget', -1)} tag={cfg.out_tag!r}")
+    logger.info(f"evidence={getattr(cfg, 'evidence', 'full')} drop_ret={getattr(cfg, 'drop_ret', '')!r} hist_budget={getattr(cfg, 'hist_budget', -1)} tag={cfg.out_tag!r}")
 
     rows = []
     for city in a.cities:

@@ -1,0 +1,109 @@
+03:06:42 | INFO    | gemma.zs | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=<unset> | GPUs visible to torch=1
+03:06:46 | INFO    | gemma.zs | loaded 228910 cached LLM embeddings
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+03:06:49 | INFO    | gemma.zs | [istanbul] 49921/435586 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:08:02 | INFO    | gemma.zs | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+03:08:03 | INFO    | gemma.zs | [istanbul] source queries=229499 val=2000 POIs=38763
+03:08:05 | INFO    | gemma.zs | [petaling_jaya] 50496/405325 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:09:17 | INFO    | gemma.zs | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+03:09:18 | INFO    | gemma.zs | [petaling_jaya] source queries=228530 val=2000 POIs=48626
+03:09:20 | INFO    | gemma.zs | [jakarta] 63150/329617 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:10:17 | INFO    | gemma.zs | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+03:10:18 | INFO    | gemma.zs | [jakarta] source queries=192163 val=2000 POIs=63387
+03:10:19 | INFO    | gemma.zs | [new_york] 15823/217941 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:10:58 | INFO    | gemma.zs | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+03:10:58 | INFO    | gemma.zs | [new_york] source queries=126312 val=2000 POIs=41591
+03:10:59 | INFO    | gemma.zs | [kuwait_city] 23987/186092 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:11:33 | INFO    | gemma.zs | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+03:11:34 | INFO    | gemma.zs | [kuwait_city] source queries=98556 val=2000 POIs=12234
+03:11:35 | INFO    | gemma.zs | [sao_paulo] 15075/205396 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:12:12 | INFO    | gemma.zs | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+03:12:12 | INFO    | gemma.zs | [sao_paulo] source queries=116989 val=2000 POIs=31692
+03:12:14 | INFO    | gemma.zs | [source] device=cuda amp=torch.float16 steps/epoch=4680 epochs=3 lr_head=0.000412 lr_resid=- lr_bb=0.000227 val_every=2000 patience=4 min_epochs=2
+03:12:41 | INFO    | gemma.zs | [source] val@init: acc@1=0.1649 acc@5=0.3327 act@1=0.447  *best
+03:14:18 | INFO    | gemma.zs | [source] ep0 step 200/4680 loss=22.6857 (0.48s/step, epoch ETA 36.0 min)  jepa=0.150 infill=0.000 probe=9.078 reg=0.184 lat=10.051 ptr=2.318 motif=0.000 dt=0.213
+03:15:57 | INFO    | gemma.zs | [source] ep0 step 400/4680 loss=21.8506 (0.49s/step, epoch ETA 34.9 min)  jepa=0.141 infill=0.000 probe=9.016 reg=0.211 lat=10.174 ptr=2.849 motif=0.000 dt=0.211
+03:17:39 | INFO    | gemma.zs | [source] ep0 step 600/4680 loss=21.9068 (0.50s/step, epoch ETA 33.7 min)  jepa=0.163 infill=0.000 probe=8.810 reg=0.222 lat=9.763 ptr=2.418 motif=0.000 dt=0.248
+03:19:20 | INFO    | gemma.zs | [source] ep0 step 800/4680 loss=21.7501 (0.50s/step, epoch ETA 32.2 min)  jepa=0.169 infill=0.000 probe=8.096 reg=0.207 lat=9.527 ptr=2.068 motif=0.000 dt=0.272
+03:20:55 | INFO    | gemma.zs | [source] ep0 step 1000/4680 loss=21.5848 (0.49s/step, epoch ETA 30.3 min)  jepa=0.210 infill=0.000 probe=9.081 reg=0.243 lat=10.103 ptr=2.707 motif=0.000 dt=0.242
+03:22:34 | INFO    | gemma.zs | [source] ep0 step 1200/4680 loss=21.5830 (0.49s/step, epoch ETA 28.7 min)  jepa=0.202 infill=0.000 probe=8.132 reg=0.188 lat=9.349 ptr=2.467 motif=0.000 dt=0.226
+03:24:11 | INFO    | gemma.zs | [source] ep0 step 1400/4680 loss=21.3263 (0.49s/step, epoch ETA 26.9 min)  jepa=0.212 infill=0.000 probe=7.587 reg=0.199 lat=7.337 ptr=2.019 motif=0.000 dt=0.292
+03:25:48 | INFO    | gemma.zs | [source] ep0 step 1600/4680 loss=21.2861 (0.49s/step, epoch ETA 25.2 min)  jepa=0.226 infill=0.000 probe=7.348 reg=0.238 lat=7.133 ptr=2.154 motif=0.000 dt=0.243
+03:27:24 | INFO    | gemma.zs | [source] ep0 step 1800/4680 loss=21.2112 (0.49s/step, epoch ETA 23.5 min)  jepa=0.243 infill=0.000 probe=8.328 reg=0.163 lat=9.879 ptr=2.636 motif=0.000 dt=0.211
+03:29:01 | INFO    | gemma.zs | [source] ep0 step 2000/4680 loss=21.2736 (0.49s/step, epoch ETA 21.9 min)  jepa=0.269 infill=0.000 probe=7.402 reg=0.200 lat=7.342 ptr=2.134 motif=0.000 dt=0.230
+03:29:26 | INFO    | gemma.zs | [source] val@ep0-step2000: acc@1=0.1829 acc@5=0.3622 act@1=0.458  *best
+03:31:02 | INFO    | gemma.zs | [source] ep0 step 2200/4680 loss=21.0990 (0.50s/step, epoch ETA 20.7 min)  jepa=0.302 infill=0.000 probe=8.643 reg=0.174 lat=10.079 ptr=2.749 motif=0.000 dt=0.209
+03:32:39 | INFO    | gemma.zs | [source] ep0 step 2400/4680 loss=21.0094 (0.50s/step, epoch ETA 19.0 min)  jepa=0.298 infill=0.000 probe=7.876 reg=0.178 lat=8.944 ptr=2.196 motif=0.000 dt=0.245
+03:34:14 | INFO    | gemma.zs | [source] ep0 step 2600/4680 loss=20.9083 (0.50s/step, epoch ETA 17.2 min)  jepa=0.318 infill=0.000 probe=7.908 reg=0.182 lat=9.281 ptr=2.306 motif=0.000 dt=0.238
+03:35:52 | INFO    | gemma.zs | [source] ep0 step 2800/4680 loss=21.2031 (0.50s/step, epoch ETA 15.6 min)  jepa=0.344 infill=0.000 probe=8.975 reg=0.189 lat=9.757 ptr=2.567 motif=0.000 dt=0.217
+03:37:33 | INFO    | gemma.zs | [source] ep0 step 3000/4680 loss=21.2273 (0.50s/step, epoch ETA 13.9 min)  jepa=0.323 infill=0.000 probe=8.370 reg=0.141 lat=10.383 ptr=2.872 motif=0.000 dt=0.231
+03:39:11 | INFO    | gemma.zs | [source] ep0 step 3200/4680 loss=21.0081 (0.50s/step, epoch ETA 12.3 min)  jepa=0.342 infill=0.000 probe=7.712 reg=0.153 lat=9.452 ptr=2.011 motif=0.000 dt=0.218
+03:40:51 | INFO    | gemma.zs | [source] ep0 step 3400/4680 loss=21.2285 (0.50s/step, epoch ETA 10.6 min)  jepa=0.338 infill=0.000 probe=8.079 reg=0.149 lat=9.628 ptr=2.244 motif=0.000 dt=0.271
+03:42:26 | INFO    | gemma.zs | [source] ep0 step 3600/4680 loss=21.0615 (0.50s/step, epoch ETA 8.9 min)  jepa=0.344 infill=0.000 probe=7.402 reg=0.163 lat=7.521 ptr=2.162 motif=0.000 dt=0.286
+03:44:00 | INFO    | gemma.zs | [source] ep0 step 3800/4680 loss=21.0118 (0.49s/step, epoch ETA 7.3 min)  jepa=0.378 infill=0.000 probe=8.743 reg=0.143 lat=9.924 ptr=2.640 motif=0.000 dt=0.202
+03:45:33 | INFO    | gemma.zs | [source] ep0 step 4000/4680 loss=20.9162 (0.49s/step, epoch ETA 5.6 min)  jepa=0.380 infill=0.000 probe=8.395 reg=0.134 lat=9.860 ptr=2.711 motif=0.000 dt=0.173
+03:45:58 | INFO    | gemma.zs | [source] val@ep0-step4000: acc@1=0.1837 acc@5=0.3632 act@1=0.466  *best
+03:47:35 | INFO    | gemma.zs | [source] ep0 step 4200/4680 loss=21.0573 (0.50s/step, epoch ETA 4.0 min)  jepa=0.375 infill=0.000 probe=8.400 reg=0.132 lat=10.033 ptr=2.481 motif=0.000 dt=0.227
+03:49:15 | INFO    | gemma.zs | [source] ep0 step 4400/4680 loss=21.3977 (0.50s/step, epoch ETA 2.3 min)  jepa=0.359 infill=0.000 probe=6.697 reg=0.169 lat=6.990 ptr=2.263 motif=0.000 dt=0.197
+03:50:52 | INFO    | gemma.zs | [source] ep0 step 4600/4680 loss=21.0373 (0.50s/step, epoch ETA 0.7 min)  jepa=0.365 infill=0.000 probe=6.962 reg=0.178 lat=7.011 ptr=2.225 motif=0.000 dt=0.374
+03:51:31 | INFO    | gemma.zs | [source] ft epoch 0 loss=21.3314 (2329s) | wm[H=3 flat=False jepa=0.360 infill=0.000 probe=7.968 reg=0.132 lat=9.123 ptr=2.352 motif=0.000 dt=0.223] ret[hist=0.96 prefix=0.45 is_last=-1.11 ptrans=1.01 tod=0.50 dow=0.31 rec=1.03 geo=0.50 lptr=0.51] exp[hier=0.41 geo=1.06 anchor=0.50 covis=1.00 pop=0.30 hour=0.30] gate[nov=0.69 logS=-0.32 pref=0.77] tau=18.2
+03:51:56 | INFO    | gemma.zs | [source] val@ep0-end: acc@1=0.1866 acc@5=0.3647 act@1=0.466  *best
+03:53:31 | INFO    | gemma.zs | [source] ep1 step 200/4680 loss=21.1752 (0.48s/step, epoch ETA 35.6 min)  jepa=0.372 infill=0.000 probe=8.356 reg=0.123 lat=9.978 ptr=2.788 motif=0.000 dt=0.209
+03:55:07 | INFO    | gemma.zs | [source] ep1 step 400/4680 loss=20.8390 (0.48s/step, epoch ETA 34.2 min)  jepa=0.380 infill=0.000 probe=8.433 reg=0.121 lat=10.210 ptr=2.425 motif=0.000 dt=0.226
+03:56:42 | INFO    | gemma.zs | [source] ep1 step 600/4680 loss=20.8985 (0.48s/step, epoch ETA 32.5 min)  jepa=0.409 infill=0.000 probe=8.655 reg=0.128 lat=9.739 ptr=2.888 motif=0.000 dt=0.192
+03:58:18 | INFO    | gemma.zs | [source] ep1 step 800/4680 loss=20.7031 (0.48s/step, epoch ETA 30.9 min)  jepa=0.368 infill=0.000 probe=7.247 reg=0.153 lat=7.204 ptr=2.224 motif=0.000 dt=0.232
+03:59:53 | INFO    | gemma.zs | [source] ep1 step 1000/4680 loss=20.9085 (0.48s/step, epoch ETA 29.3 min)  jepa=0.382 infill=0.000 probe=6.964 reg=0.156 lat=7.307 ptr=2.214 motif=0.000 dt=0.243
+04:01:31 | INFO    | gemma.zs | [source] ep1 step 1200/4680 loss=21.0556 (0.48s/step, epoch ETA 27.8 min)  jepa=0.420 infill=0.000 probe=8.583 reg=0.133 lat=9.730 ptr=2.359 motif=0.000 dt=0.188
+04:03:07 | INFO    | gemma.zs | [source] ep1 step 1400/4680 loss=20.7487 (0.48s/step, epoch ETA 26.2 min)  jepa=0.384 infill=0.000 probe=8.000 reg=0.139 lat=9.248 ptr=2.234 motif=0.000 dt=0.197
+04:04:44 | INFO    | gemma.zs | [source] ep1 step 1600/4680 loss=20.7530 (0.48s/step, epoch ETA 24.7 min)  jepa=0.379 infill=0.000 probe=7.303 reg=0.140 lat=8.914 ptr=2.132 motif=0.000 dt=0.214
+04:06:21 | INFO    | gemma.zs | [source] ep1 step 1800/4680 loss=20.9617 (0.48s/step, epoch ETA 23.1 min)  jepa=0.398 infill=0.000 probe=8.211 reg=0.114 lat=9.500 ptr=2.557 motif=0.000 dt=0.187
+04:07:56 | INFO    | gemma.zs | [source] ep1 step 2000/4680 loss=20.8223 (0.48s/step, epoch ETA 21.5 min)  jepa=0.417 infill=0.000 probe=7.908 reg=0.116 lat=9.142 ptr=2.305 motif=0.000 dt=0.189
+04:08:22 | INFO    | gemma.zs | [source] val@ep1-step2000: acc@1=0.1882 acc@5=0.3654 act@1=0.476  *best
+04:09:58 | INFO    | gemma.zs | [source] ep1 step 2200/4680 loss=20.9637 (0.49s/step, epoch ETA 20.3 min)  jepa=0.407 infill=0.000 probe=8.302 reg=0.122 lat=9.834 ptr=3.122 motif=0.000 dt=0.197
+04:11:33 | INFO    | gemma.zs | [source] ep1 step 2400/4680 loss=21.0341 (0.49s/step, epoch ETA 18.6 min)  jepa=0.425 infill=0.000 probe=8.611 reg=0.122 lat=10.213 ptr=2.582 motif=0.000 dt=0.168
+04:13:07 | INFO    | gemma.zs | [source] ep1 step 2600/4680 loss=20.5088 (0.49s/step, epoch ETA 16.9 min)  jepa=0.396 infill=0.000 probe=7.202 reg=0.141 lat=6.829 ptr=2.248 motif=0.000 dt=0.268
+04:14:42 | INFO    | gemma.zs | [source] ep1 step 2800/4680 loss=20.7090 (0.49s/step, epoch ETA 15.3 min)  jepa=0.408 infill=0.000 probe=8.251 reg=0.106 lat=10.183 ptr=2.538 motif=0.000 dt=0.319
+04:16:23 | INFO    | gemma.zs | [source] ep1 step 3000/4680 loss=20.9154 (0.49s/step, epoch ETA 13.7 min)  jepa=0.413 infill=0.000 probe=7.678 reg=0.112 lat=8.772 ptr=2.466 motif=0.000 dt=0.288
+04:18:01 | INFO    | gemma.zs | [source] ep1 step 3200/4680 loss=20.9271 (0.49s/step, epoch ETA 12.1 min)  jepa=0.408 infill=0.000 probe=8.172 reg=0.111 lat=9.771 ptr=2.443 motif=0.000 dt=0.197
+04:19:36 | INFO    | gemma.zs | [source] ep1 step 3400/4680 loss=20.5441 (0.49s/step, epoch ETA 10.4 min)  jepa=0.419 infill=0.000 probe=7.983 reg=0.109 lat=9.283 ptr=2.248 motif=0.000 dt=0.224
+04:21:11 | INFO    | gemma.zs | [source] ep1 step 3600/4680 loss=20.7446 (0.49s/step, epoch ETA 8.8 min)  jepa=0.416 infill=0.000 probe=7.798 reg=0.116 lat=9.374 ptr=2.463 motif=0.000 dt=0.223
+04:22:47 | INFO    | gemma.zs | [source] ep1 step 3800/4680 loss=20.8241 (0.49s/step, epoch ETA 7.1 min)  jepa=0.441 infill=0.000 probe=8.488 reg=0.113 lat=9.601 ptr=2.409 motif=0.000 dt=0.157
+04:24:22 | INFO    | gemma.zs | [source] ep1 step 4000/4680 loss=20.5308 (0.49s/step, epoch ETA 5.5 min)  jepa=0.404 infill=0.000 probe=8.152 reg=0.104 lat=9.684 ptr=2.934 motif=0.000 dt=0.194
+04:24:47 | INFO    | gemma.zs | [source] val@ep1-step4000: acc@1=0.1898 acc@5=0.3680 act@1=0.476  *best
+04:26:25 | INFO    | gemma.zs | [source] ep1 step 4200/4680 loss=20.7517 (0.49s/step, epoch ETA 3.9 min)  jepa=0.436 infill=0.000 probe=8.397 reg=0.105 lat=9.756 ptr=2.817 motif=0.000 dt=0.179
+04:28:01 | INFO    | gemma.zs | [source] ep1 step 4400/4680 loss=20.7661 (0.49s/step, epoch ETA 2.3 min)  jepa=0.438 infill=0.000 probe=8.532 reg=0.108 lat=9.985 ptr=2.660 motif=0.000 dt=0.183
+04:29:40 | INFO    | gemma.zs | [source] ep1 step 4600/4680 loss=21.0118 (0.49s/step, epoch ETA 0.7 min)  jepa=0.444 infill=0.000 probe=8.479 reg=0.099 lat=9.563 ptr=2.682 motif=0.000 dt=0.187
+04:30:18 | INFO    | gemma.zs | [source] ft epoch 1 loss=20.8312 (2302s) | wm[H=3 flat=False jepa=0.438 infill=0.000 probe=7.882 reg=0.108 lat=9.438 ptr=2.562 motif=0.000 dt=0.193] ret[hist=0.95 prefix=0.45 is_last=-1.14 ptrans=1.01 tod=0.49 dow=0.31 rec=1.03 geo=0.50 lptr=0.52] exp[hier=0.39 geo=1.08 anchor=0.50 covis=1.00 pop=0.30 hour=0.30] gate[nov=0.64 logS=-0.31 pref=0.77] tau=21.5
+04:30:43 | INFO    | gemma.zs | [source] val@ep1-end: acc@1=0.1880 acc@5=0.3676 act@1=0.480
+04:32:18 | INFO    | gemma.zs | [source] ep2 step 200/4680 loss=20.7038 (0.48s/step, epoch ETA 35.5 min)  jepa=0.405 infill=0.000 probe=8.041 reg=0.106 lat=9.550 ptr=2.574 motif=0.000 dt=0.181
+04:33:52 | INFO    | gemma.zs | [source] ep2 step 400/4680 loss=20.5239 (0.47s/step, epoch ETA 33.6 min)  jepa=0.386 infill=0.000 probe=7.319 reg=0.123 lat=8.590 ptr=2.205 motif=0.000 dt=0.190
+04:35:28 | INFO    | gemma.zs | [source] ep2 step 600/4680 loss=20.5791 (0.48s/step, epoch ETA 32.3 min)  jepa=0.390 infill=0.000 probe=7.397 reg=0.117 lat=8.510 ptr=2.329 motif=0.000 dt=0.187
+04:37:06 | INFO    | gemma.zs | [source] ep2 step 800/4680 loss=20.7332 (0.48s/step, epoch ETA 30.9 min)  jepa=0.437 infill=0.000 probe=8.134 reg=0.098 lat=9.662 ptr=2.346 motif=0.000 dt=0.231
+04:38:42 | INFO    | gemma.zs | [source] ep2 step 1000/4680 loss=20.6299 (0.48s/step, epoch ETA 29.3 min)  jepa=0.392 infill=0.000 probe=6.831 reg=0.125 lat=7.025 ptr=2.442 motif=0.000 dt=0.226
+04:40:19 | INFO    | gemma.zs | [source] ep2 step 1200/4680 loss=20.7436 (0.48s/step, epoch ETA 27.9 min)  jepa=0.400 infill=0.000 probe=7.967 reg=0.113 lat=8.782 ptr=2.117 motif=0.000 dt=0.196
+04:41:55 | INFO    | gemma.zs | [source] ep2 step 1400/4680 loss=20.3234 (0.48s/step, epoch ETA 26.2 min)  jepa=0.410 infill=0.000 probe=7.700 reg=0.112 lat=8.811 ptr=2.212 motif=0.000 dt=0.207
+04:43:30 | INFO    | gemma.zs | [source] ep2 step 1600/4680 loss=20.5915 (0.48s/step, epoch ETA 24.6 min)  jepa=0.419 infill=0.000 probe=7.868 reg=0.097 lat=9.624 ptr=2.212 motif=0.000 dt=0.172
+04:45:06 | INFO    | gemma.zs | [source] ep2 step 1800/4680 loss=20.7106 (0.48s/step, epoch ETA 23.0 min)  jepa=0.426 infill=0.000 probe=8.372 reg=0.099 lat=9.772 ptr=2.619 motif=0.000 dt=0.220
+04:46:47 | INFO    | gemma.zs | [source] ep2 step 2000/4680 loss=20.6227 (0.48s/step, epoch ETA 21.5 min)  jepa=0.421 infill=0.000 probe=8.419 reg=0.100 lat=9.388 ptr=2.531 motif=0.000 dt=0.212
+04:47:13 | INFO    | gemma.zs | [source] val@ep2-step2000: acc@1=0.1915 acc@5=0.3690 act@1=0.480  *best
+04:48:49 | INFO    | gemma.zs | [source] ep2 step 2200/4680 loss=20.4704 (0.49s/step, epoch ETA 20.4 min)  jepa=0.414 infill=0.000 probe=7.502 reg=0.116 lat=7.104 ptr=2.202 motif=0.000 dt=0.228
+04:50:25 | INFO    | gemma.zs | [source] ep2 step 2400/4680 loss=20.5842 (0.49s/step, epoch ETA 18.7 min)  jepa=0.410 infill=0.000 probe=8.054 reg=0.113 lat=8.916 ptr=2.177 motif=0.000 dt=0.214
+04:52:03 | INFO    | gemma.zs | [source] ep2 step 2600/4680 loss=20.7458 (0.49s/step, epoch ETA 17.1 min)  jepa=0.434 infill=0.000 probe=7.697 reg=0.099 lat=9.414 ptr=2.266 motif=0.000 dt=0.232
+04:53:38 | INFO    | gemma.zs | [source] ep2 step 2800/4680 loss=20.4492 (0.49s/step, epoch ETA 15.4 min)  jepa=0.476 infill=0.000 probe=8.583 reg=0.093 lat=9.756 ptr=2.342 motif=0.000 dt=0.187
+04:55:12 | INFO    | gemma.zs | [source] ep2 step 3000/4680 loss=20.4737 (0.49s/step, epoch ETA 13.7 min)  jepa=0.403 infill=0.000 probe=7.093 reg=0.130 lat=7.234 ptr=2.172 motif=0.000 dt=0.240
+04:56:50 | INFO    | gemma.zs | [source] ep2 step 3200/4680 loss=20.7960 (0.49s/step, epoch ETA 12.1 min)  jepa=0.440 infill=0.000 probe=7.927 reg=0.103 lat=9.062 ptr=2.167 motif=0.000 dt=0.237
+04:58:26 | INFO    | gemma.zs | [source] ep2 step 3400/4680 loss=20.4430 (0.49s/step, epoch ETA 10.4 min)  jepa=0.457 infill=0.000 probe=8.333 reg=0.093 lat=9.702 ptr=2.393 motif=0.000 dt=0.211
+05:00:02 | INFO    | gemma.zs | [source] ep2 step 3600/4680 loss=20.7384 (0.49s/step, epoch ETA 8.8 min)  jepa=0.426 infill=0.000 probe=8.393 reg=0.099 lat=9.193 ptr=2.546 motif=0.000 dt=0.172
+05:01:40 | INFO    | gemma.zs | [source] ep2 step 3800/4680 loss=20.7235 (0.49s/step, epoch ETA 7.2 min)  jepa=0.445 infill=0.000 probe=8.047 reg=0.095 lat=9.033 ptr=2.316 motif=0.000 dt=0.226
+05:03:19 | INFO    | gemma.zs | [source] ep2 step 4000/4680 loss=20.6051 (0.49s/step, epoch ETA 5.5 min)  jepa=0.400 infill=0.000 probe=6.378 reg=0.115 lat=6.796 ptr=2.097 motif=0.000 dt=0.217
+05:03:44 | INFO    | gemma.zs | [source] val@ep2-step4000: acc@1=0.1906 acc@5=0.3700 act@1=0.481
+05:05:22 | INFO    | gemma.zs | [source] ep2 step 4200/4680 loss=20.6788 (0.49s/step, epoch ETA 4.0 min)  jepa=0.412 infill=0.000 probe=7.890 reg=0.097 lat=9.383 ptr=2.744 motif=0.000 dt=0.194
+05:06:58 | INFO    | gemma.zs | [source] ep2 step 4400/4680 loss=20.6658 (0.49s/step, epoch ETA 2.3 min)  jepa=0.472 infill=0.000 probe=8.526 reg=0.098 lat=9.869 ptr=2.391 motif=0.000 dt=0.190
+05:08:36 | INFO    | gemma.zs | [source] ep2 step 4600/4680 loss=20.6340 (0.49s/step, epoch ETA 0.7 min)  jepa=0.416 infill=0.000 probe=7.291 reg=0.123 lat=6.953 ptr=2.103 motif=0.000 dt=0.252
+05:09:14 | INFO    | gemma.zs | [source] ft epoch 2 loss=20.6144 (2311s) | wm[H=3 flat=False jepa=0.420 infill=0.000 probe=7.342 reg=0.115 lat=6.945 ptr=2.197 motif=0.000 dt=0.303] ret[hist=0.95 prefix=0.45 is_last=-1.15 ptrans=1.01 tod=0.49 dow=0.32 rec=1.03 geo=0.50 lptr=0.52] exp[hier=0.38 geo=1.08 anchor=0.50 covis=1.00 pop=0.30 hour=0.30] gate[nov=0.63 logS=-0.31 pref=0.77] tau=22.3
+05:09:39 | INFO    | gemma.zs | [source] val@ep2-end: acc@1=0.1908 acc@5=0.3698 act@1=0.481
+05:09:39 | INFO    | gemma.zs | [source] restored best checkpoint (val acc@1=0.1915)
+05:09:39 | INFO    | gemma.zs | saved -> runs/gemma_final_s0/zs_wm.pt

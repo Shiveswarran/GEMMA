@@ -1,0 +1,14 @@
+         city      n  STHGCN |                  GEMMA
+-----------------------------------------------------
+        tokyo    946   0.250 | 0.263/0.384=        
+      beijing     88   0.453 | 0.398/0.526=        
+     shanghai    530   0.193 | 0.196/0.281=        
+    palembang    774   0.246 | 0.261/0.354=        
+    melbourne   1239   0.168 | 0.160/0.261=        
+       sydney   1667   0.227 | 0.218/0.302=        
+    tangerang   2787   0.293 | 0.329/0.442>        
+       moscow   7288   0.223 | 0.227/0.328=        
+      bandung   9913   0.219 | 0.215/0.308=        
+-----------------------------------------------------
+     GEMMA: macro Acc@1 0.2520 (STHGCN 0.2524, -0.0004) NDCG@5 0.3539 | above STHGCN 5/9, significantly above 1, significantly below 0
+legend: '>' / '<' = z-test vs published STHGCN Acc@1 at 95%;  d = paired Acc@1 difference vs baseline 'None', '*' = 95% bootstrap CI excludes 0

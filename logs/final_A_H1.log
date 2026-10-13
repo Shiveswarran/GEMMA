@@ -1,0 +1,141 @@
+15:19:27 | INFO    | gemma.zs | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=<unset> | GPUs visible to torch=1
+15:19:31 | INFO    | gemma.zs | loaded 228910 cached LLM embeddings
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+15:19:34 | INFO    | gemma.zs | [istanbul] 49921/435586 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:20:43 | INFO    | gemma.zs | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+15:20:44 | INFO    | gemma.zs | [istanbul] source queries=229499 val=1000 POIs=38763
+15:20:46 | INFO    | gemma.zs | [petaling_jaya] 50496/405325 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:21:47 | INFO    | gemma.zs | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+15:21:48 | INFO    | gemma.zs | [petaling_jaya] source queries=228530 val=1000 POIs=48626
+15:21:49 | INFO    | gemma.zs | [jakarta] 63150/329617 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:22:38 | INFO    | gemma.zs | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+15:22:39 | INFO    | gemma.zs | [jakarta] source queries=192163 val=1000 POIs=63387
+15:22:40 | INFO    | gemma.zs | [new_york] 15823/217941 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:23:13 | INFO    | gemma.zs | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+15:23:14 | INFO    | gemma.zs | [new_york] source queries=126312 val=1000 POIs=41591
+15:23:15 | INFO    | gemma.zs | [kuwait_city] 23987/186092 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:23:44 | INFO    | gemma.zs | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+15:23:45 | INFO    | gemma.zs | [kuwait_city] source queries=98556 val=1000 POIs=12234
+15:23:46 | INFO    | gemma.zs | [sao_paulo] 15075/205396 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:24:16 | INFO    | gemma.zs | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+15:24:17 | INFO    | gemma.zs | [sao_paulo] source queries=116989 val=1000 POIs=31692
+15:24:19 | INFO    | gemma.zs | [source] device=cuda amp=torch.float16 steps/epoch=1176 epochs=2 lr_head=0.000412 lr_resid=- lr_bb=0.000227 val_every=1000 patience=99 min_epochs=2
+15:24:32 | INFO    | gemma.zs | [source] val@init: acc@1=0.1557 acc@5=0.3212 act@1=0.400  *best
+15:26:08 | INFO    | gemma.zs | [source] ep0 step 200/1176 loss=22.8670 (0.48s/step, epoch ETA 7.8 min)  jepa=0.161 infill=0.000 probe=8.231 reg=0.207 lat=9.936 ptr=2.052 motif=0.000 dt=0.200
+15:27:44 | INFO    | gemma.zs | [source] ep0 step 400/1176 loss=22.0530 (0.48s/step, epoch ETA 6.2 min)  jepa=0.144 infill=0.000 probe=9.997 reg=0.214 lat=10.366 ptr=2.473 motif=0.000 dt=0.244
+15:29:20 | INFO    | gemma.zs | [source] ep0 step 600/1176 loss=21.8381 (0.48s/step, epoch ETA 4.6 min)  jepa=0.151 infill=0.000 probe=8.833 reg=0.181 lat=10.568 ptr=2.728 motif=0.000 dt=0.234
+15:30:56 | INFO    | gemma.zs | [source] ep0 step 800/1176 loss=21.7231 (0.48s/step, epoch ETA 3.0 min)  jepa=0.153 infill=0.000 probe=8.725 reg=0.198 lat=9.892 ptr=2.873 motif=0.000 dt=0.241
+15:32:30 | INFO    | gemma.zs | [source] ep0 step 1000/1176 loss=21.4505 (0.48s/step, epoch ETA 1.4 min)  jepa=0.173 infill=0.000 probe=7.752 reg=0.229 lat=7.914 ptr=2.252 motif=0.000 dt=0.221
+15:32:43 | INFO    | gemma.zs | [source] val@ep0-step1000: acc@1=0.1792 acc@5=0.3447 act@1=0.467  *best
+15:34:05 | INFO    | gemma.zs | [source] ft epoch 0 loss=21.8789 (573s) | wm[H=1 flat=False jepa=0.185 infill=0.000 probe=7.508 reg=0.217 lat=7.836 ptr=2.060 motif=0.000 dt=0.293] ret[hist=0.97 prefix=0.47 is_last=-1.06 ptrans=1.00 tod=0.50 dow=0.31 rec=1.02 geo=0.50 lptr=0.50] exp[hier=0.47 geo=1.02 anchor=0.49 covis=1.00 pop=0.30 hour=0.30] gate[nov=0.88 logS=-0.31 pref=0.62] tau=12.4
+15:34:18 | INFO    | gemma.zs | [source] val@ep0-end: acc@1=0.1807 acc@5=0.3462 act@1=0.463  *best
+15:35:53 | INFO    | gemma.zs | [source] ep1 step 200/1176 loss=21.2759 (0.47s/step, epoch ETA 7.7 min)  jepa=0.179 infill=0.000 probe=8.412 reg=0.152 lat=9.883 ptr=2.798 motif=0.000 dt=0.217
+15:37:28 | INFO    | gemma.zs | [source] ep1 step 400/1176 loss=21.1492 (0.48s/step, epoch ETA 6.1 min)  jepa=0.194 infill=0.000 probe=7.648 reg=0.147 lat=9.207 ptr=2.645 motif=0.000 dt=0.176
+15:39:02 | INFO    | gemma.zs | [source] ep1 step 600/1176 loss=21.2102 (0.47s/step, epoch ETA 4.5 min)  jepa=0.229 infill=0.000 probe=7.808 reg=0.170 lat=9.387 ptr=2.044 motif=0.000 dt=0.265
+15:40:36 | INFO    | gemma.zs | [source] ep1 step 800/1176 loss=21.1610 (0.47s/step, epoch ETA 3.0 min)  jepa=0.246 infill=0.000 probe=7.467 reg=0.165 lat=7.800 ptr=2.508 motif=0.000 dt=0.281
+15:42:13 | INFO    | gemma.zs | [source] ep1 step 1000/1176 loss=21.3865 (0.47s/step, epoch ETA 1.4 min)  jepa=0.263 infill=0.000 probe=9.037 reg=0.152 lat=10.229 ptr=2.445 motif=0.000 dt=0.215
+15:42:25 | INFO    | gemma.zs | [source] val@ep1-step1000: acc@1=0.1820 acc@5=0.3465 act@1=0.468  *best
+15:43:52 | INFO    | gemma.zs | [source] ft epoch 1 loss=21.2526 (574s) | wm[H=1 flat=False jepa=0.282 infill=0.000 probe=8.358 reg=0.147 lat=9.409 ptr=2.427 motif=0.000 dt=0.231] ret[hist=0.96 prefix=0.47 is_last=-1.08 ptrans=1.00 tod=0.49 dow=0.31 rec=1.02 geo=0.50 lptr=0.50] exp[hier=0.46 geo=1.02 anchor=0.49 covis=1.00 pop=0.30 hour=0.30] gate[nov=0.86 logS=-0.31 pref=0.64] tau=13.0
+15:44:05 | INFO    | gemma.zs | [source] val@ep1-end: acc@1=0.1812 acc@5=0.3470 act@1=0.467
+15:44:05 | INFO    | gemma.zs | [source] restored best checkpoint (val acc@1=0.1820)
+15:44:05 | INFO    | gemma.zs | saved -> runs/abl_final_H1/zs_wm.pt
+15:44:08 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=<unset> | GPUs visible to torch=1
+15:44:08 | INFO    | gemma.down | retriever=wm predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+15:44:12 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+15:44:12 | INFO    | gemma.down | source-city realizer: runs/abl_final_H1/zs_wm.pt
+15:44:12 | INFO    | gemma.down | evidence=full hist_budget=-1 tag='_abl'
+15:44:12 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:44:14 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+15:44:14 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+15:44:15 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+15:44:17 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2431 acc@5=0.4683 acc@10=0.5539 ndcg@5=0.3637 mrr=0.3483 | next-activity acc=0.5412 f1=0.3467 | revisit(0.60) acc@1=0.396 explore acc@1=0.013 | cond: explore@1/@10=0.032/0.124 revisit@1=0.419 lat-explore@10=0.026 ptr@1=0.249 pi(exp/rev)=0.69/0.45 | STHGCN 0.250/0.350
+15:44:17 | INFO    | gemma.down | [beijing] 100/1470 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:44:17 | INFO    | gemma.down | [beijing] loaded semantic codes (4 levels) for 498 POIs
+15:44:17 | INFO    | gemma.down | [beijing] trails train=400 val=58 test=115 | POIs (all splits) = 598
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+15:44:17 | INFO    | gemma.down | [beijing/zero_shot] protocol=sthgcn split=test: scoring 88/115 targets
+15:44:17 | INFO    | gemma.down | [beijing/zero_shot] FULL-VOCAB acc@1=0.2500 acc@5=0.6364 acc@10=0.7159 ndcg@5=0.4766 mrr=0.4423 | next-activity acc=0.4205 f1=0.2588 | revisit(0.81) acc@1=0.296 explore acc@1=0.059 | cond: explore@1/@10=0.118/0.294 revisit@1=0.380 lat-explore@10=0.059 ptr@1=0.149 pi(exp/rev)=0.67/0.35 | STHGCN 0.453/0.552
+15:44:18 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:44:19 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+15:44:19 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+15:44:19 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+15:44:20 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1698 acc@5=0.3509 acc@10=0.4321 ndcg@5=0.2647 mrr=0.2577 | next-activity acc=0.4321 f1=0.2086 | revisit(0.53) acc@1=0.314 explore acc@1=0.008 | cond: explore@1/@10=0.032/0.144 revisit@1=0.339 lat-explore@10=0.032 ptr@1=0.265 pi(exp/rev)=0.69/0.41 | STHGCN 0.193/0.264
+15:44:20 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:44:22 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+15:44:22 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+15:44:23 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+15:44:24 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2416 acc@5=0.4186 acc@10=0.4858 ndcg@5=0.3359 mrr=0.3273 | next-activity acc=0.4470 f1=0.1848 | revisit(0.67) acc@1=0.362 explore acc@1=0.000 | cond: explore@1/@10=0.000/0.043 revisit@1=0.345 lat-explore@10=0.043 ptr@1=0.365 pi(exp/rev)=0.70/0.35 | STHGCN 0.246/0.341
+15:44:24 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:44:28 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+15:44:28 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+15:44:28 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+15:44:30 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1663 acc@5=0.3366 acc@10=0.4140 ndcg@5=0.2535 mrr=0.2451 | next-activity acc=0.4843 f1=0.2772 | revisit(0.52) acc@1=0.318 explore acc@1=0.003 | cond: explore@1/@10=0.017/0.082 revisit@1=0.309 lat-explore@10=0.013 ptr@1=0.237 pi(exp/rev)=0.71/0.41 | STHGCN 0.168/0.247
+15:44:30 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:44:35 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+15:44:35 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+15:44:35 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+15:44:38 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1962 acc@5=0.3677 acc@10=0.4433 ndcg@5=0.2842 mrr=0.2770 | next-activity acc=0.4769 f1=0.2611 | revisit(0.55) acc@1=0.350 explore acc@1=0.005 | cond: explore@1/@10=0.022/0.095 revisit@1=0.343 lat-explore@10=0.020 ptr@1=0.264 pi(exp/rev)=0.72/0.34 | STHGCN 0.227/0.307
+15:44:38 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:44:45 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+15:44:45 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+15:44:45 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+15:44:50 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3219 acc@5=0.5332 acc@10=0.6067 ndcg@5=0.4335 mrr=0.4185 | next-activity acc=0.5576 f1=0.2629 | revisit(0.68) acc@1=0.473 explore acc@1=0.004 | cond: explore@1/@10=0.023/0.127 revisit@1=0.466 lat-explore@10=0.044 ptr@1=0.390 pi(exp/rev)=0.69/0.28 | STHGCN 0.293/0.400
+15:44:50 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:45:07 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+15:45:07 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+15:45:07 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+15:45:17 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2200 acc@5=0.4022 acc@10=0.4728 ndcg@5=0.3166 mrr=0.3061 | next-activity acc=0.4536 f1=0.3066 | revisit(0.54) acc@1=0.408 explore acc@1=0.002 | cond: explore@1/@10=0.014/0.078 revisit@1=0.405 lat-explore@10=0.011 ptr@1=0.287 pi(exp/rev)=0.67/0.36 | STHGCN 0.223/0.308
+15:45:17 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+15:45:42 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+15:45:42 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+15:45:42 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+15:45:59 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.2092 acc@5=0.3708 acc@10=0.4443 ndcg@5=0.2937 mrr=0.2867 | next-activity acc=0.4756 f1=0.2267 | revisit(0.55) acc@1=0.381 explore acc@1=0.000 | cond: explore@1/@10=0.014/0.077 revisit@1=0.371 lat-explore@10=0.032 ptr@1=0.321 pi(exp/rev)=0.70/0.33 | STHGCN 0.219/0.302
+15:45:59 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+15:45:59 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+15:45:59 | INFO    | gemma.down |          tokyo zero_shot   0.243/0.364       nan/nan       nan/nan 0.250/0.350    0.541
+15:45:59 | INFO    | gemma.down |        beijing zero_shot   0.250/0.477       nan/nan       nan/nan 0.453/0.552    0.420
+15:45:59 | INFO    | gemma.down |       shanghai zero_shot   0.170/0.265       nan/nan       nan/nan 0.193/0.264    0.432
+15:45:59 | INFO    | gemma.down |      palembang zero_shot   0.242/0.336       nan/nan       nan/nan 0.246/0.341    0.447
+15:45:59 | INFO    | gemma.down |      melbourne zero_shot   0.166/0.254       nan/nan       nan/nan 0.168/0.247    0.484
+15:45:59 | INFO    | gemma.down |         sydney zero_shot   0.196/0.284       nan/nan       nan/nan 0.227/0.307    0.477
+15:45:59 | INFO    | gemma.down |      tangerang zero_shot   0.322/0.433       nan/nan       nan/nan 0.293/0.400    0.558
+15:45:59 | INFO    | gemma.down |         moscow zero_shot   0.220/0.317       nan/nan       nan/nan 0.223/0.308    0.454
+15:45:59 | INFO    | gemma.down |        bandung zero_shot   0.209/0.294       nan/nan       nan/nan 0.219/0.302    0.476

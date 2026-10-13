@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering\small
+\caption{Massive-STEPS LLM-Move protocol (ground truth + 100 random candidates, last 15 trajectories as history), Acc@1.}
+\label{tab:A7_llm_protocol}
+\begin{tabular}{lrrrrr}
+\toprule
+city & LLM-Move (Gemini-2.0) & LLM-Move (best of 4) & GEMMA hand-set & GEMMA & GEMMA std \\
+\midrule
+Tokyo & 0.250 & 0.250 & 0.488 & 0.474 & 0.023 \\
+Beijing & 0.096 & 0.192 & 0.419 & 0.346 & 0.036 \\
+Shanghai & 0.170 & 0.170 & 0.296 & 0.303 & 0.040 \\
+Palembang & 0.260 & 0.260 & 0.377 & 0.415 & 0.023 \\
+Melbourne & 0.225 & 0.225 & 0.309 & 0.315 & 0.019 \\
+Sydney & 0.230 & 0.230 & 0.320 & 0.340 & 0.026 \\
+Tangerang & 0.200 & 0.200 & 0.532 & 0.592 & 0.041 \\
+Moscow & 0.220 & 0.230 & 0.456 & 0.515 & 0.030 \\
+Bandung & 0.225 & 0.225 & 0.411 & 0.497 & 0.044 \\
+mean & 0.208 & 0.220 & 0.401 & 0.422 & 0.031 \\
+\bottomrule
+\end{tabular}
+\end{table}

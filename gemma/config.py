@@ -97,7 +97,8 @@ class Config:
     eval_protocol: str = "sthgcn"     # sthgcn: score only targets whose POI and user occur in the
                                       # TRAIN split (Massive-STEPS STHGCN remove_unseen_user_poi);
                                       # all: every test trajectory
-    eval_split: str = "test"          # test | validation (validation = model/HP selection only)
+    eval_split: str = "test"
+    drop_ret: str = ""              # eval diagnostic: return channels to zero, e.g. "lptr,prefix"          # test | validation (validation = model/HP selection only)
     hist_trails: int = 15             # user's most recent history trajectories in context
     hist_max_tokens: int = 200        # token cap for [history SEP ... SEP prefix]
     random_backbone: bool = False   # ablation: untrained backbone of identical architecture
