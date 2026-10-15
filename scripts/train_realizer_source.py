@@ -36,7 +36,11 @@ def main():
     p.add_argument("--device"); p.add_argument("--out", default=None)
     p.add_argument("--random_backbone", action="store_true", help="ablation: no pretraining")
     p.add_argument("--allow_cpu", action="store_true")
-    p.add_argument("--retriever", choices=["wm", "hrem", "realize"], default=None)
+    p.add_argument("--retriever", choices=["wm", "hrem", "hrem7", "realize"], default=None)
+    p.add_argument("--collab", action="store_true",
+                   help="v7: train with the source cities' own statistics (leave-one-out) so the "
+                        "population-evidence weights are LEARNED; --stat_dropout keeps the zero-shot regime")
+    p.add_argument("--stat_dropout", type=float, default=0.5)
     for k, t in [("wm_H", int), ("wm_infill", float), ("wm_pred_layers", int),
                  ("lambda_wm_jepa", float), ("lambda_wm_infill", float), ("lambda_wm_probe", float),
                  ("lambda_wm_reg", float), ("lambda_wm_lat", float), ("lambda_wm_ptr", float),
@@ -63,6 +67,8 @@ def main():
         if getattr(a, k) is not None:
             setattr(cfg, k, getattr(a, k))
     if a.wm_flat: cfg.wm_flat = True
+    if a.collab:
+        cfg.collab = True; cfg.stat_dropout = a.stat_dropout
     logger = get_logger("gemma.zs", os.path.join(a.run_dir, "train_realizer_source.log"))
     device = check_device(cfg, logger); set_seed(cfg.seed)
     fsq = FSQTaxonomy(cfg.fsq_csv); enc = POIEncoder(cfg, logger); cfg.poi_emb_dim = enc.dim
@@ -71,7 +77,8 @@ def main():
     for c in (a.cities or cfg.pretrain_cities):
         city = build_city_data(cfg, c, ["train", "validation"], fsq, enc, logger, filter_users=False)
         ids = split_ids(city)
-        ci = CityIndex(city, observed=ids["train"], stat=None, cfg=cfg, device=device)
+        ci = CityIndex(city, observed=ids["train"], stat=(ids["train"] if a.collab else None),
+                       cfg=cfg, device=device)
         q = ci.queries(ids["train"], cfg.ft_all_positions)
         rng = np.random.RandomState(cfg.seed)
         qv = ci.queries(ids["validation"], False)
@@ -79,6 +86,8 @@ def main():
             qv = sthgcn_filter(ci, qv, ids["train"])
         qv = [qv[i] for i in rng.permutation(len(qv))[:a.val_per_city]]
         jobs.append((ci, q)); vals.append((ci, qv))
+        if a.collab and a.stat_dropout > 0:      # select on BOTH regimes (with / without city stats)
+            vals.append((ci, qv, True))
         logger.info(f"[{c}] source queries={len(q)} val={len(qv)} POIs={ci.P}")
     head = new_head(bb, jobs[0][0], cfg, device)
     finetune(bb, head, jobs, cfg, device, logger, a.epochs, a.lr_head,
@@ -93,7 +102,7 @@ def main():
                     "wm_H", "wm_flat", "wm_infill", "wm_pred_layers", "lambda_wm_jepa",
                     "lambda_wm_infill", "lambda_wm_probe", "lambda_wm_reg", "lambda_wm_lat",
                     "lambda_wm_ptr", "lambda_wm_motif", "lambda_wm_dt", "ema_decay", "retriever",
-                    "evidence")}}, out)
+                    "evidence", "collab", "collab_topk", "collab_user_cap", "ctr_kappa")}}, out)
     logger.info(f"saved -> {out}")
 
 

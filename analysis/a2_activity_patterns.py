@@ -21,8 +21,10 @@ from common import (SRC, TGT, base_args, load_cfg, taxonomy, load_city, save_tab
                     pretty, city_style, js_div, short_act)
 
 
-def dists(C, A, cat_index, pri_index):
+def dists(C, A, cat_index, pri_index, users=None, city=""):
     df = C["df"]
+    if users is not None:                       # restrict to a subset of users (split-half noise floor)
+        df = df[df["user_id"].isin(users)]
     acts = df["act"].values; hours = df["hour"].values
     act_hour = np.zeros((A, 24)); np.add.at(act_hour, (acts, hours), 1)
     act = act_hour.sum(1)
@@ -32,8 +34,11 @@ def dists(C, A, cat_index, pri_index):
     for x in df["pri"]:
         pri[pri_index[x]] += 1
     trans = np.zeros((A, A))
+    keep = set(df.index) if users is not None else None
     for t in C["trails"]:
-        a_ = acts[t["rows"]]
+        if keep is not None and t["user_id"] not in users:
+            continue
+        a_ = C["df"]["act"].values[t["rows"]]
         np.add.at(trans, (a_[:-1], a_[1:]), 1)
     # revisit by activity of the target (user-level, time order)
     rev = np.zeros(A); tot = np.zeros(A)
@@ -44,7 +49,7 @@ def dists(C, A, cat_index, pri_index):
                 tot[a_] += 1; rev[a_] += v in seen
             seen.add(v)
     return {"act": act, "act_hour": act_hour, "cat": cat, "pri": pri, "trans": trans,
-            "pois": df["venue_id"].value_counts().to_dict(), "rev": rev, "rev_tot": tot}
+            "pois": {(city, k): v for k, v in df["venue_id"].value_counts().items()}, "rev": rev, "rev_tot": tot}
 
 
 def main():
@@ -54,14 +59,18 @@ def main():
     plt = setup_mpl()
     cats = sorted(fsq.id2levels.keys()); cat_index = {c: i for i, c in enumerate(cats)}
     pri_index = dict(fsq.pri2id)
-    D = {}
+    D, H = {}, {}
     for c in a.cities:
         try:
             C = load_city(cfg, fsq, c)
         except FileNotFoundError:
             print(f"skip {c}"); continue
         C["df"]["pri"] = [fsq.primary_id(x) for x in C["df"]["venue_category_id"]]
-        D[c] = dists(C, A, cat_index, {v: v for v in range(len(pri_index) + 1)})
+        pidx = {v: v for v in range(len(pri_index) + 1)}
+        D[c] = dists(C, A, cat_index, pidx, city=c)
+        us = np.array(sorted(C["df"]["user_id"].unique())); rng = np.random.RandomState(a.seed)
+        rng.shuffle(us); h = len(us) // 2
+        H[c] = (dists(C, A, cat_index, pidx, set(us[:h]), c), dists(C, A, cat_index, pidx, set(us[h:]), c))
     cities = list(D)
     if len(cities) < 2:
         print("need >= 2 cities"); return
@@ -83,19 +92,52 @@ def main():
                     d = js_div(D[ci][key].ravel(), D[cj][key].ravel())
                 M[i, j] = M[j, i] = d; vals.append(d)
         J[lab] = M
+        # sampling-noise floor: JS between two random user-halves of the SAME city, and the cross-city
+        # JS at the same sample size (half of city i vs half of city j).  excess = cross - within.
+        def jsd(x, y):
+            if key is None:
+                ks = list(set(x["pois"]) | set(y["pois"]))
+                return js_div([x["pois"].get(k, 0) for k in ks], [y["pois"].get(k, 0) for k in ks])
+            return js_div(x[key].ravel(), y[key].ravel())
+        within = [jsd(H[c][0], H[c][1]) for c in cities]
+        cross_h = [jsd(H[ci][0], H[cj][1]) for i, ci in enumerate(cities) for j, cj in enumerate(cities) if i < j]
         rows.append({"representation": lab, "mean cross-city JS (bits)": float(np.nanmean(vals)),
-                     "max": float(np.nanmax(vals)), "shared POIs (any pair)":
+                     "max": float(np.nanmax(vals)),
+                     "within-city split-half JS": float(np.nanmean(within)),
+                     "cross-city JS (half vs half)": float(np.nanmean(cross_h)),
+                     "excess JS (cross - within)": float(np.nanmean(cross_h) - np.nanmean(within)),
+                     "shared POIs (any pair)":
                      int(sum(len(set(D[x]["pois"]) & set(D[y]["pois"])) for x in cities for y in cities if x < y)) if key is None else ""})
     T = pd.DataFrame(rows)
     save_table(T, a.out, "A2_abstraction_ladder",
                "Mean pairwise Jensen--Shannon divergence between cities (bits; 0 = identical, 1 = disjoint). "
-               "Cities share no POIs, but their activity rhythms and activity transitions are nearly identical.")
+               "Within-city split-half JS is the sampling-noise floor; excess JS = cross-city minus within-city "
+               "(half vs half, same sample size).")
     act_ids = [k for k in range(1, A) if sum(D[c]["act"][k] for c in cities) > 0]
     R = pd.DataFrame({"city": [pretty(c) for c in cities],
                       **{short_act(names.get(k, str(k))): [D[c]["rev"][k] / D[c]["rev_tot"][k] if D[c]["rev_tot"][k] >= 20
                                                      else float("nan") for c in cities] for k in act_ids}})
     save_table(R, a.out, "A2_revisit_by_activity",
                "Probability that the next check-in revisits a known place, by activity of that check-in.")
+    # does the ORDER of activities by revisit propensity transfer?  mean pairwise Spearman between cities
+    from scipy.stats import spearmanr
+    V = R.drop(columns=["city"]).values.astype(float)
+    rhos = []
+    for i in range(len(V)):
+        for j in range(i + 1, len(V)):
+            ok = ~np.isnan(V[i]) & ~np.isnan(V[j])
+            if ok.sum() >= 5:
+                rhos.append(spearmanr(V[i, ok], V[j, ok])[0])
+    src = [k for k, c in enumerate(cities) if c in SRC]; tgt = [k for k, c in enumerate(cities) if c not in SRC]
+    Tr = pd.DataFrame({"activity": R.columns[1:],
+                       "mean P(revisit) sources": np.nanmean(V[src], 0) if src else np.nan,
+                       "mean P(revisit) targets": np.nanmean(V[tgt], 0) if tgt else np.nan,
+                       "sd across all cities": np.nanstd(V, 0)})
+    Tr.loc[len(Tr)] = ["pairwise Spearman (mean)", float(np.nanmean(rhos)), float(np.nanmin(rhos)) if rhos else np.nan,
+                       float(np.nanstd(rhos)) if rhos else np.nan]
+    save_table(Tr, a.out, "A2_revisit_rank_transfer",
+               "Revisit propensity by activity: source vs target means, and how consistently cities ORDER the activities "
+               "(last row: mean pairwise Spearman; column 3 holds the minimum, column 4 the SD).")
     # ---- figures
     fig, ax = plt.subplots(figsize=(3.6, 2.3))
     ax.barh(T["representation"][::-1], T["mean cross-city JS (bits)"][::-1],

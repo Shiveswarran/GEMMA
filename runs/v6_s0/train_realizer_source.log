@@ -1,0 +1,120 @@
+03:05:35 | INFO    | gemma.zs | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=<unset> | GPUs visible to torch=1
+03:05:39 | INFO    | gemma.zs | loaded 228910 cached LLM embeddings
+03:05:42 | INFO    | gemma.zs | [istanbul] 49921/435586 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:06:50 | INFO    | gemma.zs | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+03:06:51 | INFO    | gemma.zs | [istanbul] source queries=229499 val=1000 POIs=38763
+03:06:53 | INFO    | gemma.zs | [petaling_jaya] 50496/405325 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:07:55 | INFO    | gemma.zs | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+03:07:56 | INFO    | gemma.zs | [petaling_jaya] source queries=228530 val=1000 POIs=48626
+03:07:58 | INFO    | gemma.zs | [jakarta] 63150/329617 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:08:47 | INFO    | gemma.zs | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+03:08:48 | INFO    | gemma.zs | [jakarta] source queries=192163 val=1000 POIs=63387
+03:08:49 | INFO    | gemma.zs | [new_york] 15823/217941 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:09:22 | INFO    | gemma.zs | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+03:09:22 | INFO    | gemma.zs | [new_york] source queries=126312 val=1000 POIs=41591
+03:09:23 | INFO    | gemma.zs | [kuwait_city] 23987/186092 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:09:53 | INFO    | gemma.zs | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+03:09:53 | INFO    | gemma.zs | [kuwait_city] source queries=98556 val=1000 POIs=12234
+03:09:54 | INFO    | gemma.zs | [sao_paulo] 15075/205396 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+03:10:25 | INFO    | gemma.zs | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+03:10:26 | INFO    | gemma.zs | [sao_paulo] source queries=116989 val=1000 POIs=31692
+03:10:31 | INFO    | gemma.zs | [source] device=cuda amp=torch.float16 steps/epoch=6187 epochs=4 lr_head=0.002 lr_resid=- lr_bb=5e-05 val_every=1000 patience=3 min_epochs=0
+03:10:44 | INFO    | gemma.zs | [source] val@init: acc@1=0.1663 acc@5=0.3373 act@1=0.451  *best
+03:12:06 | INFO    | gemma.zs | [source] ep0 step 200/6187 loss=7.7158 (0.41s/step, epoch ETA 41.0 min) 
+03:13:30 | INFO    | gemma.zs | [source] ep0 step 400/6187 loss=7.3710 (0.42s/step, epoch ETA 40.0 min) 
+03:14:52 | INFO    | gemma.zs | [source] ep0 step 600/6187 loss=7.2622 (0.41s/step, epoch ETA 38.6 min) 
+03:16:16 | INFO    | gemma.zs | [source] ep0 step 800/6187 loss=7.2658 (0.42s/step, epoch ETA 37.3 min) 
+03:17:39 | INFO    | gemma.zs | [source] ep0 step 1000/6187 loss=7.2211 (0.41s/step, epoch ETA 35.9 min) 
+03:17:51 | INFO    | gemma.zs | [source] val@ep0-step1000: acc@1=0.1802 acc@5=0.3558 act@1=0.458  *best
+03:19:16 | INFO    | gemma.zs | [source] ep0 step 1200/6187 loss=7.2370 (0.43s/step, epoch ETA 35.5 min) 
+03:20:41 | INFO    | gemma.zs | [source] ep0 step 1400/6187 loss=7.1233 (0.43s/step, epoch ETA 34.0 min) 
+03:22:06 | INFO    | gemma.zs | [source] ep0 step 1600/6187 loss=7.2305 (0.43s/step, epoch ETA 32.6 min) 
+03:23:32 | INFO    | gemma.zs | [source] ep0 step 1800/6187 loss=7.1458 (0.43s/step, epoch ETA 31.2 min) 
+03:24:55 | INFO    | gemma.zs | [source] ep0 step 2000/6187 loss=7.1604 (0.43s/step, epoch ETA 29.7 min) 
+03:25:08 | INFO    | gemma.zs | [source] val@ep0-step2000: acc@1=0.1825 acc@5=0.3568 act@1=0.469  *best
+03:26:32 | INFO    | gemma.zs | [source] ep0 step 2200/6187 loss=7.1349 (0.43s/step, epoch ETA 28.6 min) 
+03:27:58 | INFO    | gemma.zs | [source] ep0 step 2400/6187 loss=7.1313 (0.43s/step, epoch ETA 27.2 min) 
+03:29:21 | INFO    | gemma.zs | [source] ep0 step 2600/6187 loss=7.0912 (0.43s/step, epoch ETA 25.7 min) 
+03:30:45 | INFO    | gemma.zs | [source] ep0 step 2800/6187 loss=7.0852 (0.43s/step, epoch ETA 24.2 min) 
+03:32:10 | INFO    | gemma.zs | [source] ep0 step 3000/6187 loss=7.0848 (0.43s/step, epoch ETA 22.8 min) 
+03:32:22 | INFO    | gemma.zs | [source] val@ep0-step3000: acc@1=0.1803 acc@5=0.3657 act@1=0.472
+03:33:47 | INFO    | gemma.zs | [source] ep0 step 3200/6187 loss=7.0694 (0.43s/step, epoch ETA 21.5 min) 
+03:35:13 | INFO    | gemma.zs | [source] ep0 step 3400/6187 loss=7.0516 (0.43s/step, epoch ETA 20.1 min) 
+03:36:36 | INFO    | gemma.zs | [source] ep0 step 3600/6187 loss=6.9971 (0.43s/step, epoch ETA 18.6 min) 
+03:38:02 | INFO    | gemma.zs | [source] ep0 step 3800/6187 loss=7.0319 (0.43s/step, epoch ETA 17.1 min) 
+03:39:26 | INFO    | gemma.zs | [source] ep0 step 4000/6187 loss=7.0849 (0.43s/step, epoch ETA 15.7 min) 
+03:39:38 | INFO    | gemma.zs | [source] val@ep0-step4000: acc@1=0.1817 acc@5=0.3612 act@1=0.474
+03:41:02 | INFO    | gemma.zs | [source] ep0 step 4200/6187 loss=7.0068 (0.43s/step, epoch ETA 14.3 min) 
+03:42:25 | INFO    | gemma.zs | [source] ep0 step 4400/6187 loss=7.0235 (0.43s/step, epoch ETA 12.9 min) 
+03:43:49 | INFO    | gemma.zs | [source] ep0 step 4600/6187 loss=7.0095 (0.43s/step, epoch ETA 11.4 min) 
+03:45:13 | INFO    | gemma.zs | [source] ep0 step 4800/6187 loss=6.9886 (0.43s/step, epoch ETA 10.0 min) 
+03:46:37 | INFO    | gemma.zs | [source] ep0 step 5000/6187 loss=7.0538 (0.43s/step, epoch ETA 8.5 min) 
+03:46:49 | INFO    | gemma.zs | [source] val@ep0-step5000: acc@1=0.1845 acc@5=0.3650 act@1=0.470  *best
+03:48:11 | INFO    | gemma.zs | [source] ep0 step 5200/6187 loss=7.0548 (0.43s/step, epoch ETA 7.1 min) 
+03:49:37 | INFO    | gemma.zs | [source] ep0 step 5400/6187 loss=7.0375 (0.43s/step, epoch ETA 5.7 min) 
+03:51:04 | INFO    | gemma.zs | [source] ep0 step 5600/6187 loss=7.0955 (0.43s/step, epoch ETA 4.2 min) 
+03:52:29 | INFO    | gemma.zs | [source] ep0 step 5800/6187 loss=6.9874 (0.43s/step, epoch ETA 2.8 min) 
+03:53:56 | INFO    | gemma.zs | [source] ep0 step 6000/6187 loss=6.9800 (0.43s/step, epoch ETA 1.3 min) 
+03:54:08 | INFO    | gemma.zs | [source] val@ep0-step6000: acc@1=0.1870 acc@5=0.3618 act@1=0.470  *best
+03:55:24 | INFO    | gemma.zs | [source] ft epoch 0 loss=7.1193 (2681s) | ret[hist=0.66 prefix=0.11 is_last=-1.58 ptrans=1.00 tod=0.45 dow=0.40 rec=1.27 geo=0.42 lptr=-0.02] exp[hier=0.37 geo=1.01 anchor=0.53 covis=1.00 pop=0.30 hour=0.30] gate[nov=0.83 logS=-0.28 pref=0.86] tau=16.8
+03:55:37 | INFO    | gemma.zs | [source] val@ep0-end: acc@1=0.1783 acc@5=0.3653 act@1=0.474
+03:56:57 | INFO    | gemma.zs | [source] ep1 step 200/6187 loss=6.8667 (0.40s/step, epoch ETA 40.2 min) 
+03:58:22 | INFO    | gemma.zs | [source] ep1 step 400/6187 loss=7.0688 (0.41s/step, epoch ETA 39.8 min) 
+03:59:47 | INFO    | gemma.zs | [source] ep1 step 600/6187 loss=7.0673 (0.42s/step, epoch ETA 38.8 min) 
+04:01:14 | INFO    | gemma.zs | [source] ep1 step 800/6187 loss=7.0477 (0.42s/step, epoch ETA 37.8 min) 
+04:02:37 | INFO    | gemma.zs | [source] ep1 step 1000/6187 loss=6.9614 (0.42s/step, epoch ETA 36.4 min) 
+04:02:50 | INFO    | gemma.zs | [source] val@ep1-step1000: acc@1=0.1838 acc@5=0.3642 act@1=0.479
+04:04:13 | INFO    | gemma.zs | [source] ep1 step 1200/6187 loss=6.9078 (0.43s/step, epoch ETA 35.8 min) 
+04:05:37 | INFO    | gemma.zs | [source] ep1 step 1400/6187 loss=6.9879 (0.43s/step, epoch ETA 34.2 min) 
+04:07:00 | INFO    | gemma.zs | [source] ep1 step 1600/6187 loss=6.8750 (0.43s/step, epoch ETA 32.6 min) 
+04:08:27 | INFO    | gemma.zs | [source] ep1 step 1800/6187 loss=7.0598 (0.43s/step, epoch ETA 31.3 min) 
+04:09:54 | INFO    | gemma.zs | [source] ep1 step 2000/6187 loss=6.9795 (0.43s/step, epoch ETA 29.9 min) 
+04:10:06 | INFO    | gemma.zs | [source] val@ep1-step2000: acc@1=0.1873 acc@5=0.3668 act@1=0.474  *best
+04:11:34 | INFO    | gemma.zs | [source] ep1 step 2200/6187 loss=7.0591 (0.44s/step, epoch ETA 28.9 min) 
+04:12:58 | INFO    | gemma.zs | [source] ep1 step 2400/6187 loss=6.7792 (0.43s/step, epoch ETA 27.4 min) 
+04:14:24 | INFO    | gemma.zs | [source] ep1 step 2600/6187 loss=6.9714 (0.43s/step, epoch ETA 25.9 min) 
+04:15:48 | INFO    | gemma.zs | [source] ep1 step 2800/6187 loss=6.8819 (0.43s/step, epoch ETA 24.4 min) 
+04:17:13 | INFO    | gemma.zs | [source] ep1 step 3000/6187 loss=6.9401 (0.43s/step, epoch ETA 23.0 min) 
+04:17:26 | INFO    | gemma.zs | [source] val@ep1-step3000: acc@1=0.1830 acc@5=0.3683 act@1=0.474
+04:18:46 | INFO    | gemma.zs | [source] ep1 step 3200/6187 loss=6.7664 (0.43s/step, epoch ETA 21.6 min) 
+04:20:09 | INFO    | gemma.zs | [source] ep1 step 3400/6187 loss=6.8365 (0.43s/step, epoch ETA 20.1 min) 
+04:21:33 | INFO    | gemma.zs | [source] ep1 step 3600/6187 loss=6.8616 (0.43s/step, epoch ETA 18.6 min) 
+04:22:57 | INFO    | gemma.zs | [source] ep1 step 3800/6187 loss=6.9214 (0.43s/step, epoch ETA 17.2 min) 
+04:24:22 | INFO    | gemma.zs | [source] ep1 step 4000/6187 loss=6.9499 (0.43s/step, epoch ETA 15.7 min) 
+04:24:34 | INFO    | gemma.zs | [source] val@ep1-step4000: acc@1=0.1870 acc@5=0.3657 act@1=0.471
+04:25:57 | INFO    | gemma.zs | [source] ep1 step 4200/6187 loss=6.8152 (0.43s/step, epoch ETA 14.4 min) 
+04:27:22 | INFO    | gemma.zs | [source] ep1 step 4400/6187 loss=6.9235 (0.43s/step, epoch ETA 12.9 min) 
+04:28:46 | INFO    | gemma.zs | [source] ep1 step 4600/6187 loss=6.8765 (0.43s/step, epoch ETA 11.4 min) 
+04:30:11 | INFO    | gemma.zs | [source] ep1 step 4800/6187 loss=6.9229 (0.43s/step, epoch ETA 10.0 min) 
+04:31:34 | INFO    | gemma.zs | [source] ep1 step 5000/6187 loss=6.9259 (0.43s/step, epoch ETA 8.5 min) 
+04:31:46 | INFO    | gemma.zs | [source] val@ep1-step5000: acc@1=0.1890 acc@5=0.3678 act@1=0.473  *best
+04:33:07 | INFO    | gemma.zs | [source] ep1 step 5200/6187 loss=6.8517 (0.43s/step, epoch ETA 7.1 min) 
+04:34:29 | INFO    | gemma.zs | [source] ep1 step 5400/6187 loss=6.8490 (0.43s/step, epoch ETA 5.7 min) 
+04:35:54 | INFO    | gemma.zs | [source] ep1 step 5600/6187 loss=6.8465 (0.43s/step, epoch ETA 4.2 min) 
+04:37:20 | INFO    | gemma.zs | [source] ep1 step 5800/6187 loss=6.9023 (0.43s/step, epoch ETA 2.8 min) 
+04:38:47 | INFO    | gemma.zs | [source] ep1 step 6000/6187 loss=6.9707 (0.43s/step, epoch ETA 1.3 min) 
+04:39:00 | INFO    | gemma.zs | [source] val@ep1-step6000: acc@1=0.1872 acc@5=0.3665 act@1=0.475
+04:40:17 | INFO    | gemma.zs | [source] ft epoch 1 loss=6.9183 (2680s) | ret[hist=0.62 prefix=0.06 is_last=-1.70 ptrans=1.02 tod=0.45 dow=0.43 rec=1.35 geo=0.38 lptr=-0.01] exp[hier=0.37 geo=0.92 anchor=0.55 covis=1.00 pop=0.30 hour=0.30] gate[nov=0.81 logS=-0.27 pref=0.86] tau=21.4
+04:40:30 | INFO    | gemma.zs | [source] val@ep1-end: acc@1=0.1898 acc@5=0.3683 act@1=0.473  *best
+04:41:57 | INFO    | gemma.zs | [source] ep2 step 200/6187 loss=6.9578 (0.44s/step, epoch ETA 43.6 min) 
+04:43:24 | INFO    | gemma.zs | [source] ep2 step 400/6187 loss=6.7975 (0.44s/step, epoch ETA 42.0 min) 
+04:44:48 | INFO    | gemma.zs | [source] ep2 step 600/6187 loss=6.8380 (0.43s/step, epoch ETA 40.1 min) 
+04:46:12 | INFO    | gemma.zs | [source] ep2 step 800/6187 loss=6.7470 (0.43s/step, epoch ETA 38.4 min) 
+04:47:35 | INFO    | gemma.zs | [source] ep2 step 1000/6187 loss=6.7921 (0.43s/step, epoch ETA 36.8 min) 
+04:47:48 | INFO    | gemma.zs | [source] val@ep2-step1000: acc@1=0.1877 acc@5=0.3695 act@1=0.474
+04:49:16 | INFO    | gemma.zs | [source] ep2 step 1200/6187 loss=6.8318 (0.44s/step, epoch ETA 36.5 min) 
+04:50:40 | INFO    | gemma.zs | [source] ep2 step 1400/6187 loss=6.8522 (0.44s/step, epoch ETA 34.8 min) 
+04:52:07 | INFO    | gemma.zs | [source] ep2 step 1600/6187 loss=6.8318 (0.44s/step, epoch ETA 33.3 min) 
+04:53:35 | INFO    | gemma.zs | [source] ep2 step 1800/6187 loss=6.9086 (0.44s/step, epoch ETA 31.9 min) 
+04:55:01 | INFO    | gemma.zs | [source] ep2 step 2000/6187 loss=6.7401 (0.44s/step, epoch ETA 30.4 min) 
+04:55:14 | INFO    | gemma.zs | [source] val@ep2-step2000: acc@1=0.1877 acc@5=0.3655 act@1=0.478
+04:56:37 | INFO    | gemma.zs | [source] ep2 step 2200/6187 loss=6.8443 (0.44s/step, epoch ETA 29.2 min) 
+04:58:02 | INFO    | gemma.zs | [source] ep2 step 2400/6187 loss=6.8563 (0.44s/step, epoch ETA 27.7 min) 
+04:59:27 | INFO    | gemma.zs | [source] ep2 step 2600/6187 loss=6.8387 (0.44s/step, epoch ETA 26.1 min) 
+05:00:49 | INFO    | gemma.zs | [source] ep2 step 2800/6187 loss=6.7749 (0.44s/step, epoch ETA 24.6 min) 
+05:02:12 | INFO    | gemma.zs | [source] ep2 step 3000/6187 loss=6.7918 (0.43s/step, epoch ETA 23.1 min) 
+05:02:25 | INFO    | gemma.zs | [source] val@ep2-step3000: acc@1=0.1887 acc@5=0.3685 act@1=0.479
+05:02:25 | INFO    | gemma.zs | [source] ft epoch 2 loss=6.8269 (1315s) | ret[hist=0.62 prefix=0.05 is_last=-1.68 ptrans=1.01 tod=0.44 dow=0.42 rec=1.34 geo=0.37 lptr=-0.02] exp[hier=0.37 geo=0.89 anchor=0.56 covis=1.00 pop=0.30 hour=0.30] gate[nov=0.82 logS=-0.28 pref=0.84] tau=23.1
+05:02:25 | INFO    | gemma.zs | [source] early stop in epoch 2
+05:02:25 | INFO    | gemma.zs | [source] restored best checkpoint (val acc@1=0.1898)
+05:02:25 | INFO    | gemma.zs | saved -> runs/v6_s0/zs_hrem.pt

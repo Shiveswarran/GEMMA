@@ -97,10 +97,14 @@ def run_city(cfg, run_dir, fsq, enc, city_name, shots, protocols, logger, zs=Non
     rows = []
     for shot in shots:
         bb_state = zs["backbone"] if (zs and zs.get("backbone") is not None and
-                                      (shot == "zero_shot" or init_from_zs)) else None
+                                      (shot.startswith("zero_shot") or init_from_zs)) else None
         bb = load_backbone(cfg, run_dir, device, bb_state)
-        if shot == "zero_shot":
-            ci = CityIndex(city, observed=ids["train"], stat=None, cfg=cfg, device=device)
+        if shot.startswith("zero_shot"):
+            # zero_shot   : no target-city statistics, no training (strict)
+            # zero_shot_u : the target city's UNLABELLED train log is available as non-parametric
+            #               statistics (population transitions, co-visitation); still NO gradient step
+            stat = ids["train"] if shot == "zero_shot_u" else None
+            ci = CityIndex(city, observed=ids["train"], stat=stat, cfg=cfg, device=device)
             head = new_head(bb, ci, cfg, device)
             if zs:
                 head.load_state_dict(zs["head"], strict=False)

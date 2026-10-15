@@ -37,6 +37,8 @@ def user_days(C, A, cat_index, max_days, rng):
     poi_vocab = {}
     poi_rows, poi_cols, cat_rows, cat_cols = [], [], [], []
     X_act = np.zeros((len(items), A * 24), np.float32)
+    X_a0 = np.zeros((len(items), A), np.float32)          # activity only (bag of activities per day)
+    X_a6 = np.zeros((len(items), A * 6), np.float32)      # activity x 4-hour block
     users = []
     for i, ((u, _), idx) in enumerate(items):
         users.append(u)
@@ -45,12 +47,14 @@ def user_days(C, A, cat_index, max_days, rng):
             if cats[r] in cat_index:
                 cat_rows.append(i); cat_cols.append(cat_index[cats[r]])
             X_act[i, acts[r] * 24 + hours[r]] += 1
+            X_a0[i, acts[r]] += 1; X_a6[i, acts[r] * 6 + hours[r] // 4] += 1
     def sparse(rows, cols, ncol):
         M = torch.sparse_coo_tensor(torch.tensor([rows, cols]), torch.ones(len(rows)), (len(items), ncol)).coalesce()
         return M
     P = sparse(poi_rows, poi_cols, max(1, len(poi_vocab)))
     Cm = sparse(cat_rows, cat_cols, max(1, len(cat_index)))
-    return {"users": np.array(users), "poi": P, "cat": Cm, "act": torch.tensor(X_act), "poi_vocab": poi_vocab}
+    return {"users": np.array(users), "poi": P, "cat": Cm, "act": torch.tensor(X_act),
+            "act0": torch.tensor(X_a0), "act6": torch.tensor(X_a6), "poi_vocab": poi_vocab}
 
 
 def row_normalise(M):
@@ -104,6 +108,9 @@ def sparse_rows_cos(M, pairs):
     return float(np.mean(out)) if out else float("nan")
 
 
+LEVELS = ("poi", "cat", "act0", "act6", "act")   # POI | category | activity | activity x 4h | activity x hour
+
+
 def main():
     ap = base_args(__doc__)
     ap.add_argument("--max_days", type=int, default=40000)
@@ -128,14 +135,14 @@ def main():
     rows, curves = [], {}
     for c in cities:
         r = {"city": pretty(c), "user-days": len(U[c]["users"])}
-        for lev in ("poi", "cat", "act"):
+        for lev in LEVELS:
             cv = energy_curve(U[c][lev]); curves[(c, lev)] = cv
             r[f"{lev}: dims"] = U[c][lev].shape[1]
             r[f"{lev}: k@50%"] = k_for(cv, 0.5); r[f"{lev}: k@80%"] = k_for(cv, 0.8)
         rows.append(r)
     save_table(pd.DataFrame(rows), a.out, "A3_pca_rank",
-               "Number of principal directions needed to explain 50\\%/80\\% of the user-day variance. "
-               "Activity-level days are low-rank; POI-level days are not.")
+               "Number of principal directions needed to explain 50\\%/80\\% of the (uncentred) user-day energy, "
+               "per representation level (act0 = activity, act6 = activity x 4-hour block, act = activity x hour).")
     # (2) cosine similarity
     rows = []
     for c in cities:
@@ -148,19 +155,20 @@ def main():
         same = same[:a.pairs]
         diff = [(int(i), int(j)) for i, j in rng.randint(0, n, size=(a.pairs, 2)) if users[i] != users[j]]
         r = {"city": pretty(c)}
-        for lev in ("poi", "cat", "act"):
+        for lev in LEVELS:
             M = U[c][lev]
             f = (lambda pr: sparse_rows_cos(M, pr)) if M.is_sparse else (lambda pr: mean_pair_cos(row_normalise(M), row_normalise(M), pr))
             r[f"{lev}: same user"] = f(same); r[f"{lev}: other users"] = f(diff)
         rows.append(r)
-    cross = {"poi": [], "cat": [], "act": []}
+    cross = {lev: [] for lev in LEVELS}
     for i, ci in enumerate(cities):
         for cj in cities[i + 1:]:
             ni, nj = len(U[ci]["users"]), len(U[cj]["users"])
             pr = list(zip(rng.randint(0, ni, a.pairs // 4), rng.randint(0, nj, a.pairs // 4)))
             cross["poi"].append(0.0)                      # disjoint POI vocabularies
-            Xi = row_normalise(U[ci]["act"]); Xj = row_normalise(U[cj]["act"])
-            cross["act"].append(mean_pair_cos(Xi, Xj, pr))
+            for lev in ("act0", "act6", "act"):
+                Xi = row_normalise(U[ci][lev]); Xj = row_normalise(U[cj][lev])
+                cross[lev].append(mean_pair_cos(Xi, Xj, pr))
             Ci = row_normalise(U[ci]["cat"]).to_dense(); Cj = row_normalise(U[cj]["cat"]).to_dense()
             cross["cat"].append(mean_pair_cos(Ci, Cj, pr))
     T = pd.DataFrame(rows)
@@ -171,9 +179,8 @@ def main():
     for lev in cross:
         T[f"{lev}: other city"] = [float("nan")] * (len(T) - 1) + [float(np.mean(cross[lev])) if cross[lev] else float("nan")]
     save_table(T, a.out, "A3_cosine",
-               "Mean cosine similarity between user-days. POI-level days of different users (and of "
-               "different cities, by construction) are orthogonal; activity-level days are similar "
-               "within users, across users and across cities.")
+               "Mean cosine similarity between user-days (same user / other users of the city / other city) "
+               "at each representation level. POI vocabularies of different cities are disjoint (cosine 0).")
     # (3) subspace transfer
     src = [c for c in cities if c in SRC] or cities[: max(1, len(cities) // 2)]
     tgt = [c for c in cities if c not in src]
@@ -194,9 +201,12 @@ def main():
                    f"Share of a held-out city's activity-day variance explained by its own top-{k} principal "
                    f"components vs. by the top-{k} components fitted on the source cities only.")
     # ---- figures
-    fig, axes = plt.subplots(1, 3, figsize=(7.0, 2.2), sharey=True)
+    TITLES = {"poi": "POI (venue id)", "cat": "category", "act0": "activity", "act6": "activity × 4 h",
+              "act": "activity × hour"}
+    fig, axes = plt.subplots(1, len(LEVELS), figsize=(9.0, 2.2), sharey=True)
     cmap = plt.get_cmap("tab20")
-    for ax, lev, title in zip(axes, ("poi", "cat", "act"), ("POI (venue id)", "category", "activity × hour")):
+    for ax, lev in zip(axes, LEVELS):
+        title = TITLES[lev]
         for i, c in enumerate(cities):
             cv = curves[(c, lev)]
             ax.plot(np.arange(1, len(cv) + 1), cv, color=cmap(i % 20), label=pretty(c), **city_style(c))
@@ -205,13 +215,14 @@ def main():
     save_fig(fig, a.out, "A3a_scree"); plt.close(fig)
     m = T.iloc[-1]
     groups = ["same user", "other users", "other city"]
-    fig, ax = plt.subplots(figsize=(3.6, 2.2))
-    w = 0.26
-    for li, (lev, lab, col) in enumerate((("poi", "POI", "#999999"), ("cat", "category", "#56B4E9"), ("act", "activity×hour", "#0072B2"))):
+    fig, ax = plt.subplots(figsize=(4.4, 2.3))
+    w = 0.16
+    cols = {"poi": "#999999", "cat": "#56B4E9", "act0": "#009E73", "act6": "#E69F00", "act": "#0072B2"}
+    for li, lev in enumerate(LEVELS):
         vals = [m.get(f"{lev}: {g}", float("nan")) for g in groups]
-        ax.bar(np.arange(3) + (li - 1) * w, vals, w, label=lab, color=col)
+        ax.bar(np.arange(3) + (li - 2) * w, vals, w, label=TITLES[lev], color=cols[lev])
     ax.set_xticks(range(3)); ax.set_xticklabels(groups); ax.set_ylabel("mean cosine of user-days")
-    ax.legend(frameon=False)
+    ax.legend(frameon=False, fontsize=6)
     save_fig(fig, a.out, "A3b_cosine"); plt.close(fig)
     if rows:
         R = pd.DataFrame(rows)

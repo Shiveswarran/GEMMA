@@ -147,6 +147,12 @@ class CityIndex:
             self.pop = t(pop); self.H = t(H)
             g = H.sum(0) + 1.0
             self.hprior = t(g / g.sum())
+        self.stats_off = False          # per-batch switch (stat dropout during source training)
+        self.collab = None
+        if self.has_stats and getattr(cfg, "collab", False):
+            from .collab import CollabStats
+            self.collab = CollabStats(self, sorted(self.stat), getattr(cfg, "collab_user_cap", 30),
+                                      getattr(cfg, "collab_topk", 100))
 
     # ------------------------------------------------------------------ #
     def history(self, ti):
@@ -187,7 +193,9 @@ class CityIndex:
         B = len(qs)
         toks, meta = [], defaultdict(list)
         sp = {k: ([], [], []) for k in ("hist", "prefix", "ptrans", "c_cov", "c_pop", "c_hour",
-                                        "tod", "dow", "rec")}
+                                        "tod", "dow", "rec", "icf")}
+        last_new = np.zeros(B, np.float32); own_out = np.zeros(B, np.float32)
+        use_collab = self.collab is not None and not self.stats_off
         A = self.n_act
         u_act = np.zeros((B, A), np.float32); u_atr = np.zeros((B, A), np.float32)
         u_new = np.zeros((B, A), np.float32); u_S = np.zeros(B, np.float32)
@@ -250,6 +258,18 @@ class CityIndex:
                 if int(pacts[k]) == la_:
                     u_atr[b, int(pacts[k + 1])] += 1.0
             u_S[b] = float(len(seen))
+            last_new[b] = float(last_pi not in seen and last_pi not in set(ppis[:-1].tolist()))
+            if use_collab:
+                hw = defaultdict(float)
+                for r_i, h in enumerate(hs):
+                    for v in self.row_pi[self.trails[h]["rows"]]:
+                        hw[int(v)] += 0.9 ** (nh - 1 - r_i)
+                for v in ppis:
+                    hw[int(v)] += 1.0
+                ip, iv = self.collab.icf(hw, tr["user_id"])
+                if len(ip):
+                    sp["icf"][0].extend([b] * len(ip)); sp["icf"][1].extend(ip.tolist())
+                    sp["icf"][2].extend(iv.tolist())
             u_pnew[b] = float(np.mean([int(v) not in seen for v in ppis])) if len(ppis) else 0.0
             top = sorted(cnt.items(), key=lambda x: -x[1])[:5]
             anc = [v for v, _ in top] + [last_pi] * (5 - len(top))
@@ -272,6 +292,7 @@ class CityIndex:
                 nx = np.where(apis[:-1] == last_pi)[0]
                 sp["c_cov"][0].extend([b] * len(nx)); sp["c_cov"][1].extend(apis[nx + 1].tolist())
                 sp["c_cov"][2].extend([-1.0] * len(nx))
+                own_out[b] = float(len(nx))
             meta["last_pi"].append(last_pi)
             meta["hour"].append(int(self.hour_row[last]))
             meta["user"].append(self.uid[tr["user_id"]])
@@ -301,6 +322,7 @@ class CityIndex:
                            tt(np.asarray(v[2], np.float32))) for k, v in sp.items()}
         m["u_act"] = tt(u_act); m["u_atr"] = tt(u_atr); m["u_new"] = tt(u_new)
         m["u_S"] = tt(u_S); m["u_pnew"] = tt(u_pnew); m["anchors"] = tt(anchors)
+        m["last_new"] = tt(last_new); m["own_out"] = tt(own_out)
         m["wkend"] = tt(np.asarray([int(self.wkend_row[self.trails[ti]["rows"][j - 1]])
                                     for ti, j in qs], np.int64))
         tok_pi = np.where(real, self.row_pi[Rc], -1)
@@ -309,6 +331,48 @@ class CityIndex:
             m["tgt_code"] = self.codes[m["tgt_pi"]]
         m["B"] = B
         return bb_in, m
+
+    def _cov(self, m, scat):
+        """(B,P) population transition counts last->v, leave-one-trajectory-out."""
+        B, P, dv = m["B"], self.P, self.device
+        cov = torch.zeros(B, P, device=dv)
+        bi, pi, vv = [], [], []
+        for b, lp in enumerate(m["last_pi"].tolist()):
+            if lp in self.covis:
+                ys, cs = self.covis[lp]
+                bi.append(np.full(len(ys), b)); pi.append(ys); vv.append(cs)
+        if bi:
+            cov.index_put_((torch.as_tensor(np.concatenate(bi), device=dv),
+                            torch.as_tensor(np.concatenate(pi), device=dv)),
+                           torch.as_tensor(np.concatenate(vv), device=dv), accumulate=True)
+        return cov + scat("c_cov")
+
+    def collab_dense(self, m):
+        """v7 population evidence (B,P): ctr, ccat, icf.  None if statistics are off."""
+        if self.collab is None or self.stats_off or not self.has_stats:
+            return None
+        B, P, dv = m["B"], self.P, self.device
+
+        def scat(key):
+            out = torch.zeros(B, P, device=dv)
+            b, p, v = m["sparse"][key]
+            if b.numel():
+                out.index_put_((b, p), v, accumulate=True)
+            return out
+        cs = self.collab
+        if not hasattr(self, "_cl_t"):
+            self._cl_t = {"logT": torch.as_tensor(cs.logT, device=dv),
+                          "nsec": torch.as_tensor(cs.n_sec, device=dv),
+                          "out": torch.as_tensor(cs.out, device=dv)}
+        logT, nsec, outd = self._cl_t["logT"], self._cl_t["nsec"], self._cl_t["out"]
+        ls = self.sec[m["last_pi"]]                                     # (B,)
+        ccat = logT[ls][:, self.sec]                                    # (B,P) log T[sec(last), sec(v)]
+        pcat = ccat.exp() / nsec[self.sec].clamp_min(1.0).unsqueeze(0)  # sums to 1 over POIs
+        k = float(getattr(self.cfg, "ctr_kappa", 5.0))
+        cov = self._cov(m, scat).clamp_min(0)
+        den = (outd[m["last_pi"]] - m["own_out"]).clamp_min(0) + k     # (B,)
+        ctr = torch.log((cov + k * pcat) / den.unsqueeze(1))
+        return {"ctr": ctr, "ccat": ccat, "icf": scat("icf")}
 
     def act_groups(self):
         if self._act_groups is None:
@@ -338,18 +402,8 @@ class CityIndex:
         dx = (self.lon.unsqueeze(0) - lo) * 111.32 * torch.cos(torch.deg2rad(la))
         dy = (self.lat.unsqueeze(0) - la) * 111.32
         feats[..., FI["geo"]] = -torch.log1p(torch.sqrt(dx * dx + dy * dy))
-        if self.has_stats:
-            cov = torch.zeros(B, P, device=dv)
-            bi, pi, vv = [], [], []
-            for b, lp in enumerate(m["last_pi"].tolist()):
-                if lp in self.covis:
-                    ys, cs = self.covis[lp]
-                    bi.append(np.full(len(ys), b)); pi.append(ys); vv.append(cs)
-            if bi:
-                cov.index_put_((torch.as_tensor(np.concatenate(bi), device=dv),
-                                torch.as_tensor(np.concatenate(pi), device=dv)),
-                               torch.as_tensor(np.concatenate(vv), device=dv), accumulate=True)
-            cov = cov + scat("c_cov")
+        if self.has_stats and not self.stats_off:
+            cov = self._cov(m, scat)
             pop = self.pop.unsqueeze(0) + scat("c_pop")
             hcol = self.H[:, m["hour"]].t() + scat("c_hour")
             alpha = 2.0
@@ -713,6 +767,8 @@ def finetune(bb, head, jobs, cfg, device, logger, epochs, lr_head, lr_bb,
                 f"val_every={val_every or 'epoch'} patience={patience} "
                 f"min_epochs={getattr(cfg, 'min_epochs', 0)}")
     vals = None if val is None else (val if isinstance(val, list) else [val])
+    for ci_, _ in jobs:
+        ci_.stats_off = False
     state = {"best": -1.0, "best_state": None, "bad": 0, "ep": 0}
 
     def snapshot():
@@ -720,7 +776,12 @@ def finetune(bb, head, jobs, cfg, device, logger, epochs, lr_head, lr_bb,
                 copy.deepcopy({k: v.cpu() for k, v in head.state_dict().items()}))
 
     def validate(where):
-        vms = [evaluate(bb, head, vci, vq, cfg) for vci, vq in vals]
+        vms = []
+        for vv in vals:
+            vci, vq = vv[0], vv[1]
+            vci.stats_off = bool(vv[2]) if len(vv) > 2 else False
+            vms.append(evaluate(bb, head, vci, vq, cfg))
+            vci.stats_off = False
         vm = {k: float(np.mean([x[k] for x in vms])) for k in ("acc@1", "acc@5", "act@1")}
         improved = vm["acc@1"] > state["best"]
         if improved:
@@ -750,8 +811,11 @@ def finetune(bb, head, jobs, cfg, device, logger, epochs, lr_head, lr_bb,
             ci, q = jobs[k]
             for g in opt.param_groups:
                 g["lr"] = g["base"] * 0.5 * (1 + math.cos(math.pi * step / total))
+            sdrop = float(getattr(cfg, "stat_dropout", 0.0) or 0.0)
+            ci.stats_off = bool(ci.has_stats and sdrop > 0 and rng.rand() < sdrop)
             out = _forward(bb, head, ci, [q[i] for i in bidx], True, amp_dtype, cfg.rerank_m)
             loss = _loss(bb, out, ci, cfg, head_only=not tune_bb)
+            ci.stats_off = False
             if not torch.isfinite(loss):
                 step += 1; continue
             opt.zero_grad(set_to_none=True)
@@ -811,4 +875,7 @@ def new_head(bb, ci, cfg, device):
     if kind == "hrem":
         from .hrem import HREMHead
         return HREMHead(*args).to(device)
+    if kind == "hrem7":
+        from .hrem import HREM7Head
+        return HREM7Head(*args).to(device)
     return RealizationHead(*args).to(device)

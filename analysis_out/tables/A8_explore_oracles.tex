@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering\small
+\caption{Exploration (never-visited targets, STHGCN protocol): Acc@1/@10 of closed-form rankers over the user's unvisited POIs.  * = oracle knowledge of the target's activity / leaf category.  Popularity and gravity use the target city's train log (not available strictly zero-shot).}
+\label{tab:A8_explore_oracles}
+\begin{tabular}{lrrrrrrrrrrrrrrrrr}
+\toprule
+city & explore n & explore share & median candidates & nearest @1 & nearest @10 & nearest | activity* @1 & nearest | activity* @10 & nearest | category* @1 & nearest | category* @10 & popularity @1 & popularity @10 & popularity | category* @1 & popularity | category* @10 & gravity (pop/dist) @1 & gravity (pop/dist) @10 & gravity | activity* @1 & gravity | activity* @10 \\
+\midrule
+Tokyo & 328.000 & 0.366 & 2485.000 & 0.009 & 0.082 & 0.052 & 0.274 & 0.308 & 0.744 & 0.015 & 0.113 & 0.235 & 0.671 & 0.052 & 0.229 & 0.143 & 0.409 \\
+Beijing & 7.000 & 0.090 & 479.000 & 0.143 & 0.571 & 0.429 & 0.714 & 0.714 & 1.000 & 0.000 & 0.143 & 0.429 & 1.000 & 0.286 & 0.429 & 0.571 & 0.857 \\
+Shanghai & 176.000 & 0.386 & 2869.000 & 0.040 & 0.148 & 0.114 & 0.318 & 0.341 & 0.699 & 0.017 & 0.091 & 0.182 & 0.619 & 0.057 & 0.205 & 0.131 & 0.386 \\
+Palembang & 215.000 & 0.294 & 3321.000 & 0.014 & 0.074 & 0.037 & 0.181 & 0.214 & 0.614 & 0.019 & 0.126 & 0.312 & 0.781 & 0.037 & 0.209 & 0.102 & 0.302 \\
+Melbourne & 475.000 & 0.426 & 5614.000 & 0.025 & 0.091 & 0.053 & 0.189 & 0.309 & 0.722 & 0.013 & 0.074 & 0.255 & 0.661 & 0.038 & 0.149 & 0.109 & 0.324 \\
+Sydney & 595.000 & 0.392 & 6768.000 & 0.018 & 0.097 & 0.049 & 0.220 & 0.281 & 0.704 & 0.017 & 0.064 & 0.208 & 0.578 & 0.040 & 0.158 & 0.097 & 0.329 \\
+Tangerang & 766.000 & 0.289 & 8285.000 & 0.008 & 0.087 & 0.039 & 0.231 & 0.328 & 0.732 & 0.017 & 0.131 & 0.236 & 0.705 & 0.084 & 0.268 & 0.168 & 0.401 \\
+Moscow & 3146.000 & 0.446 & 11881.000 & 0.009 & 0.062 & 0.041 & 0.197 & 0.249 & 0.629 & 0.017 & 0.097 & 0.228 & 0.641 & 0.041 & 0.178 & 0.131 & 0.390 \\
+Bandung & 4000.000 & 0.424 & 22033.000 & 0.009 & 0.046 & 0.033 & 0.126 & 0.215 & 0.469 & 0.013 & 0.104 & 0.198 & 0.630 & 0.052 & 0.192 & 0.116 & 0.320 \\
+mean & 1078.667 & 0.346 & 7081.667 & 0.031 & 0.140 & 0.094 & 0.272 & 0.329 & 0.701 & 0.014 & 0.105 & 0.254 & 0.699 & 0.076 & 0.224 & 0.174 & 0.413 \\
+\bottomrule
+\end{tabular}
+\end{table}

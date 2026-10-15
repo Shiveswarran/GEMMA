@@ -53,6 +53,12 @@ RET_INIT = {"hist": 1.0, "prefix": 0.5, "is_last": -1.0, "ptrans": 1.0, "tod": 0
             "dow": 0.3, "rec": 1.0, "geo": 0.5, "lptr": 0.5}
 EXP_INIT = {"hier": 0.5, "geo": 1.0, "anchor": 0.5, "covis": 1.0, "pop": 0.3, "hour": 0.3}
 SIGNED = {"is_last", "lptr"}
+# ---- GEMMA v7: population evidence in BOTH channels, opportunity-rank explore, momentum gate
+RET7 = RET + ["ctr", "icf"]
+EXP7 = ["hier", "geo", "anchor", "ctr", "ccat", "icf", "pop", "hour", "orank_sec", "orank_act"]
+RET_INIT.update({"ctr": 0.5, "icf": 0.5})
+EXP_INIT.update({"ctr": 0.5, "ccat": 0.3, "icf": 0.5, "orank_sec": 0.5, "orank_act": 0.3})
+STAT7 = {"covis", "pop", "hour", "ctr", "ccat", "icf"}       # need the city log (few/full/zero_shot_u)
 
 
 def _isp(y):
@@ -62,9 +68,12 @@ def _isp(y):
 class HREMHead(nn.Module):
     kind = "hrem"
 
+    RET, EXP = RET, EXP
+
     def __init__(self, d_model, name_dim, n_act, n_pri, n_sec, sid_levels, sid_K, d_real=256):
         super().__init__()
         self.d_real, self.n_act = d_real, n_act
+        RET, EXP = self.RET, self.EXP
         # POI composition (semantic ID + LLM name + taxonomy) -- shared across cities
         self.name_proj = nn.Linear(name_dim, d_real)
         self.code_emb = nn.ModuleList([nn.Embedding(sid_K, d_real) for _ in range(sid_levels)])
@@ -129,10 +138,23 @@ class HREMHead(nn.Module):
             z = torch.zeros(1, self.d_real, device=self.wr0.device)
             wr = self._w(self.wr0, self.gr, z, self.r_signed)[0].tolist()
             we = self._w(self.we0, self.ge, z, self.e_signed)[0].tolist()
-        return ("ret[" + " ".join(f"{k}={v:.2f}" for k, v in zip(RET, wr)) + "] exp[" +
-                " ".join(f"{k}={v:.2f}" for k, v in zip(EXP, we)) +
+        extra = (f" mom={self.g_mom.item():.2f} far={self.g_far.item():.2f}" if hasattr(self, "g_mom") else "")
+        return ("ret[" + " ".join(f"{k}={v:.2f}" for k, v in zip(self.RET, wr)) + "] exp[" +
+                " ".join(f"{k}={v:.2f}" for k, v in zip(self.EXP, we)) +
                 f"] gate[nov={self.g_nov.item():.2f} logS={self.g_S.item():.2f} "
-                f"pref={self.g_pref.item():.2f}] tau={self.log_tau.exp().item():.1f}")
+                f"pref={self.g_pref.item():.2f}{extra}] tau={self.log_tau.exp().item():.1f}")
+
+
+class HREM7Head(HREMHead):
+    """GEMMA v7 head: v6 + population evidence (both channels), opportunity-rank explore
+    features and a momentum/far-from-home explore gate.  Same mixture, more evidence."""
+    kind = "hrem"
+    RET, EXP = RET7, EXP7
+
+    def __init__(self, *args, **kw):
+        super().__init__(*args, **kw)
+        self.g_mom = nn.Parameter(torch.tensor(0.0))     # last check-in was a first visit (bursty exploration)
+        self.g_far = nn.Parameter(torch.tensor(0.0))     # log1p km from the user's top anchor
 
 
 # ==================================================================== #
@@ -151,6 +173,26 @@ def _group_lse(x, groups, A):
         if idx.numel():
             out[:, a] = torch.logsumexp(x[:, idx], dim=1)
     return out
+
+
+def opportunity_logrank(ci, last_pi, groups):
+    """-log rank of every POI among the POIs of its own group (category/activity), ordered by
+    distance from the last check-in (Noulas et al. 2012: P(choose) ~ rank^-alpha, alpha ~ 0.8
+    in every city -> a density-free, city-invariant geometry).  groups: (P,) long."""
+    dv = ci.device; P = ci.P
+    la = ci.lat[last_pi].unsqueeze(1); lo = ci.lon[last_pi].unsqueeze(1)
+    dx = (ci.lon.unsqueeze(0) - lo) * torch.cos(torch.deg2rad(la)); dy = ci.lat.unsqueeze(0) - la
+    d = dx * dx + dy * dy                                              # monotone in distance
+    o1 = torch.argsort(d, dim=1)
+    gs = groups[o1]
+    o2 = torch.sort(gs, dim=1, stable=True).indices
+    order = o1.gather(1, o2)
+    counts = torch.bincount(groups, minlength=int(groups.max()) + 1)
+    starts = torch.cumsum(counts, 0) - counts
+    pos = torch.arange(P, device=dv).unsqueeze(0).expand_as(order)
+    r_sorted = (pos - starts[groups[order]] + 1).float()
+    rank = torch.empty_like(r_sorted).scatter_(1, order, r_sorted)
+    return -torch.log(rank)
 
 
 def hrem_forward(bb, head, ci, qs, train, amp_dtype, with_target=True):
@@ -218,28 +260,48 @@ def hrem_mixture(head, bb, ci, m, z_ptr, h, q_in, act_logits_wm, hier_in, gate_e
     if head.user_res is not None:
         q = q + head.user_res(m["user"])
 
+    RETk, EXPk = getattr(head, "RET", RET), getattr(head, "EXP", EXP)
+    stat_on = ci.has_stats and not getattr(ci, "stats_off", False)
+    zero_ = torch.zeros(B, P, device=dv)
+    col = ci.collab_dense(m) if hasattr(ci, "collab_dense") and any(k in STAT7 for k in RETk + EXPk) else None
+    col = col or {}
+    feat = {"hist": base[..., FI["hist"]], "prefix": base[..., FI["prefix"]],
+            "is_last": base[..., FI["is_last"]], "ptrans": base[..., FI["ptrans"]], "tod": tod,
+            "dow": dow, "rec": rec, "geo": base[..., FI["geo"]], "lptr": lptr,
+            "covis": base[..., FI["covis"]], "pop": base[..., FI["pop"]], "hour": base[..., FI["hour"]],
+            "ctr": col.get("ctr", zero_), "ccat": col.get("ccat", zero_), "icf": col.get("icf", zero_)}
+    if "orank_sec" in EXPk:
+        feat["orank_sec"] = opportunity_logrank(ci, m["last_pi"], ci.sec)
+    if "orank_act" in EXPk:
+        feat["orank_act"] = opportunity_logrank(ci, m["last_pi"], ci.act)
+
+    def _drop(w, names, key):
+        drop = [k for k in str(getattr(ci.cfg, key, "") or "").replace(",", " ").split() if k]
+        if drop:    # eval-time diagnostic: switch off chosen evidence channels
+            w = w * torch.tensor([k not in drop for k in names], device=dv)
+        return w
+
     # ---- RETURN channel (visited POIs only)
-    fr = torch.stack([base[..., FI["hist"]], base[..., FI["prefix"]], base[..., FI["is_last"]],
-                      base[..., FI["ptrans"]], tod, dow, rec, base[..., FI["geo"]], lptr], -1)
+    fr = torch.stack([feat[k] for k in RETk], -1)
     wr = head._w(head.wr0, head.gr, q, head.r_signed)
     if no_ev:
-        wr = wr * torch.tensor([k in ("lptr", "geo") for k in RET], device=dv)
-    drop = [k for k in str(getattr(ci.cfg, "drop_ret", "") or "").replace(",", " ").split() if k]
-    if drop:    # eval-time diagnostic: switch off chosen return-evidence channels
-        wr = wr * torch.tensor([k not in drop for k in RET], device=dv)
+        wr = wr * torch.tensor([k in ("lptr", "geo") for k in RETk], device=dv)
+    if not stat_on:
+        wr = wr * torch.tensor([k not in STAT7 for k in RETk], device=dv)
+    wr = _drop(wr, RETk, "drop_ret")
     r = (fr * wr.unsqueeze(1)).sum(-1)
     NEG = torch.tensor(float("-inf"), device=dv)
     r = torch.where(visited, r, NEG)
 
     # ---- EXPLORE channel (unvisited POIs only)
-    stat_on = ci.has_stats
-    fe = torch.stack([hier_in, base[..., FI["geo"]], anchor,
-                      base[..., FI["covis"]], base[..., FI["pop"]], base[..., FI["hour"]]], -1)
+    feat["hier"] = hier_in; feat["anchor"] = anchor
+    fe = torch.stack([feat[k] for k in EXPk], -1)
     we = head._w(head.we0, head.ge, q, head.e_signed)
     if not stat_on:
-        we = we * torch.tensor([k not in STAT_FEATS for k in EXP], device=dv)
+        we = we * torch.tensor([k not in STAT7 for k in EXPk], device=dv)
     if no_ev:
-        we = we * torch.tensor([k in ("hier", "geo") for k in EXP], device=dv)
+        we = we * torch.tensor([k in ("hier", "geo") for k in EXPk], device=dv)
+    we = _drop(we, EXPk, "drop_exp")
     e = (fe * we.unsqueeze(1)).sum(-1)
     e_lat = None
     if head.use_emb:
@@ -278,6 +340,12 @@ def hrem_mixture(head, bb, ci, m, z_ptr, h, q_in, act_logits_wm, hier_in, gate_e
     g = (head.g_lin(q) + head.g_nov * torch.logit(nov.clamp(1e-3, 1 - 1e-3))
          + head.g_S * torch.log1p(m["u_S"]).unsqueeze(1) + head.g_pref * m["u_pnew"].unsqueeze(1)
          + head.g_b)
+    if hasattr(head, "g_mom") and not no_ev:
+        a0 = m["anchors"][:, 0]
+        ddx = (ci.lon[a0] - ci.lon[m["last_pi"]]) * 111.32 * torch.cos(torch.deg2rad(ci.lat[m["last_pi"]]))
+        ddy = (ci.lat[a0] - ci.lat[m["last_pi"]]) * 111.32
+        far = torch.log1p(torch.sqrt(ddx * ddx + ddy * ddy))
+        g = g + head.g_mom * m["last_new"].unsqueeze(1) + head.g_far * far.unsqueeze(1)
     if no_ev:
         g = head.g_lin(q) + head.g_b
     if gate_extra is not None:

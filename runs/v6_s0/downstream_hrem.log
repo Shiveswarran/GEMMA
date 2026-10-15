@@ -1,0 +1,310 @@
+05:02:28 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=<unset> | GPUs visible to torch=1
+05:02:28 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+05:02:32 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+05:02:32 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+05:02:32 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=-1 tag='_v6s'
+05:02:32 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+05:02:35 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+05:02:35 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+05:02:35 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+05:02:37 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2611 acc@5=0.4641 acc@10=0.5507 ndcg@5=0.3675 mrr=0.3555 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.430 explore acc@1=0.008 | cond: explore@1/@10=0.024/0.124 revisit@1=0.435 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.65/0.44 | STHGCN 0.250/0.350
+05:02:37 | INFO    | gemma.down | [tokyo/full] fine-tune on 5855 next-step queries from 3836 trajectories (visible=4385)
+05:02:38 | INFO    | gemma.down | [tokyo/full] device=cuda amp=torch.float16 steps/epoch=46 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+05:02:38 | INFO    | gemma.down | [tokyo/full] val@init: acc@1=0.2022 acc@5=0.4344 act@1=0.475  *best
+05:02:48 | INFO    | gemma.down | [tokyo/full] ft epoch 0 loss=5.9611 (9s) | ret[hist=0.64 prefix=0.06 is_last=-1.62 ptrans=1.03 tod=0.44 dow=0.44 rec=1.28 geo=0.39 lptr=-0.02] exp[hier=0.35 geo=0.93 anchor=0.56 covis=0.99 pop=0.30 hour=0.28] gate[nov=0.80 logS=-0.29 pref=0.84] tau=20.0
+05:02:48 | INFO    | gemma.down | [tokyo/full] val@ep0-end: acc@1=0.2086 acc@5=0.4516 act@1=0.503  *best
+05:02:57 | INFO    | gemma.down | [tokyo/full] ft epoch 1 loss=5.6301 (9s) | ret[hist=0.66 prefix=0.06 is_last=-1.59 ptrans=1.04 tod=0.43 dow=0.44 rec=1.25 geo=0.40 lptr=-0.02] exp[hier=0.34 geo=0.95 anchor=0.57 covis=0.99 pop=0.30 hour=0.28] gate[nov=0.79 logS=-0.29 pref=0.82] tau=19.9
+05:02:58 | INFO    | gemma.down | [tokyo/full] val@ep1-end: acc@1=0.2194 acc@5=0.4581 act@1=0.512  *best
+05:03:07 | INFO    | gemma.down | [tokyo/full] ft epoch 2 loss=5.4769 (9s) | ret[hist=0.66 prefix=0.06 is_last=-1.59 ptrans=1.03 tod=0.43 dow=0.44 rec=1.22 geo=0.39 lptr=-0.03] exp[hier=0.34 geo=0.95 anchor=0.57 covis=0.98 pop=0.29 hour=0.28] gate[nov=0.79 logS=-0.29 pref=0.81] tau=20.5
+05:03:07 | INFO    | gemma.down | [tokyo/full] val@ep2-end: acc@1=0.2323 acc@5=0.4624 act@1=0.514  *best
+05:03:17 | INFO    | gemma.down | [tokyo/full] ft epoch 3 loss=5.3540 (9s) | ret[hist=0.66 prefix=0.06 is_last=-1.57 ptrans=1.03 tod=0.43 dow=0.44 rec=1.20 geo=0.40 lptr=-0.03] exp[hier=0.34 geo=0.95 anchor=0.57 covis=0.98 pop=0.28 hour=0.28] gate[nov=0.79 logS=-0.28 pref=0.81] tau=21.1
+05:03:17 | INFO    | gemma.down | [tokyo/full] val@ep3-end: acc@1=0.2280 acc@5=0.4753 act@1=0.514
+05:03:26 | INFO    | gemma.down | [tokyo/full] ft epoch 4 loss=5.2831 (9s) | ret[hist=0.67 prefix=0.06 is_last=-1.57 ptrans=1.03 tod=0.42 dow=0.44 rec=1.19 geo=0.40 lptr=-0.03] exp[hier=0.35 geo=0.95 anchor=0.57 covis=0.98 pop=0.27 hour=0.28] gate[nov=0.79 logS=-0.28 pref=0.80] tau=21.7
+05:03:27 | INFO    | gemma.down | [tokyo/full] val@ep4-end: acc@1=0.2452 acc@5=0.4667 act@1=0.510  *best
+05:03:36 | INFO    | gemma.down | [tokyo/full] ft epoch 5 loss=5.2154 (9s) | ret[hist=0.67 prefix=0.06 is_last=-1.56 ptrans=1.03 tod=0.42 dow=0.44 rec=1.19 geo=0.40 lptr=-0.03] exp[hier=0.35 geo=0.96 anchor=0.57 covis=0.97 pop=0.27 hour=0.28] gate[nov=0.79 logS=-0.28 pref=0.80] tau=22.1
+05:03:36 | INFO    | gemma.down | [tokyo/full] val@ep5-end: acc@1=0.2495 acc@5=0.4753 act@1=0.512  *best
+05:03:45 | INFO    | gemma.down | [tokyo/full] ft epoch 6 loss=5.1667 (9s) | ret[hist=0.67 prefix=0.06 is_last=-1.56 ptrans=1.03 tod=0.42 dow=0.44 rec=1.18 geo=0.40 lptr=-0.04] exp[hier=0.35 geo=0.96 anchor=0.57 covis=0.97 pop=0.27 hour=0.28] gate[nov=0.79 logS=-0.28 pref=0.80] tau=22.2
+05:03:46 | INFO    | gemma.down | [tokyo/full] val@ep6-end: acc@1=0.2409 acc@5=0.4710 act@1=0.516
+05:03:55 | INFO    | gemma.down | [tokyo/full] ft epoch 7 loss=5.1507 (9s) | ret[hist=0.67 prefix=0.06 is_last=-1.56 ptrans=1.03 tod=0.42 dow=0.44 rec=1.18 geo=0.40 lptr=-0.04] exp[hier=0.35 geo=0.96 anchor=0.57 covis=0.97 pop=0.27 hour=0.28] gate[nov=0.79 logS=-0.28 pref=0.80] tau=22.2
+05:03:55 | INFO    | gemma.down | [tokyo/full] val@ep7-end: acc@1=0.2495 acc@5=0.4710 act@1=0.512
+05:03:55 | INFO    | gemma.down | [tokyo/full] restored best checkpoint (val acc@1=0.2495)
+05:03:56 | INFO    | gemma.down | [tokyo/full] protocol=sthgcn split=test: scoring 946/1097 targets
+05:03:57 | INFO    | gemma.down | [tokyo/full] FULL-VOCAB acc@1=0.2717 acc@5=0.4926 acc@10=0.5835 ndcg@5=0.3894 mrr=0.3773 | next-activity acc=0.5592 f1=0.4937 | revisit(0.62) acc@1=0.436 explore acc@1=0.006 | cond: explore@1/@10=0.069/0.213 revisit@1=0.441 lat-explore@10=0.028 ptr@1=0.079 pi(exp/rev)=0.55/0.35 | STHGCN 0.250/0.350
+05:03:57 | INFO    | gemma.down | [beijing] 100/1470 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+05:03:57 | INFO    | gemma.down | [beijing] loaded semantic codes (4 levels) for 498 POIs
+05:03:57 | INFO    | gemma.down | [beijing] trails train=400 val=58 test=115 | POIs (all splits) = 598
+05:03:57 | INFO    | gemma.down | [beijing/zero_shot] protocol=sthgcn split=test: scoring 88/115 targets
+05:03:57 | INFO    | gemma.down | [beijing/zero_shot] FULL-VOCAB acc@1=0.3977 acc@5=0.6591 acc@10=0.7614 ndcg@5=0.5393 mrr=0.5196 | next-activity acc=0.5114 f1=0.3045 | revisit(0.81) acc@1=0.479 explore acc@1=0.059 | cond: explore@1/@10=0.118/0.353 revisit@1=0.493 lat-explore@10=0.059 ptr@1=0.299 pi(exp/rev)=0.63/0.34 | STHGCN 0.453/0.552
+05:03:57 | INFO    | gemma.down | [beijing/full] fine-tune on 644 next-step queries from 400 trajectories (visible=458)
+05:03:57 | INFO    | gemma.down | [beijing/full] device=cuda amp=torch.float16 steps/epoch=6 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+05:03:57 | INFO    | gemma.down | [beijing/full] val@init: acc@1=0.3636 acc@5=0.5682 act@1=0.455  *best
+05:03:58 | INFO    | gemma.down | [beijing/full] ft epoch 0 loss=5.1437 (1s) | ret[hist=0.62 prefix=0.06 is_last=-1.70 ptrans=1.01 tod=0.45 dow=0.43 rec=1.35 geo=0.39 lptr=-0.00] exp[hier=0.37 geo=0.92 anchor=0.56 covis=1.00 pop=0.29 hour=0.31] gate[nov=0.80 logS=-0.28 pref=0.86] tau=21.1
+05:03:59 | INFO    | gemma.down | [beijing/full] val@ep0-end: acc@1=0.3864 acc@5=0.6136 act@1=0.568  *best
+05:04:00 | INFO    | gemma.down | [beijing/full] ft epoch 1 loss=4.9377 (1s) | ret[hist=0.61 prefix=0.06 is_last=-1.70 ptrans=1.01 tod=0.45 dow=0.42 rec=1.36 geo=0.38 lptr=-0.01] exp[hier=0.37 geo=0.93 anchor=0.56 covis=0.99 pop=0.29 hour=0.31] gate[nov=0.79 logS=-0.29 pref=0.85] tau=21.0
+05:04:00 | INFO    | gemma.down | [beijing/full] val@ep1-end: acc@1=0.4091 acc@5=0.5909 act@1=0.591  *best
+05:04:01 | INFO    | gemma.down | [beijing/full] ft epoch 2 loss=4.9188 (1s) | ret[hist=0.61 prefix=0.06 is_last=-1.69 ptrans=1.00 tod=0.44 dow=0.42 rec=1.36 geo=0.38 lptr=-0.01] exp[hier=0.37 geo=0.92 anchor=0.56 covis=0.99 pop=0.29 hour=0.31] gate[nov=0.79 logS=-0.29 pref=0.85] tau=20.9
+05:04:01 | INFO    | gemma.down | [beijing/full] val@ep2-end: acc@1=0.4091 acc@5=0.5682 act@1=0.659
+05:04:02 | INFO    | gemma.down | [beijing/full] ft epoch 3 loss=4.9010 (1s) | ret[hist=0.61 prefix=0.06 is_last=-1.69 ptrans=1.00 tod=0.45 dow=0.42 rec=1.36 geo=0.38 lptr=-0.01] exp[hier=0.37 geo=0.92 anchor=0.56 covis=0.98 pop=0.28 hour=0.31] gate[nov=0.79 logS=-0.29 pref=0.85] tau=20.9
+05:04:02 | INFO    | gemma.down | [beijing/full] val@ep3-end: acc@1=0.3864 acc@5=0.5455 act@1=0.636
+05:04:03 | INFO    | gemma.down | [beijing/full] ft epoch 4 loss=4.8624 (1s) | ret[hist=0.61 prefix=0.06 is_last=-1.69 ptrans=1.00 tod=0.45 dow=0.42 rec=1.36 geo=0.39 lptr=-0.01] exp[hier=0.37 geo=0.92 anchor=0.56 covis=0.98 pop=0.28 hour=0.31] gate[nov=0.79 logS=-0.29 pref=0.86] tau=20.9
+05:04:03 | INFO    | gemma.down | [beijing/full] val@ep4-end: acc@1=0.3864 acc@5=0.5909 act@1=0.636
+05:04:03 | INFO    | gemma.down | [beijing/full] early stop at epoch 4
+05:04:03 | INFO    | gemma.down | [beijing/full] restored best checkpoint (val acc@1=0.4091)
+05:04:03 | INFO    | gemma.down | [beijing/full] protocol=sthgcn split=test: scoring 88/115 targets
+05:04:03 | INFO    | gemma.down | [beijing/full] FULL-VOCAB acc@1=0.3977 acc@5=0.6364 acc@10=0.7841 ndcg@5=0.5238 mrr=0.5141 | next-activity acc=0.5795 f1=0.3439 | revisit(0.81) acc@1=0.479 explore acc@1=0.059 | cond: explore@1/@10=0.118/0.353 revisit@1=0.479 lat-explore@10=0.118 ptr@1=0.138 pi(exp/rev)=0.58/0.27 | STHGCN 0.453/0.552
+05:04:03 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+05:04:05 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+05:04:05 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+05:04:05 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+05:04:06 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1660 acc@5=0.3528 acc@10=0.4132 ndcg@5=0.2663 mrr=0.2566 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.311 explore acc@1=0.004 | cond: explore@1/@10=0.032/0.124 revisit@1=0.321 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.67/0.41 | STHGCN 0.193/0.264
+05:04:06 | INFO    | gemma.down | [shanghai/full] fine-tune on 4831 next-step queries from 2544 trajectories (visible=2908)
+05:04:06 | INFO    | gemma.down | [shanghai/full] device=cuda amp=torch.float16 steps/epoch=38 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+05:04:07 | INFO    | gemma.down | [shanghai/full] val@init: acc@1=0.2235 acc@5=0.3977 act@1=0.443  *best
+05:04:17 | INFO    | gemma.down | [shanghai/full] ft epoch 0 loss=6.8910 (11s) | ret[hist=0.62 prefix=0.05 is_last=-1.68 ptrans=1.02 tod=0.45 dow=0.44 rec=1.36 geo=0.39 lptr=-0.01] exp[hier=0.36 geo=0.92 anchor=0.53 covis=1.02 pop=0.27 hour=0.29] gate[nov=0.78 logS=-0.27 pref=0.88] tau=20.1
+05:04:18 | INFO    | gemma.down | [shanghai/full] val@ep0-end: acc@1=0.2348 acc@5=0.4129 act@1=0.447  *best
+05:04:28 | INFO    | gemma.down | [shanghai/full] ft epoch 1 loss=6.6432 (11s) | ret[hist=0.62 prefix=0.05 is_last=-1.68 ptrans=1.01 tod=0.45 dow=0.44 rec=1.37 geo=0.39 lptr=-0.01] exp[hier=0.36 geo=0.93 anchor=0.53 covis=1.03 pop=0.26 hour=0.29] gate[nov=0.75 logS=-0.26 pref=0.89] tau=19.8
+05:04:29 | INFO    | gemma.down | [shanghai/full] val@ep1-end: acc@1=0.2273 acc@5=0.4129 act@1=0.455
+05:04:40 | INFO    | gemma.down | [shanghai/full] ft epoch 2 loss=6.5203 (11s) | ret[hist=0.62 prefix=0.05 is_last=-1.70 ptrans=1.01 tod=0.45 dow=0.44 rec=1.39 geo=0.39 lptr=-0.01] exp[hier=0.36 geo=0.93 anchor=0.54 covis=1.02 pop=0.25 hour=0.29] gate[nov=0.73 logS=-0.26 pref=0.90] tau=20.0
+05:04:40 | INFO    | gemma.down | [shanghai/full] val@ep2-end: acc@1=0.2197 acc@5=0.4015 act@1=0.462
+05:04:51 | INFO    | gemma.down | [shanghai/full] ft epoch 3 loss=6.4228 (11s) | ret[hist=0.63 prefix=0.05 is_last=-1.70 ptrans=1.01 tod=0.45 dow=0.45 rec=1.39 geo=0.40 lptr=-0.02] exp[hier=0.37 geo=0.93 anchor=0.54 covis=1.02 pop=0.25 hour=0.29] gate[nov=0.71 logS=-0.27 pref=0.91] tau=20.4
+05:04:51 | INFO    | gemma.down | [shanghai/full] val@ep3-end: acc@1=0.2121 acc@5=0.4205 act@1=0.447
+05:04:51 | INFO    | gemma.down | [shanghai/full] early stop at epoch 3
+05:04:51 | INFO    | gemma.down | [shanghai/full] restored best checkpoint (val acc@1=0.2348)
+05:04:51 | INFO    | gemma.down | [shanghai/full] protocol=sthgcn split=test: scoring 530/728 targets
+05:04:52 | INFO    | gemma.down | [shanghai/full] FULL-VOCAB acc@1=0.1906 acc@5=0.3642 acc@10=0.4377 ndcg@5=0.2821 mrr=0.2754 | next-activity acc=0.4547 f1=0.2100 | revisit(0.54) acc@1=0.339 explore acc@1=0.016 | cond: explore@1/@10=0.061/0.164 revisit@1=0.343 lat-explore@10=0.029 ptr@1=0.051 pi(exp/rev)=0.69/0.41 | STHGCN 0.193/0.264
+05:04:52 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+05:04:54 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+05:04:54 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+05:04:54 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+05:04:56 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2481 acc@5=0.4302 acc@10=0.5090 ndcg@5=0.3434 mrr=0.3353 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.372 explore acc@1=0.000 | cond: explore@1/@10=0.008/0.093 revisit@1=0.359 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.65/0.34 | STHGCN 0.246/0.341
+05:04:56 | INFO    | gemma.down | [palembang/full] fine-tune on 6843 next-step queries from 3289 trajectories (visible=3759)
+05:04:56 | INFO    | gemma.down | [palembang/full] device=cuda amp=torch.float16 steps/epoch=54 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+05:04:57 | INFO    | gemma.down | [palembang/full] val@init: acc@1=0.2897 acc@5=0.4383 act@1=0.451  *best
+05:05:15 | INFO    | gemma.down | [palembang/full] ft epoch 0 loss=6.7539 (19s) | ret[hist=0.63 prefix=0.06 is_last=-1.82 ptrans=1.04 tod=0.47 dow=0.44 rec=1.34 geo=0.36 lptr=-0.01] exp[hier=0.36 geo=0.88 anchor=0.51 covis=0.99 pop=0.27 hour=0.29] gate[nov=0.81 logS=-0.25 pref=0.83] tau=19.7
+05:05:16 | INFO    | gemma.down | [palembang/full] val@ep0-end: acc@1=0.2947 acc@5=0.4358 act@1=0.474  *best
+05:05:35 | INFO    | gemma.down | [palembang/full] ft epoch 1 loss=6.5123 (19s) | ret[hist=0.63 prefix=0.06 is_last=-1.88 ptrans=1.05 tod=0.48 dow=0.44 rec=1.33 geo=0.36 lptr=-0.02] exp[hier=0.36 geo=0.87 anchor=0.50 covis=0.99 pop=0.25 hour=0.29] gate[nov=0.79 logS=-0.25 pref=0.79] tau=19.7
+05:05:36 | INFO    | gemma.down | [palembang/full] val@ep1-end: acc@1=0.2947 acc@5=0.4458 act@1=0.484
+05:05:54 | INFO    | gemma.down | [palembang/full] ft epoch 2 loss=6.3967 (19s) | ret[hist=0.62 prefix=0.06 is_last=-1.92 ptrans=1.04 tod=0.48 dow=0.44 rec=1.32 geo=0.35 lptr=-0.02] exp[hier=0.38 geo=0.87 anchor=0.50 covis=0.99 pop=0.23 hour=0.29] gate[nov=0.79 logS=-0.24 pref=0.77] tau=20.3
+05:05:55 | INFO    | gemma.down | [palembang/full] val@ep2-end: acc@1=0.3048 acc@5=0.4408 act@1=0.461  *best
+05:06:13 | INFO    | gemma.down | [palembang/full] ft epoch 3 loss=6.3019 (18s) | ret[hist=0.62 prefix=0.06 is_last=-1.93 ptrans=1.04 tod=0.49 dow=0.44 rec=1.31 geo=0.35 lptr=-0.02] exp[hier=0.38 geo=0.87 anchor=0.50 covis=0.98 pop=0.23 hour=0.29] gate[nov=0.78 logS=-0.24 pref=0.75] tau=21.0
+05:06:14 | INFO    | gemma.down | [palembang/full] val@ep3-end: acc@1=0.2997 acc@5=0.4458 act@1=0.451
+05:06:33 | INFO    | gemma.down | [palembang/full] ft epoch 4 loss=6.2290 (19s) | ret[hist=0.62 prefix=0.06 is_last=-1.95 ptrans=1.03 tod=0.49 dow=0.44 rec=1.30 geo=0.35 lptr=-0.02] exp[hier=0.39 geo=0.87 anchor=0.50 covis=0.98 pop=0.22 hour=0.29] gate[nov=0.78 logS=-0.24 pref=0.74] tau=21.6
+05:06:34 | INFO    | gemma.down | [palembang/full] val@ep4-end: acc@1=0.2947 acc@5=0.4433 act@1=0.484
+05:06:52 | INFO    | gemma.down | [palembang/full] ft epoch 5 loss=6.1721 (18s) | ret[hist=0.62 prefix=0.06 is_last=-1.95 ptrans=1.03 tod=0.49 dow=0.44 rec=1.30 geo=0.35 lptr=-0.02] exp[hier=0.39 geo=0.87 anchor=0.51 covis=0.98 pop=0.22 hour=0.29] gate[nov=0.78 logS=-0.24 pref=0.73] tau=22.1
+05:06:53 | INFO    | gemma.down | [palembang/full] val@ep5-end: acc@1=0.2922 acc@5=0.4408 act@1=0.481
+05:06:53 | INFO    | gemma.down | [palembang/full] early stop at epoch 5
+05:06:53 | INFO    | gemma.down | [palembang/full] restored best checkpoint (val acc@1=0.3048)
+05:06:53 | INFO    | gemma.down | [palembang/full] protocol=sthgcn split=test: scoring 774/940 targets
+05:06:54 | INFO    | gemma.down | [palembang/full] FULL-VOCAB acc@1=0.2532 acc@5=0.4406 acc@10=0.5207 ndcg@5=0.3511 mrr=0.3434 | next-activity acc=0.4470 f1=0.1922 | revisit(0.69) acc@1=0.366 explore acc@1=0.000 | cond: explore@1/@10=0.025/0.130 revisit@1=0.353 lat-explore@10=0.042 ptr@1=0.033 pi(exp/rev)=0.61/0.31 | STHGCN 0.246/0.341
+05:06:54 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+05:06:58 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+05:06:58 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+05:06:58 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+05:07:00 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1679 acc@5=0.3349 acc@10=0.4092 ndcg@5=0.2531 mrr=0.2455 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.320 explore acc@1=0.005 | cond: explore@1/@10=0.012/0.082 revisit@1=0.292 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.70/0.41 | STHGCN 0.168/0.247
+05:07:00 | INFO    | gemma.down | [melbourne/full] fine-tune on 9915 next-step queries from 5504 trajectories (visible=6291)
+05:07:00 | INFO    | gemma.down | [melbourne/full] device=cuda amp=torch.float16 steps/epoch=78 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+05:07:02 | INFO    | gemma.down | [melbourne/full] val@init: acc@1=0.1595 acc@5=0.3256 act@1=0.444  *best
+05:07:28 | INFO    | gemma.down | [melbourne/full] ft epoch 0 loss=7.0751 (27s) | ret[hist=0.64 prefix=0.06 is_last=-1.71 ptrans=1.04 tod=0.45 dow=0.43 rec=1.34 geo=0.38 lptr=-0.01] exp[hier=0.35 geo=0.93 anchor=0.53 covis=1.04 pop=0.27 hour=0.29] gate[nov=0.80 logS=-0.27 pref=0.86] tau=19.3
+05:07:29 | INFO    | gemma.down | [melbourne/full] val@ep0-end: acc@1=0.1694 acc@5=0.3505 act@1=0.444  *best
+05:07:56 | INFO    | gemma.down | [melbourne/full] ft epoch 1 loss=6.7827 (27s) | ret[hist=0.64 prefix=0.05 is_last=-1.71 ptrans=1.04 tod=0.45 dow=0.44 rec=1.33 geo=0.38 lptr=-0.01] exp[hier=0.36 geo=0.93 anchor=0.54 covis=1.02 pop=0.25 hour=0.30] gate[nov=0.80 logS=-0.28 pref=0.86] tau=19.8
+05:07:57 | INFO    | gemma.down | [melbourne/full] val@ep1-end: acc@1=0.1611 acc@5=0.3522 act@1=0.434
+05:08:24 | INFO    | gemma.down | [melbourne/full] ft epoch 2 loss=6.6380 (27s) | ret[hist=0.64 prefix=0.05 is_last=-1.73 ptrans=1.04 tod=0.45 dow=0.44 rec=1.34 geo=0.38 lptr=-0.01] exp[hier=0.36 geo=0.94 anchor=0.56 covis=1.01 pop=0.23 hour=0.30] gate[nov=0.79 logS=-0.28 pref=0.86] tau=21.0
+05:08:25 | INFO    | gemma.down | [melbourne/full] val@ep2-end: acc@1=0.1661 acc@5=0.3488 act@1=0.447
+05:08:52 | INFO    | gemma.down | [melbourne/full] ft epoch 3 loss=6.5326 (27s) | ret[hist=0.64 prefix=0.05 is_last=-1.75 ptrans=1.04 tod=0.45 dow=0.44 rec=1.33 geo=0.38 lptr=-0.01] exp[hier=0.36 geo=0.94 anchor=0.56 covis=1.00 pop=0.22 hour=0.30] gate[nov=0.79 logS=-0.28 pref=0.86] tau=22.1
+05:08:53 | INFO    | gemma.down | [melbourne/full] val@ep3-end: acc@1=0.1661 acc@5=0.3522 act@1=0.444
+05:08:53 | INFO    | gemma.down | [melbourne/full] early stop at epoch 3
+05:08:53 | INFO    | gemma.down | [melbourne/full] restored best checkpoint (val acc@1=0.1694)
+05:08:53 | INFO    | gemma.down | [melbourne/full] protocol=sthgcn split=test: scoring 1239/1573 targets
+05:08:55 | INFO    | gemma.down | [melbourne/full] FULL-VOCAB acc@1=0.1792 acc@5=0.3527 acc@10=0.4383 ndcg@5=0.2688 mrr=0.2633 | next-activity acc=0.4931 f1=0.2448 | revisit(0.53) acc@1=0.330 explore acc@1=0.010 | cond: explore@1/@10=0.033/0.149 revisit@1=0.293 lat-explore@10=0.007 ptr@1=0.033 pi(exp/rev)=0.69/0.41 | STHGCN 0.168/0.247
+05:08:55 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+05:09:00 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+05:09:00 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+05:09:00 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+05:09:03 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.2094 acc@5=0.3623 acc@10=0.4445 ndcg@5=0.2877 mrr=0.2844 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.373 explore acc@1=0.007 | cond: explore@1/@10=0.016/0.099 revisit@1=0.361 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.70/0.35 | STHGCN 0.227/0.307
+05:09:03 | INFO    | gemma.down | [sydney/full] fine-tune on 13924 next-step queries from 7103 trajectories (visible=8118)
+05:09:03 | INFO    | gemma.down | [sydney/full] device=cuda amp=torch.float16 steps/epoch=109 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+05:09:05 | INFO    | gemma.down | [sydney/full] val@init: acc@1=0.1954 acc@5=0.3764 act@1=0.474  *best
+05:09:38 | INFO    | gemma.down | [sydney/full] ft epoch 0 loss=6.7123 (33s) | ret[hist=0.61 prefix=0.05 is_last=-1.80 ptrans=1.03 tod=0.46 dow=0.42 rec=1.32 geo=0.37 lptr=-0.01] exp[hier=0.36 geo=0.94 anchor=0.53 covis=1.00 pop=0.27 hour=0.29] gate[nov=0.81 logS=-0.27 pref=0.91] tau=18.7
+05:09:40 | INFO    | gemma.down | [sydney/full] val@ep0-end: acc@1=0.2027 acc@5=0.3969 act@1=0.479  *best
+05:10:14 | INFO    | gemma.down | [sydney/full] ft epoch 1 loss=6.4032 (34s) | ret[hist=0.62 prefix=0.05 is_last=-1.82 ptrans=1.04 tod=0.47 dow=0.42 rec=1.32 geo=0.37 lptr=-0.02] exp[hier=0.36 geo=0.94 anchor=0.53 covis=0.98 pop=0.24 hour=0.28] gate[nov=0.81 logS=-0.27 pref=0.93] tau=19.4
+05:10:15 | INFO    | gemma.down | [sydney/full] val@ep1-end: acc@1=0.2014 acc@5=0.4041 act@1=0.483
+05:10:49 | INFO    | gemma.down | [sydney/full] ft epoch 2 loss=6.2521 (34s) | ret[hist=0.61 prefix=0.05 is_last=-1.83 ptrans=1.04 tod=0.47 dow=0.42 rec=1.31 geo=0.37 lptr=-0.02] exp[hier=0.37 geo=0.94 anchor=0.54 covis=0.96 pop=0.22 hour=0.28] gate[nov=0.80 logS=-0.27 pref=0.95] tau=20.8
+05:10:50 | INFO    | gemma.down | [sydney/full] val@ep2-end: acc@1=0.2051 acc@5=0.4077 act@1=0.484  *best
+05:11:24 | INFO    | gemma.down | [sydney/full] ft epoch 3 loss=6.1419 (33s) | ret[hist=0.61 prefix=0.05 is_last=-1.87 ptrans=1.04 tod=0.47 dow=0.42 rec=1.30 geo=0.37 lptr=-0.02] exp[hier=0.37 geo=0.94 anchor=0.54 covis=0.94 pop=0.21 hour=0.28] gate[nov=0.80 logS=-0.27 pref=0.96] tau=22.2
+05:11:25 | INFO    | gemma.down | [sydney/full] val@ep3-end: acc@1=0.2159 acc@5=0.4029 act@1=0.490  *best
+05:11:59 | INFO    | gemma.down | [sydney/full] ft epoch 4 loss=6.0507 (33s) | ret[hist=0.61 prefix=0.04 is_last=-1.89 ptrans=1.04 tod=0.48 dow=0.43 rec=1.30 geo=0.38 lptr=-0.03] exp[hier=0.38 geo=0.94 anchor=0.55 covis=0.93 pop=0.20 hour=0.28] gate[nov=0.80 logS=-0.28 pref=0.96] tau=23.5
+05:12:00 | INFO    | gemma.down | [sydney/full] val@ep4-end: acc@1=0.2135 acc@5=0.4029 act@1=0.481
+05:12:34 | INFO    | gemma.down | [sydney/full] ft epoch 5 loss=5.9695 (33s) | ret[hist=0.61 prefix=0.04 is_last=-1.91 ptrans=1.03 tod=0.48 dow=0.43 rec=1.30 geo=0.38 lptr=-0.03] exp[hier=0.38 geo=0.94 anchor=0.55 covis=0.93 pop=0.19 hour=0.28] gate[nov=0.80 logS=-0.27 pref=0.96] tau=24.3
+05:12:35 | INFO    | gemma.down | [sydney/full] val@ep5-end: acc@1=0.2123 acc@5=0.4041 act@1=0.491
+05:13:09 | INFO    | gemma.down | [sydney/full] ft epoch 6 loss=5.9172 (33s) | ret[hist=0.61 prefix=0.04 is_last=-1.92 ptrans=1.03 tod=0.48 dow=0.43 rec=1.30 geo=0.38 lptr=-0.04] exp[hier=0.38 geo=0.94 anchor=0.55 covis=0.93 pop=0.19 hour=0.28] gate[nov=0.80 logS=-0.28 pref=0.96] tau=24.7
+05:13:10 | INFO    | gemma.down | [sydney/full] val@ep6-end: acc@1=0.2147 acc@5=0.4065 act@1=0.490
+05:13:10 | INFO    | gemma.down | [sydney/full] early stop at epoch 6
+05:13:10 | INFO    | gemma.down | [sydney/full] restored best checkpoint (val acc@1=0.2159)
+05:13:10 | INFO    | gemma.down | [sydney/full] protocol=sthgcn split=test: scoring 1667/2030 targets
+05:13:13 | INFO    | gemma.down | [sydney/full] FULL-VOCAB acc@1=0.2190 acc@5=0.3923 acc@10=0.4691 ndcg@5=0.3104 mrr=0.3040 | next-activity acc=0.5111 f1=0.2940 | revisit(0.56) acc@1=0.377 explore acc@1=0.015 | cond: explore@1/@10=0.036/0.162 revisit@1=0.381 lat-explore@10=0.011 ptr@1=0.039 pi(exp/rev)=0.71/0.34 | STHGCN 0.227/0.307
+05:13:13 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+05:13:21 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+05:13:21 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+05:13:21 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+05:13:25 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3193 acc@5=0.5361 acc@10=0.6100 ndcg@5=0.4337 mrr=0.4185 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.468 explore acc@1=0.008 | cond: explore@1/@10=0.031/0.146 revisit@1=0.438 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.66/0.29 | STHGCN 0.293/0.400
+05:13:26 | INFO    | gemma.down | [tangerang/full] fine-tune on 20897 next-step queries from 11188 trajectories (visible=12787)
+05:13:26 | INFO    | gemma.down | [tangerang/full] device=cuda amp=torch.float16 steps/epoch=164 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+05:13:29 | INFO    | gemma.down | [tangerang/full] val@init: acc@1=0.3141 acc@5=0.5484 act@1=0.540  *best
+05:14:41 | INFO    | gemma.down | [tangerang/full] ft epoch 0 loss=6.0362 (72s) | ret[hist=0.62 prefix=0.06 is_last=-1.63 ptrans=0.93 tod=0.44 dow=0.42 rec=1.36 geo=0.36 lptr=-0.02] exp[hier=0.35 geo=0.91 anchor=0.60 covis=0.96 pop=0.25 hour=0.28] gate[nov=0.80 logS=-0.27 pref=0.80] tau=17.7
+05:14:45 | INFO    | gemma.down | [tangerang/full] val@ep0-end: acc@1=0.3149 acc@5=0.5617 act@1=0.562  *best
+05:15:56 | INFO    | gemma.down | [tangerang/full] ft epoch 1 loss=5.8059 (72s) | ret[hist=0.62 prefix=0.07 is_last=-1.65 ptrans=0.94 tod=0.44 dow=0.43 rec=1.35 geo=0.36 lptr=-0.02] exp[hier=0.36 geo=0.90 anchor=0.62 covis=0.95 pop=0.21 hour=0.28] gate[nov=0.79 logS=-0.27 pref=0.77] tau=19.5
+05:16:00 | INFO    | gemma.down | [tangerang/full] val@ep1-end: acc@1=0.3163 acc@5=0.5558 act@1=0.569  *best
+05:17:11 | INFO    | gemma.down | [tangerang/full] ft epoch 2 loss=5.6842 (72s) | ret[hist=0.62 prefix=0.08 is_last=-1.67 ptrans=0.93 tod=0.45 dow=0.43 rec=1.35 geo=0.36 lptr=-0.02] exp[hier=0.36 geo=0.90 anchor=0.62 covis=0.95 pop=0.19 hour=0.28] gate[nov=0.79 logS=-0.27 pref=0.75] tau=21.8
+05:17:15 | INFO    | gemma.down | [tangerang/full] val@ep2-end: acc@1=0.3208 acc@5=0.5610 act@1=0.553  *best
+05:18:27 | INFO    | gemma.down | [tangerang/full] ft epoch 3 loss=5.5807 (72s) | ret[hist=0.61 prefix=0.09 is_last=-1.69 ptrans=0.92 tod=0.44 dow=0.43 rec=1.34 geo=0.36 lptr=-0.02] exp[hier=0.36 geo=0.92 anchor=0.63 covis=0.94 pop=0.17 hour=0.28] gate[nov=0.79 logS=-0.27 pref=0.74] tau=24.2
+05:18:30 | INFO    | gemma.down | [tangerang/full] val@ep3-end: acc@1=0.3208 acc@5=0.5632 act@1=0.557
+05:19:42 | INFO    | gemma.down | [tangerang/full] ft epoch 4 loss=5.4540 (72s) | ret[hist=0.60 prefix=0.10 is_last=-1.72 ptrans=0.91 tod=0.44 dow=0.43 rec=1.35 geo=0.37 lptr=-0.02] exp[hier=0.36 geo=0.95 anchor=0.64 covis=0.92 pop=0.15 hour=0.27] gate[nov=0.79 logS=-0.27 pref=0.74] tau=26.7
+05:19:45 | INFO    | gemma.down | [tangerang/full] val@ep4-end: acc@1=0.3186 acc@5=0.5565 act@1=0.562
+05:20:57 | INFO    | gemma.down | [tangerang/full] ft epoch 5 loss=5.2749 (72s) | ret[hist=0.60 prefix=0.10 is_last=-1.74 ptrans=0.90 tod=0.44 dow=0.43 rec=1.35 geo=0.37 lptr=-0.02] exp[hier=0.37 geo=0.96 anchor=0.65 covis=0.91 pop=0.15 hour=0.27] gate[nov=0.79 logS=-0.27 pref=0.73] tau=28.4
+05:21:00 | INFO    | gemma.down | [tangerang/full] val@ep5-end: acc@1=0.3112 acc@5=0.5506 act@1=0.561
+05:21:00 | INFO    | gemma.down | [tangerang/full] early stop at epoch 5
+05:21:00 | INFO    | gemma.down | [tangerang/full] restored best checkpoint (val acc@1=0.3208)
+05:21:00 | INFO    | gemma.down | [tangerang/full] protocol=sthgcn split=test: scoring 2787/3197 targets
+05:21:05 | INFO    | gemma.down | [tangerang/full] FULL-VOCAB acc@1=0.3294 acc@5=0.5608 acc@10=0.6365 ndcg@5=0.4530 mrr=0.4370 | next-activity acc=0.5605 f1=0.2771 | revisit(0.69) acc@1=0.467 explore acc@1=0.021 | cond: explore@1/@10=0.071/0.250 revisit@1=0.451 lat-explore@10=0.057 ptr@1=0.049 pi(exp/rev)=0.63/0.27 | STHGCN 0.293/0.400
+05:21:06 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+05:21:22 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+05:21:22 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+05:21:23 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+05:21:32 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2202 acc@5=0.4011 acc@10=0.4726 ndcg@5=0.3160 mrr=0.3057 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.409 explore acc@1=0.002 | cond: explore@1/@10=0.014/0.076 revisit@1=0.398 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.65/0.37 | STHGCN 0.223/0.308
+05:21:32 | INFO    | gemma.down | [moscow/full] fine-tune on 46474 next-step queries from 27639 trajectories (visible=31588)
+05:21:32 | INFO    | gemma.down | [moscow/full] device=cuda amp=torch.float16 steps/epoch=364 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+05:21:37 | INFO    | gemma.down | [moscow/full] val@init: acc@1=0.2290 acc@5=0.4117 act@1=0.461  *best
+05:22:27 | INFO    | gemma.down | [moscow/full] ep0 step 200/364 loss=6.3623 (0.25s/step, epoch ETA 0.7 min) 
+05:23:08 | INFO    | gemma.down | [moscow/full] ft epoch 0 loss=6.2934 (91s) | ret[hist=0.62 prefix=0.06 is_last=-1.59 ptrans=0.98 tod=0.45 dow=0.40 rec=1.34 geo=0.41 lptr=-0.02] exp[hier=0.35 geo=1.02 anchor=0.58 covis=1.00 pop=0.32 hour=0.27] gate[nov=0.78 logS=-0.29 pref=0.83] tau=15.6
+05:23:12 | INFO    | gemma.down | [moscow/full] val@ep0-end: acc@1=0.2297 acc@5=0.4190 act@1=0.455  *best
+05:24:02 | INFO    | gemma.down | [moscow/full] ep1 step 200/364 loss=6.1005 (0.25s/step, epoch ETA 0.7 min) 
+05:24:43 | INFO    | gemma.down | [moscow/full] ft epoch 1 loss=6.0690 (91s) | ret[hist=0.61 prefix=0.05 is_last=-1.61 ptrans=0.97 tod=0.45 dow=0.40 rec=1.33 geo=0.44 lptr=-0.01] exp[hier=0.35 geo=1.06 anchor=0.57 covis=0.98 pop=0.27 hour=0.25] gate[nov=0.79 logS=-0.29 pref=0.82] tau=19.2
+05:24:48 | INFO    | gemma.down | [moscow/full] val@ep1-end: acc@1=0.2277 acc@5=0.4227 act@1=0.462
+05:25:38 | INFO    | gemma.down | [moscow/full] ep2 step 200/364 loss=5.9095 (0.25s/step, epoch ETA 0.7 min) 
+05:26:19 | INFO    | gemma.down | [moscow/full] ft epoch 2 loss=5.8661 (91s) | ret[hist=0.56 prefix=0.05 is_last=-1.69 ptrans=0.95 tod=0.45 dow=0.39 rec=1.34 geo=0.55 lptr=-0.01] exp[hier=0.34 geo=1.32 anchor=0.59 covis=0.94 pop=0.22 hour=0.22] gate[nov=0.80 logS=-0.28 pref=0.84] tau=25.6
+05:26:23 | INFO    | gemma.down | [moscow/full] val@ep2-end: acc@1=0.2260 acc@5=0.4203 act@1=0.458
+05:27:13 | INFO    | gemma.down | [moscow/full] ep3 step 200/364 loss=5.1962 (0.25s/step, epoch ETA 0.7 min) 
+05:27:55 | INFO    | gemma.down | [moscow/full] ft epoch 3 loss=5.1800 (92s) | ret[hist=0.54 prefix=0.05 is_last=-1.77 ptrans=0.95 tod=0.46 dow=0.39 rec=1.33 geo=0.62 lptr=-0.02] exp[hier=0.34 geo=1.43 anchor=0.59 covis=0.97 pop=0.19 hour=0.21] gate[nov=0.79 logS=-0.28 pref=0.85] tau=36.9
+05:28:00 | INFO    | gemma.down | [moscow/full] val@ep3-end: acc@1=0.2250 acc@5=0.4003 act@1=0.463
+05:28:00 | INFO    | gemma.down | [moscow/full] early stop at epoch 3
+05:28:00 | INFO    | gemma.down | [moscow/full] restored best checkpoint (val acc@1=0.2297)
+05:28:00 | INFO    | gemma.down | [moscow/full] protocol=sthgcn split=test: scoring 7288/7897 targets
+05:28:10 | INFO    | gemma.down | [moscow/full] FULL-VOCAB acc@1=0.2285 acc@5=0.4281 acc@10=0.5143 ndcg@5=0.3327 mrr=0.3235 | next-activity acc=0.4667 f1=0.2990 | revisit(0.55) acc@1=0.405 explore acc@1=0.013 | cond: explore@1/@10=0.051/0.206 revisit@1=0.409 lat-explore@10=0.020 ptr@1=0.077 pi(exp/rev)=0.65/0.35 | STHGCN 0.223/0.308
+05:28:11 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+05:28:40 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+05:28:40 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+05:28:40 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+05:28:58 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.2116 acc@5=0.3768 acc@10=0.4524 ndcg@5=0.2980 mrr=0.2910 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.384 explore acc@1=0.001 | cond: explore@1/@10=0.031/0.100 revisit@1=0.363 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.68/0.33 | STHGCN 0.219/0.302
+05:28:59 | INFO    | gemma.down | [bandung/full] fine-tune on 74326 next-step queries from 38732 trajectories (visible=44266)
+05:28:59 | INFO    | gemma.down | [bandung/full] device=cuda amp=torch.float16 steps/epoch=581 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+05:29:05 | INFO    | gemma.down | [bandung/full] val@init: acc@1=0.2093 acc@5=0.3817 act@1=0.480  *best
+05:30:33 | INFO    | gemma.down | [bandung/full] ep0 step 200/581 loss=7.0634 (0.44s/step, epoch ETA 2.8 min) 
+05:32:01 | INFO    | gemma.down | [bandung/full] ep0 step 400/581 loss=6.9330 (0.44s/step, epoch ETA 1.3 min) 
+05:32:51 | INFO    | gemma.down | [bandung/full] val@ep0-step500: acc@1=0.2097 acc@5=0.3897 act@1=0.487  *best
+05:33:27 | INFO    | gemma.down | [bandung/full] ft epoch 0 loss=6.9565 (262s) | ret[hist=0.59 prefix=0.06 is_last=-1.84 ptrans=0.96 tod=0.48 dow=0.42 rec=1.40 geo=0.38 lptr=-0.01] exp[hier=0.34 geo=0.92 anchor=0.57 covis=1.00 pop=0.33 hour=0.26] gate[nov=0.80 logS=-0.24 pref=0.67] tau=13.9
+05:33:33 | INFO    | gemma.down | [bandung/full] val@ep0-end: acc@1=0.2110 acc@5=0.3903 act@1=0.495  *best
+05:35:00 | INFO    | gemma.down | [bandung/full] ep1 step 200/581 loss=6.7603 (0.44s/step, epoch ETA 2.8 min) 
+05:36:27 | INFO    | gemma.down | [bandung/full] ep1 step 400/581 loss=6.7056 (0.44s/step, epoch ETA 1.3 min) 
+05:37:19 | INFO    | gemma.down | [bandung/full] val@ep1-step500: acc@1=0.2137 acc@5=0.3850 act@1=0.490  *best
+05:37:54 | INFO    | gemma.down | [bandung/full] ft epoch 1 loss=6.7136 (261s) | ret[hist=0.54 prefix=0.08 is_last=-1.98 ptrans=0.94 tod=0.48 dow=0.42 rec=1.39 geo=0.40 lptr=-0.02] exp[hier=0.34 geo=0.97 anchor=0.60 covis=1.03 pop=0.25 hour=0.25] gate[nov=0.79 logS=-0.23 pref=0.61] tau=18.9
+05:38:00 | INFO    | gemma.down | [bandung/full] val@ep1-end: acc@1=0.2150 acc@5=0.3883 act@1=0.493  *best
+05:39:25 | INFO    | gemma.down | [bandung/full] ep2 step 200/581 loss=6.5287 (0.42s/step, epoch ETA 2.7 min) 
+05:40:52 | INFO    | gemma.down | [bandung/full] ep2 step 400/581 loss=6.5481 (0.43s/step, epoch ETA 1.3 min) 
+05:41:41 | INFO    | gemma.down | [bandung/full] val@ep2-step500: acc@1=0.2153 acc@5=0.3893 act@1=0.489  *best
+05:42:16 | INFO    | gemma.down | [bandung/full] ft epoch 2 loss=6.5205 (256s) | ret[hist=0.50 prefix=0.11 is_last=-2.33 ptrans=0.93 tod=0.51 dow=0.44 rec=1.43 geo=0.44 lptr=-0.03] exp[hier=0.32 geo=1.04 anchor=0.68 covis=1.01 pop=0.19 hour=0.21] gate[nov=0.79 logS=-0.23 pref=0.63] tau=24.0
+05:42:22 | INFO    | gemma.down | [bandung/full] val@ep2-end: acc@1=0.2177 acc@5=0.3943 act@1=0.494  *best
+05:43:50 | INFO    | gemma.down | [bandung/full] ep3 step 200/581 loss=6.1520 (0.44s/step, epoch ETA 2.8 min) 
+05:45:18 | INFO    | gemma.down | [bandung/full] ep3 step 400/581 loss=6.0566 (0.44s/step, epoch ETA 1.3 min) 
+05:46:07 | INFO    | gemma.down | [bandung/full] val@ep3-step500: acc@1=0.2217 acc@5=0.3870 act@1=0.493  *best
+05:46:42 | INFO    | gemma.down | [bandung/full] ft epoch 3 loss=6.0956 (260s) | ret[hist=0.47 prefix=0.10 is_last=-2.53 ptrans=0.92 tod=0.52 dow=0.45 rec=1.44 geo=0.48 lptr=-0.03] exp[hier=0.31 geo=1.09 anchor=0.72 covis=1.00 pop=0.16 hour=0.20] gate[nov=0.77 logS=-0.22 pref=0.63] tau=33.8
+05:46:48 | INFO    | gemma.down | [bandung/full] val@ep3-end: acc@1=0.2183 acc@5=0.3863 act@1=0.493
+05:48:15 | INFO    | gemma.down | [bandung/full] ep4 step 200/581 loss=5.6073 (0.43s/step, epoch ETA 2.7 min) 
+05:49:43 | INFO    | gemma.down | [bandung/full] ep4 step 400/581 loss=5.6141 (0.44s/step, epoch ETA 1.3 min) 
+05:50:33 | INFO    | gemma.down | [bandung/full] val@ep4-step500: acc@1=0.2157 acc@5=0.3813 act@1=0.493
+05:51:08 | INFO    | gemma.down | [bandung/full] ft epoch 4 loss=5.6145 (260s) | ret[hist=0.45 prefix=0.10 is_last=-2.62 ptrans=0.92 tod=0.52 dow=0.46 rec=1.43 geo=0.49 lptr=-0.03] exp[hier=0.31 geo=1.11 anchor=0.74 covis=1.03 pop=0.14 hour=0.19] gate[nov=0.76 logS=-0.22 pref=0.64] tau=43.3
+05:51:15 | INFO    | gemma.down | [bandung/full] val@ep4-end: acc@1=0.2187 acc@5=0.3780 act@1=0.495
+05:51:15 | INFO    | gemma.down | [bandung/full] early stop at epoch 4
+05:51:15 | INFO    | gemma.down | [bandung/full] restored best checkpoint (val acc@1=0.2217)
+05:51:15 | INFO    | gemma.down | [bandung/full] protocol=sthgcn split=test: scoring 9913/11067 targets
+05:51:33 | INFO    | gemma.down | [bandung/full] FULL-VOCAB acc@1=0.2156 acc@5=0.3876 acc@10=0.4631 ndcg@5=0.3059 mrr=0.2984 | next-activity acc=0.4950 f1=0.2446 | revisit(0.56) acc@1=0.375 explore acc@1=0.012 | cond: explore@1/@10=0.030/0.138 revisit@1=0.372 lat-explore@10=0.015 ptr@1=0.044 pi(exp/rev)=0.66/0.33 | STHGCN 0.219/0.302
+05:51:33 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+05:51:33 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+05:51:33 | INFO    | gemma.down |          tokyo zero_shot   0.261/0.368       nan/nan       nan/nan 0.250/0.350    0.543
+05:51:33 | INFO    | gemma.down |          tokyo full        0.272/0.389       nan/nan       nan/nan 0.250/0.350    0.559
+05:51:33 | INFO    | gemma.down |        beijing zero_shot   0.398/0.539       nan/nan       nan/nan 0.453/0.552    0.511
+05:51:33 | INFO    | gemma.down |        beijing full        0.398/0.524       nan/nan       nan/nan 0.453/0.552    0.580
+05:51:33 | INFO    | gemma.down |       shanghai zero_shot   0.166/0.266       nan/nan       nan/nan 0.193/0.264    0.455
+05:51:33 | INFO    | gemma.down |       shanghai full        0.191/0.282       nan/nan       nan/nan 0.193/0.264    0.455
+05:51:33 | INFO    | gemma.down |      palembang zero_shot   0.248/0.343       nan/nan       nan/nan 0.246/0.341    0.459
+05:51:33 | INFO    | gemma.down |      palembang full        0.253/0.351       nan/nan       nan/nan 0.246/0.341    0.447
+05:51:33 | INFO    | gemma.down |      melbourne zero_shot   0.168/0.253       nan/nan       nan/nan 0.168/0.247    0.487
+05:51:33 | INFO    | gemma.down |      melbourne full        0.179/0.269       nan/nan       nan/nan 0.168/0.247    0.493
+05:51:33 | INFO    | gemma.down |         sydney zero_shot   0.209/0.288       nan/nan       nan/nan 0.227/0.307    0.484
+05:51:33 | INFO    | gemma.down |         sydney full        0.219/0.310       nan/nan       nan/nan 0.227/0.307    0.511
+05:51:33 | INFO    | gemma.down |      tangerang zero_shot   0.319/0.434       nan/nan       nan/nan 0.293/0.400    0.548
+05:51:33 | INFO    | gemma.down |      tangerang full        0.329/0.453       nan/nan       nan/nan 0.293/0.400    0.560
+05:51:33 | INFO    | gemma.down |         moscow zero_shot   0.220/0.316       nan/nan       nan/nan 0.223/0.308    0.466
+05:51:33 | INFO    | gemma.down |         moscow full        0.228/0.333       nan/nan       nan/nan 0.223/0.308    0.467
+05:51:33 | INFO    | gemma.down |        bandung zero_shot   0.212/0.298       nan/nan       nan/nan 0.219/0.302    0.483
+05:51:33 | INFO    | gemma.down |        bandung full        0.216/0.306       nan/nan       nan/nan 0.219/0.302    0.495
+09:17:16 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=<unset> | GPUs visible to torch=1
+09:17:16 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+09:17:20 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+09:17:20 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+09:17:20 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=-1 tag='_v6s_llm'
+09:17:20 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:17:22 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+09:17:22 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+09:17:22 | INFO    | gemma.down | [tokyo/zero_shot] protocol=all split=test: scoring 1097/1097 targets
+09:17:24 | INFO    | gemma.down | [tokyo/zero_shot]  || LLM-200[gt+near100] acc@1=0.270+-0.015 acc@5=0.446 ndcg@5=0.363 [near100 0.106] [gt+rand100 0.476] | LLM-Move best 0.250/0.368
+09:17:24 | INFO    | gemma.down | [beijing] 100/1470 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:17:25 | INFO    | gemma.down | [beijing] loaded semantic codes (4 levels) for 498 POIs
+09:17:25 | INFO    | gemma.down | [beijing] trails train=400 val=58 test=115 | POIs (all splits) = 598
+09:17:25 | INFO    | gemma.down | [beijing/zero_shot] protocol=all split=test: scoring 115/115 targets
+09:17:25 | INFO    | gemma.down | [beijing/zero_shot]  || LLM-200[gt+near100] acc@1=0.212+-0.012 acc@5=0.396 ndcg@5=0.313 [near100 0.146] [gt+rand100 0.327] | LLM-Move best 0.192/0.280
+09:17:25 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:17:27 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+09:17:27 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+09:17:27 | INFO    | gemma.down | [shanghai/zero_shot] protocol=all split=test: scoring 728/728 targets
+09:17:28 | INFO    | gemma.down | [shanghai/zero_shot]  || LLM-200[gt+near100] acc@1=0.144+-0.022 acc@5=0.279 ndcg@5=0.217 [near100 0.051] [gt+rand100 0.298] | LLM-Move best 0.170/0.221
+09:17:28 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:17:30 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+09:17:30 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+09:17:30 | INFO    | gemma.down | [palembang/zero_shot] protocol=all split=test: scoring 940/940 targets
+09:17:32 | INFO    | gemma.down | [palembang/zero_shot]  || LLM-200[gt+near100] acc@1=0.302+-0.012 acc@5=0.411 ndcg@5=0.361 [near100 0.036] [gt+rand100 0.406] | LLM-Move best 0.260/0.329
+09:17:32 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:17:35 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+09:17:35 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+09:17:36 | INFO    | gemma.down | [melbourne/zero_shot] protocol=all split=test: scoring 1573/1573 targets
+09:17:37 | INFO    | gemma.down | [melbourne/zero_shot]  || LLM-200[gt+near100] acc@1=0.170+-0.020 acc@5=0.281 ndcg@5=0.230 [near100 0.056] [gt+rand100 0.322] | LLM-Move best 0.225/0.275
+09:17:37 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:17:42 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+09:17:42 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+09:17:42 | INFO    | gemma.down | [sydney/zero_shot] protocol=all split=test: scoring 2030/2030 targets
+09:17:43 | INFO    | gemma.down | [sydney/zero_shot]  || LLM-200[gt+near100] acc@1=0.137+-0.012 acc@5=0.253 ndcg@5=0.198 [near100 0.048] [gt+rand100 0.339] | LLM-Move best 0.230/0.331
+09:17:43 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:17:50 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+09:17:50 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+09:17:51 | INFO    | gemma.down | [tangerang/zero_shot] protocol=all split=test: scoring 3197/3197 targets
+09:17:52 | INFO    | gemma.down | [tangerang/zero_shot]  || LLM-200[gt+near100] acc@1=0.360+-0.037 acc@5=0.520 ndcg@5=0.448 [near100 0.053] [gt+rand100 0.595] | LLM-Move best 0.200/0.275
+09:17:53 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:18:09 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+09:18:09 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+09:18:09 | INFO    | gemma.down | [moscow/zero_shot] protocol=all split=test: scoring 7897/7897 targets
+09:18:11 | INFO    | gemma.down | [moscow/zero_shot]  || LLM-200[gt+near100] acc@1=0.262+-0.024 acc@5=0.436 ndcg@5=0.356 [near100 0.071] [gt+rand100 0.517] | LLM-Move best 0.230/0.330
+09:18:11 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:18:35 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+09:18:35 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+09:18:36 | INFO    | gemma.down | [bandung/zero_shot] protocol=all split=test: scoring 11067/11067 targets
+09:18:38 | INFO    | gemma.down | [bandung/zero_shot]  || LLM-200[gt+near100] acc@1=0.307+-0.026 acc@5=0.423 ndcg@5=0.372 [near100 0.037] [gt+rand100 0.507] | LLM-Move best 0.225/0.289
+09:18:38 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+09:18:38 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+09:18:38 | INFO    | gemma.down |          tokyo zero_shot       nan/nan   0.476/0.554   0.270/0.363 0.250/0.350      nan
+09:18:38 | INFO    | gemma.down |        beijing zero_shot       nan/nan   0.327/0.442   0.212/0.313 0.453/0.552      nan
+09:18:38 | INFO    | gemma.down |       shanghai zero_shot       nan/nan   0.298/0.382   0.144/0.217 0.193/0.264      nan
+09:18:38 | INFO    | gemma.down |      palembang zero_shot       nan/nan   0.406/0.485   0.302/0.361 0.246/0.341      nan
+09:18:38 | INFO    | gemma.down |      melbourne zero_shot       nan/nan   0.322/0.396   0.170/0.230 0.168/0.247      nan
+09:18:38 | INFO    | gemma.down |         sydney zero_shot       nan/nan   0.339/0.442   0.137/0.198 0.227/0.307      nan
+09:18:38 | INFO    | gemma.down |      tangerang zero_shot       nan/nan   0.595/0.666   0.360/0.448 0.293/0.400      nan
+09:18:38 | INFO    | gemma.down |         moscow zero_shot       nan/nan   0.517/0.600   0.262/0.356 0.223/0.308      nan
+09:18:38 | INFO    | gemma.down |        bandung zero_shot       nan/nan   0.507/0.571   0.307/0.372 0.219/0.302      nan

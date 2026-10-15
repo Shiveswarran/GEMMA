@@ -98,6 +98,13 @@ class Config:
                                       # TRAIN split (Massive-STEPS STHGCN remove_unseen_user_poi);
                                       # all: every test trajectory
     eval_split: str = "test"
+    # ---- GEMMA v7 (retriever="hrem7"): population evidence + opportunity-rank explore + gate
+    collab: bool = False            # build city collaborative statistics when target/source stats are allowed
+    stat_dropout: float = 0.0       # source training: P(batch sees NO city statistics) -> one head for both regimes
+    collab_topk: int = 100          # item-item neighbours kept per POI
+    collab_user_cap: int = 30       # places per user used for item-item co-visitation
+    ctr_kappa: float = 5.0          # back-off strength of the population transition to the category transition
+    drop_exp: str = ""              # eval diagnostic: explore channels to zero
     drop_ret: str = ""              # eval diagnostic: return channels to zero, e.g. "lptr,prefix"          # test | validation (validation = model/HP selection only)
     hist_trails: int = 15             # user's most recent history trajectories in context
     hist_max_tokens: int = 200        # token cap for [history SEP ... SEP prefix]
