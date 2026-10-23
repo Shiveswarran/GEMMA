@@ -1,0 +1,13 @@
+         city      n  STHGCN |                   v6s0 |                   v6s1 |                   v6s2
+-------------------------------------------------------------------------------------------------------
+     istanbul  41150   0.241 | 0.198/0.302<         | 0.198/0.298<         | 0.198/0.299<        
+petaling_jaya  33889   0.174 | 0.156/0.240<         | 0.156/0.239<         | 0.156/0.238<        
+      jakarta  24402   0.197 | 0.216/0.303>         | 0.214/0.302>         | 0.218/0.303>        
+     new_york  16766   0.146 | 0.156/0.233>         | 0.154/0.232>         | 0.156/0.234>        
+  kuwait_city  17753   0.225 | 0.204/0.310<         | 0.206/0.312<         | 0.202/0.299<        
+    sao_paulo  16523   0.250 | 0.247/0.360=         | 0.249/0.361=         | 0.245/0.357=        
+-------------------------------------------------------------------------------------------------------
+      v6s0: macro Acc@1 0.1965 (STHGCN 0.2055, -0.0090) NDCG@5 0.2914 | above STHGCN 2/6, significantly above 2, significantly below 3
+      v6s1: macro Acc@1 0.1963 (STHGCN 0.2055, -0.0092) NDCG@5 0.2908 | above STHGCN 2/6, significantly above 2, significantly below 3
+      v6s2: macro Acc@1 0.1960 (STHGCN 0.2055, -0.0095) NDCG@5 0.2883 | above STHGCN 2/6, significantly above 2, significantly below 3
+legend: '>' / '<' = z-test vs published STHGCN Acc@1 at 95%;  d = paired Acc@1 difference vs baseline 'None', '*' = 95% bootstrap CI excludes 0

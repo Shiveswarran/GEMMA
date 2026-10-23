@@ -1,0 +1,16 @@
+         city      n  STHGCN |                   v6s0 |                   v6s1 |                   v6s2
+-------------------------------------------------------------------------------------------------------
+        tokyo    946   0.250 | 0.272/0.387=         | 0.275/0.387=         | 0.266/0.385=        
+      beijing     88   0.453 | 0.386/0.541=         | 0.375/0.526=         | 0.398/0.516=        
+     shanghai    530   0.193 | 0.185/0.277=         | 0.181/0.277=         | 0.185/0.282=        
+    palembang    774   0.246 | 0.249/0.348=         | 0.247/0.346=         | 0.239/0.349=        
+    melbourne   1239   0.168 | 0.161/0.262=         | 0.161/0.262=         | 0.173/0.265=        
+       sydney   1667   0.227 | 0.218/0.303=         | 0.221/0.307=         | 0.224/0.311=        
+    tangerang   2787   0.293 | 0.332/0.448>         | 0.334/0.449>         | 0.331/0.446>        
+       moscow   7288   0.223 | 0.225/0.325=         | 0.227/0.327=         | 0.223/0.325=        
+      bandung   9913   0.219 | 0.214/0.303=         | 0.217/0.308=         | 0.217/0.311=        
+-------------------------------------------------------------------------------------------------------
+      v6s0: macro Acc@1 0.2491 (STHGCN 0.2524, -0.0034) NDCG@5 0.3549 | above STHGCN 4/9, significantly above 1, significantly below 0
+      v6s1: macro Acc@1 0.2487 (STHGCN 0.2524, -0.0037) NDCG@5 0.3544 | above STHGCN 4/9, significantly above 1, significantly below 0
+      v6s2: macro Acc@1 0.2507 (STHGCN 0.2524, -0.0018) NDCG@5 0.3544 | above STHGCN 4/9, significantly above 1, significantly below 0
+legend: '>' / '<' = z-test vs published STHGCN Acc@1 at 95%;  d = paired Acc@1 difference vs baseline 'None', '*' = 95% bootstrap CI excludes 0
