@@ -44,7 +44,7 @@ def main():
                  ("min_epochs", int), ("hist_budget", int), ("hist_last", int), ("evidence", str), ("out_tag", str),
                  ("eval_protocol", str), ("eval_split", str), ("lambda_wm_motif", float),
                  ("lambda_wm_dt", float), ("drop_ret", str), ("drop_exp", str),
-                 ("ctr_kappa", float), ("collab", int), ("full_visible", str)]:
+                 ("ctr_kappa", float), ("collab", int), ("full_visible", str), ("gate_mode", str)]:
         p.add_argument("--" + k, type=t)
     a = p.parse_args()
 

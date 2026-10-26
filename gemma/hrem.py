@@ -350,6 +350,16 @@ def hrem_mixture(head, bb, ci, m, z_ptr, h, q_in, act_logits_wm, hier_in, gate_e
         g = head.g_lin(q) + head.g_b
     if gate_extra is not None:
         g = g + gate_extra
+    gm = str(getattr(ci.cfg, "gate_mode", "") or "")
+    if gm:   # TEST-TIME gate ablations for the paper (weights are not retrained)
+        if gm == "noS":            # drop the exploration-law term g_S * log S_u
+            g = g - head.g_S * torch.log1p(m["u_S"]).unsqueeze(1)
+        elif gm == "nopersonal":   # drop every personal term (novelty rate, log S_u, new prefix)
+            g = head.g_lin(q) + head.g_b
+        elif gm == "const":        # one global return/explore prior for everybody
+            g = head.g_b.expand_as(g) if torch.is_tensor(head.g_b) else torch.full_like(g, float(head.g_b))
+        else:
+            raise ValueError(f"unknown gate_mode {gm!r}")
     lse_r = _group_lse(r, groups, A); lse_e = _group_lse(e, groups, A)
     has_r, has_e = torch.isfinite(lse_r), torch.isfinite(lse_e)
     lpi = torch.where(~has_r, torch.zeros_like(g), torch.where(~has_e, torch.full_like(g, float("-inf")), F.logsigmoid(g)))

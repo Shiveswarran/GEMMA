@@ -1,0 +1,36 @@
+\begin{table}[t]
+\caption{Learned parameters (at $\mathbf{z}=0$). Source: trained on six cities, mean $\pm$ sd over 3 seeds.
+Fine-tuned: range over the eight unseen cities $\times$ 3 seeds after fine-tuning. $^\dagger$\,needs the target-city log,
+inactive in zero-shot.}
+\label{tab:weights}
+\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcc}
+\toprule
+Parameter & Source-trained & Fine-tuned (range) \\
+\midrule
+\multicolumn{3}{l}{\textit{Return evidence $\mathbf{w}_0$}} \\
+frequency & 0.63 $\pm$ 0.04 & 0.46 -- 0.75 \\
+in this trip & 0.07 $\pm$ 0.03 & 0.04 -- 0.23 \\
+is last place & -1.69 $\pm$ 0.02 & -2.78 -- -1.47 \\
+last$\to$next & 1.02 $\pm$ 0.02 & 0.89 -- 1.07 \\
+hour of day & 0.44 $\pm$ 0.01 & 0.39 -- 0.52 \\
+weekday & 0.41 $\pm$ 0.01 & 0.36 -- 0.46 \\
+recency & 1.32 $\pm$ 0.05 & 1.07 -- 1.46 \\
+distance & 0.39 $\pm$ 0.03 & 0.35 -- 0.74 \\
+latent pointer & -0.01 $\pm$ 0.01 & -0.04 -- 0.04 \\
+\midrule
+\multicolumn{3}{l}{\textit{Explore evidence $\mathbf{w}'_0$}} \\
+activity path & 0.37 $\pm$ 0.01 & 0.28 -- 0.40 \\
+distance & 0.97 $\pm$ 0.08 & 0.87 -- 1.69 \\
+anchor distance & 0.56 $\pm$ 0.01 & 0.48 -- 0.80 \\
+co-visit$^\dagger$ & 1.00 $\pm$ 0.00 & 0.92 -- 1.07 \\
+popularity$^\dagger$ & 0.30 $\pm$ 0.00 & 0.13 -- 0.27 \\
+city hour profile$^\dagger$ & 0.30 $\pm$ 0.00 & 0.19 -- 0.30 \\
+\midrule
+\multicolumn{3}{l}{\textit{Gate}} \\
+$g_\nu$ novelty rate & 0.82 $\pm$ 0.01 & 0.73 -- 0.81 \\
+$g_S$ log \#places & -0.27 $\pm$ 0.01 & -0.30 -- -0.23 \\
+$g_p$ new prefix & 0.86 $\pm$ 0.02 & 0.65 -- 1.00 \\
+\bottomrule
+\end{tabular}
+\end{table}

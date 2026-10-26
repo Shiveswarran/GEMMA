@@ -1,0 +1,31 @@
+[table] A7_main_zero_shot
+     city      n  STHGCN (supervised)  GEMMA zero-shot  95% CI +-  z vs STHGCN  hand-set  GEMMA NDCG@5  revisit share
+    Tokyo  946.0             0.250000         0.267442   0.028206     1.212000  0.255814      0.372605       0.600423
+  Beijing   88.0             0.453000         0.397727   0.102260    -1.059407  0.352273      0.538555       0.806818
+ Shanghai  530.0             0.193000         0.179245   0.032655    -0.825580  0.150943      0.273282       0.528302
+Palembang  774.0             0.246000         0.254522   0.030688     0.544290  0.224806      0.342883       0.666667
+Melbourne 1239.0             0.168000         0.172720   0.021048     0.439516  0.148507      0.255918       0.517353
+   Sydney 1667.0             0.227000         0.195561   0.019040    -3.236313  0.170966      0.283291       0.553689
+Tangerang 2787.0             0.293000         0.324363   0.017380     3.536839  0.286688      0.435895       0.677072
+   Moscow 7288.0             0.223000         0.221597   0.009535    -0.288358  0.205681      0.317113       0.535812
+  Bandung 9913.0             0.219000         0.210431   0.008024    -2.093128  0.178150      0.294965       0.549581
+    macro    NaN             0.252444         0.247068   0.029871    -0.196682  0.219314      0.346056       0.603969
+
+[figure] analysis_out/figures/A7a_vs_sthgcn.pdf/.png
+[figure] analysis_out/figures/A7e_revisit_vs_gap.pdf/.png
+[table] A7_llm_protocol
+     city  LLM-Move (Gemini-2.0)  LLM-Move (best of 4)  GEMMA hand-set    GEMMA  GEMMA std
+    Tokyo               0.250000              0.250000        0.488000 0.474000   0.022891
+  Beijing               0.096000              0.192000        0.419231 0.346154   0.036488
+ Shanghai               0.170000              0.170000        0.296000 0.303000   0.040075
+Palembang               0.260000              0.260000        0.377000 0.415000   0.022583
+Melbourne               0.225000              0.225000        0.309000 0.315000   0.018974
+   Sydney               0.230000              0.230000        0.320000 0.340000   0.026268
+Tangerang               0.200000              0.200000        0.532000 0.592000   0.040817
+   Moscow               0.220000              0.230000        0.456000 0.515000   0.030496
+  Bandung               0.225000              0.225000        0.411000 0.497000   0.043543
+     mean               0.208444              0.220222        0.400915 0.421906   0.031348
+
+[figure] analysis_out/figures/A7b_vs_llm.pdf/.png
+[figure] analysis_out/figures/A7c_history_budget.pdf/.png
+[figure] analysis_out/figures/A7d_source_scaling.pdf/.png

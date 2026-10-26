@@ -1,0 +1,166 @@
+% GEMMA architecture -- full-width figure (\begin{figure*} ... \includegraphics[width=\textwidth]{arch/gemma_arch.pdf})
+% Built at final size (17.6 cm = ACM sigconf \textwidth), so text is 6.2-8 pt after placement.
+% Compile:  xelatex gemma_arch.tex   (Libertinus OTF from ../fonts, matches ACM Libertine/Biolinum)
+%      or:  pdflatex gemma_arch.tex  (uses libertine.sty if installed, else Computer Modern)
+\documentclass[tikz,border=1pt]{standalone}
+\usepackage{iftex}
+\iftutex
+  \usepackage{fontspec}\usepackage{unicode-math}
+  \setmainfont{LibertinusSerif}[Path=../fonts/, Extension=.otf, UprightFont=*-Regular, ItalicFont=*-Italic, BoldFont=*-Bold]
+  \setsansfont{LibertinusSans}[Path=../fonts/, Extension=.otf, UprightFont=*-Regular, ItalicFont=*-Italic, BoldFont=*-Bold]
+  \setmathfont{LibertinusMath-Regular.otf}[Path=../fonts/]
+\else
+  \usepackage[T1]{fontenc}\usepackage{amsmath,amssymb,bm}
+  \IfFileExists{libertine.sty}{\usepackage{libertine}\IfFileExists{newtxmath.sty}{\usepackage[libertine]{newtxmath}}{}}{}
+\fi
+\usetikzlibrary{positioning,arrows.meta,calc,fit,backgrounds}
+
+% ---- palette (validated with the dataviz checker; same hexes as paper/style.py) ----
+\definecolor{ours}{HTML}{EB6834}
+\definecolor{ret}{HTML}{148A60}
+\definecolor{exp}{HTML}{6250D6}
+\definecolor{ink}{HTML}{1F1F1D}
+\definecolor{ink2}{HTML}{52514E}
+\definecolor{rule}{HTML}{B4B2AB}
+\definecolor{panel}{HTML}{F6F5F2}
+\definecolor{actA}{HTML}{56B4E9}\definecolor{actB}{HTML}{E69F00}\definecolor{actC}{HTML}{009E73}\definecolor{actD}{HTML}{CC79A7}
+
+\newcommand{\fT}{\fontsize{8}{9.4}\selectfont\bfseries}
+\newcommand{\fA}{\fontsize{7}{8.2}\selectfont}
+\newcommand{\fB}{\fontsize{6.3}{7.2}\selectfont}
+
+\tikzset{
+  >={Stealth[length=3.6pt,width=3pt]},
+  every node/.style={font=\sffamily\fA, text=ink},
+  pnl/.style={rounded corners=4pt, fill=panel, draw=rule, line width=.45pt, anchor=south west},
+  ptitle/.style={font=\sffamily\fT, anchor=north west, inner sep=0pt},
+  chip/.style={rounded corners=2pt, draw=#1, fill=#1!9, line width=.45pt, minimum height=3.9mm,
+               minimum width=1.86cm, inner xsep=2pt, inner ysep=1pt, font=\sffamily\fB, anchor=west},
+  wchip/.style={rounded corners=2pt, draw=ink2, fill=white, line width=.45pt, minimum height=3.9mm,
+               minimum width=3.15cm, inner xsep=2pt, font=\sffamily\fB, anchor=west, align=left},
+  box/.style={rounded corners=2.5pt, draw=ink2, fill=white, line width=.55pt, align=center, inner sep=2.2pt},
+  flow/.style={->, line width=.75pt, draw=ink2},
+  tok/.style={draw=ink2, fill=white, minimum width=4.4mm, minimum height=4.4mm, rounded corners=1pt, inner sep=0pt, font=\sffamily\fB},
+  dec/.style={circle, fill=ours, text=white, font=\sffamily\bfseries\fB, inner sep=0pt, minimum size=3.4mm},
+  pl/.style={circle, draw=white, line width=.5pt, minimum size=2.5mm, inner sep=0pt},
+  note/.style={font=\sffamily\fB, text=ink2, align=left},
+}
+
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+% panel geometry:  a [0,3.7]  b [3.85,6.35]  c [6.5,10.5]  d [10.65,17.6]   height 6.3
+% =========================================================================  (a)
+\node[pnl, minimum width=3.7cm, minimum height=6.3cm] (PA) at (0,0) {};
+\node[ptitle] at (.13,6.17) {(a) Identifier-free check-ins};
+\draw[ink2, line width=.6pt, rounded corners=2pt] (.42,4.95) -- (1.2,5.4) -- (2.05,4.9) -- (2.85,5.3);
+\draw[ours, line width=.6pt, dashed] (2.85,5.3) -- (3.38,4.98);
+\node[pl, fill=actA] (c1) at (.42,4.95) {};
+\node[pl, fill=actB] (c2) at (1.2,5.4) {};
+\node[pl, fill=actC] (c3) at (2.05,4.9) {};
+\node[pl, fill=actD] (c4) at (2.85,5.3) {};
+\node[circle, draw=ours, fill=white, line width=.8pt, minimum size=2.9mm, inner sep=0pt, font=\sffamily\bfseries\fB, text=ours] at (3.38,4.98) {?};
+\node[note, below=0pt of c1] {08:10 office};
+\node[note, above=0pt of c2] {12:30 ramen};
+\node[note, below=0pt of c3] {18:40 gym};
+\node[note, above=0pt of c4] {20:15 home};
+\node[font=\sffamily\fA, text=ink2] (id) at (.95,4.08) {POI \#2103};
+\draw[ours, line width=.85pt] ($(id.south west)+(.02,.05)$) -- ($(id.north east)+(-.02,-.05)$);
+\node[note, anchor=west] at (1.72,4.08) {no place-ID\\ embedding};
+\node[wchip] (t1) at (.18,3.3) {\textbf{time}\; hour, weekday, $\Delta t$};
+\node[wchip] (t2) at (.18,2.78) {\textbf{geometry}\; $\Delta$km, bearing};
+\node[wchip] (t3) at (.18,2.26) {\textbf{taxonomy}\; 3-level activity path};
+\node[wchip] (t4) at (.18,1.74) {\textbf{text}\; LM embedding of name};
+\draw[ink2, line width=.45pt] (3.47,3.3) -- (3.47,1.74);
+\foreach \t in {t1,t2,t3,t4} \draw[ink2, line width=.45pt] (\t.east) -- (3.47,0|-\t.east);
+\node[circle, draw=ink2, fill=white, inner sep=0pt, minimum size=3.8mm, font=\sffamily\bfseries\fA] (sum) at (3.3,.88) {+};
+\draw[flow] (3.47,1.74) -- (3.47,1.2) -| (sum.north);
+\node[note, anchor=east, align=right] at (3.05,.88) {token $\mathbf{e}_t$ = sum of the four\\ (same vocabulary in every city)};
+
+% =========================================================================  (b)
+\node[pnl, minimum width=2.5cm, minimum height=6.3cm] (PB) at (3.85,0) {};
+\node[ptitle] at (3.98,6.17) {(b) Encoder};
+\foreach \i/\l in {0/{$\mathbf{e}_1$},1/{$\mathbf{e}_2$},2/{$\cdots$},3/{$\mathbf{e}_t$}}
+  \node[tok] (e\i) at (4.3+.54*\i,.88) {\l};
+\draw[flow] (sum.east) -- (e0.west);
+\node[box, minimum width=2.15cm, minimum height=2.0cm] (tf) at (5.1,2.75) {};
+\node[font=\sffamily\bfseries\fA] at (5.1,3.45) {Transformer};
+\node[note, align=center] at (5.1,3.12) {$L$ layers over $\mathcal{H}_u$};
+
+\node[note, align=center] at (5.1,2.45) {self-attention\\ + feed-forward};
+\foreach \i in {0,1,3} \draw[flow, line width=.55pt] (e\i.north) -- (e\i.north|-tf.south);
+\foreach \i/\l in {0/{$\mathbf{h}_1$},1/{$\mathbf{h}_2$},2/{$\cdots$},3/{$\mathbf{h}_t$}}
+  \node[tok] (h\i) at (4.3+.54*\i,4.42) {\l};
+\foreach \i in {0,1,3} \draw[flow, line width=.55pt] (h\i.south|-tf.north) -- (h\i.south);
+\node[box, draw=ours, line width=.85pt, minimum width=1.9cm, align=center] (z) at (5.1,5.32) {pool + predictor\\ next-step latent $\mathbf{z}$};
+\foreach \i in {0,1,3} \draw[flow, draw=ours, line width=.55pt] (h\i.north) -- (z.south);
+\node[note, align=center] at (5.1,.33) {$\mathbf{h}_{1:t}$: memory read by\\ the latent pointer};
+
+% =========================================================================  (c)
+\node[pnl, minimum width=4.0cm, minimum height=6.3cm] (PC) at (6.5,0) {};
+\node[ptitle] at (6.63,6.17) {(c) Personal evidence};
+\node[note, anchor=north west] at (6.63,5.82) {parameter-free statistics of the user's own\\ history $\mathcal{H}_u$, for every candidate place $v$};
+\node[font=\sffamily\bfseries\fA, text=ret, anchor=west] at (6.63,4.95) {return\; $\phi_k(u,v)$,\; $v\in\mathcal{H}_u$};
+\node[chip=ret] at (6.63,4.47) {visit frequency};  \node[chip=ret] at (8.55,4.47) {recency};
+\node[chip=ret] at (6.63,4.0)  {hour of day};      \node[chip=ret] at (8.55,4.0)  {weekday};
+\node[chip=ret] at (6.63,3.53) {last $\to$ next};   \node[chip=ret] at (8.55,3.53) {distance};
+\node[chip=ret] at (6.63,3.06) {in this trip};     \node[chip=ret] at (8.55,3.06) {latent pointer};
+\node[font=\sffamily\bfseries\fA, text=exp, anchor=west] at (6.63,2.45) {explore\; $\psi_k(u,v)$,\; $v\notin\mathcal{H}_u$};
+\node[chip=exp] at (6.63,1.97) {activity path};    \node[chip=exp] at (8.55,1.97) {distance};
+\node[chip=exp, minimum width=3.78cm] at (6.63,1.5) {distance to the user's anchor places};
+\node[note, anchor=west] at (6.63,.65) {discovery state:\; $S_u$ distinct places so far,\\ $\nu_{u,a}$ share of first visits per activity};
+
+% =========================================================================  (d)
+\node[pnl, minimum width=6.95cm, minimum height=6.3cm, fill=ours!4, draw=ours!55] (PD) at (10.65,0) {};
+\node[ptitle] at (10.78,6.17) {(d) Exact three-decision mixture};
+\node[anchor=north west, inner sep=0pt, font=\fA] at (10.78,5.78)
+  {$P(v\mid c)=P(a_v\mid c)\,\big[(1-\pi_{a_v})\,P_{\mathrm{ret}}(v\mid c,a_v)+\pi_{a_v}P_{\mathrm{exp}}(v\mid c,a_v)\big]$};
+% column headers
+\node[dec] at (12.05,5.17) {1}; \node[note, anchor=west] at (12.22,5.17) {activity};
+\node[dec] at (13.62,5.17) {2}; \node[note, anchor=west] at (13.79,5.17) {return / explore};
+\node[dec] at (15.55,5.17) {3}; \node[note, anchor=west] at (15.72,5.17) {place};
+% tree
+\node[circle, draw=ink2, fill=white, minimum size=5.2mm, inner sep=0pt] (root) at (11.08,3.75) {$c$};
+\node[box, minimum width=1.05cm] (a1) at (12.45,4.5) {Dining};
+\node[box, minimum width=1.05cm, draw=rule, text=ink2] (a2) at (12.45,3.75) {Work};
+\node[box, minimum width=1.05cm, draw=rule, text=ink2] (a3) at (12.45,3.0) {Sports};
+\draw[flow, line width=1.2pt] (root) -- node[note, above left=-2pt, pos=.45] {.46} (a1.west);
+\draw[flow, draw=rule] (root) -- node[note, above, pos=.45] {.31} (a2.west);
+\draw[flow, draw=rule] (root) -- node[note, below left=-2pt, pos=.45] {.12} (a3.west);
+\node[box, draw=ret, text=ret, minimum width=1.15cm] (rt) at (14.4,4.72) {return};
+\node[box, draw=exp, text=exp, minimum width=1.15cm] (ex) at (14.4,3.95) {explore};
+\draw[flow, draw=ret, line width=1.0pt] (a1.east) -- node[note, above=-1pt, sloped, text=ret, pos=.5] {$1-\pi_a$} (rt.west);
+\draw[flow, draw=exp, line width=1.0pt] (a1.east) -- node[note, below=-1pt, sloped, text=exp, pos=.5] {$\pi_a$} (ex.west);
+\foreach \k/\w/\n in {0/1.0/{ramen A},1/.62/{café B},2/.3/{sushi C}} {
+  \fill[ret!75, rounded corners=.6pt] (15.3,4.78-\k*.21) rectangle ++(\w*.85,.14);
+  \node[note, anchor=west, inner sep=1pt] at (15.3+\w*.85,4.85-\k*.21) {\n};}
+\foreach \k/\w/\n in {0/.55/{new bistro},1/.4/{new bakery},2/.22/{new grill}} {
+  \fill[exp!75, rounded corners=.6pt] (15.3,4.06-\k*.21) rectangle ++(\w*.85,.14);
+  \node[note, anchor=west, inner sep=1pt] at (15.3+\w*.85,4.13-\k*.21) {\n};}
+\draw[rule, line width=.4pt] (rt.east) -- (15.25,4.72);
+\draw[rule, line width=.4pt] (ex.east) -- (15.25,3.95);
+\node[note, anchor=west] at (13.35,3.0) {(every activity has both channels)};
+% formulas
+\node[box, anchor=south west, align=left, inner sep=3pt, text width=6.55cm, font=\fB] at (10.8,.18)
+ {\textcolor{ours}{\textbf{1}}\; $P(a\mid c)$: from $\mathbf{z}$, the user's activity profile and activity transitions\\[2.5pt]
+  \textcolor{ours}{\textbf{2}}\; $\pi_a=\sigma\big(g(\mathbf{z})+g_\nu\,\mathrm{logit}\,\nu_{u,a}+g_S\log S_u+g_p\,u_{\mathrm{new}}\big)$\\[1pt]
+  \hspace*{1.0em}exploration--preferential-return law: the learned $g_S\approx-\gamma$\\[2.5pt]
+  \textcolor{ours}{\textbf{3}}\; $P_{\mathrm{ret}}\propto\exp\sum_k w_k(\mathbf{z})\,\phi_k$,\quad $P_{\mathrm{exp}}\propto\exp\sum_k w'_k(\mathbf{z})\,\psi_k$\\[1pt]
+  \hspace*{1.0em}$\mathbf{w}(\mathbf{z})=\mathrm{softplus}(\mathbf{w}_0+G\mathbf{z})\ge0$: city-agnostic evidence weights\\[2.5pt]
+  \textcolor{ink2}{return and explore sets are disjoint, so the mixture is normalised}};
+
+% =========================================================================  connections between panels
+\draw[flow, draw=ours, line width=.85pt, rounded corners=3pt] (z.north) -- (5.1,6.48) -| node[pos=.27, above, font=\sffamily\fB, text=ours] {$\mathbf{z}$ conditions all three decisions} (13.62,6.3);
+\draw[flow, line width=.9pt] (10.47,3.75) -- (10.68,3.75);
+\draw[flow, line width=.9pt] (10.47,.65) -- (10.68,.65);
+
+% =========================================================================  (e) transfer strip
+\node[pnl, minimum width=17.6cm, minimum height=.95cm, fill=white] (PE) at (0,-1.12) {};
+\node[ptitle] at (.13,-.27) {(e) Train once, transfer the decision process};
+\node[box, anchor=west, minimum height=4.8mm] (src) at (.13,-.8) {6 source cities: Istanbul, Petaling Jaya, Jakarta, New York, Kuwait City, São Paulo};
+\node[box, draw=ours, line width=.85pt, minimum height=4.8mm, right=.7cm of src] (theta) {shared $\Theta=\{\text{encoder},\,\mathbf{w}_0,G,\,\mathbf{w}'_0,G',\,g\}$};
+\node[box, minimum height=4.8mm, right=.95cm of theta] (tgt) {8 unseen cities};
+\draw[flow] (src) -- node[above, font=\sffamily\fB] {train} (theta);
+\draw[flow, draw=ours, line width=.9pt] (theta) -- node[above, font=\sffamily\fB, text=ours] {zero-shot} (tgt);
+\node[note, right=.12cm of tgt] {+ optional\\ fine-tuning};
+\end{tikzpicture}
+\end{document}

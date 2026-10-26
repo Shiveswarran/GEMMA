@@ -1,0 +1,27 @@
+\begin{table*}[t]
+\caption{Next-POI prediction on the eight cities GEMMA never saw during training (STHGCN protocol; baselines from Massive-STEPS). \emph{Target train}: the model is trained on that city's training split. GEMMA zero-shot uses no data from the city except each test user's own past check-ins; fine-tuned GEMMA uses the training split only. Mean of 3 seeds. Best in \textbf{bold}, second \underline{underlined}. A@1 = Acc@1, N@5 = NDCG@5; pooled = weighted by the number of test queries.}
+\label{tab:main-unseen}
+\scriptsize\setlength{\tabcolsep}{1.7pt}
+\begin{tabular}{l c cc cc cc cc cc cc cc cc ccc}
+\toprule
+ & Target & \multicolumn{2}{c}{Tokyo} & \multicolumn{2}{c}{Shanghai} & \multicolumn{2}{c}{Palembang} & \multicolumn{2}{c}{Melbourne} & \multicolumn{2}{c}{Sydney} & \multicolumn{2}{c}{Tangerang} & \multicolumn{2}{c}{Moscow} & \multicolumn{2}{c}{Bandung} & \multicolumn{3}{c}{Average} \\
+\cmidrule(lr){3-18}\cmidrule(lr){19-21}
+Model & train & A@1 & N@5 & A@1 & N@5 & A@1 & N@5 & A@1 & N@5 & A@1 & N@5 & A@1 & N@5 & A@1 & N@5 & A@1 & N@5 & A@1 & N@5 & A@1$_{\text{pooled}}$ \\
+\midrule
+FPMC & $\checkmark$ & .176 & .239 & .084 & .120 & .102 & .136 & .062 & .107 & .075 & .131 & .104 & .166 & .059 & .094 & .048 & .083 & .089 & .135 & .067 \\
+RNN & $\checkmark$ & .133 & .197 & .055 & .090 & .049 & .085 & .059 & .083 & .080 & .125 & .087 & .135 & .075 & .122 & .062 & .099 & .075 & .117 & .072 \\
+LSTPM & $\checkmark$ & .225 & .315 & .099 & .149 & .114 & .175 & .091 & .150 & .141 & .206 & .154 & .237 & .151 & .229 & .110 & .179 & .136 & .205 & .132 \\
+DeepMove & $\checkmark$ & .201 & .288 & .085 & .128 & .084 & .139 & .083 & .134 & .129 & .188 & .145 & .219 & .143 & .217 & .107 & .172 & .122 & .186 & .124 \\
+Flashback & $\checkmark$ & .170 & .237 & .096 & .132 & .135 & .198 & .079 & .115 & .127 & .174 & .185 & .262 & .121 & .180 & .103 & .155 & .127 & .182 & .121 \\
+Graph-Flashback & $\checkmark$ & .180 & .259 & .111 & .151 & .148 & .208 & .093 & .143 & .135 & .188 & .200 & .292 & .125 & .188 & .091 & .146 & .135 & .197 & .121 \\
+LoTNext & $\checkmark$ & .191 & .258 & .093 & .139 & .140 & .208 & .085 & .133 & .123 & .176 & .126 & .190 & .089 & .145 & .076 & .125 & .115 & .172 & .096 \\
+GETNext & $\checkmark$ & .180 & .275 & .115 & .177 & .158 & .239 & .100 & .179 & .181 & .266 & .224 & .302 & .175 & .260 & .179 & .247 & .164 & .243 & .177 \\
+STHGCN & $\checkmark$ & .250 & .350 & \textbf{.193} & .264 & \underline{.246} & \underline{.341} & \textbf{.168} & .247 & \textbf{.227} & \textbf{.307} & .293 & .400 & \underline{.223} & .308 & \textbf{.219} & \underline{.302} & \underline{.227} & .315 & \underline{.228} \\
+GNPR-SID & $\checkmark$ & .114 & .126 & .060 & .067 & .094 & .103 & .049 & .054 & .105 & .112 & .165 & .177 & .116 & .128 & .126 & .136 & .104 & .113 & .119 \\
+UniMove & $\checkmark$ & .032 & .072 & .000 & .029 & .009 & .035 & .008 & .037 & .015 & .059 & .001 & .029 & .009 & .030 & .007 & .033 & .010 & .040 & .008 \\
+\midrule
+\rowcolor{gemmarow}GEMMA zero-shot & $\times$ & \underline{.261} & \underline{.366} & .170 & \underline{.267} & \textbf{.248} & \underline{.341} & \underline{.167} & \underline{.253} & .204 & \underline{.287} & \underline{.319} & \underline{.435} & .219 & \underline{.315} & .212 & .296 & .225 & \underline{.320} & .225 \\
+\rowcolor{gemmarow}GEMMA fine-tuned & $\checkmark$ & \textbf{.271} & \textbf{.386} & \underline{.184} & \textbf{.279} & .245 & \textbf{.348} & .165 & \textbf{.263} & \underline{.221} & \textbf{.307} & \textbf{.332} & \textbf{.448} & \textbf{.225} & \textbf{.325} & \underline{.216} & \textbf{.307} & \textbf{.232} & \textbf{.333} & \textbf{.232} \\
+\bottomrule
+\end{tabular}
+\end{table*}

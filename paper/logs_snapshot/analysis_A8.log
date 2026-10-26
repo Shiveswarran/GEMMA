@@ -1,0 +1,67 @@
+[tokyo] explore queries=328 (revisits skipped=568) median candidates=2485
+[beijing] explore queries=7 (revisits skipped=71) median candidates=479
+[shanghai] explore queries=176 (revisits skipped=280) median candidates=2869
+[palembang] explore queries=215 (revisits skipped=516) median candidates=3321
+[melbourne] explore queries=475 (revisits skipped=641) median candidates=5614
+[sydney] explore queries=595 (revisits skipped=923) median candidates=6768
+[tangerang] explore queries=766 (revisits skipped=1887) median candidates=8285
+[moscow] explore queries=3146 (revisits skipped=3905) median candidates=11881
+[bandung] explore queries=4000 (revisits skipped=5436) median candidates=22033
+[table] A8_explore_oracles
+     city   explore n  explore share  median candidates  nearest @1  nearest @10  nearest | activity* @1  nearest | activity* @10  nearest | category* @1  nearest | category* @10  popularity @1  popularity @10  popularity | category* @1  popularity | category* @10  gravity (pop/dist) @1  gravity (pop/dist) @10  gravity | activity* @1  gravity | activity* @10
+    Tokyo  328.000000       0.366071        2485.000000    0.009146     0.082317                0.051829                 0.274390                0.307927                 0.743902       0.015244        0.112805                   0.234756                    0.670732               0.051829                0.228659                0.143293                 0.408537
+  Beijing    7.000000       0.089744         479.000000    0.142857     0.571429                0.428571                 0.714286                0.714286                 1.000000       0.000000        0.142857                   0.428571                    1.000000               0.285714                0.428571                0.571429                 0.857143
+ Shanghai  176.000000       0.385965        2869.000000    0.039773     0.147727                0.113636                 0.318182                0.340909                 0.698864       0.017045        0.090909                   0.181818                    0.619318               0.056818                0.204545                0.130682                 0.386364
+Palembang  215.000000       0.294118        3321.000000    0.013953     0.074419                0.037209                 0.181395                0.213953                 0.613953       0.018605        0.125581                   0.311628                    0.781395               0.037209                0.209302                0.102326                 0.302326
+Melbourne  475.000000       0.425627        5614.000000    0.025263     0.090526                0.052632                 0.189474                0.309474                 0.722105       0.012632        0.073684                   0.254737                    0.661053               0.037895                0.149474                0.109474                 0.324211
+   Sydney  595.000000       0.391963        6768.000000    0.018487     0.097479                0.048739                 0.220168                0.280672                 0.704202       0.016807        0.063866                   0.208403                    0.578151               0.040336                0.157983                0.097479                 0.329412
+Tangerang  766.000000       0.288730        8285.000000    0.007833     0.087467                0.039164                 0.231070                0.327676                 0.732376       0.016971        0.130548                   0.236292                    0.704961               0.083551                0.267624                0.168407                 0.400783
+   Moscow 3146.000000       0.446178       11881.000000    0.009218     0.061666                0.040687                 0.196758                0.248887                 0.628735       0.017165        0.096631                   0.227908                    0.641132               0.040687                0.177686                0.130642                 0.390019
+  Bandung 4000.000000       0.423908       22033.000000    0.009500     0.046500                0.032750                 0.126250                0.215000                 0.469000       0.013000        0.103750                   0.198250                    0.630000               0.052000                0.192000                0.115500                 0.320250
+     mean 1078.666667       0.345812        7081.666667    0.030670     0.139948                0.093913                 0.272441                0.328754                 0.701460       0.014163        0.104515                   0.253596                    0.698527               0.076227                0.223983                0.174359                 0.413227
+
+[table] A8_bits
+     city  log2 |candidates|  nearest  nearest | activity*  nearest | category*  popularity  popularity | category*  gravity (pop/dist)  gravity | activity*
+    Tokyo          11.276735 4.113928             6.205341             9.269676    3.893003                8.830450            5.410268             7.271864
+  Beijing           8.880208 4.618401             6.811957             8.119933    2.779440                7.915224            4.896950             7.113591
+ Shanghai          11.479785 4.049594             6.318378             9.415710    3.594525                8.881935            5.153475             7.189284
+Palembang          11.692038 3.113754             5.316925             9.065483    4.533148                9.807134            4.483511             6.430216
+Melbourne          12.453328 4.336969             6.313581            10.326447    4.076493                9.915824            5.450063             7.298145
+   Sydney          12.722708 4.764125             6.781768            10.493349    3.990120                9.875275            5.836789             7.693114
+Tangerang          13.015316 5.174267             7.203957            10.901529    5.494909               10.673439            6.972139             8.557388
+   Moscow          13.535924 4.728160             7.337633            10.896053    5.557842               10.964937            6.895919             9.084299
+  Bandung          14.426825 4.215263             6.571307            10.711707    6.187449               11.588301            6.964114             8.867227
+     mean          12.164763 4.346051             6.540094             9.911099    4.456325                9.828058            5.784803             7.722792
+
+[table] A8_rank_law
+     city  alpha (all places)  alpha (same activity)  median km  median opp. rank (all)
+    Tokyo            0.736669               0.949674   1.723158                   185.0
+  Beijing                 NaN                    NaN   0.676129                    13.0
+ Shanghai            0.817840               0.996204   1.113324                   317.5
+Palembang            0.686632               0.776588   3.076520                   877.0
+Melbourne            0.613317               0.895316   0.783909                   496.0
+   Sydney            0.754254               0.944011   0.757004                   329.0
+Tangerang            0.769919               0.976959   0.491954                   176.5
+   Moscow            0.690821               0.907324   0.787642                   598.0
+  Bandung            0.748508               0.805378   1.431344                  2196.5
+     mean            0.727245               0.906432   1.204554                   576.5
+
+[table] A8_momentum
+     city  P(new | prev new)  P(new | prev return)    ratio   transitions
+    Tokyo           0.688289              0.429771 1.601525   8169.000000
+  Beijing           0.654580              0.397059 1.648572    932.000000
+ Shanghai           0.757271              0.476923 1.587826   6783.000000
+Palembang           0.670103              0.484648 1.382659   9598.000000
+Melbourne           0.769521              0.490724 1.568134  14135.000000
+   Sydney           0.748354              0.391751 1.910279  19547.000000
+Tangerang           0.624814              0.387911 1.610715  29215.000000
+   Moscow           0.694763              0.416557 1.667871  66153.000000
+  Bandung           0.692741              0.453794 1.526555 106310.000000
+     mean           0.700048              0.436571 1.611571  28982.444444
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/analysis/a8_explore_anatomy.py:202: UserWarning: linestyle is redundantly defined by the 'linestyle' keyword argument and the fmt string "o-" (-> linestyle='-'). The keyword argument will take precedence.
+  axes[0].loglog(ca[0], ca[1], "o-", ms=2, color=cmap(i % 20), label=pretty(c), **city_style(c))
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/analysis/a8_explore_anatomy.py:205: UserWarning: linestyle is redundantly defined by the 'linestyle' keyword argument and the fmt string "o-" (-> linestyle='-'). The keyword argument will take precedence.
+  axes[1].loglog(mid[ok], h[ok], "o-", ms=2, color=cmap(i % 20), **city_style(c))
+
+[figure] analysis_out/figures/A8a_rank_law.pdf/.png
+[figure] analysis_out/figures/A8b_oracle_ladder.pdf/.png

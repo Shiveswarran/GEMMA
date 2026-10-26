@@ -111,6 +111,7 @@ class Config:
     hist_max_tokens: int = 200        # token cap for [history SEP ... SEP prefix]
     random_backbone: bool = False   # ablation: untrained backbone of identical architecture
     use_history: bool = True        # ablation: False = v4-style prefix-only context
+    gate_mode: str = ""              # test-time gate ablation: '' | noS | nopersonal | const
     hist_budget: int = -1             # cold-start simulation: only the k most recent PAST
                                       # trajectories of the user exist (-1 = all, 0 = none)
     hist_last: int = -1               # keep only the user's last k observed trajectories

@@ -1,0 +1,118 @@
+% Preview of every GEMMA figure and table at ACM sigconf geometry (7.0in text, 3.33in columns).
+% xelatex preview.tex   (the real paper uses acmart; copy the figure/table blocks and captions from here)
+\documentclass[9pt,twocolumn]{extarticle}
+\usepackage[paperwidth=8.5in,paperheight=11in,textwidth=7in,textheight=9.25in,columnsep=0.33in,top=0.85in]{geometry}
+\usepackage{fontspec}\usepackage{unicode-math}
+\setmainfont{LibertinusSerif}[Path=../fonts/, Extension=.otf, UprightFont=*-Regular, ItalicFont=*-Italic, BoldFont=*-Bold]
+\setsansfont{LibertinusSans}[Path=../fonts/, Extension=.otf, UprightFont=*-Regular, ItalicFont=*-Italic, BoldFont=*-Bold]
+\setmathfont{LibertinusMath-Regular.otf}[Path=../fonts/]
+\usepackage{graphicx,booktabs,multirow}
+\usepackage[table]{xcolor}
+\usepackage[font=small,labelfont=bf]{caption}
+\definecolor{gemmarow}{HTML}{FDF0EA}
+\AtBeginDocument{\renewcommand{\checkmark}{\mbox{\fontspec{DejaVu Sans}\char"2713}}}
+\graphicspath{{../out/figs/}{../arch/}}
+\newcommand{\gemma}{\textsc{Gemma}}
+\begin{document}
+\section*{GEMMA -- figures and tables (preview)}
+
+% ---------------------------------------------------------------- Figure 1
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{fig1_teaser.pdf}
+\caption{\textbf{What transfers across cities.} (a)~Place identifiers are disjoint between cities (cross-city
+Jensen--Shannon divergence $=1$ bit); the more abstract the description of a visit, the more cities share it.
+(b)~The novelty exponent $\gamma$ of the exploration law $P(\text{new})\propto S^{-\gamma}$ in the 14 evaluated cities; the
+orange band is the gate coefficient $-g_S$ that \gemma{} learns on the six source cities without ever being given
+$\gamma$. (c)~Accuracy on the eight cities \gemma{} never saw: zero-shot \gemma{} is within 0.3 points of STHGCN,
+which is trained in each city, and nearly doubles the best LLM agent; light fine-tuning on the training split
+exceeds STHGCN.}
+\label{fig:teaser}
+\end{figure*}
+
+% ---------------------------------------------------------------- Figure 2
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{gemma_arch.pdf}
+\caption{\textbf{\gemma.} (a)~Check-ins are tokens built from time, relative geometry, the activity taxonomy and a
+language embedding of the place, never from a place identifier. (b)~A Transformer encodes the user's history into
+states $\mathbf{h}_{1:t}$ and a next-step latent $\mathbf{z}$. (c)~Parameter-free statistics of the user's own
+history score every candidate place. (d)~The next-place distribution factorises exactly into three decisions: the
+activity, a gate between returning and exploring that follows the exploration--preferential-return law, and the
+place, scored by non-negative, context-modulated evidence weights. (e)~All parameters act on statistics, so the
+model trained on six cities is applied unchanged to unseen cities.}
+\label{fig:arch}
+\end{figure*}
+
+\input{../out/tables/tab_datasets.tex}
+\input{../out/tables/tab_main_unseen.tex}
+\input{../out/tables/tab_main_source.tex}
+\input{../out/tables/tab_llm.tex}
+
+% ---------------------------------------------------------------- Figure 3
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{fig3_main_forest.pdf}
+\caption{\textbf{Per-city difference to STHGCN} (Acc@1 points, 95\% CI from test sampling and seed spread; number of
+test queries in brackets). (a)~On unseen cities, zero-shot \gemma{} (hollow) is statistically indistinguishable
+from STHGCN in 6 of 8 cities (better in Tangerang, worse in Sydney); fine-tuned \gemma{} (solid) is
+indistinguishable in 7 and significantly better in Tangerang, with no significant loss. (b)~On the six source cities STHGCN keeps an in-domain advantage in Istanbul, Petaling Jaya and
+Kuwait City; \gemma{} is better in Jakarta and New York.}
+\label{fig:forest}
+\end{figure*}
+
+% ---------------------------------------------------------------- Figure 4
+\begin{figure}[t]
+\centering\includegraphics[width=\columnwidth]{fig4_llm.pdf}
+\caption{\textbf{Zero-shot \gemma{} vs.\ LLM agents} under the LLM-Move protocol. Blue: the best of the 15 published
+LLM agents in each city (an oracle choice of framework and model); orange: \gemma{} (3 seeds), which runs no LLM.}
+\label{fig:llm}
+\end{figure}
+
+% ---------------------------------------------------------------- Figure 5
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{fig5_anatomy.pdf}
+\caption{\textbf{Anatomy of the prediction.} (a)~Zero-shot Acc@1 split into returns ($\rho A_R$) and explorations
+($(1-\rho)A_E$); almost all hits are returns. (b)~Ranking a \emph{new} place, given that the user explores (mean over the
+8 unseen cities): \gemma{} beats distance and popularity rankers, but oracles that know the true activity or category
+(*, hatched) show how much remains. (c)~Single signals ranked alone: the user's own frequency, time-of-day and
+transitions carry most of the information; hatched signals need a log of the target city.}
+\label{fig:anatomy}
+\end{figure*}
+
+% ---------------------------------------------------------------- Figure 6
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{fig6_weights.pdf}
+\caption{\textbf{Learned parameters.} Bars: values learned on the six source cities (mean $\pm$ sd over 3 seeds).
+Markers: values after fine-tuning in each unseen (circles) or source (squares) city. Fine-tuning changes the return
+weights by a median of 8\% (relative $L_1$); only the largest cities move further, mostly through the is-last
+penalty. (c)~The gate's coefficient on $\log S_u$ falls inside the range of $-\gamma$ measured in the
+14 evaluated cities (grey band: inter-quartile range).}
+\label{fig:weights}
+\end{figure*}
+
+% ---------------------------------------------------------------- Figure 7
+\begin{figure}[t]
+\centering\includegraphics[width=\columnwidth]{fig7_ablation.pdf}
+\caption{\textbf{Ablations (zero-shot).} (a)~Learning the evidence weights on source cities instead of setting them by
+hand adds 2.5 points (macro over 8 unseen cities). (b)~Removing representation-learning objectives from the backbone
+changes accuracy by less than 0.1 point on average: the transfer does not come from pretraining the encoder.}
+\label{fig:ablation}
+\end{figure}
+
+% ---------------------------------------------------------------- Figure 8
+\begin{figure}[t]
+\centering\includegraphics[width=\columnwidth]{fig8_finetune.pdf}
+\caption{\textbf{Fine-tuning dynamics.} Validation Acc@1 relative to the transferred model (epoch 0). Gains are
+small and arrive within the first epochs.}
+\label{fig:finetune}
+\end{figure}
+
+\input{../out/tables/tab_fairness.tex}
+\input{../out/tables/tab_ablation.tex}
+\input{../out/tables/tab_weights.tex}
+
+\IfFileExists{../out/figs/fig9_evidence_ablation.pdf}{
+\begin{figure}[t]\centering\includegraphics[width=\columnwidth]{fig9_evidence_ablation.pdf}
+\caption{\textbf{Leave-one-evidence-out and gate ablations} (zero-shot, test time, 3 seeds).}\end{figure}}{}
+\IfFileExists{../out/figs/fig10_history.pdf}{
+\begin{figure}[t]\centering\includegraphics[width=\columnwidth]{fig10_history.pdf}
+\caption{\textbf{Cold start.} Zero-shot Acc@1 when only the $k$ most recent check-ins of each user are visible.}\end{figure}}{}
+\end{document}

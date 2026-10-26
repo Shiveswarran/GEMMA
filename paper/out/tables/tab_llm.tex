@@ -1,0 +1,32 @@
+\begin{table*}[t]
+\caption{Zero-shot comparison with LLM agents under the LLM-Move protocol of Massive-STEPS: candidates are the true next
+place plus 100 random places of the city, history = the user's last 15 trajectories, Acc@1. LLM rows are the published
+numbers (200 users); GEMMA is the mean over 3 seeds $\times$ 5 user samples of 200 users. GEMMA uses no LLM at inference.}
+\label{tab:llm}
+\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llccccccccc}
+\toprule
+Framework & Model & Tokyo & Shanghai & Palembang & Melbourne & Sydney & Tangerang & Moscow & Bandung & Avg. \\
+\midrule
+LLM-Mob & Gemini 2 Flash & .140 & .055 & .135 & .060 & .060 & .155 & .130 & .105 & .105 \\
+ & Claude Haiku 4.5 & .180 & .070 & .135 & .070 & .075 & .155 & .130 & .115 & .116 \\
+ & Qwen 2.5 7B & .110 & .040 & .075 & .030 & .035 & .095 & .090 & .060 & .067 \\
+ & Llama 3.1 8B & .005 & .005 & .005 & .010 & .020 & .020 & .030 & .010 & .013 \\
+ & Gemma 2 9B & .145 & .050 & .095 & .055 & .030 & .145 & .100 & .070 & .086 \\
+\midrule
+LLM-ZS & Gemini 2 Flash & .160 & .065 & .130 & .065 & .060 & .145 & .125 & .095 & .106 \\
+ & Claude Haiku 4.5 & .205 & .075 & .165 & .070 & .070 & .175 & .130 & .115 & .126 \\
+ & Qwen 2.5 7B & .120 & .045 & .050 & .040 & .045 & .100 & .080 & .055 & .067 \\
+ & Llama 3.1 8B & .110 & .060 & .070 & .040 & .040 & .080 & .080 & .045 & .066 \\
+ & Gemma 2 9B & .110 & .050 & .060 & .050 & .045 & .100 & .080 & .065 & .070 \\
+\midrule
+LLM-Move & Gemini 2 Flash & .250 & \underline{.170} & \underline{.260} & \underline{.225} & .230 & .200 & .220 & \underline{.225} & \underline{.223} \\
+ & Claude Haiku 4.5 & \underline{.255} & .100 & .175 & .175 & \underline{.235} & \underline{.220} & \underline{.230} & .205 & .199 \\
+ & Qwen 2.5 7B & .250 & .095 & .130 & .110 & .125 & .175 & \underline{.230} & .100 & .152 \\
+ & Llama 3.1 8B & .030 & .020 & .010 & .040 & .055 & .000 & .005 & .030 & .024 \\
+ & Gemma 2 9B & .130 & .105 & .210 & .115 & .125 & .125 & .110 & .175 & .137 \\
+\midrule
+\rowcolor{gemmarow}\textbf{GEMMA} & zero-shot, no LLM & \textbf{.477} & \textbf{.305} & \textbf{.406} & \textbf{.326} & \textbf{.337} & \textbf{.592} & \textbf{.521} & \textbf{.507} & \textbf{.434} \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -732,3 +732,1103 @@
 23:00:31 | INFO    | gemma.down |      tangerang full        0.332/0.448       nan/nan       nan/nan 0.293/0.400    0.569
 23:00:31 | INFO    | gemma.down |         moscow full        0.225/0.325       nan/nan       nan/nan 0.223/0.308    0.468
 23:00:31 | INFO    | gemma.down |        bandung full        0.214/0.303       nan/nan       nan/nan 0.219/0.302    0.500
+21:04:33 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+21:04:33 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+21:04:42 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+21:04:42 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+21:04:42 | INFO    | gemma.down | evidence=full drop_ret='hist' hist_budget=-1 tag='_abl_noFreq'
+21:04:43 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:04:45 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:04:45 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+21:04:46 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+21:04:52 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2516 acc@5=0.4545 acc@10=0.5529 ndcg@5=0.3590 mrr=0.3487 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.414 explore acc@1=0.008 | cond: explore@1/@10=0.024/0.124 revisit@1=0.424 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.65/0.44 | STHGCN 0.250/0.350
+21:04:52 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:04:54 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+21:04:54 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+21:04:54 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+21:04:55 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1660 acc@5=0.3509 acc@10=0.4132 ndcg@5=0.2662 mrr=0.2570 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.311 explore acc@1=0.004 | cond: explore@1/@10=0.032/0.124 revisit@1=0.311 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.67/0.41 | STHGCN 0.193/0.264
+21:04:55 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:04:58 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+21:04:58 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+21:04:58 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+21:04:59 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2364 acc@5=0.4225 acc@10=0.5000 ndcg@5=0.3347 mrr=0.3270 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.355 explore acc@1=0.000 | cond: explore@1/@10=0.008/0.093 revisit@1=0.343 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.65/0.34 | STHGCN 0.246/0.341
+21:05:00 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:05:04 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+21:05:04 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+21:05:04 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+21:05:06 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1679 acc@5=0.3269 acc@10=0.4060 ndcg@5=0.2506 mrr=0.2456 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.320 explore acc@1=0.005 | cond: explore@1/@10=0.012/0.082 revisit@1=0.298 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.70/0.41 | STHGCN 0.168/0.247
+21:05:06 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:05:11 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+21:05:11 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+21:05:12 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+21:05:14 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.2052 acc@5=0.3647 acc@10=0.4433 ndcg@5=0.2871 mrr=0.2822 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.365 explore acc@1=0.007 | cond: explore@1/@10=0.016/0.099 revisit@1=0.360 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.70/0.35 | STHGCN 0.227/0.307
+21:05:15 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:05:23 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+21:05:23 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+21:05:23 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+21:05:28 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3154 acc@5=0.5339 acc@10=0.6132 ndcg@5=0.4316 mrr=0.4167 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.462 explore acc@1=0.009 | cond: explore@1/@10=0.031/0.146 revisit@1=0.438 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.66/0.29 | STHGCN 0.293/0.400
+21:05:29 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:05:48 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+21:05:48 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+21:05:48 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+21:05:58 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2191 acc@5=0.3996 acc@10=0.4712 ndcg@5=0.3141 mrr=0.3038 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.408 explore acc@1=0.001 | cond: explore@1/@10=0.014/0.076 revisit@1=0.395 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.65/0.37 | STHGCN 0.223/0.308
+21:05:59 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:06:27 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+21:06:27 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+21:06:27 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+21:06:45 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.2123 acc@5=0.3774 acc@10=0.4525 ndcg@5=0.2986 mrr=0.2914 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.385 explore acc@1=0.001 | cond: explore@1/@10=0.031/0.100 revisit@1=0.364 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.68/0.33 | STHGCN 0.219/0.302
+21:06:45 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+21:06:45 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+21:06:45 | INFO    | gemma.down |          tokyo zero_shot   0.252/0.359       nan/nan       nan/nan 0.250/0.350    0.543
+21:06:45 | INFO    | gemma.down |       shanghai zero_shot   0.166/0.266       nan/nan       nan/nan 0.193/0.264    0.455
+21:06:45 | INFO    | gemma.down |      palembang zero_shot   0.236/0.335       nan/nan       nan/nan 0.246/0.341    0.459
+21:06:45 | INFO    | gemma.down |      melbourne zero_shot   0.168/0.251       nan/nan       nan/nan 0.168/0.247    0.487
+21:06:45 | INFO    | gemma.down |         sydney zero_shot   0.205/0.287       nan/nan       nan/nan 0.227/0.307    0.484
+21:06:45 | INFO    | gemma.down |      tangerang zero_shot   0.315/0.432       nan/nan       nan/nan 0.293/0.400    0.548
+21:06:45 | INFO    | gemma.down |         moscow zero_shot   0.219/0.314       nan/nan       nan/nan 0.223/0.308    0.466
+21:06:45 | INFO    | gemma.down |        bandung zero_shot   0.212/0.299       nan/nan       nan/nan 0.219/0.302    0.483
+21:06:50 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+21:06:50 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+21:06:53 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+21:06:53 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+21:06:53 | INFO    | gemma.down | evidence=full drop_ret='rec' hist_budget=-1 tag='_abl_noRecency'
+21:06:54 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:06:56 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:06:56 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+21:06:56 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+21:06:58 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2537 acc@5=0.4588 acc@10=0.5486 ndcg@5=0.3612 mrr=0.3496 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.417 explore acc@1=0.008 | cond: explore@1/@10=0.024/0.124 revisit@1=0.430 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.65/0.44 | STHGCN 0.250/0.350
+21:06:58 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:07:00 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+21:07:00 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+21:07:00 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+21:07:01 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1679 acc@5=0.3509 acc@10=0.4075 ndcg@5=0.2666 mrr=0.2574 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.314 explore acc@1=0.004 | cond: explore@1/@10=0.032/0.124 revisit@1=0.318 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.67/0.41 | STHGCN 0.193/0.264
+21:07:01 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:07:03 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+21:07:03 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+21:07:03 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+21:07:05 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2351 acc@5=0.4212 acc@10=0.5065 ndcg@5=0.3306 mrr=0.3230 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.353 explore acc@1=0.000 | cond: explore@1/@10=0.008/0.093 revisit@1=0.333 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.65/0.34 | STHGCN 0.246/0.341
+21:07:05 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:07:08 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+21:07:08 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+21:07:08 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+21:07:10 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1566 acc@5=0.3253 acc@10=0.4019 ndcg@5=0.2433 mrr=0.2366 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.298 explore acc@1=0.005 | cond: explore@1/@10=0.012/0.082 revisit@1=0.285 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.70/0.41 | STHGCN 0.168/0.247
+21:07:10 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:07:15 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+21:07:15 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+21:07:15 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+21:07:18 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.2016 acc@5=0.3647 acc@10=0.4385 ndcg@5=0.2856 mrr=0.2799 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.359 explore acc@1=0.007 | cond: explore@1/@10=0.016/0.099 revisit@1=0.352 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.70/0.35 | STHGCN 0.227/0.307
+21:07:18 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:07:25 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+21:07:25 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+21:07:25 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+21:07:30 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3161 acc@5=0.5292 acc@10=0.6082 ndcg@5=0.4291 mrr=0.4150 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.463 explore acc@1=0.008 | cond: explore@1/@10=0.031/0.146 revisit@1=0.437 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.66/0.29 | STHGCN 0.293/0.400
+21:07:30 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:07:47 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+21:07:47 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+21:07:47 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+21:07:56 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2191 acc@5=0.3983 acc@10=0.4697 ndcg@5=0.3130 mrr=0.3028 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.408 explore acc@1=0.001 | cond: explore@1/@10=0.014/0.076 revisit@1=0.391 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.65/0.37 | STHGCN 0.223/0.308
+21:07:57 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:08:20 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+21:08:20 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+21:08:21 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+21:08:37 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.2052 acc@5=0.3728 acc@10=0.4487 ndcg@5=0.2932 mrr=0.2859 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.372 explore acc@1=0.001 | cond: explore@1/@10=0.031/0.100 revisit@1=0.351 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.68/0.33 | STHGCN 0.219/0.302
+21:08:37 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+21:08:37 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+21:08:37 | INFO    | gemma.down |          tokyo zero_shot   0.254/0.361       nan/nan       nan/nan 0.250/0.350    0.543
+21:08:37 | INFO    | gemma.down |       shanghai zero_shot   0.168/0.267       nan/nan       nan/nan 0.193/0.264    0.455
+21:08:37 | INFO    | gemma.down |      palembang zero_shot   0.235/0.331       nan/nan       nan/nan 0.246/0.341    0.459
+21:08:37 | INFO    | gemma.down |      melbourne zero_shot   0.157/0.243       nan/nan       nan/nan 0.168/0.247    0.487
+21:08:37 | INFO    | gemma.down |         sydney zero_shot   0.202/0.286       nan/nan       nan/nan 0.227/0.307    0.484
+21:08:37 | INFO    | gemma.down |      tangerang zero_shot   0.316/0.429       nan/nan       nan/nan 0.293/0.400    0.548
+21:08:37 | INFO    | gemma.down |         moscow zero_shot   0.219/0.313       nan/nan       nan/nan 0.223/0.308    0.466
+21:08:37 | INFO    | gemma.down |        bandung zero_shot   0.205/0.293       nan/nan       nan/nan 0.219/0.302    0.483
+21:08:40 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+21:08:40 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+21:08:43 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+21:08:43 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+21:08:43 | INFO    | gemma.down | evidence=full drop_ret='tod,dow' hist_budget=-1 tag='_abl_noTime'
+21:08:44 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:08:46 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:08:46 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+21:08:46 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+21:08:48 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2368 acc@5=0.4503 acc@10=0.5476 ndcg@5=0.3484 mrr=0.3364 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.389 explore acc@1=0.008 | cond: explore@1/@10=0.024/0.124 revisit@1=0.408 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.65/0.44 | STHGCN 0.250/0.350
+21:08:48 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:08:50 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+21:08:50 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+21:08:50 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+21:08:51 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1755 acc@5=0.3396 acc@10=0.4113 ndcg@5=0.2629 mrr=0.2574 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.329 explore acc@1=0.004 | cond: explore@1/@10=0.032/0.124 revisit@1=0.339 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.67/0.41 | STHGCN 0.193/0.264
+21:08:51 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:08:53 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+21:08:53 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+21:08:53 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+21:08:55 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2235 acc@5=0.4147 acc@10=0.4948 ndcg@5=0.3236 mrr=0.3143 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.335 explore acc@1=0.000 | cond: explore@1/@10=0.008/0.093 revisit@1=0.312 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.65/0.34 | STHGCN 0.246/0.341
+21:08:55 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:08:58 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+21:08:58 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+21:08:58 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+21:09:00 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1590 acc@5=0.3123 acc@10=0.3890 ndcg@5=0.2394 mrr=0.2358 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.303 explore acc@1=0.005 | cond: explore@1/@10=0.012/0.082 revisit@1=0.278 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.70/0.41 | STHGCN 0.168/0.247
+21:09:00 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:09:05 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+21:09:05 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+21:09:05 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+21:09:08 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1986 acc@5=0.3527 acc@10=0.4325 ndcg@5=0.2782 mrr=0.2748 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.352 explore acc@1=0.008 | cond: explore@1/@10=0.016/0.099 revisit@1=0.345 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.70/0.35 | STHGCN 0.227/0.307
+21:09:08 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:09:15 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+21:09:15 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+21:09:15 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+21:09:20 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3086 acc@5=0.5264 acc@10=0.6075 ndcg@5=0.4241 mrr=0.4099 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.452 explore acc@1=0.009 | cond: explore@1/@10=0.031/0.146 revisit@1=0.426 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.66/0.29 | STHGCN 0.293/0.400
+21:09:20 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:09:37 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+21:09:37 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+21:09:37 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+21:09:46 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2109 acc@5=0.3905 acc@10=0.4662 ndcg@5=0.3055 mrr=0.2962 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.392 explore acc@1=0.002 | cond: explore@1/@10=0.014/0.076 revisit@1=0.378 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.65/0.37 | STHGCN 0.223/0.308
+21:09:47 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:10:10 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+21:10:10 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+21:10:11 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+21:10:28 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.2030 acc@5=0.3650 acc@10=0.4435 ndcg@5=0.2877 mrr=0.2817 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.368 explore acc@1=0.002 | cond: explore@1/@10=0.031/0.100 revisit@1=0.344 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.68/0.33 | STHGCN 0.219/0.302
+21:10:28 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+21:10:28 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+21:10:28 | INFO    | gemma.down |          tokyo zero_shot   0.237/0.348       nan/nan       nan/nan 0.250/0.350    0.543
+21:10:28 | INFO    | gemma.down |       shanghai zero_shot   0.175/0.263       nan/nan       nan/nan 0.193/0.264    0.455
+21:10:28 | INFO    | gemma.down |      palembang zero_shot   0.224/0.324       nan/nan       nan/nan 0.246/0.341    0.459
+21:10:28 | INFO    | gemma.down |      melbourne zero_shot   0.159/0.239       nan/nan       nan/nan 0.168/0.247    0.487
+21:10:28 | INFO    | gemma.down |         sydney zero_shot   0.199/0.278       nan/nan       nan/nan 0.227/0.307    0.484
+21:10:28 | INFO    | gemma.down |      tangerang zero_shot   0.309/0.424       nan/nan       nan/nan 0.293/0.400    0.548
+21:10:28 | INFO    | gemma.down |         moscow zero_shot   0.211/0.305       nan/nan       nan/nan 0.223/0.308    0.466
+21:10:28 | INFO    | gemma.down |        bandung zero_shot   0.203/0.288       nan/nan       nan/nan 0.219/0.302    0.483
+21:10:30 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+21:10:30 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+21:10:34 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+21:10:34 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+21:10:34 | INFO    | gemma.down | evidence=full drop_ret='ptrans' hist_budget=-1 tag='_abl_noTrans'
+21:10:34 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:10:37 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:10:37 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+21:10:37 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+21:10:39 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2368 acc@5=0.4577 acc@10=0.5423 ndcg@5=0.3531 mrr=0.3389 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.389 explore acc@1=0.008 | cond: explore@1/@10=0.024/0.124 revisit@1=0.391 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.65/0.44 | STHGCN 0.250/0.350
+21:10:39 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:10:41 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+21:10:41 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+21:10:41 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+21:10:41 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1604 acc@5=0.3434 acc@10=0.4094 ndcg@5=0.2588 mrr=0.2508 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.300 explore acc@1=0.004 | cond: explore@1/@10=0.032/0.124 revisit@1=0.304 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.67/0.41 | STHGCN 0.193/0.264
+21:10:42 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:10:44 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+21:10:44 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+21:10:44 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+21:10:45 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2442 acc@5=0.4212 acc@10=0.5090 ndcg@5=0.3363 mrr=0.3302 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.364 explore acc@1=0.004 | cond: explore@1/@10=0.008/0.093 revisit@1=0.341 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.65/0.34 | STHGCN 0.246/0.341
+21:10:45 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:10:49 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+21:10:49 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+21:10:49 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+21:10:51 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1582 acc@5=0.3277 acc@10=0.4108 ndcg@5=0.2446 mrr=0.2377 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.301 explore acc@1=0.005 | cond: explore@1/@10=0.012/0.082 revisit@1=0.273 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.70/0.41 | STHGCN 0.168/0.247
+21:10:51 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:10:55 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+21:10:55 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+21:10:56 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+21:10:58 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1962 acc@5=0.3527 acc@10=0.4445 ndcg@5=0.2762 mrr=0.2737 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.349 explore acc@1=0.007 | cond: explore@1/@10=0.016/0.099 revisit@1=0.334 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.70/0.35 | STHGCN 0.227/0.307
+21:10:59 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:11:06 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+21:11:06 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+21:11:06 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+21:11:10 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3089 acc@5=0.5325 acc@10=0.6103 ndcg@5=0.4277 mrr=0.4121 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.453 explore acc@1=0.008 | cond: explore@1/@10=0.031/0.146 revisit@1=0.427 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.66/0.29 | STHGCN 0.293/0.400
+21:11:11 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:11:27 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+21:11:27 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+21:11:28 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+21:11:37 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2142 acc@5=0.3965 acc@10=0.4713 ndcg@5=0.3107 mrr=0.3008 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.398 explore acc@1=0.002 | cond: explore@1/@10=0.014/0.076 revisit@1=0.386 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.65/0.37 | STHGCN 0.223/0.308
+21:11:38 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:12:01 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+21:12:01 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+21:12:02 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+21:12:18 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.2061 acc@5=0.3718 acc@10=0.4514 ndcg@5=0.2928 mrr=0.2864 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.374 explore acc@1=0.002 | cond: explore@1/@10=0.031/0.100 revisit@1=0.354 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.68/0.33 | STHGCN 0.219/0.302
+21:12:18 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+21:12:18 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+21:12:18 | INFO    | gemma.down |          tokyo zero_shot   0.237/0.353       nan/nan       nan/nan 0.250/0.350    0.543
+21:12:18 | INFO    | gemma.down |       shanghai zero_shot   0.160/0.259       nan/nan       nan/nan 0.193/0.264    0.455
+21:12:18 | INFO    | gemma.down |      palembang zero_shot   0.244/0.336       nan/nan       nan/nan 0.246/0.341    0.459
+21:12:18 | INFO    | gemma.down |      melbourne zero_shot   0.158/0.245       nan/nan       nan/nan 0.168/0.247    0.487
+21:12:18 | INFO    | gemma.down |         sydney zero_shot   0.196/0.276       nan/nan       nan/nan 0.227/0.307    0.484
+21:12:18 | INFO    | gemma.down |      tangerang zero_shot   0.309/0.428       nan/nan       nan/nan 0.293/0.400    0.548
+21:12:18 | INFO    | gemma.down |         moscow zero_shot   0.214/0.311       nan/nan       nan/nan 0.223/0.308    0.466
+21:12:18 | INFO    | gemma.down |        bandung zero_shot   0.206/0.293       nan/nan       nan/nan 0.219/0.302    0.483
+21:12:21 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+21:12:21 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+21:12:25 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+21:12:25 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+21:12:25 | INFO    | gemma.down | evidence=full drop_ret='prefix,is_last' hist_budget=-1 tag='_abl_noTrip'
+21:12:25 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:12:27 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:12:27 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+21:12:27 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+21:12:29 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2410 acc@5=0.4619 acc@10=0.5476 ndcg@5=0.3569 mrr=0.3421 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.396 explore acc@1=0.008 | cond: explore@1/@10=0.024/0.124 revisit@1=0.405 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.65/0.44 | STHGCN 0.250/0.350
+21:12:29 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:12:31 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+21:12:31 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+21:12:31 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+21:12:32 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1679 acc@5=0.3509 acc@10=0.4113 ndcg@5=0.2661 mrr=0.2572 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.314 explore acc@1=0.004 | cond: explore@1/@10=0.032/0.124 revisit@1=0.321 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.67/0.41 | STHGCN 0.193/0.264
+21:12:32 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:12:34 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+21:12:34 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+21:12:34 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+21:12:36 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2287 acc@5=0.4147 acc@10=0.4987 ndcg@5=0.3256 mrr=0.3185 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.343 explore acc@1=0.000 | cond: explore@1/@10=0.008/0.093 revisit@1=0.324 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.65/0.34 | STHGCN 0.246/0.341
+21:12:36 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:12:39 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+21:12:39 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+21:12:40 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+21:12:41 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1542 acc@5=0.3261 acc@10=0.4027 ndcg@5=0.2414 mrr=0.2335 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.293 explore acc@1=0.005 | cond: explore@1/@10=0.012/0.082 revisit@1=0.275 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.70/0.41 | STHGCN 0.168/0.247
+21:12:42 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:12:46 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+21:12:46 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+21:12:46 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+21:12:49 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1956 acc@5=0.3545 acc@10=0.4361 ndcg@5=0.2757 mrr=0.2714 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.347 explore acc@1=0.008 | cond: explore@1/@10=0.016/0.099 revisit@1=0.339 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.70/0.35 | STHGCN 0.227/0.307
+21:12:49 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:12:56 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+21:12:56 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+21:12:57 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+21:13:01 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3086 acc@5=0.5289 acc@10=0.6085 ndcg@5=0.4246 mrr=0.4094 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.452 explore acc@1=0.008 | cond: explore@1/@10=0.031/0.146 revisit@1=0.425 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.66/0.29 | STHGCN 0.293/0.400
+21:13:02 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:13:18 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+21:13:18 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+21:13:19 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+21:13:28 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2120 acc@5=0.3979 acc@10=0.4717 ndcg@5=0.3095 mrr=0.2984 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.394 explore acc@1=0.002 | cond: explore@1/@10=0.014/0.076 revisit@1=0.381 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.65/0.37 | STHGCN 0.223/0.308
+21:13:29 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:13:52 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+21:13:52 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+21:13:53 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+21:14:09 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.1991 acc@5=0.3694 acc@10=0.4476 ndcg@5=0.2875 mrr=0.2801 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.361 explore acc@1=0.001 | cond: explore@1/@10=0.031/0.100 revisit@1=0.342 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.68/0.33 | STHGCN 0.219/0.302
+21:14:09 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+21:14:09 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+21:14:09 | INFO    | gemma.down |          tokyo zero_shot   0.241/0.357       nan/nan       nan/nan 0.250/0.350    0.543
+21:14:09 | INFO    | gemma.down |       shanghai zero_shot   0.168/0.266       nan/nan       nan/nan 0.193/0.264    0.455
+21:14:09 | INFO    | gemma.down |      palembang zero_shot   0.229/0.326       nan/nan       nan/nan 0.246/0.341    0.459
+21:14:09 | INFO    | gemma.down |      melbourne zero_shot   0.154/0.241       nan/nan       nan/nan 0.168/0.247    0.487
+21:14:09 | INFO    | gemma.down |         sydney zero_shot   0.196/0.276       nan/nan       nan/nan 0.227/0.307    0.484
+21:14:09 | INFO    | gemma.down |      tangerang zero_shot   0.309/0.425       nan/nan       nan/nan 0.293/0.400    0.548
+21:14:09 | INFO    | gemma.down |         moscow zero_shot   0.212/0.310       nan/nan       nan/nan 0.223/0.308    0.466
+21:14:09 | INFO    | gemma.down |        bandung zero_shot   0.199/0.287       nan/nan       nan/nan 0.219/0.302    0.483
+21:14:12 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+21:14:12 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+21:14:16 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+21:14:16 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+21:14:16 | INFO    | gemma.down | evidence=full drop_ret='geo' hist_budget=-1 tag='_abl_noRetDist'
+21:14:16 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:14:18 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:14:18 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+21:14:19 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+21:14:20 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2537 acc@5=0.4503 acc@10=0.5391 ndcg@5=0.3575 mrr=0.3470 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.417 explore acc@1=0.008 | cond: explore@1/@10=0.024/0.124 revisit@1=0.417 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.65/0.44 | STHGCN 0.250/0.350
+21:14:20 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:14:22 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+21:14:22 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+21:14:22 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+21:14:23 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1623 acc@5=0.3302 acc@10=0.4038 ndcg@5=0.2520 mrr=0.2467 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.304 explore acc@1=0.004 | cond: explore@1/@10=0.032/0.124 revisit@1=0.307 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.67/0.41 | STHGCN 0.193/0.264
+21:14:23 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:14:25 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+21:14:25 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+21:14:26 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+21:14:27 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2506 acc@5=0.4289 acc@10=0.5155 ndcg@5=0.3449 mrr=0.3382 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.374 explore acc@1=0.004 | cond: explore@1/@10=0.008/0.093 revisit@1=0.349 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.65/0.34 | STHGCN 0.246/0.341
+21:14:27 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:14:31 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+21:14:31 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+21:14:31 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+21:14:32 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1550 acc@5=0.3188 acc@10=0.3939 ndcg@5=0.2414 mrr=0.2357 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.295 explore acc@1=0.005 | cond: explore@1/@10=0.012/0.082 revisit@1=0.298 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.70/0.41 | STHGCN 0.168/0.247
+21:14:33 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:14:37 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+21:14:37 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+21:14:37 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+21:14:40 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1902 acc@5=0.3509 acc@10=0.4217 ndcg@5=0.2741 mrr=0.2687 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.338 explore acc@1=0.007 | cond: explore@1/@10=0.016/0.099 revisit@1=0.337 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.70/0.35 | STHGCN 0.227/0.307
+21:14:40 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:14:47 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+21:14:47 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+21:14:48 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+21:14:52 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3175 acc@5=0.5271 acc@10=0.6017 ndcg@5=0.4289 mrr=0.4151 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.465 explore acc@1=0.009 | cond: explore@1/@10=0.031/0.146 revisit@1=0.445 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.66/0.29 | STHGCN 0.293/0.400
+21:14:53 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:15:10 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+21:15:10 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+21:15:10 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+21:15:19 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2182 acc@5=0.3898 acc@10=0.4680 ndcg@5=0.3092 mrr=0.3012 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.406 explore acc@1=0.002 | cond: explore@1/@10=0.014/0.076 revisit@1=0.391 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.65/0.37 | STHGCN 0.223/0.308
+21:15:20 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:15:44 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+21:15:44 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+21:15:44 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+21:16:01 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.2116 acc@5=0.3697 acc@10=0.4405 ndcg@5=0.2944 mrr=0.2883 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.383 explore acc@1=0.002 | cond: explore@1/@10=0.031/0.100 revisit@1=0.368 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.68/0.33 | STHGCN 0.219/0.302
+21:16:01 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+21:16:01 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+21:16:01 | INFO    | gemma.down |          tokyo zero_shot   0.254/0.357       nan/nan       nan/nan 0.250/0.350    0.543
+21:16:01 | INFO    | gemma.down |       shanghai zero_shot   0.162/0.252       nan/nan       nan/nan 0.193/0.264    0.455
+21:16:01 | INFO    | gemma.down |      palembang zero_shot   0.251/0.345       nan/nan       nan/nan 0.246/0.341    0.459
+21:16:01 | INFO    | gemma.down |      melbourne zero_shot   0.155/0.241       nan/nan       nan/nan 0.168/0.247    0.487
+21:16:01 | INFO    | gemma.down |         sydney zero_shot   0.190/0.274       nan/nan       nan/nan 0.227/0.307    0.484
+21:16:01 | INFO    | gemma.down |      tangerang zero_shot   0.318/0.429       nan/nan       nan/nan 0.293/0.400    0.548
+21:16:01 | INFO    | gemma.down |         moscow zero_shot   0.218/0.309       nan/nan       nan/nan 0.223/0.308    0.466
+21:16:01 | INFO    | gemma.down |        bandung zero_shot   0.212/0.294       nan/nan       nan/nan 0.219/0.302    0.483
+21:16:04 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+21:16:04 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+21:16:07 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+21:16:07 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+21:16:07 | INFO    | gemma.down | evidence=full drop_ret='lptr' hist_budget=-1 tag='_abl_noPointer'
+21:16:08 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:16:10 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:16:10 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+21:16:10 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+21:16:12 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2611 acc@5=0.4662 acc@10=0.5507 ndcg@5=0.3686 mrr=0.3559 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.430 explore acc@1=0.008 | cond: explore@1/@10=0.024/0.124 revisit@1=0.426 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.65/0.44 | STHGCN 0.250/0.350
+21:16:12 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:16:14 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+21:16:14 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+21:16:14 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+21:16:15 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1660 acc@5=0.3434 acc@10=0.4151 ndcg@5=0.2621 mrr=0.2554 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.311 explore acc@1=0.004 | cond: explore@1/@10=0.032/0.124 revisit@1=0.321 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.67/0.41 | STHGCN 0.193/0.264
+21:16:15 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:16:17 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+21:16:17 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+21:16:17 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+21:16:19 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2248 acc@5=0.4096 acc@10=0.4987 ndcg@5=0.3223 mrr=0.3164 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.337 explore acc@1=0.000 | cond: explore@1/@10=0.008/0.093 revisit@1=0.326 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.65/0.34 | STHGCN 0.246/0.341
+21:16:19 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:16:22 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+21:16:22 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+21:16:22 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+21:16:24 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1655 acc@5=0.3317 acc@10=0.4100 ndcg@5=0.2500 mrr=0.2429 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.315 explore acc@1=0.005 | cond: explore@1/@10=0.012/0.082 revisit@1=0.285 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.70/0.41 | STHGCN 0.168/0.247
+21:16:24 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:16:29 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+21:16:29 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+21:16:29 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+21:16:32 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.2070 acc@5=0.3629 acc@10=0.4475 ndcg@5=0.2865 mrr=0.2825 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.368 explore acc@1=0.007 | cond: explore@1/@10=0.016/0.099 revisit@1=0.356 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.70/0.35 | STHGCN 0.227/0.307
+21:16:32 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:16:39 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+21:16:39 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+21:16:39 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+21:16:44 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3007 acc@5=0.5257 acc@10=0.6039 ndcg@5=0.4193 mrr=0.4037 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.440 explore acc@1=0.009 | cond: explore@1/@10=0.031/0.146 revisit@1=0.409 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.66/0.29 | STHGCN 0.293/0.400
+21:16:45 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:17:01 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+21:17:01 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+21:17:01 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+21:17:10 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2151 acc@5=0.3982 acc@10=0.4731 ndcg@5=0.3118 mrr=0.3014 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.400 explore acc@1=0.002 | cond: explore@1/@10=0.014/0.076 revisit@1=0.393 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.65/0.37 | STHGCN 0.223/0.308
+21:17:11 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:17:35 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+21:17:35 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+21:17:35 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+21:17:51 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.1977 acc@5=0.3680 acc@10=0.4479 ndcg@5=0.2874 mrr=0.2805 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.358 explore acc@1=0.002 | cond: explore@1/@10=0.031/0.100 revisit@1=0.336 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.68/0.33 | STHGCN 0.219/0.302
+21:17:51 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+21:17:51 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+21:17:51 | INFO    | gemma.down |          tokyo zero_shot   0.261/0.369       nan/nan       nan/nan 0.250/0.350    0.543
+21:17:51 | INFO    | gemma.down |       shanghai zero_shot   0.166/0.262       nan/nan       nan/nan 0.193/0.264    0.455
+21:17:51 | INFO    | gemma.down |      palembang zero_shot   0.225/0.322       nan/nan       nan/nan 0.246/0.341    0.459
+21:17:51 | INFO    | gemma.down |      melbourne zero_shot   0.165/0.250       nan/nan       nan/nan 0.168/0.247    0.487
+21:17:51 | INFO    | gemma.down |         sydney zero_shot   0.207/0.287       nan/nan       nan/nan 0.227/0.307    0.484
+21:17:51 | INFO    | gemma.down |      tangerang zero_shot   0.301/0.419       nan/nan       nan/nan 0.293/0.400    0.548
+21:17:51 | INFO    | gemma.down |         moscow zero_shot   0.215/0.312       nan/nan       nan/nan 0.223/0.308    0.466
+21:17:51 | INFO    | gemma.down |        bandung zero_shot   0.198/0.287       nan/nan       nan/nan 0.219/0.302    0.483
+21:17:54 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+21:17:54 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+21:17:58 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+21:17:58 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+21:17:58 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=-1 tag='_abl_noActPath'
+21:17:58 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:18:01 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:18:01 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+21:18:01 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+21:18:03 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2622 acc@5=0.4693 acc@10=0.5412 ndcg@5=0.3707 mrr=0.3567 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.433 explore acc@1=0.005 | cond: explore@1/@10=0.019/0.124 revisit@1=0.435 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.65/0.44 | STHGCN 0.250/0.350
+21:18:03 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:18:05 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+21:18:05 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+21:18:06 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+21:18:06 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1660 acc@5=0.3547 acc@10=0.4151 ndcg@5=0.2674 mrr=0.2568 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.311 explore acc@1=0.004 | cond: explore@1/@10=0.028/0.112 revisit@1=0.321 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.67/0.41 | STHGCN 0.193/0.264
+21:18:07 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:18:09 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+21:18:09 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+21:18:09 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+21:18:11 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2481 acc@5=0.4367 acc@10=0.5078 ndcg@5=0.3461 mrr=0.3357 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.370 explore acc@1=0.004 | cond: explore@1/@10=0.016/0.074 revisit@1=0.359 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.65/0.34 | STHGCN 0.246/0.341
+21:18:11 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:18:15 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+21:18:15 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+21:18:15 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+21:18:17 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1671 acc@5=0.3374 acc@10=0.4100 ndcg@5=0.2543 mrr=0.2455 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.321 explore acc@1=0.002 | cond: explore@1/@10=0.007/0.074 revisit@1=0.292 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.70/0.41 | STHGCN 0.168/0.247
+21:18:17 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:18:23 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+21:18:23 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+21:18:23 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+21:18:26 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.2112 acc@5=0.3647 acc@10=0.4421 ndcg@5=0.2893 mrr=0.2850 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.375 explore acc@1=0.008 | cond: explore@1/@10=0.020/0.087 revisit@1=0.361 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.70/0.35 | STHGCN 0.227/0.307
+21:18:26 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:18:34 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+21:18:34 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+21:18:34 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+21:18:39 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3179 acc@5=0.5361 acc@10=0.6096 ndcg@5=0.4334 mrr=0.4173 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.467 explore acc@1=0.004 | cond: explore@1/@10=0.027/0.122 revisit@1=0.438 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.66/0.29 | STHGCN 0.293/0.400
+21:18:40 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:18:59 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+21:18:59 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+21:18:59 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+21:19:09 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2202 acc@5=0.4012 acc@10=0.4724 ndcg@5=0.3159 mrr=0.3049 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.410 explore acc@1=0.001 | cond: explore@1/@10=0.012/0.068 revisit@1=0.398 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.65/0.37 | STHGCN 0.223/0.308
+21:19:09 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:19:37 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+21:19:37 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+21:19:38 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+21:19:55 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.2112 acc@5=0.3743 acc@10=0.4502 ndcg@5=0.2965 mrr=0.2897 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.384 explore acc@1=0.000 | cond: explore@1/@10=0.025/0.091 revisit@1=0.363 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.68/0.33 | STHGCN 0.219/0.302
+21:19:55 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+21:19:55 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+21:19:55 | INFO    | gemma.down |          tokyo zero_shot   0.262/0.371       nan/nan       nan/nan 0.250/0.350    0.543
+21:19:55 | INFO    | gemma.down |       shanghai zero_shot   0.166/0.267       nan/nan       nan/nan 0.193/0.264    0.455
+21:19:55 | INFO    | gemma.down |      palembang zero_shot   0.248/0.346       nan/nan       nan/nan 0.246/0.341    0.459
+21:19:55 | INFO    | gemma.down |      melbourne zero_shot   0.167/0.254       nan/nan       nan/nan 0.168/0.247    0.487
+21:19:55 | INFO    | gemma.down |         sydney zero_shot   0.211/0.289       nan/nan       nan/nan 0.227/0.307    0.484
+21:19:55 | INFO    | gemma.down |      tangerang zero_shot   0.318/0.433       nan/nan       nan/nan 0.293/0.400    0.548
+21:19:55 | INFO    | gemma.down |         moscow zero_shot   0.220/0.316       nan/nan       nan/nan 0.223/0.308    0.466
+21:19:55 | INFO    | gemma.down |        bandung zero_shot   0.211/0.297       nan/nan       nan/nan 0.219/0.302    0.483
+21:19:58 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+21:19:58 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+21:20:02 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+21:20:02 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+21:20:02 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=-1 tag='_abl_noExpDist'
+21:20:02 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:20:04 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:20:04 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+21:20:05 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+21:20:07 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2643 acc@5=0.4778 acc@10=0.5412 ndcg@5=0.3773 mrr=0.3581 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.440 explore acc@1=0.000 | cond: explore@1/@10=0.000/0.024 revisit@1=0.435 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.65/0.44 | STHGCN 0.250/0.350
+21:20:07 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:20:09 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+21:20:09 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+21:20:09 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+21:20:10 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1679 acc@5=0.3453 acc@10=0.4057 ndcg@5=0.2636 mrr=0.2522 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.318 explore acc@1=0.000 | cond: explore@1/@10=0.000/0.028 revisit@1=0.321 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.67/0.41 | STHGCN 0.193/0.264
+21:20:10 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:20:13 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+21:20:13 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+21:20:13 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+21:20:14 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2481 acc@5=0.4315 acc@10=0.5078 ndcg@5=0.3445 mrr=0.3348 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.372 explore acc@1=0.000 | cond: explore@1/@10=0.008/0.043 revisit@1=0.359 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.65/0.34 | STHGCN 0.246/0.341
+21:20:14 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:20:18 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+21:20:18 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+21:20:19 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+21:20:20 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1695 acc@5=0.3414 acc@10=0.4116 ndcg@5=0.2576 mrr=0.2453 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.328 explore acc@1=0.000 | cond: explore@1/@10=0.000/0.005 revisit@1=0.292 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.70/0.41 | STHGCN 0.168/0.247
+21:20:21 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:20:26 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+21:20:26 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+21:20:26 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+21:20:29 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.2100 acc@5=0.3683 acc@10=0.4415 ndcg@5=0.2913 mrr=0.2827 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.379 explore acc@1=0.000 | cond: explore@1/@10=0.000/0.011 revisit@1=0.361 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.70/0.35 | STHGCN 0.227/0.307
+21:20:29 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:20:37 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+21:20:37 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+21:20:38 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+21:20:43 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3175 acc@5=0.5346 acc@10=0.6035 ndcg@5=0.4327 mrr=0.4136 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.469 explore acc@1=0.000 | cond: explore@1/@10=0.019/0.046 revisit@1=0.438 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.66/0.29 | STHGCN 0.293/0.400
+21:20:43 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:21:02 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+21:21:02 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+21:21:03 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+21:21:12 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2200 acc@5=0.4008 acc@10=0.4679 ndcg@5=0.3157 mrr=0.3019 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.410 explore acc@1=0.000 | cond: explore@1/@10=0.001/0.009 revisit@1=0.398 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.65/0.37 | STHGCN 0.223/0.308
+21:21:13 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:21:42 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+21:21:42 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+21:21:42 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+21:22:00 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.2112 acc@5=0.3714 acc@10=0.4429 ndcg@5=0.2952 mrr=0.2869 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.384 explore acc@1=0.000 | cond: explore@1/@10=0.010/0.033 revisit@1=0.363 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.68/0.33 | STHGCN 0.219/0.302
+21:22:00 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+21:22:00 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+21:22:00 | INFO    | gemma.down |          tokyo zero_shot   0.264/0.377       nan/nan       nan/nan 0.250/0.350    0.543
+21:22:00 | INFO    | gemma.down |       shanghai zero_shot   0.168/0.264       nan/nan       nan/nan 0.193/0.264    0.455
+21:22:00 | INFO    | gemma.down |      palembang zero_shot   0.248/0.345       nan/nan       nan/nan 0.246/0.341    0.459
+21:22:00 | INFO    | gemma.down |      melbourne zero_shot   0.169/0.258       nan/nan       nan/nan 0.168/0.247    0.487
+21:22:00 | INFO    | gemma.down |         sydney zero_shot   0.210/0.291       nan/nan       nan/nan 0.227/0.307    0.484
+21:22:00 | INFO    | gemma.down |      tangerang zero_shot   0.318/0.433       nan/nan       nan/nan 0.293/0.400    0.548
+21:22:00 | INFO    | gemma.down |         moscow zero_shot   0.220/0.316       nan/nan       nan/nan 0.223/0.308    0.466
+21:22:00 | INFO    | gemma.down |        bandung zero_shot   0.211/0.295       nan/nan       nan/nan 0.219/0.302    0.483
+21:22:02 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+21:22:02 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+21:22:06 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+21:22:06 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+21:22:06 | INFO    | gemma.down | evidence=none drop_ret='' hist_budget=-1 tag='_abl_noEvidence'
+21:22:06 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:22:09 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+21:22:09 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+21:22:09 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+21:22:11 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.1015 acc@5=0.3446 acc@10=0.4715 ndcg@5=0.2255 mrr=0.2149 | next-activity acc=0.4070 f1=0.1402 | revisit(0.60) acc@1=0.167 explore acc@1=0.003 | cond: explore@1/@10=0.025/0.110 revisit@1=0.168 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.56/0.53 | STHGCN 0.250/0.350
+21:22:11 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:22:13 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+21:22:13 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+21:22:13 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+21:22:14 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1000 acc@5=0.2472 acc@10=0.3509 ndcg@5=0.1721 mrr=0.1721 | next-activity acc=0.3585 f1=0.0913 | revisit(0.53) acc@1=0.189 explore acc@1=0.000 | cond: explore@1/@10=0.017/0.096 revisit@1=0.197 lat-explore@10=0.007 ptr@1=0.084 pi(exp/rev)=0.58/0.52 | STHGCN 0.193/0.264
+21:22:14 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:22:16 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+21:22:16 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+21:22:16 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+21:22:17 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.0762 acc@5=0.2416 acc@10=0.3876 ndcg@5=0.1563 mrr=0.1636 | next-activity acc=0.3165 f1=0.0679 | revisit(0.67) acc@1=0.114 explore acc@1=0.000 | cond: explore@1/@10=0.000/0.106 revisit@1=0.084 lat-explore@10=0.034 ptr@1=0.022 pi(exp/rev)=0.57/0.46 | STHGCN 0.246/0.341
+21:22:17 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:22:21 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+21:22:21 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+21:22:21 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+21:22:23 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.0662 acc@5=0.2010 acc@10=0.2994 ndcg@5=0.1317 mrr=0.1349 | next-activity acc=0.4140 f1=0.1194 | revisit(0.52) acc@1=0.126 explore acc@1=0.002 | cond: explore@1/@10=0.013/0.063 revisit@1=0.104 lat-explore@10=0.001 ptr@1=0.034 pi(exp/rev)=0.59/0.51 | STHGCN 0.168/0.247
+21:22:23 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:22:28 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+21:22:28 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+21:22:28 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+21:22:31 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.0828 acc@5=0.2214 acc@10=0.3311 ndcg@5=0.1520 mrr=0.1566 | next-activity acc=0.4025 f1=0.1221 | revisit(0.55) acc@1=0.148 explore acc@1=0.001 | cond: explore@1/@10=0.014/0.098 revisit@1=0.151 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.58/0.51 | STHGCN 0.227/0.307
+21:22:31 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:22:38 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+21:22:38 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+21:22:38 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+21:22:43 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.0940 acc@5=0.3484 acc@10=0.5231 ndcg@5=0.2212 mrr=0.2158 | next-activity acc=0.3283 f1=0.1015 | revisit(0.68) acc@1=0.136 explore acc@1=0.007 | cond: explore@1/@10=0.029/0.138 revisit@1=0.099 lat-explore@10=0.021 ptr@1=0.054 pi(exp/rev)=0.58/0.44 | STHGCN 0.293/0.400
+21:22:43 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:23:00 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+21:23:00 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+21:23:00 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+21:23:09 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.0859 acc@5=0.2752 acc@10=0.4048 ndcg@5=0.1804 mrr=0.1777 | next-activity acc=0.3702 f1=0.1569 | revisit(0.54) acc@1=0.160 explore acc@1=0.000 | cond: explore@1/@10=0.014/0.074 revisit@1=0.149 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.57/0.49 | STHGCN 0.223/0.308
+21:23:10 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:23:34 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+21:23:34 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+21:23:35 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+21:23:51 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.0566 acc@5=0.2088 acc@10=0.3315 ndcg@5=0.1330 mrr=0.1377 | next-activity acc=0.3283 f1=0.0835 | revisit(0.55) acc@1=0.102 explore acc@1=0.002 | cond: explore@1/@10=0.035/0.094 revisit@1=0.082 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.59/0.46 | STHGCN 0.219/0.302
+21:23:51 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+21:23:51 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+21:23:51 | INFO    | gemma.down |          tokyo zero_shot   0.101/0.226       nan/nan       nan/nan 0.250/0.350    0.407
+21:23:51 | INFO    | gemma.down |       shanghai zero_shot   0.100/0.172       nan/nan       nan/nan 0.193/0.264    0.358
+21:23:51 | INFO    | gemma.down |      palembang zero_shot   0.076/0.156       nan/nan       nan/nan 0.246/0.341    0.317
+21:23:51 | INFO    | gemma.down |      melbourne zero_shot   0.066/0.132       nan/nan       nan/nan 0.168/0.247    0.414
+21:23:51 | INFO    | gemma.down |         sydney zero_shot   0.083/0.152       nan/nan       nan/nan 0.227/0.307    0.403
+21:23:51 | INFO    | gemma.down |      tangerang zero_shot   0.094/0.221       nan/nan       nan/nan 0.293/0.400    0.328
+21:23:51 | INFO    | gemma.down |         moscow zero_shot   0.086/0.180       nan/nan       nan/nan 0.223/0.308    0.370
+21:23:51 | INFO    | gemma.down |        bandung zero_shot   0.057/0.133       nan/nan       nan/nan 0.219/0.302    0.328
+22:01:08 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+22:01:08 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+22:01:11 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+22:01:12 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+22:01:12 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=-1 tag='_abl_gateNoS'
+22:01:12 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:01:14 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+22:01:14 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+22:01:14 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+22:01:16 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2505 acc@5=0.4397 acc@10=0.5275 ndcg@5=0.3473 mrr=0.3374 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.407 explore acc@1=0.016 | cond: explore@1/@10=0.024/0.124 revisit@1=0.435 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.76/0.58 | STHGCN 0.250/0.350
+22:01:16 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:01:18 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+22:01:18 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+22:01:18 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+22:01:19 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1698 acc@5=0.3472 acc@10=0.4038 ndcg@5=0.2632 mrr=0.2520 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.311 explore acc@1=0.012 | cond: explore@1/@10=0.032/0.124 revisit@1=0.321 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.81/0.57 | STHGCN 0.193/0.264
+22:01:19 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:01:21 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+22:01:21 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+22:01:21 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+22:01:23 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2403 acc@5=0.4070 acc@10=0.4910 ndcg@5=0.3284 mrr=0.3238 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.359 explore acc@1=0.004 | cond: explore@1/@10=0.008/0.093 revisit@1=0.359 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.80/0.52 | STHGCN 0.246/0.341
+22:01:23 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:01:26 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+22:01:26 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+22:01:26 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+22:01:28 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1574 acc@5=0.3099 acc@10=0.3858 ndcg@5=0.2365 mrr=0.2320 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.296 explore acc@1=0.008 | cond: explore@1/@10=0.012/0.082 revisit@1=0.292 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.83/0.58 | STHGCN 0.168/0.247
+22:01:28 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:01:33 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+22:01:33 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+22:01:33 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+22:01:36 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1902 acc@5=0.3395 acc@10=0.4157 ndcg@5=0.2674 mrr=0.2641 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.336 explore acc@1=0.009 | cond: explore@1/@10=0.016/0.099 revisit@1=0.361 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.83/0.52 | STHGCN 0.227/0.307
+22:01:36 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:01:43 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+22:01:43 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+22:01:43 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+22:01:48 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3165 acc@5=0.5289 acc@10=0.6010 ndcg@5=0.4297 mrr=0.4147 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.461 explore acc@1=0.013 | cond: explore@1/@10=0.031/0.146 revisit@1=0.438 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.78/0.43 | STHGCN 0.293/0.400
+22:01:49 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:02:05 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+22:02:05 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+22:02:06 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+22:02:15 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2198 acc@5=0.3957 acc@10=0.4641 ndcg@5=0.3126 mrr=0.3026 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.408 explore acc@1=0.003 | cond: explore@1/@10=0.014/0.076 revisit@1=0.398 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.77/0.51 | STHGCN 0.223/0.308
+22:02:16 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:02:39 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+22:02:39 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+22:02:40 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+22:02:56 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.2117 acc@5=0.3772 acc@10=0.4495 ndcg@5=0.2987 mrr=0.2912 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.380 explore acc@1=0.006 | cond: explore@1/@10=0.031/0.100 revisit@1=0.363 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.81/0.49 | STHGCN 0.219/0.302
+22:02:56 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+22:02:56 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+22:02:56 | INFO    | gemma.down |          tokyo zero_shot   0.251/0.347       nan/nan       nan/nan 0.250/0.350    0.543
+22:02:56 | INFO    | gemma.down |       shanghai zero_shot   0.170/0.263       nan/nan       nan/nan 0.193/0.264    0.455
+22:02:56 | INFO    | gemma.down |      palembang zero_shot   0.240/0.328       nan/nan       nan/nan 0.246/0.341    0.459
+22:02:56 | INFO    | gemma.down |      melbourne zero_shot   0.157/0.236       nan/nan       nan/nan 0.168/0.247    0.487
+22:02:56 | INFO    | gemma.down |         sydney zero_shot   0.190/0.267       nan/nan       nan/nan 0.227/0.307    0.484
+22:02:56 | INFO    | gemma.down |      tangerang zero_shot   0.316/0.430       nan/nan       nan/nan 0.293/0.400    0.548
+22:02:56 | INFO    | gemma.down |         moscow zero_shot   0.220/0.313       nan/nan       nan/nan 0.223/0.308    0.466
+22:02:56 | INFO    | gemma.down |        bandung zero_shot   0.212/0.299       nan/nan       nan/nan 0.219/0.302    0.483
+22:02:59 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+22:02:59 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+22:03:03 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+22:03:03 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+22:03:03 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=-1 tag='_abl_gateNoPersonal'
+22:03:03 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:03:05 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+22:03:05 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+22:03:06 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+22:03:07 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2611 acc@5=0.4461 acc@10=0.5581 ndcg@5=0.3576 mrr=0.3508 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.433 explore acc@1=0.003 | cond: explore@1/@10=0.024/0.124 revisit@1=0.435 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.56/0.53 | STHGCN 0.250/0.350
+22:03:08 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:03:09 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+22:03:09 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+22:03:09 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+22:03:10 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1849 acc@5=0.3377 acc@10=0.4170 ndcg@5=0.2660 mrr=0.2628 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.350 explore acc@1=0.000 | cond: explore@1/@10=0.032/0.124 revisit@1=0.321 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.58/0.52 | STHGCN 0.193/0.264
+22:03:10 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:03:13 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+22:03:13 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+22:03:13 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+22:03:14 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2442 acc@5=0.4031 acc@10=0.5000 ndcg@5=0.3301 mrr=0.3289 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.366 explore acc@1=0.000 | cond: explore@1/@10=0.008/0.093 revisit@1=0.359 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.57/0.46 | STHGCN 0.246/0.341
+22:03:14 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:03:18 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+22:03:18 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+22:03:18 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+22:03:20 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1606 acc@5=0.3245 acc@10=0.4019 ndcg@5=0.2437 mrr=0.2374 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.309 explore acc@1=0.002 | cond: explore@1/@10=0.012/0.082 revisit@1=0.292 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.59/0.51 | STHGCN 0.168/0.247
+22:03:20 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:03:24 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+22:03:24 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+22:03:25 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+22:03:27 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1992 acc@5=0.3497 acc@10=0.4253 ndcg@5=0.2766 mrr=0.2733 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.355 explore acc@1=0.005 | cond: explore@1/@10=0.016/0.099 revisit@1=0.361 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.58/0.51 | STHGCN 0.227/0.307
+22:03:28 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:03:34 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+22:03:34 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+22:03:35 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+22:03:39 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.3114 acc@5=0.5300 acc@10=0.6089 ndcg@5=0.4277 mrr=0.4127 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.458 explore acc@1=0.003 | cond: explore@1/@10=0.031/0.146 revisit@1=0.438 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.58/0.44 | STHGCN 0.293/0.400
+22:03:40 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:03:56 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+22:03:56 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+22:03:57 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+22:04:06 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2221 acc@5=0.3991 acc@10=0.4706 ndcg@5=0.3159 mrr=0.3062 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.414 explore acc@1=0.001 | cond: explore@1/@10=0.014/0.076 revisit@1=0.398 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.57/0.49 | STHGCN 0.223/0.308
+22:04:07 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:04:30 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+22:04:30 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+22:04:31 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+22:04:47 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.2074 acc@5=0.3715 acc@10=0.4451 ndcg@5=0.2932 mrr=0.2862 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.377 explore acc@1=0.000 | cond: explore@1/@10=0.031/0.100 revisit@1=0.363 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.59/0.46 | STHGCN 0.219/0.302
+22:04:48 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+22:04:48 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+22:04:48 | INFO    | gemma.down |          tokyo zero_shot   0.261/0.358       nan/nan       nan/nan 0.250/0.350    0.543
+22:04:48 | INFO    | gemma.down |       shanghai zero_shot   0.185/0.266       nan/nan       nan/nan 0.193/0.264    0.455
+22:04:48 | INFO    | gemma.down |      palembang zero_shot   0.244/0.330       nan/nan       nan/nan 0.246/0.341    0.459
+22:04:48 | INFO    | gemma.down |      melbourne zero_shot   0.161/0.244       nan/nan       nan/nan 0.168/0.247    0.487
+22:04:48 | INFO    | gemma.down |         sydney zero_shot   0.199/0.277       nan/nan       nan/nan 0.227/0.307    0.484
+22:04:48 | INFO    | gemma.down |      tangerang zero_shot   0.311/0.428       nan/nan       nan/nan 0.293/0.400    0.548
+22:04:48 | INFO    | gemma.down |         moscow zero_shot   0.222/0.316       nan/nan       nan/nan 0.223/0.308    0.466
+22:04:48 | INFO    | gemma.down |        bandung zero_shot   0.207/0.293       nan/nan       nan/nan 0.219/0.302    0.483
+22:04:50 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+22:04:50 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+22:04:54 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+22:04:54 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+22:04:54 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=-1 tag='_abl_gateConst'
+22:04:54 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:04:56 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+22:04:56 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+22:04:57 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+22:04:59 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.2622 acc@5=0.4556 acc@10=0.5581 ndcg@5=0.3621 mrr=0.3524 | next-activity acc=0.5433 f1=0.4075 | revisit(0.60) acc@1=0.435 explore acc@1=0.003 | cond: explore@1/@10=0.024/0.124 revisit@1=0.435 lat-explore@10=0.000 ptr@1=0.114 pi(exp/rev)=0.50/0.49 | STHGCN 0.250/0.350
+22:04:59 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:05:00 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+22:05:00 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+22:05:01 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+22:05:02 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1736 acc@5=0.3396 acc@10=0.4094 ndcg@5=0.2621 mrr=0.2561 | next-activity acc=0.4547 f1=0.2239 | revisit(0.53) acc@1=0.329 explore acc@1=0.000 | cond: explore@1/@10=0.032/0.124 revisit@1=0.321 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.50/0.49 | STHGCN 0.193/0.264
+22:05:02 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:05:04 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+22:05:04 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+22:05:04 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+22:05:05 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.2390 acc@5=0.4044 acc@10=0.5026 ndcg@5=0.3244 mrr=0.3214 | next-activity acc=0.4587 f1=0.1802 | revisit(0.67) acc@1=0.359 explore acc@1=0.000 | cond: explore@1/@10=0.008/0.093 revisit@1=0.359 lat-explore@10=0.031 ptr@1=0.022 pi(exp/rev)=0.50/0.48 | STHGCN 0.246/0.341
+22:05:05 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:05:09 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+22:05:09 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+22:05:09 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+22:05:11 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1550 acc@5=0.3236 acc@10=0.4052 ndcg@5=0.2412 mrr=0.2346 | next-activity acc=0.4867 f1=0.2681 | revisit(0.52) acc@1=0.300 explore acc@1=0.000 | cond: explore@1/@10=0.012/0.082 revisit@1=0.292 lat-explore@10=0.002 ptr@1=0.034 pi(exp/rev)=0.50/0.49 | STHGCN 0.168/0.247
+22:05:11 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:05:16 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+22:05:16 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+22:05:16 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+22:05:19 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.2016 acc@5=0.3515 acc@10=0.4331 ndcg@5=0.2799 mrr=0.2774 | next-activity acc=0.4835 f1=0.2626 | revisit(0.55) acc@1=0.362 explore acc@1=0.003 | cond: explore@1/@10=0.016/0.099 revisit@1=0.361 lat-explore@10=0.001 ptr@1=0.060 pi(exp/rev)=0.50/0.49 | STHGCN 0.227/0.307
+22:05:19 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:05:26 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+22:05:26 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+22:05:26 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+22:05:31 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.2978 acc@5=0.5274 acc@10=0.6032 ndcg@5=0.4191 mrr=0.4019 | next-activity acc=0.5483 f1=0.2533 | revisit(0.68) acc@1=0.440 explore acc@1=0.000 | cond: explore@1/@10=0.031/0.146 revisit@1=0.438 lat-explore@10=0.023 ptr@1=0.054 pi(exp/rev)=0.50/0.47 | STHGCN 0.293/0.400
+22:05:31 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:05:48 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+22:05:48 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+22:05:48 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+22:05:57 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.2176 acc@5=0.3990 acc@10=0.4715 ndcg@5=0.3133 mrr=0.3027 | next-activity acc=0.4660 f1=0.2875 | revisit(0.54) acc@1=0.406 explore acc@1=0.000 | cond: explore@1/@10=0.014/0.076 revisit@1=0.398 lat-explore@10=0.008 ptr@1=0.084 pi(exp/rev)=0.50/0.48 | STHGCN 0.223/0.308
+22:05:58 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:06:22 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+22:06:22 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+22:06:23 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+22:06:40 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.2022 acc@5=0.3632 acc@10=0.4377 ndcg@5=0.2866 mrr=0.2805 | next-activity acc=0.4834 f1=0.2413 | revisit(0.55) acc@1=0.368 explore acc@1=0.000 | cond: explore@1/@10=0.031/0.100 revisit@1=0.363 lat-explore@10=0.013 ptr@1=0.052 pi(exp/rev)=0.50/0.47 | STHGCN 0.219/0.302
+22:06:40 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+22:06:40 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+22:06:40 | INFO    | gemma.down |          tokyo zero_shot   0.262/0.362       nan/nan       nan/nan 0.250/0.350    0.543
+22:06:40 | INFO    | gemma.down |       shanghai zero_shot   0.174/0.262       nan/nan       nan/nan 0.193/0.264    0.455
+22:06:40 | INFO    | gemma.down |      palembang zero_shot   0.239/0.324       nan/nan       nan/nan 0.246/0.341    0.459
+22:06:40 | INFO    | gemma.down |      melbourne zero_shot   0.155/0.241       nan/nan       nan/nan 0.168/0.247    0.487
+22:06:40 | INFO    | gemma.down |         sydney zero_shot   0.202/0.280       nan/nan       nan/nan 0.227/0.307    0.484
+22:06:40 | INFO    | gemma.down |      tangerang zero_shot   0.298/0.419       nan/nan       nan/nan 0.293/0.400    0.548
+22:06:40 | INFO    | gemma.down |         moscow zero_shot   0.218/0.313       nan/nan       nan/nan 0.223/0.308    0.466
+22:06:40 | INFO    | gemma.down |        bandung zero_shot   0.202/0.287       nan/nan       nan/nan 0.219/0.302    0.483
+22:17:47 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+22:17:47 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+22:17:50 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+22:17:51 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+22:17:51 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=1 tag='_abl_hist1'
+22:17:51 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:17:53 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+22:17:53 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+22:17:53 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+22:17:54 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.1131 acc@5=0.2759 acc@10=0.3351 ndcg@5=0.2025 mrr=0.1937 | next-activity acc=0.4683 f1=0.2357 | revisit(0.29) acc@1=0.385 explore acc@1=0.003 | cond: explore@1/@10=0.022/0.110 revisit@1=0.414 lat-explore@10=0.000 ptr@1=0.300 pi(exp/rev)=0.70/0.69 | STHGCN 0.250/0.350
+22:17:54 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:17:56 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+22:17:56 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+22:17:56 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+22:17:57 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.0736 acc@5=0.1962 acc@10=0.2453 ndcg@5=0.1381 mrr=0.1331 | next-activity acc=0.3679 f1=0.1548 | revisit(0.17) acc@1=0.385 explore acc@1=0.009 | cond: explore@1/@10=0.032/0.100 revisit@1=0.286 lat-explore@10=0.005 ptr@1=0.264 pi(exp/rev)=0.71/0.64 | STHGCN 0.193/0.264
+22:17:57 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:17:59 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+22:17:59 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+22:17:59 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+22:17:59 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.0840 acc@5=0.1990 acc@10=0.2403 ndcg@5=0.1448 mrr=0.1406 | next-activity acc=0.3618 f1=0.1358 | revisit(0.19) acc@1=0.438 explore acc@1=0.002 | cond: explore@1/@10=0.013/0.092 revisit@1=0.260 lat-explore@10=0.038 ptr@1=0.089 pi(exp/rev)=0.67/0.66 | STHGCN 0.246/0.341
+22:17:59 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:18:03 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+22:18:03 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+22:18:03 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+22:18:03 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.0783 acc@5=0.1824 acc@10=0.2107 ndcg@5=0.1345 mrr=0.1293 | next-activity acc=0.4173 f1=0.1679 | revisit(0.18) acc@1=0.416 explore acc@1=0.006 | cond: explore@1/@10=0.018/0.072 revisit@1=0.370 lat-explore@10=0.001 ptr@1=0.169 pi(exp/rev)=0.72/0.67 | STHGCN 0.168/0.247
+22:18:04 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:18:08 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+22:18:08 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+22:18:08 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+22:18:09 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.0972 acc@5=0.2064 acc@10=0.2490 ndcg@5=0.1545 mrr=0.1508 | next-activity acc=0.4157 f1=0.1656 | revisit(0.19) acc@1=0.492 explore acc@1=0.006 | cond: explore@1/@10=0.025/0.104 revisit@1=0.409 lat-explore@10=0.002 ptr@1=0.208 pi(exp/rev)=0.71/0.66 | STHGCN 0.227/0.307
+22:18:09 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:18:16 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+22:18:16 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+22:18:16 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+22:18:18 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.1618 acc@5=0.3229 acc@10=0.3681 ndcg@5=0.2485 mrr=0.2365 | next-activity acc=0.4453 f1=0.1766 | revisit(0.31) acc@1=0.508 explore acc@1=0.009 | cond: explore@1/@10=0.024/0.116 revisit@1=0.399 lat-explore@10=0.019 ptr@1=0.163 pi(exp/rev)=0.66/0.62 | STHGCN 0.293/0.400
+22:18:18 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:18:35 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+22:18:35 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+22:18:35 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+22:18:38 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.1125 acc@5=0.2431 acc@10=0.2728 ndcg@5=0.1838 mrr=0.1743 | next-activity acc=0.3841 f1=0.2220 | revisit(0.24) acc@1=0.471 explore acc@1=0.002 | cond: explore@1/@10=0.013/0.068 revisit@1=0.394 lat-explore@10=0.006 ptr@1=0.235 pi(exp/rev)=0.68/0.65 | STHGCN 0.223/0.308
+22:18:39 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:19:03 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+22:19:03 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+22:19:03 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+22:19:09 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.0982 acc@5=0.2263 acc@10=0.2580 ndcg@5=0.1667 mrr=0.1561 | next-activity acc=0.3970 f1=0.1777 | revisit(0.20) acc@1=0.472 explore acc@1=0.003 | cond: explore@1/@10=0.035/0.087 revisit@1=0.352 lat-explore@10=0.017 ptr@1=0.136 pi(exp/rev)=0.69/0.64 | STHGCN 0.219/0.302
+22:19:09 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+22:19:09 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+22:19:09 | INFO    | gemma.down |          tokyo zero_shot   0.113/0.202       nan/nan       nan/nan 0.250/0.350    0.468
+22:19:09 | INFO    | gemma.down |       shanghai zero_shot   0.074/0.138       nan/nan       nan/nan 0.193/0.264    0.368
+22:19:09 | INFO    | gemma.down |      palembang zero_shot   0.084/0.145       nan/nan       nan/nan 0.246/0.341    0.362
+22:19:09 | INFO    | gemma.down |      melbourne zero_shot   0.078/0.134       nan/nan       nan/nan 0.168/0.247    0.417
+22:19:09 | INFO    | gemma.down |         sydney zero_shot   0.097/0.155       nan/nan       nan/nan 0.227/0.307    0.416
+22:19:09 | INFO    | gemma.down |      tangerang zero_shot   0.162/0.248       nan/nan       nan/nan 0.293/0.400    0.445
+22:19:09 | INFO    | gemma.down |         moscow zero_shot   0.113/0.184       nan/nan       nan/nan 0.223/0.308    0.384
+22:19:09 | INFO    | gemma.down |        bandung zero_shot   0.098/0.167       nan/nan       nan/nan 0.219/0.302    0.397
+22:19:11 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+22:19:11 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+22:19:15 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+22:19:15 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+22:19:15 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=2 tag='_abl_hist2'
+22:19:15 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:19:18 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+22:19:18 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+22:19:18 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+22:19:19 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.1512 acc@5=0.3288 acc@10=0.3943 ndcg@5=0.2448 mrr=0.2337 | next-activity acc=0.4968 f1=0.2496 | revisit(0.36) acc@1=0.421 explore acc@1=0.002 | cond: explore@1/@10=0.021/0.120 revisit@1=0.404 lat-explore@10=0.000 ptr@1=0.199 pi(exp/rev)=0.71/0.63 | STHGCN 0.250/0.350
+22:19:19 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:19:21 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+22:19:21 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+22:19:21 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+22:19:21 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1113 acc@5=0.2321 acc@10=0.2962 ndcg@5=0.1729 mrr=0.1702 | next-activity acc=0.3811 f1=0.1576 | revisit(0.24) acc@1=0.448 explore acc@1=0.007 | cond: explore@1/@10=0.030/0.114 revisit@1=0.256 lat-explore@10=0.005 ptr@1=0.216 pi(exp/rev)=0.72/0.61 | STHGCN 0.193/0.264
+22:19:22 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:19:24 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+22:19:24 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+22:19:24 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+22:19:24 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.1137 acc@5=0.2545 acc@10=0.3101 ndcg@5=0.1868 mrr=0.1802 | next-activity acc=0.4044 f1=0.1552 | revisit(0.28) acc@1=0.408 explore acc@1=0.002 | cond: explore@1/@10=0.016/0.107 revisit@1=0.272 lat-explore@10=0.039 ptr@1=0.061 pi(exp/rev)=0.67/0.61 | STHGCN 0.246/0.341
+22:19:24 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:19:28 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+22:19:28 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+22:19:28 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+22:19:29 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.0969 acc@5=0.2292 acc@10=0.2663 ndcg@5=0.1659 mrr=0.1564 | next-activity acc=0.4270 f1=0.1721 | revisit(0.24) acc@1=0.380 explore acc@1=0.010 | cond: explore@1/@10=0.015/0.077 revisit@1=0.325 lat-explore@10=0.001 ptr@1=0.116 pi(exp/rev)=0.72/0.63 | STHGCN 0.168/0.247
+22:19:29 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:19:33 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+22:19:33 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+22:19:33 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+22:19:34 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1194 acc@5=0.2501 acc@10=0.3011 ndcg@5=0.1876 mrr=0.1818 | next-activity acc=0.4313 f1=0.1957 | revisit(0.26) acc@1=0.444 explore acc@1=0.007 | cond: explore@1/@10=0.026/0.103 revisit@1=0.367 lat-explore@10=0.002 ptr@1=0.150 pi(exp/rev)=0.72/0.60 | STHGCN 0.227/0.307
+22:19:34 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:19:41 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+22:19:41 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+22:19:42 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+22:19:43 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.2020 acc@5=0.3832 acc@10=0.4381 ndcg@5=0.2974 mrr=0.2830 | next-activity acc=0.4686 f1=0.1861 | revisit(0.39) acc@1=0.505 explore acc@1=0.010 | cond: explore@1/@10=0.026/0.121 revisit@1=0.390 lat-explore@10=0.018 ptr@1=0.112 pi(exp/rev)=0.67/0.54 | STHGCN 0.293/0.400
+22:19:44 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:20:00 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+22:20:00 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+22:20:01 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+22:20:04 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.1441 acc@5=0.2971 acc@10=0.3352 ndcg@5=0.2246 mrr=0.2121 | next-activity acc=0.4138 f1=0.2414 | revisit(0.31) acc@1=0.468 explore acc@1=0.002 | cond: explore@1/@10=0.015/0.072 revisit@1=0.398 lat-explore@10=0.007 ptr@1=0.171 pi(exp/rev)=0.68/0.58 | STHGCN 0.223/0.308
+22:20:05 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:20:29 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+22:20:29 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+22:20:30 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+22:20:37 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.1292 acc@5=0.2759 acc@10=0.3201 ndcg@5=0.2059 mrr=0.1939 | next-activity acc=0.4223 f1=0.2022 | revisit(0.28) acc@1=0.461 explore acc@1=0.003 | cond: explore@1/@10=0.035/0.093 revisit@1=0.337 lat-explore@10=0.018 ptr@1=0.102 pi(exp/rev)=0.69/0.58 | STHGCN 0.219/0.302
+22:20:37 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+22:20:37 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+22:20:37 | INFO    | gemma.down |          tokyo zero_shot   0.151/0.245       nan/nan       nan/nan 0.250/0.350    0.497
+22:20:37 | INFO    | gemma.down |       shanghai zero_shot   0.111/0.173       nan/nan       nan/nan 0.193/0.264    0.381
+22:20:37 | INFO    | gemma.down |      palembang zero_shot   0.114/0.187       nan/nan       nan/nan 0.246/0.341    0.404
+22:20:37 | INFO    | gemma.down |      melbourne zero_shot   0.097/0.166       nan/nan       nan/nan 0.168/0.247    0.427
+22:20:37 | INFO    | gemma.down |         sydney zero_shot   0.119/0.188       nan/nan       nan/nan 0.227/0.307    0.431
+22:20:37 | INFO    | gemma.down |      tangerang zero_shot   0.202/0.297       nan/nan       nan/nan 0.293/0.400    0.469
+22:20:37 | INFO    | gemma.down |         moscow zero_shot   0.144/0.225       nan/nan       nan/nan 0.223/0.308    0.414
+22:20:37 | INFO    | gemma.down |        bandung zero_shot   0.129/0.206       nan/nan       nan/nan 0.219/0.302    0.422
+22:20:40 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+22:20:40 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+22:20:43 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+22:20:43 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+22:20:43 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=3 tag='_abl_hist3'
+22:20:43 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:20:46 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+22:20:46 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+22:20:46 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+22:20:47 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.1734 acc@5=0.3404 acc@10=0.4123 ndcg@5=0.2610 mrr=0.2528 | next-activity acc=0.4915 f1=0.2536 | revisit(0.38) acc@1=0.446 explore acc@1=0.005 | cond: explore@1/@10=0.027/0.121 revisit@1=0.416 lat-explore@10=0.000 ptr@1=0.202 pi(exp/rev)=0.71/0.59 | STHGCN 0.250/0.350
+22:20:47 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:20:49 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+22:20:49 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+22:20:49 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+22:20:50 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1057 acc@5=0.2491 acc@10=0.3094 ndcg@5=0.1790 mrr=0.1725 | next-activity acc=0.4038 f1=0.1868 | revisit(0.26) acc@1=0.386 explore acc@1=0.005 | cond: explore@1/@10=0.031/0.110 revisit@1=0.286 lat-explore@10=0.005 ptr@1=0.179 pi(exp/rev)=0.72/0.57 | STHGCN 0.193/0.264
+22:20:50 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:20:52 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+22:20:52 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+22:20:52 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+22:20:52 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.1344 acc@5=0.2791 acc@10=0.3463 ndcg@5=0.2091 mrr=0.2031 | next-activity acc=0.4018 f1=0.1558 | revisit(0.32) acc@1=0.412 explore acc@1=0.002 | cond: explore@1/@10=0.017/0.113 revisit@1=0.288 lat-explore@10=0.040 ptr@1=0.052 pi(exp/rev)=0.67/0.58 | STHGCN 0.246/0.341
+22:20:53 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:20:56 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+22:20:56 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+22:20:56 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+22:20:57 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1098 acc@5=0.2470 acc@10=0.2946 ndcg@5=0.1831 mrr=0.1752 | next-activity acc=0.4415 f1=0.1935 | revisit(0.28) acc@1=0.375 explore acc@1=0.008 | cond: explore@1/@10=0.017/0.077 revisit@1=0.326 lat-explore@10=0.001 ptr@1=0.087 pi(exp/rev)=0.73/0.59 | STHGCN 0.168/0.247
+22:20:57 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:21:02 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+22:21:02 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+22:21:02 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+22:21:03 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1338 acc@5=0.2729 acc@10=0.3335 ndcg@5=0.2062 mrr=0.2005 | next-activity acc=0.4523 f1=0.2362 | revisit(0.31) acc@1=0.424 explore acc@1=0.006 | cond: explore@1/@10=0.026/0.105 revisit@1=0.376 lat-explore@10=0.002 ptr@1=0.139 pi(exp/rev)=0.72/0.56 | STHGCN 0.227/0.307
+22:21:03 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:21:10 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+22:21:10 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+22:21:10 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+22:21:12 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.2250 acc@5=0.4098 acc@10=0.4650 ndcg@5=0.3222 mrr=0.3079 | next-activity acc=0.4848 f1=0.1964 | revisit(0.43) acc@1=0.512 explore acc@1=0.010 | cond: explore@1/@10=0.025/0.128 revisit@1=0.410 lat-explore@10=0.019 ptr@1=0.101 pi(exp/rev)=0.67/0.49 | STHGCN 0.293/0.400
+22:21:13 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:21:29 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+22:21:29 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+22:21:30 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+22:21:33 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.1579 acc@5=0.3134 acc@10=0.3616 ndcg@5=0.2393 mrr=0.2277 | next-activity acc=0.4219 f1=0.2548 | revisit(0.34) acc@1=0.463 explore acc@1=0.001 | cond: explore@1/@10=0.014/0.071 revisit@1=0.408 lat-explore@10=0.007 ptr@1=0.150 pi(exp/rev)=0.68/0.54 | STHGCN 0.223/0.308
+22:21:34 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:21:58 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+22:21:58 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+22:21:58 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+22:22:05 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.1441 acc@5=0.2901 acc@10=0.3472 ndcg@5=0.2211 mrr=0.2115 | next-activity acc=0.4376 f1=0.2137 | revisit(0.31) acc@1=0.454 explore acc@1=0.003 | cond: explore@1/@10=0.035/0.095 revisit@1=0.348 lat-explore@10=0.018 ptr@1=0.086 pi(exp/rev)=0.70/0.54 | STHGCN 0.219/0.302
+22:22:05 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+22:22:05 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+22:22:05 | INFO    | gemma.down |          tokyo zero_shot   0.173/0.261       nan/nan       nan/nan 0.250/0.350    0.492
+22:22:05 | INFO    | gemma.down |       shanghai zero_shot   0.106/0.179       nan/nan       nan/nan 0.193/0.264    0.404
+22:22:05 | INFO    | gemma.down |      palembang zero_shot   0.134/0.209       nan/nan       nan/nan 0.246/0.341    0.402
+22:22:05 | INFO    | gemma.down |      melbourne zero_shot   0.110/0.183       nan/nan       nan/nan 0.168/0.247    0.441
+22:22:05 | INFO    | gemma.down |         sydney zero_shot   0.134/0.206       nan/nan       nan/nan 0.227/0.307    0.452
+22:22:05 | INFO    | gemma.down |      tangerang zero_shot   0.225/0.322       nan/nan       nan/nan 0.293/0.400    0.485
+22:22:05 | INFO    | gemma.down |         moscow zero_shot   0.158/0.239       nan/nan       nan/nan 0.223/0.308    0.422
+22:22:05 | INFO    | gemma.down |        bandung zero_shot   0.144/0.221       nan/nan       nan/nan 0.219/0.302    0.438
+22:22:08 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+22:22:08 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+22:22:12 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+22:22:12 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+22:22:12 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=5 tag='_abl_hist5'
+22:22:12 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:22:14 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+22:22:14 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+22:22:15 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+22:22:16 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.1797 acc@5=0.3605 acc@10=0.4355 ndcg@5=0.2743 mrr=0.2639 | next-activity acc=0.4989 f1=0.2617 | revisit(0.42) acc@1=0.427 explore acc@1=0.004 | cond: explore@1/@10=0.029/0.116 revisit@1=0.410 lat-explore@10=0.000 ptr@1=0.186 pi(exp/rev)=0.70/0.55 | STHGCN 0.250/0.350
+22:22:16 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:22:18 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+22:22:18 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+22:22:18 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+22:22:18 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1264 acc@5=0.2755 acc@10=0.3415 ndcg@5=0.2018 mrr=0.1945 | next-activity acc=0.4283 f1=0.2183 | revisit(0.31) acc@1=0.390 explore acc@1=0.008 | cond: explore@1/@10=0.030/0.117 revisit@1=0.341 lat-explore@10=0.005 ptr@1=0.159 pi(exp/rev)=0.72/0.52 | STHGCN 0.193/0.264
+22:22:18 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:22:21 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+22:22:21 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+22:22:21 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+22:22:21 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.1589 acc@5=0.3114 acc@10=0.3876 ndcg@5=0.2362 mrr=0.2298 | next-activity acc=0.4328 f1=0.1793 | revisit(0.38) acc@1=0.412 explore acc@1=0.002 | cond: explore@1/@10=0.008/0.103 revisit@1=0.348 lat-explore@10=0.040 ptr@1=0.044 pi(exp/rev)=0.67/0.52 | STHGCN 0.246/0.341
+22:22:21 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:22:25 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+22:22:25 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+22:22:25 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+22:22:26 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1195 acc@5=0.2696 acc@10=0.3228 ndcg@5=0.1981 mrr=0.1890 | next-activity acc=0.4439 f1=0.1990 | revisit(0.33) acc@1=0.354 explore acc@1=0.004 | cond: explore@1/@10=0.011/0.064 revisit@1=0.288 lat-explore@10=0.001 ptr@1=0.066 pi(exp/rev)=0.73/0.56 | STHGCN 0.168/0.247
+22:22:26 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:22:31 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+22:22:31 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+22:22:31 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+22:22:32 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1608 acc@5=0.2837 acc@10=0.3539 ndcg@5=0.2246 mrr=0.2231 | next-activity acc=0.4589 f1=0.2458 | revisit(0.35) acc@1=0.444 explore acc@1=0.007 | cond: explore@1/@10=0.026/0.103 revisit@1=0.388 lat-explore@10=0.002 ptr@1=0.108 pi(exp/rev)=0.72/0.51 | STHGCN 0.227/0.307
+22:22:32 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:22:39 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+22:22:39 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+22:22:39 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+22:22:42 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.2443 acc@5=0.4399 acc@10=0.4995 ndcg@5=0.3468 mrr=0.3309 | next-activity acc=0.5070 f1=0.2141 | revisit(0.47) acc@1=0.505 explore acc@1=0.010 | cond: explore@1/@10=0.025/0.127 revisit@1=0.429 lat-explore@10=0.020 ptr@1=0.083 pi(exp/rev)=0.66/0.43 | STHGCN 0.293/0.400
+22:22:42 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:22:59 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+22:22:59 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+22:22:59 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+22:23:04 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.1662 acc@5=0.3275 acc@10=0.3839 ndcg@5=0.2515 mrr=0.2404 | next-activity acc=0.4332 f1=0.2599 | revisit(0.37) acc@1=0.445 explore acc@1=0.001 | cond: explore@1/@10=0.015/0.068 revisit@1=0.412 lat-explore@10=0.007 ptr@1=0.125 pi(exp/rev)=0.67/0.49 | STHGCN 0.223/0.308
+22:23:05 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:23:29 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+22:23:29 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+22:23:29 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+22:23:38 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.1637 acc@5=0.3083 acc@10=0.3717 ndcg@5=0.2398 mrr=0.2317 | next-activity acc=0.4490 f1=0.2204 | revisit(0.35) acc@1=0.457 explore acc@1=0.003 | cond: explore@1/@10=0.037/0.096 revisit@1=0.375 lat-explore@10=0.018 ptr@1=0.076 pi(exp/rev)=0.69/0.48 | STHGCN 0.219/0.302
+22:23:38 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+22:23:38 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+22:23:38 | INFO    | gemma.down |          tokyo zero_shot   0.180/0.274       nan/nan       nan/nan 0.250/0.350    0.499
+22:23:38 | INFO    | gemma.down |       shanghai zero_shot   0.126/0.202       nan/nan       nan/nan 0.193/0.264    0.428
+22:23:38 | INFO    | gemma.down |      palembang zero_shot   0.159/0.236       nan/nan       nan/nan 0.246/0.341    0.433
+22:23:38 | INFO    | gemma.down |      melbourne zero_shot   0.119/0.198       nan/nan       nan/nan 0.168/0.247    0.444
+22:23:38 | INFO    | gemma.down |         sydney zero_shot   0.161/0.225       nan/nan       nan/nan 0.227/0.307    0.459
+22:23:38 | INFO    | gemma.down |      tangerang zero_shot   0.244/0.347       nan/nan       nan/nan 0.293/0.400    0.507
+22:23:38 | INFO    | gemma.down |         moscow zero_shot   0.166/0.252       nan/nan       nan/nan 0.223/0.308    0.433
+22:23:38 | INFO    | gemma.down |        bandung zero_shot   0.164/0.240       nan/nan       nan/nan 0.219/0.302    0.449
+22:23:41 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+22:23:41 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+22:23:44 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+22:23:45 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+22:23:45 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=10 tag='_abl_hist10'
+22:23:45 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:23:47 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+22:23:47 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+22:23:47 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+22:23:49 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.1860 acc@5=0.3721 acc@10=0.4440 ndcg@5=0.2837 mrr=0.2728 | next-activity acc=0.4905 f1=0.2689 | revisit(0.43) acc@1=0.423 explore acc@1=0.004 | cond: explore@1/@10=0.026/0.123 revisit@1=0.401 lat-explore@10=0.000 ptr@1=0.148 pi(exp/rev)=0.70/0.52 | STHGCN 0.250/0.350
+22:23:49 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:23:51 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+22:23:51 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+22:23:51 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+22:23:51 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1396 acc@5=0.2906 acc@10=0.3547 ndcg@5=0.2174 mrr=0.2105 | next-activity acc=0.4189 f1=0.2050 | revisit(0.35) acc@1=0.382 explore acc@1=0.009 | cond: explore@1/@10=0.026/0.108 revisit@1=0.317 lat-explore@10=0.006 ptr@1=0.124 pi(exp/rev)=0.72/0.47 | STHGCN 0.193/0.264
+22:23:52 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:23:54 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+22:23:54 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+22:23:54 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+22:23:55 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.1680 acc@5=0.3295 acc@10=0.4057 ndcg@5=0.2531 mrr=0.2465 | next-activity acc=0.4160 f1=0.1732 | revisit(0.44) acc@1=0.379 explore acc@1=0.000 | cond: explore@1/@10=0.007/0.084 revisit@1=0.341 lat-explore@10=0.035 ptr@1=0.032 pi(exp/rev)=0.67/0.46 | STHGCN 0.246/0.341
+22:23:55 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:23:58 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+22:23:58 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+22:23:59 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+22:24:00 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1267 acc@5=0.2809 acc@10=0.3430 ndcg@5=0.2084 mrr=0.2007 | next-activity acc=0.4576 f1=0.2315 | revisit(0.37) acc@1=0.330 explore acc@1=0.005 | cond: explore@1/@10=0.013/0.070 revisit@1=0.296 lat-explore@10=0.001 ptr@1=0.054 pi(exp/rev)=0.72/0.51 | STHGCN 0.168/0.247
+22:24:00 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:24:04 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+22:24:04 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+22:24:05 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+22:24:06 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1656 acc@5=0.3113 acc@10=0.3797 ndcg@5=0.2413 mrr=0.2359 | next-activity acc=0.4721 f1=0.2683 | revisit(0.39) acc@1=0.413 explore acc@1=0.004 | cond: explore@1/@10=0.020/0.092 revisit@1=0.401 lat-explore@10=0.002 ptr@1=0.079 pi(exp/rev)=0.71/0.45 | STHGCN 0.227/0.307
+22:24:07 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:24:14 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+22:24:14 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+22:24:14 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+22:24:17 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.2594 acc@5=0.4492 acc@10=0.5210 ndcg@5=0.3597 mrr=0.3466 | next-activity acc=0.5170 f1=0.2241 | revisit(0.51) acc@1=0.500 explore acc@1=0.010 | cond: explore@1/@10=0.025/0.129 revisit@1=0.439 lat-explore@10=0.021 ptr@1=0.071 pi(exp/rev)=0.66/0.38 | STHGCN 0.293/0.400
+22:24:18 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:24:34 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+22:24:34 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+22:24:35 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+22:24:41 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.1729 acc@5=0.3340 acc@10=0.3954 ndcg@5=0.2579 mrr=0.2478 | next-activity acc=0.4403 f1=0.2636 | revisit(0.40) acc@1=0.434 explore acc@1=0.001 | cond: explore@1/@10=0.015/0.069 revisit@1=0.412 lat-explore@10=0.007 ptr@1=0.113 pi(exp/rev)=0.67/0.44 | STHGCN 0.223/0.308
+22:24:42 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:25:06 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+22:25:06 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+22:25:07 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+22:25:18 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.1729 acc@5=0.3237 acc@10=0.3848 ndcg@5=0.2524 mrr=0.2440 | next-activity acc=0.4605 f1=0.2251 | revisit(0.40) acc@1=0.434 explore acc@1=0.002 | cond: explore@1/@10=0.035/0.095 revisit@1=0.381 lat-explore@10=0.017 ptr@1=0.065 pi(exp/rev)=0.69/0.43 | STHGCN 0.219/0.302
+22:25:18 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+22:25:18 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+22:25:18 | INFO    | gemma.down |          tokyo zero_shot   0.186/0.284       nan/nan       nan/nan 0.250/0.350    0.490
+22:25:18 | INFO    | gemma.down |       shanghai zero_shot   0.140/0.217       nan/nan       nan/nan 0.193/0.264    0.419
+22:25:18 | INFO    | gemma.down |      palembang zero_shot   0.168/0.253       nan/nan       nan/nan 0.246/0.341    0.416
+22:25:18 | INFO    | gemma.down |      melbourne zero_shot   0.127/0.208       nan/nan       nan/nan 0.168/0.247    0.458
+22:25:18 | INFO    | gemma.down |         sydney zero_shot   0.166/0.241       nan/nan       nan/nan 0.227/0.307    0.472
+22:25:18 | INFO    | gemma.down |      tangerang zero_shot   0.259/0.360       nan/nan       nan/nan 0.293/0.400    0.517
+22:25:18 | INFO    | gemma.down |         moscow zero_shot   0.173/0.258       nan/nan       nan/nan 0.223/0.308    0.440
+22:25:18 | INFO    | gemma.down |        bandung zero_shot   0.173/0.252       nan/nan       nan/nan 0.219/0.302    0.461
+22:25:21 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+22:25:21 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+22:25:25 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+22:25:25 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+22:25:25 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=20 tag='_abl_hist20'
+22:25:25 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:25:27 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+22:25:27 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+22:25:27 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+22:25:29 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.1903 acc@5=0.3732 acc@10=0.4535 ndcg@5=0.2857 mrr=0.2759 | next-activity acc=0.5021 f1=0.2665 | revisit(0.44) acc@1=0.424 explore acc@1=0.004 | cond: explore@1/@10=0.027/0.120 revisit@1=0.412 lat-explore@10=0.000 ptr@1=0.144 pi(exp/rev)=0.69/0.50 | STHGCN 0.250/0.350
+22:25:29 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:25:31 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+22:25:31 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+22:25:31 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+22:25:32 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1264 acc@5=0.3000 acc@10=0.3547 ndcg@5=0.2184 mrr=0.2077 | next-activity acc=0.4151 f1=0.1988 | revisit(0.37) acc@1=0.323 explore acc@1=0.009 | cond: explore@1/@10=0.027/0.102 revisit@1=0.313 lat-explore@10=0.006 ptr@1=0.124 pi(exp/rev)=0.71/0.45 | STHGCN 0.193/0.264
+22:25:32 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:25:34 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+22:25:34 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+22:25:34 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+22:25:36 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.1718 acc@5=0.3398 acc@10=0.4057 ndcg@5=0.2589 mrr=0.2507 | next-activity acc=0.4173 f1=0.1772 | revisit(0.47) acc@1=0.364 explore acc@1=0.000 | cond: explore@1/@10=0.007/0.090 revisit@1=0.342 lat-explore@10=0.029 ptr@1=0.028 pi(exp/rev)=0.66/0.43 | STHGCN 0.246/0.341
+22:25:36 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:25:39 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+22:25:39 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+22:25:39 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+22:25:41 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1219 acc@5=0.2833 acc@10=0.3487 ndcg@5=0.2081 mrr=0.1997 | next-activity acc=0.4576 f1=0.2361 | revisit(0.39) acc@1=0.305 explore acc@1=0.005 | cond: explore@1/@10=0.012/0.073 revisit@1=0.284 lat-explore@10=0.001 ptr@1=0.058 pi(exp/rev)=0.71/0.48 | STHGCN 0.168/0.247
+22:25:41 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:25:46 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+22:25:46 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+22:25:46 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+22:25:48 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1656 acc@5=0.3167 acc@10=0.3905 ndcg@5=0.2451 mrr=0.2398 | next-activity acc=0.4709 f1=0.2655 | revisit(0.42) acc@1=0.390 explore acc@1=0.004 | cond: explore@1/@10=0.021/0.099 revisit@1=0.393 lat-explore@10=0.002 ptr@1=0.072 pi(exp/rev)=0.70/0.41 | STHGCN 0.227/0.307
+22:25:48 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:25:55 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+22:25:55 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+22:25:56 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+22:26:00 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.2612 acc@5=0.4525 acc@10=0.5224 ndcg@5=0.3626 mrr=0.3493 | next-activity acc=0.5217 f1=0.2254 | revisit(0.52) acc@1=0.491 explore acc@1=0.011 | cond: explore@1/@10=0.026/0.131 revisit@1=0.437 lat-explore@10=0.023 ptr@1=0.068 pi(exp/rev)=0.66/0.35 | STHGCN 0.293/0.400
+22:26:00 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:26:17 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+22:26:17 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+22:26:17 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+22:26:26 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.1743 acc@5=0.3356 acc@10=0.3971 ndcg@5=0.2597 mrr=0.2498 | next-activity acc=0.4415 f1=0.2673 | revisit(0.41) acc@1=0.428 explore acc@1=0.001 | cond: explore@1/@10=0.015/0.069 revisit@1=0.408 lat-explore@10=0.007 ptr@1=0.108 pi(exp/rev)=0.67/0.43 | STHGCN 0.223/0.308
+22:26:26 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:26:50 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+22:26:50 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+22:26:51 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+22:27:06 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.1744 acc@5=0.3268 acc@10=0.3879 ndcg@5=0.2551 mrr=0.2468 | next-activity acc=0.4629 f1=0.2344 | revisit(0.41) acc@1=0.419 explore acc@1=0.002 | cond: explore@1/@10=0.033/0.094 revisit@1=0.371 lat-explore@10=0.016 ptr@1=0.063 pi(exp/rev)=0.68/0.40 | STHGCN 0.219/0.302
+22:27:06 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+22:27:06 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+22:27:06 | INFO    | gemma.down |          tokyo zero_shot   0.190/0.286       nan/nan       nan/nan 0.250/0.350    0.502
+22:27:06 | INFO    | gemma.down |       shanghai zero_shot   0.126/0.218       nan/nan       nan/nan 0.193/0.264    0.415
+22:27:06 | INFO    | gemma.down |      palembang zero_shot   0.172/0.259       nan/nan       nan/nan 0.246/0.341    0.417
+22:27:06 | INFO    | gemma.down |      melbourne zero_shot   0.122/0.208       nan/nan       nan/nan 0.168/0.247    0.458
+22:27:06 | INFO    | gemma.down |         sydney zero_shot   0.166/0.245       nan/nan       nan/nan 0.227/0.307    0.471
+22:27:06 | INFO    | gemma.down |      tangerang zero_shot   0.261/0.363       nan/nan       nan/nan 0.293/0.400    0.522
+22:27:06 | INFO    | gemma.down |         moscow zero_shot   0.174/0.260       nan/nan       nan/nan 0.223/0.308    0.442
+22:27:06 | INFO    | gemma.down |        bandung zero_shot   0.174/0.255       nan/nan       nan/nan 0.219/0.302    0.463
+22:27:09 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=0 | GPUs visible to torch=1
+22:27:09 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+22:27:13 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+22:27:13 | INFO    | gemma.down | source-city realizer: runs/v6_s0/zs_hrem.pt
+22:27:13 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=50 tag='_abl_hist50'
+22:27:13 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:27:15 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+22:27:15 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+22:27:16 | INFO    | gemma.down | [tokyo/zero_shot] protocol=sthgcn split=test: scoring 946/1097 targets
+22:27:17 | INFO    | gemma.down | [tokyo/zero_shot] FULL-VOCAB acc@1=0.1903 acc@5=0.3742 acc@10=0.4535 ndcg@5=0.2866 mrr=0.2766 | next-activity acc=0.5021 f1=0.2672 | revisit(0.45) acc@1=0.423 explore acc@1=0.004 | cond: explore@1/@10=0.027/0.120 revisit@1=0.416 lat-explore@10=0.000 ptr@1=0.144 pi(exp/rev)=0.69/0.49 | STHGCN 0.250/0.350
+22:27:17 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:27:19 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+22:27:19 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+22:27:19 | INFO    | gemma.down | [shanghai/zero_shot] protocol=sthgcn split=test: scoring 530/728 targets
+22:27:20 | INFO    | gemma.down | [shanghai/zero_shot] FULL-VOCAB acc@1=0.1283 acc@5=0.3038 acc@10=0.3547 ndcg@5=0.2206 mrr=0.2092 | next-activity acc=0.4151 f1=0.2006 | revisit(0.39) acc@1=0.316 explore acc@1=0.009 | cond: explore@1/@10=0.028/0.108 revisit@1=0.311 lat-explore@10=0.006 ptr@1=0.124 pi(exp/rev)=0.71/0.43 | STHGCN 0.193/0.264
+22:27:20 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:27:22 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+22:27:22 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+22:27:22 | INFO    | gemma.down | [palembang/zero_shot] protocol=sthgcn split=test: scoring 774/940 targets
+22:27:24 | INFO    | gemma.down | [palembang/zero_shot] FULL-VOCAB acc@1=0.1770 acc@5=0.3398 acc@10=0.4160 ndcg@5=0.2616 mrr=0.2549 | next-activity acc=0.4147 f1=0.1775 | revisit(0.49) acc@1=0.364 explore acc@1=0.000 | cond: explore@1/@10=0.008/0.093 revisit@1=0.343 lat-explore@10=0.030 ptr@1=0.028 pi(exp/rev)=0.65/0.41 | STHGCN 0.246/0.341
+22:27:24 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:27:27 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+22:27:27 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+22:27:27 | INFO    | gemma.down | [melbourne/zero_shot] protocol=sthgcn split=test: scoring 1239/1573 targets
+22:27:29 | INFO    | gemma.down | [melbourne/zero_shot] FULL-VOCAB acc@1=0.1203 acc@5=0.2825 acc@10=0.3495 ndcg@5=0.2073 mrr=0.1989 | next-activity acc=0.4592 f1=0.2347 | revisit(0.39) acc@1=0.298 explore acc@1=0.005 | cond: explore@1/@10=0.012/0.074 revisit@1=0.281 lat-explore@10=0.001 ptr@1=0.058 pi(exp/rev)=0.70/0.48 | STHGCN 0.168/0.247
+22:27:29 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:27:34 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+22:27:34 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+22:27:34 | INFO    | gemma.down | [sydney/zero_shot] protocol=sthgcn split=test: scoring 1667/2030 targets
+22:27:36 | INFO    | gemma.down | [sydney/zero_shot] FULL-VOCAB acc@1=0.1662 acc@5=0.3191 acc@10=0.3917 ndcg@5=0.2462 mrr=0.2404 | next-activity acc=0.4691 f1=0.2676 | revisit(0.43) acc@1=0.382 explore acc@1=0.004 | cond: explore@1/@10=0.019/0.100 revisit@1=0.387 lat-explore@10=0.002 ptr@1=0.072 pi(exp/rev)=0.70/0.39 | STHGCN 0.227/0.307
+22:27:36 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:27:43 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+22:27:43 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+22:27:44 | INFO    | gemma.down | [tangerang/zero_shot] protocol=sthgcn split=test: scoring 2787/3197 targets
+22:27:48 | INFO    | gemma.down | [tangerang/zero_shot] FULL-VOCAB acc@1=0.2616 acc@5=0.4543 acc@10=0.5228 ndcg@5=0.3636 mrr=0.3500 | next-activity acc=0.5217 f1=0.2263 | revisit(0.53) acc@1=0.486 explore acc@1=0.011 | cond: explore@1/@10=0.027/0.131 revisit@1=0.431 lat-explore@10=0.022 ptr@1=0.068 pi(exp/rev)=0.66/0.34 | STHGCN 0.293/0.400
+22:27:48 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:28:04 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+22:28:04 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+22:28:05 | INFO    | gemma.down | [moscow/zero_shot] protocol=sthgcn split=test: scoring 7288/7897 targets
+22:28:13 | INFO    | gemma.down | [moscow/zero_shot] FULL-VOCAB acc@1=0.1749 acc@5=0.3355 acc@10=0.3963 ndcg@5=0.2600 mrr=0.2504 | next-activity acc=0.4414 f1=0.2661 | revisit(0.41) acc@1=0.427 explore acc@1=0.001 | cond: explore@1/@10=0.016/0.069 revisit@1=0.409 lat-explore@10=0.007 ptr@1=0.108 pi(exp/rev)=0.67/0.42 | STHGCN 0.223/0.308
+22:28:14 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+22:28:38 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+22:28:38 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+22:28:38 | INFO    | gemma.down | [bandung/zero_shot] protocol=sthgcn split=test: scoring 9913/11067 targets
+22:28:54 | INFO    | gemma.down | [bandung/zero_shot] FULL-VOCAB acc@1=0.1744 acc@5=0.3270 acc@10=0.3896 ndcg@5=0.2550 mrr=0.2469 | next-activity acc=0.4633 f1=0.2368 | revisit(0.42) acc@1=0.410 explore acc@1=0.002 | cond: explore@1/@10=0.033/0.094 revisit@1=0.364 lat-explore@10=0.016 ptr@1=0.063 pi(exp/rev)=0.68/0.39 | STHGCN 0.219/0.302
+22:28:54 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+22:28:54 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+22:28:54 | INFO    | gemma.down |          tokyo zero_shot   0.190/0.287       nan/nan       nan/nan 0.250/0.350    0.502
+22:28:54 | INFO    | gemma.down |       shanghai zero_shot   0.128/0.221       nan/nan       nan/nan 0.193/0.264    0.415
+22:28:54 | INFO    | gemma.down |      palembang zero_shot   0.177/0.262       nan/nan       nan/nan 0.246/0.341    0.415
+22:28:54 | INFO    | gemma.down |      melbourne zero_shot   0.120/0.207       nan/nan       nan/nan 0.168/0.247    0.459
+22:28:54 | INFO    | gemma.down |         sydney zero_shot   0.166/0.246       nan/nan       nan/nan 0.227/0.307    0.469
+22:28:54 | INFO    | gemma.down |      tangerang zero_shot   0.262/0.364       nan/nan       nan/nan 0.293/0.400    0.522
+22:28:54 | INFO    | gemma.down |         moscow zero_shot   0.175/0.260       nan/nan       nan/nan 0.223/0.308    0.441
+22:28:54 | INFO    | gemma.down |        bandung zero_shot   0.174/0.255       nan/nan       nan/nan 0.219/0.302    0.463

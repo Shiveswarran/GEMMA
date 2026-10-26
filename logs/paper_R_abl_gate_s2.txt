@@ -1,0 +1,16 @@
+         city      n  STHGCN |                full_s2 |             gateNoS_s2 |      gateNoPersonal_s2 |           gateConst_s2
+--------------------------------------------------------------------------------------------------------------------------------
+        tokyo    946   0.250 | 0.258/0.364=         | 0.248/0.343= d-0.010 | 0.249/0.359= d-0.008 | 0.249/0.358= d-0.008
+     shanghai    530   0.193 | 0.166/0.263=         | 0.168/0.256= d+0.002 | 0.168/0.258= d+0.002 | 0.177/0.264= d+0.011
+    palembang    774   0.246 | 0.245/0.343=         | 0.249/0.331= d+0.004 | 0.252/0.336= d+0.006 | 0.235/0.328= d-0.010
+    melbourne   1239   0.168 | 0.165/0.250=         | 0.153/0.238= d-0.013* | 0.151/0.235= d-0.015* | 0.149/0.232= d-0.017*
+       sydney   1667   0.227 | 0.199/0.286<         | 0.189/0.268< d-0.010* | 0.200/0.278< d+0.001 | 0.196/0.279< d-0.002
+    tangerang   2787   0.293 | 0.319/0.436>         | 0.316/0.433> d-0.002 | 0.310/0.429= d-0.009* | 0.304/0.420= d-0.014*
+       moscow   7288   0.223 | 0.218/0.314=         | 0.217/0.311= d-0.001 | 0.217/0.313= d-0.001 | 0.214/0.310= d-0.004
+      bandung   9913   0.219 | 0.214/0.296=         | 0.215/0.297= d+0.001 | 0.210/0.291< d-0.004* | 0.205/0.285< d-0.009*
+--------------------------------------------------------------------------------------------------------------------------------
+   full_s2: macro Acc@1 0.2230 (STHGCN 0.2274, -0.0044) NDCG@5 0.3189 | above STHGCN 2/8, significantly above 1, significantly below 1
+gateNoS_s2: macro Acc@1 0.2195 (STHGCN 0.2274, -0.0079) NDCG@5 0.3097 | above STHGCN 2/8, significantly above 1, significantly below 1
+gateNoPersonal_s2: macro Acc@1 0.2196 (STHGCN 0.2274, -0.0078) NDCG@5 0.3122 | above STHGCN 2/8, significantly above 0, significantly below 2
+gateConst_s2: macro Acc@1 0.2163 (STHGCN 0.2274, -0.0111) NDCG@5 0.3096 | above STHGCN 1/8, significantly above 0, significantly below 2
+legend: '>' / '<' = z-test vs published STHGCN Acc@1 at 95%;  d = paired Acc@1 difference vs baseline 'full_s2', '*' = 95% bootstrap CI excludes 0

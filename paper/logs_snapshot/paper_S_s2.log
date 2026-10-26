@@ -1,0 +1,255 @@
+19:13:54 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=<unset> | GPUs visible to torch=1
+19:13:54 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+19:13:58 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+19:13:58 | INFO    | gemma.down | source-city realizer: runs/v6_s2/zs_hrem.pt
+19:13:58 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=-1 tag='_v6src'
+19:14:01 | INFO    | gemma.down | [istanbul] 62621/544471 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+19:15:27 | INFO    | gemma.down | [istanbul] loaded semantic codes (4 levels) for 36403 POIs
+19:15:27 | INFO    | gemma.down | [istanbul] trails train=151487 val=21641 test=43283 | POIs (all splits) = 42795
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+19:15:31 | INFO    | gemma.down | [istanbul/full] fine-tune on 229499 next-step queries from 151487 trajectories (visible=173128)
+19:15:32 | INFO    | gemma.down | [istanbul/full] device=cuda amp=torch.float16 steps/epoch=1793 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+19:15:37 | INFO    | gemma.down | [istanbul/full] val@init: acc@1=0.1690 acc@5=0.3610 act@1=0.492  *best
+19:16:44 | INFO    | gemma.down | [istanbul/full] ep0 step 200/1793 loss=6.4750 (0.33s/step, epoch ETA 8.8 min) 
+19:17:49 | INFO    | gemma.down | [istanbul/full] ep0 step 400/1793 loss=6.3878 (0.33s/step, epoch ETA 7.7 min) 
+19:18:28 | INFO    | gemma.down | [istanbul/full] val@ep0-step500: acc@1=0.1853 acc@5=0.3783 act@1=0.508  *best
+19:19:01 | INFO    | gemma.down | [istanbul/full] ep0 step 600/1793 loss=6.3756 (0.34s/step, epoch ETA 6.7 min) 
+19:20:09 | INFO    | gemma.down | [istanbul/full] ep0 step 800/1793 loss=6.3274 (0.34s/step, epoch ETA 5.6 min) 
+19:21:15 | INFO    | gemma.down | [istanbul/full] ep0 step 1000/1793 loss=6.3300 (0.34s/step, epoch ETA 4.5 min) 
+19:21:20 | INFO    | gemma.down | [istanbul/full] val@ep0-step1000: acc@1=0.1840 acc@5=0.3813 act@1=0.502
+19:22:27 | INFO    | gemma.down | [istanbul/full] ep0 step 1200/1793 loss=6.2956 (0.34s/step, epoch ETA 3.4 min) 
+19:23:32 | INFO    | gemma.down | [istanbul/full] ep0 step 1400/1793 loss=6.3394 (0.34s/step, epoch ETA 2.2 min) 
+19:24:10 | INFO    | gemma.down | [istanbul/full] val@ep0-step1500: acc@1=0.1897 acc@5=0.3833 act@1=0.511  *best
+19:24:45 | INFO    | gemma.down | [istanbul/full] ep0 step 1600/1793 loss=6.3001 (0.34s/step, epoch ETA 1.1 min) 
+19:25:50 | INFO    | gemma.down | [istanbul/full] ft epoch 0 loss=6.3461 (612s) | ret[hist=0.65 prefix=0.20 is_last=-1.58 ptrans=1.05 tod=0.45 dow=0.38 rec=1.22 geo=0.48 lptr=0.03] exp[hier=0.32 geo=1.08 anchor=0.50 covis=0.85 pop=0.41 hour=0.27] gate[nov=0.75 logS=-0.33 pref=0.85] tau=8.4
+19:25:55 | INFO    | gemma.down | [istanbul/full] val@ep0-end: acc@1=0.1930 acc@5=0.3827 act@1=0.512  *best
+19:26:56 | INFO    | gemma.down | [istanbul/full] ep1 step 200/1793 loss=6.2037 (0.31s/step, epoch ETA 8.1 min) 
+19:27:59 | INFO    | gemma.down | [istanbul/full] ep1 step 400/1793 loss=6.1689 (0.31s/step, epoch ETA 7.2 min) 
+19:28:34 | INFO    | gemma.down | [istanbul/full] val@ep1-step500: acc@1=0.1940 acc@5=0.3863 act@1=0.502  *best
+19:29:06 | INFO    | gemma.down | [istanbul/full] ep1 step 600/1793 loss=6.1153 (0.32s/step, epoch ETA 6.4 min) 
+19:30:13 | INFO    | gemma.down | [istanbul/full] ep1 step 800/1793 loss=6.0879 (0.32s/step, epoch ETA 5.3 min) 
+19:31:19 | INFO    | gemma.down | [istanbul/full] ep1 step 1000/1793 loss=6.0116 (0.32s/step, epoch ETA 4.3 min) 
+19:31:24 | INFO    | gemma.down | [istanbul/full] val@ep1-step1000: acc@1=0.1913 acc@5=0.3803 act@1=0.508
+19:32:30 | INFO    | gemma.down | [istanbul/full] ep1 step 1200/1793 loss=6.0344 (0.33s/step, epoch ETA 3.3 min) 
+19:33:37 | INFO    | gemma.down | [istanbul/full] ep1 step 1400/1793 loss=6.0309 (0.33s/step, epoch ETA 2.2 min) 
+19:34:14 | INFO    | gemma.down | [istanbul/full] val@ep1-step1500: acc@1=0.1993 acc@5=0.3860 act@1=0.509  *best
+19:34:45 | INFO    | gemma.down | [istanbul/full] ep1 step 1600/1793 loss=5.9708 (0.33s/step, epoch ETA 1.1 min) 
+19:35:46 | INFO    | gemma.down | [istanbul/full] ft epoch 1 loss=6.0685 (591s) | ret[hist=0.50 prefix=0.14 is_last=-2.51 ptrans=1.00 tod=0.43 dow=0.43 rec=1.30 geo=0.79 lptr=0.03] exp[hier=0.25 geo=1.41 anchor=0.58 covis=0.66 pop=0.37 hour=0.25] gate[nov=0.63 logS=-0.31 pref=0.85] tau=16.9
+19:35:50 | INFO    | gemma.down | [istanbul/full] val@ep1-end: acc@1=0.1967 acc@5=0.3857 act@1=0.505
+19:36:51 | INFO    | gemma.down | [istanbul/full] ep2 step 200/1793 loss=4.9034 (0.31s/step, epoch ETA 8.1 min) 
+19:37:53 | INFO    | gemma.down | [istanbul/full] ep2 step 400/1793 loss=4.8357 (0.31s/step, epoch ETA 7.2 min) 
+19:38:29 | INFO    | gemma.down | [istanbul/full] val@ep2-step500: acc@1=0.1787 acc@5=0.3570 act@1=0.507
+19:39:01 | INFO    | gemma.down | [istanbul/full] ep2 step 600/1793 loss=4.8586 (0.32s/step, epoch ETA 6.3 min) 
+19:40:03 | INFO    | gemma.down | [istanbul/full] ep2 step 800/1793 loss=4.8929 (0.32s/step, epoch ETA 5.2 min) 
+19:41:05 | INFO    | gemma.down | [istanbul/full] ep2 step 1000/1793 loss=4.9552 (0.32s/step, epoch ETA 4.2 min) 
+19:41:09 | INFO    | gemma.down | [istanbul/full] val@ep2-step1000: acc@1=0.1823 acc@5=0.3637 act@1=0.506
+19:41:09 | INFO    | gemma.down | [istanbul/full] ft epoch 2 loss=4.8892 (319s) | ret[hist=0.47 prefix=0.15 is_last=-2.73 ptrans=1.00 tod=0.44 dow=0.45 rec=1.30 geo=0.83 lptr=0.03] exp[hier=0.24 geo=1.47 anchor=0.59 covis=0.68 pop=0.33 hour=0.25] gate[nov=0.56 logS=-0.32 pref=0.85] tau=32.2
+19:41:09 | INFO    | gemma.down | [istanbul/full] early stop in epoch 2
+19:41:09 | INFO    | gemma.down | [istanbul/full] restored best checkpoint (val acc@1=0.1993)
+19:41:10 | INFO    | gemma.down | [istanbul/full] protocol=sthgcn split=test: scoring 41150/43283 targets
+19:42:11 | INFO    | gemma.down | [istanbul/full (source)] FULL-VOCAB acc@1=0.1984 acc@5=0.3898 acc@10=0.4772 ndcg@5=0.2986 mrr=0.2910 | next-activity acc=0.4987 f1=0.2700 | revisit(0.50) acc@1=0.378 explore acc@1=0.015 | cond: explore@1/@10=0.040/0.190 revisit@1=0.379 lat-explore@10=0.013 ptr@1=0.214 pi(exp/rev)=0.63/0.36 | STHGCN 0.241/0.318
+19:42:14 | INFO    | gemma.down | [petaling_jaya] 62774/506430 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+19:43:30 | INFO    | gemma.down | [petaling_jaya] loaded semantic codes (4 levels) for 45631 POIs
+19:43:30 | INFO    | gemma.down | [petaling_jaya] trails train=126287 val=18041 test=36082 | POIs (all splits) = 53650
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+19:43:34 | INFO    | gemma.down | [petaling_jaya/full] fine-tune on 228530 next-step queries from 126287 trajectories (visible=144328)
+19:43:34 | INFO    | gemma.down | [petaling_jaya/full] device=cuda amp=torch.float16 steps/epoch=1786 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+19:43:40 | INFO    | gemma.down | [petaling_jaya/full] val@init: acc@1=0.1540 acc@5=0.3187 act@1=0.466  *best
+19:45:15 | INFO    | gemma.down | [petaling_jaya/full] ep0 step 200/1786 loss=7.1370 (0.47s/step, epoch ETA 12.5 min) 
+19:46:49 | INFO    | gemma.down | [petaling_jaya/full] ep0 step 400/1786 loss=7.0401 (0.47s/step, epoch ETA 10.9 min) 
+19:47:43 | INFO    | gemma.down | [petaling_jaya/full] val@ep0-step500: acc@1=0.1560 acc@5=0.3297 act@1=0.474  *best
+19:48:30 | INFO    | gemma.down | [petaling_jaya/full] ep0 step 600/1786 loss=7.0445 (0.48s/step, epoch ETA 9.5 min) 
+19:50:05 | INFO    | gemma.down | [petaling_jaya/full] ep0 step 800/1786 loss=7.0699 (0.48s/step, epoch ETA 7.9 min) 
+19:51:39 | INFO    | gemma.down | [petaling_jaya/full] ep0 step 1000/1786 loss=7.0391 (0.48s/step, epoch ETA 6.3 min) 
+19:51:45 | INFO    | gemma.down | [petaling_jaya/full] val@ep0-step1000: acc@1=0.1637 acc@5=0.3370 act@1=0.480  *best
+19:53:20 | INFO    | gemma.down | [petaling_jaya/full] ep0 step 1200/1786 loss=7.0245 (0.48s/step, epoch ETA 4.7 min) 
+19:54:55 | INFO    | gemma.down | [petaling_jaya/full] ep0 step 1400/1786 loss=7.0194 (0.48s/step, epoch ETA 3.1 min) 
+19:55:49 | INFO    | gemma.down | [petaling_jaya/full] val@ep0-step1500: acc@1=0.1600 acc@5=0.3413 act@1=0.455
+19:56:35 | INFO    | gemma.down | [petaling_jaya/full] ep0 step 1600/1786 loss=6.9989 (0.48s/step, epoch ETA 1.5 min) 
+19:58:03 | INFO    | gemma.down | [petaling_jaya/full] ft epoch 0 loss=7.0453 (862s) | ret[hist=0.58 prefix=0.13 is_last=-1.80 ptrans=1.02 tod=0.46 dow=0.42 rec=1.28 geo=0.44 lptr=0.02] exp[hier=0.35 geo=1.11 anchor=0.57 covis=0.95 pop=0.42 hour=0.26] gate[nov=0.74 logS=-0.31 pref=0.87] tau=8.4
+19:58:09 | INFO    | gemma.down | [petaling_jaya/full] val@ep0-end: acc@1=0.1617 acc@5=0.3340 act@1=0.475
+19:59:43 | INFO    | gemma.down | [petaling_jaya/full] ep1 step 200/1786 loss=6.8925 (0.47s/step, epoch ETA 12.4 min) 
+20:01:16 | INFO    | gemma.down | [petaling_jaya/full] ep1 step 400/1786 loss=6.8406 (0.47s/step, epoch ETA 10.8 min) 
+20:02:09 | INFO    | gemma.down | [petaling_jaya/full] val@ep1-step500: acc@1=0.1630 acc@5=0.3383 act@1=0.475
+20:02:09 | INFO    | gemma.down | [petaling_jaya/full] ft epoch 1 loss=6.8602 (240s) | ret[hist=0.54 prefix=0.13 is_last=-1.95 ptrans=1.03 tod=0.45 dow=0.44 rec=1.26 geo=0.47 lptr=0.03] exp[hier=0.35 geo=1.15 anchor=0.60 covis=0.92 pop=0.39 hour=0.24] gate[nov=0.73 logS=-0.29 pref=0.86] tau=12.3
+20:02:09 | INFO    | gemma.down | [petaling_jaya/full] early stop in epoch 1
+20:02:09 | INFO    | gemma.down | [petaling_jaya/full] restored best checkpoint (val acc@1=0.1637)
+20:02:10 | INFO    | gemma.down | [petaling_jaya/full] protocol=sthgcn split=test: scoring 33889/36082 targets
+20:03:13 | INFO    | gemma.down | [petaling_jaya/full (source)] FULL-VOCAB acc@1=0.1559 acc@5=0.3137 acc@10=0.3946 ndcg@5=0.2384 mrr=0.2359 | next-activity acc=0.4837 f1=0.2102 | revisit(0.44) acc@1=0.322 explore acc@1=0.023 | cond: explore@1/@10=0.054/0.194 revisit@1=0.323 lat-explore@10=0.026 ptr@1=0.214 pi(exp/rev)=0.67/0.39 | STHGCN 0.174/0.241
+20:03:16 | INFO    | gemma.down | [jakarta] 78909/412100 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:04:15 | INFO    | gemma.down | [jakarta] loaded semantic codes (4 levels) for 58938 POIs
+20:04:15 | INFO    | gemma.down | [jakarta] trails train=96176 val=13740 test=27480 | POIs (all splits) = 71150
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+20:04:18 | INFO    | gemma.down | [jakarta/full] fine-tune on 192163 next-step queries from 96176 trajectories (visible=109916)
+20:04:18 | INFO    | gemma.down | [jakarta/full] device=cuda amp=torch.float16 steps/epoch=1502 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+20:04:28 | INFO    | gemma.down | [jakarta/full] val@init: acc@1=0.2080 acc@5=0.3773 act@1=0.468  *best
+20:06:29 | INFO    | gemma.down | [jakarta/full] ep0 step 200/1502 loss=7.3553 (0.61s/step, epoch ETA 13.2 min) 
+20:08:31 | INFO    | gemma.down | [jakarta/full] ep0 step 400/1502 loss=7.2793 (0.61s/step, epoch ETA 11.2 min) 
+20:09:42 | INFO    | gemma.down | [jakarta/full] val@ep0-step500: acc@1=0.2160 acc@5=0.3890 act@1=0.476  *best
+20:10:43 | INFO    | gemma.down | [jakarta/full] ep0 step 600/1502 loss=7.2403 (0.62s/step, epoch ETA 9.4 min) 
+20:12:44 | INFO    | gemma.down | [jakarta/full] ep0 step 800/1502 loss=7.2193 (0.62s/step, epoch ETA 7.3 min) 
+20:14:47 | INFO    | gemma.down | [jakarta/full] ep0 step 1000/1502 loss=7.2858 (0.62s/step, epoch ETA 5.2 min) 
+20:14:56 | INFO    | gemma.down | [jakarta/full] val@ep0-step1000: acc@1=0.2127 acc@5=0.3903 act@1=0.475
+20:16:58 | INFO    | gemma.down | [jakarta/full] ep0 step 1200/1502 loss=7.2630 (0.63s/step, epoch ETA 3.1 min) 
+20:19:00 | INFO    | gemma.down | [jakarta/full] ep0 step 1400/1502 loss=7.2113 (0.62s/step, epoch ETA 1.1 min) 
+20:20:10 | INFO    | gemma.down | [jakarta/full] val@ep0-step1500: acc@1=0.2160 acc@5=0.3893 act@1=0.479
+20:20:11 | INFO    | gemma.down | [jakarta/full] ft epoch 0 loss=7.2609 (943s) | ret[hist=0.50 prefix=0.20 is_last=-1.92 ptrans=1.00 tod=0.48 dow=0.41 rec=1.26 geo=0.45 lptr=0.01] exp[hier=0.37 geo=1.14 anchor=0.59 covis=1.01 pop=0.35 hour=0.26] gate[nov=0.82 logS=-0.24 pref=0.86] tau=8.7
+20:20:20 | INFO    | gemma.down | [jakarta/full] val@ep0-end: acc@1=0.2167 acc@5=0.3887 act@1=0.481  *best
+20:22:22 | INFO    | gemma.down | [jakarta/full] ep1 step 200/1502 loss=7.0741 (0.61s/step, epoch ETA 13.2 min) 
+20:24:24 | INFO    | gemma.down | [jakarta/full] ep1 step 400/1502 loss=7.0657 (0.61s/step, epoch ETA 11.2 min) 
+20:25:34 | INFO    | gemma.down | [jakarta/full] val@ep1-step500: acc@1=0.2153 acc@5=0.3913 act@1=0.475
+20:26:34 | INFO    | gemma.down | [jakarta/full] ep1 step 600/1502 loss=7.0217 (0.62s/step, epoch ETA 9.4 min) 
+20:28:36 | INFO    | gemma.down | [jakarta/full] ep1 step 800/1502 loss=7.0379 (0.62s/step, epoch ETA 7.2 min) 
+20:30:37 | INFO    | gemma.down | [jakarta/full] ep1 step 1000/1502 loss=7.0033 (0.62s/step, epoch ETA 5.2 min) 
+20:30:47 | INFO    | gemma.down | [jakarta/full] val@ep1-step1000: acc@1=0.2190 acc@5=0.3957 act@1=0.482  *best
+20:32:48 | INFO    | gemma.down | [jakarta/full] ep1 step 1200/1502 loss=6.9654 (0.62s/step, epoch ETA 3.1 min) 
+20:34:50 | INFO    | gemma.down | [jakarta/full] ep1 step 1400/1502 loss=6.9553 (0.62s/step, epoch ETA 1.1 min) 
+20:36:00 | INFO    | gemma.down | [jakarta/full] val@ep1-step1500: acc@1=0.2207 acc@5=0.4030 act@1=0.482  *best
+20:36:01 | INFO    | gemma.down | [jakarta/full] ft epoch 1 loss=7.0133 (941s) | ret[hist=0.41 prefix=0.20 is_last=-2.31 ptrans=1.02 tod=0.47 dow=0.46 rec=1.24 geo=0.49 lptr=0.01] exp[hier=0.37 geo=1.20 anchor=0.63 covis=0.99 pop=0.22 hour=0.23] gate[nov=0.77 logS=-0.26 pref=0.88] tau=14.4
+20:36:10 | INFO    | gemma.down | [jakarta/full] val@ep1-end: acc@1=0.2207 acc@5=0.4053 act@1=0.485
+20:38:12 | INFO    | gemma.down | [jakarta/full] ep2 step 200/1502 loss=6.7727 (0.61s/step, epoch ETA 13.2 min) 
+20:40:13 | INFO    | gemma.down | [jakarta/full] ep2 step 400/1502 loss=6.7454 (0.61s/step, epoch ETA 11.2 min) 
+20:41:23 | INFO    | gemma.down | [jakarta/full] val@ep2-step500: acc@1=0.2210 acc@5=0.3953 act@1=0.486  *best
+20:42:24 | INFO    | gemma.down | [jakarta/full] ep2 step 600/1502 loss=6.7537 (0.62s/step, epoch ETA 9.4 min) 
+20:44:26 | INFO    | gemma.down | [jakarta/full] ep2 step 800/1502 loss=6.7242 (0.62s/step, epoch ETA 7.3 min) 
+20:46:28 | INFO    | gemma.down | [jakarta/full] ep2 step 1000/1502 loss=6.6746 (0.62s/step, epoch ETA 5.2 min) 
+20:46:37 | INFO    | gemma.down | [jakarta/full] val@ep2-step1000: acc@1=0.2293 acc@5=0.3913 act@1=0.483  *best
+20:48:38 | INFO    | gemma.down | [jakarta/full] ep2 step 1200/1502 loss=6.6791 (0.62s/step, epoch ETA 3.1 min) 
+20:50:40 | INFO    | gemma.down | [jakarta/full] ep2 step 1400/1502 loss=6.7116 (0.62s/step, epoch ETA 1.1 min) 
+20:51:50 | INFO    | gemma.down | [jakarta/full] val@ep2-step1500: acc@1=0.2283 acc@5=0.3960 act@1=0.483
+20:51:51 | INFO    | gemma.down | [jakarta/full] ft epoch 2 loss=6.7203 (941s) | ret[hist=0.34 prefix=0.16 is_last=-3.07 ptrans=1.01 tod=0.48 dow=0.54 rec=1.27 geo=0.54 lptr=0.04] exp[hier=0.35 geo=1.29 anchor=0.70 covis=0.94 pop=0.14 hour=0.19] gate[nov=0.70 logS=-0.27 pref=0.89] tau=22.1
+20:52:00 | INFO    | gemma.down | [jakarta/full] val@ep2-end: acc@1=0.2287 acc@5=0.3953 act@1=0.485
+20:54:02 | INFO    | gemma.down | [jakarta/full] ep3 step 200/1502 loss=6.2086 (0.61s/step, epoch ETA 13.2 min) 
+20:56:04 | INFO    | gemma.down | [jakarta/full] ep3 step 400/1502 loss=6.1664 (0.61s/step, epoch ETA 11.2 min) 
+20:57:14 | INFO    | gemma.down | [jakarta/full] val@ep3-step500: acc@1=0.2217 acc@5=0.3803 act@1=0.484
+20:57:14 | INFO    | gemma.down | [jakarta/full] ft epoch 3 loss=6.1936 (313s) | ret[hist=0.31 prefix=0.16 is_last=-3.18 ptrans=0.99 tod=0.49 dow=0.55 rec=1.29 geo=0.58 lptr=0.04] exp[hier=0.35 geo=1.34 anchor=0.73 covis=0.96 pop=0.12 hour=0.19] gate[nov=0.69 logS=-0.26 pref=0.91] tau=31.9
+20:57:14 | INFO    | gemma.down | [jakarta/full] early stop in epoch 3
+20:57:14 | INFO    | gemma.down | [jakarta/full] restored best checkpoint (val acc@1=0.2293)
+20:57:14 | INFO    | gemma.down | [jakarta/full] protocol=sthgcn split=test: scoring 24402/27480 targets
+20:58:10 | INFO    | gemma.down | [jakarta/full (source)] FULL-VOCAB acc@1=0.2182 acc@5=0.3794 acc@10=0.4577 ndcg@5=0.3031 mrr=0.2985 | next-activity acc=0.4702 f1=0.2689 | revisit(0.53) acc@1=0.396 explore acc@1=0.020 | cond: explore@1/@10=0.043/0.175 revisit@1=0.386 lat-explore@10=0.023 ptr@1=0.316 pi(exp/rev)=0.72/0.32 | STHGCN 0.197/0.270
+20:58:12 | INFO    | gemma.down | [new_york] 19834/272368 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+20:58:52 | INFO    | gemma.down | [new_york] loaded semantic codes (4 levels) for 39113 POIs
+20:58:52 | INFO    | gemma.down | [new_york] trails train=64428 val=9204 test=18409 | POIs (all splits) = 45804
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+20:58:54 | INFO    | gemma.down | [new_york/full] fine-tune on 126312 next-step queries from 64428 trajectories (visible=73632)
+20:58:54 | INFO    | gemma.down | [new_york/full] device=cuda amp=torch.float16 steps/epoch=987 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+20:59:01 | INFO    | gemma.down | [new_york/full] val@init: acc@1=0.1467 acc@5=0.2860 act@1=0.489  *best
+21:00:32 | INFO    | gemma.down | [new_york/full] ep0 step 200/987 loss=7.6597 (0.45s/step, epoch ETA 6.0 min) 
+21:02:03 | INFO    | gemma.down | [new_york/full] ep0 step 400/987 loss=7.5452 (0.45s/step, epoch ETA 4.4 min) 
+21:02:56 | INFO    | gemma.down | [new_york/full] val@ep0-step500: acc@1=0.1503 acc@5=0.2987 act@1=0.497  *best
+21:03:41 | INFO    | gemma.down | [new_york/full] ep0 step 600/987 loss=7.5057 (0.47s/step, epoch ETA 3.0 min) 
+21:05:11 | INFO    | gemma.down | [new_york/full] ep0 step 800/987 loss=7.5141 (0.46s/step, epoch ETA 1.4 min) 
+21:06:37 | INFO    | gemma.down | [new_york/full] ft epoch 0 loss=7.5456 (456s) | ret[hist=0.58 prefix=0.09 is_last=-1.81 ptrans=1.05 tod=0.47 dow=0.41 rec=1.26 geo=0.48 lptr=0.01] exp[hier=0.40 geo=1.21 anchor=0.53 covis=1.10 pop=0.33 hour=0.25] gate[nov=0.84 logS=-0.27 pref=1.07] tau=9.4
+21:06:44 | INFO    | gemma.down | [new_york/full] val@ep0-end: acc@1=0.1540 acc@5=0.3017 act@1=0.503  *best
+21:08:14 | INFO    | gemma.down | [new_york/full] ep1 step 200/987 loss=7.3515 (0.45s/step, epoch ETA 5.9 min) 
+21:09:45 | INFO    | gemma.down | [new_york/full] ep1 step 400/987 loss=7.3383 (0.45s/step, epoch ETA 4.4 min) 
+21:10:38 | INFO    | gemma.down | [new_york/full] val@ep1-step500: acc@1=0.1523 acc@5=0.3023 act@1=0.501
+21:11:23 | INFO    | gemma.down | [new_york/full] ep1 step 600/987 loss=7.2933 (0.47s/step, epoch ETA 3.0 min) 
+21:12:54 | INFO    | gemma.down | [new_york/full] ep1 step 800/987 loss=7.2253 (0.46s/step, epoch ETA 1.4 min) 
+21:14:19 | INFO    | gemma.down | [new_york/full] ft epoch 1 loss=7.2887 (455s) | ret[hist=0.48 prefix=0.03 is_last=-2.40 ptrans=1.09 tod=0.47 dow=0.48 rec=1.32 geo=0.54 lptr=-0.01] exp[hier=0.40 geo=1.34 anchor=0.61 covis=1.05 pop=0.23 hour=0.22] gate[nov=0.83 logS=-0.28 pref=1.11] tau=15.8
+21:14:27 | INFO    | gemma.down | [new_york/full] val@ep1-end: acc@1=0.1573 acc@5=0.3033 act@1=0.507  *best
+21:15:57 | INFO    | gemma.down | [new_york/full] ep2 step 200/987 loss=6.8934 (0.45s/step, epoch ETA 6.0 min) 
+21:17:28 | INFO    | gemma.down | [new_york/full] ep2 step 400/987 loss=6.8313 (0.45s/step, epoch ETA 4.4 min) 
+21:18:21 | INFO    | gemma.down | [new_york/full] val@ep2-step500: acc@1=0.1517 acc@5=0.2997 act@1=0.500
+21:19:06 | INFO    | gemma.down | [new_york/full] ep2 step 600/987 loss=6.8596 (0.47s/step, epoch ETA 3.0 min) 
+21:20:37 | INFO    | gemma.down | [new_york/full] ep2 step 800/987 loss=6.7883 (0.46s/step, epoch ETA 1.4 min) 
+21:22:04 | INFO    | gemma.down | [new_york/full] ft epoch 2 loss=6.8345 (457s) | ret[hist=0.42 prefix=0.01 is_last=-3.03 ptrans=1.13 tod=0.48 dow=0.55 rec=1.39 geo=0.67 lptr=-0.02] exp[hier=0.38 geo=1.56 anchor=0.67 covis=1.09 pop=0.16 hour=0.19] gate[nov=0.81 logS=-0.29 pref=1.10] tau=25.1
+21:22:12 | INFO    | gemma.down | [new_york/full] val@ep2-end: acc@1=0.1513 acc@5=0.3033 act@1=0.513
+21:23:45 | INFO    | gemma.down | [new_york/full] ep3 step 200/987 loss=5.9485 (0.47s/step, epoch ETA 6.1 min) 
+21:25:19 | INFO    | gemma.down | [new_york/full] ep3 step 400/987 loss=5.9515 (0.47s/step, epoch ETA 4.6 min) 
+21:26:13 | INFO    | gemma.down | [new_york/full] val@ep3-step500: acc@1=0.1410 acc@5=0.2847 act@1=0.508
+21:26:13 | INFO    | gemma.down | [new_york/full] ft epoch 3 loss=5.9548 (241s) | ret[hist=0.41 prefix=0.01 is_last=-3.17 ptrans=1.13 tod=0.49 dow=0.57 rec=1.38 geo=0.70 lptr=-0.03] exp[hier=0.38 geo=1.60 anchor=0.68 covis=1.15 pop=0.14 hour=0.19] gate[nov=0.80 logS=-0.28 pref=1.10] tau=37.3
+21:26:13 | INFO    | gemma.down | [new_york/full] early stop in epoch 3
+21:26:13 | INFO    | gemma.down | [new_york/full] restored best checkpoint (val acc@1=0.1573)
+21:26:13 | INFO    | gemma.down | [new_york/full] protocol=sthgcn split=test: scoring 16766/18409 targets
+21:26:49 | INFO    | gemma.down | [new_york/full (source)] FULL-VOCAB acc@1=0.1560 acc@5=0.3038 acc@10=0.3706 ndcg@5=0.2337 mrr=0.2283 | next-activity acc=0.5022 f1=0.2689 | revisit(0.45) acc@1=0.336 explore acc@1=0.010 | cond: explore@1/@10=0.029/0.107 revisit@1=0.326 lat-explore@10=0.010 ptr@1=0.042 pi(exp/rev)=0.74/0.36 | STHGCN 0.146/0.207
+21:26:50 | INFO    | gemma.down | [kuwait_city] 29994/232706 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:27:32 | INFO    | gemma.down | [kuwait_city] loaded semantic codes (4 levels) for 11532 POIs
+21:27:32 | INFO    | gemma.down | [kuwait_city] trails train=64160 val=9166 test=18332 | POIs (all splits) = 13455
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+21:27:34 | INFO    | gemma.down | [kuwait_city/full] fine-tune on 98556 next-step queries from 64160 trajectories (visible=73326)
+21:27:34 | INFO    | gemma.down | [kuwait_city/full] device=cuda amp=torch.float16 steps/epoch=770 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+21:27:39 | INFO    | gemma.down | [kuwait_city/full] val@init: acc@1=0.1903 acc@5=0.3753 act@1=0.507  *best
+21:28:45 | INFO    | gemma.down | [kuwait_city/full] ep0 step 200/770 loss=5.5700 (0.33s/step, epoch ETA 3.2 min) 
+21:29:53 | INFO    | gemma.down | [kuwait_city/full] ep0 step 400/770 loss=5.5274 (0.33s/step, epoch ETA 2.1 min) 
+21:30:31 | INFO    | gemma.down | [kuwait_city/full] val@ep0-step500: acc@1=0.2127 acc@5=0.4050 act@1=0.506  *best
+21:31:04 | INFO    | gemma.down | [kuwait_city/full] ep0 step 600/770 loss=5.4882 (0.34s/step, epoch ETA 1.0 min) 
+21:32:01 | INFO    | gemma.down | [kuwait_city/full] ft epoch 0 loss=5.5116 (262s) | ret[hist=0.76 prefix=0.10 is_last=-1.71 ptrans=0.99 tod=0.44 dow=0.37 rec=1.27 geo=0.48 lptr=0.02] exp[hier=0.32 geo=1.02 anchor=0.45 covis=0.89 pop=0.35 hour=0.26] gate[nov=0.79 logS=-0.32 pref=0.61] tau=10.0
+21:32:06 | INFO    | gemma.down | [kuwait_city/full] val@ep0-end: acc@1=0.2080 acc@5=0.4053 act@1=0.512
+21:33:12 | INFO    | gemma.down | [kuwait_city/full] ep1 step 200/770 loss=5.3753 (0.33s/step, epoch ETA 3.1 min) 
+21:34:19 | INFO    | gemma.down | [kuwait_city/full] ep1 step 400/770 loss=5.3516 (0.33s/step, epoch ETA 2.1 min) 
+21:34:57 | INFO    | gemma.down | [kuwait_city/full] val@ep1-step500: acc@1=0.2120 acc@5=0.4043 act@1=0.509
+21:35:29 | INFO    | gemma.down | [kuwait_city/full] ep1 step 600/770 loss=5.3384 (0.34s/step, epoch ETA 1.0 min) 
+21:36:24 | INFO    | gemma.down | [kuwait_city/full] ft epoch 1 loss=5.3367 (259s) | ret[hist=0.73 prefix=0.06 is_last=-2.17 ptrans=0.93 tod=0.41 dow=0.37 rec=1.36 geo=0.54 lptr=-0.01] exp[hier=0.26 geo=1.03 anchor=0.46 covis=0.71 pop=0.38 hour=0.22] gate[nov=0.74 logS=-0.33 pref=0.57] tau=15.2
+21:36:29 | INFO    | gemma.down | [kuwait_city/full] val@ep1-end: acc@1=0.2137 acc@5=0.4033 act@1=0.513  *best
+21:37:33 | INFO    | gemma.down | [kuwait_city/full] ep2 step 200/770 loss=4.7731 (0.32s/step, epoch ETA 3.0 min) 
+21:38:38 | INFO    | gemma.down | [kuwait_city/full] ep2 step 400/770 loss=4.6788 (0.32s/step, epoch ETA 2.0 min) 
+21:39:15 | INFO    | gemma.down | [kuwait_city/full] val@ep2-step500: acc@1=0.2080 acc@5=0.3950 act@1=0.511
+21:39:47 | INFO    | gemma.down | [kuwait_city/full] ep2 step 600/770 loss=4.7184 (0.33s/step, epoch ETA 0.9 min) 
+21:40:43 | INFO    | gemma.down | [kuwait_city/full] ft epoch 2 loss=4.7239 (253s) | ret[hist=0.70 prefix=0.04 is_last=-2.48 ptrans=0.89 tod=0.40 dow=0.37 rec=1.46 geo=0.59 lptr=-0.02] exp[hier=0.24 geo=1.04 anchor=0.43 covis=0.68 pop=0.37 hour=0.20] gate[nov=0.71 logS=-0.32 pref=0.56] tau=26.1
+21:40:47 | INFO    | gemma.down | [kuwait_city/full] val@ep2-end: acc@1=0.2153 acc@5=0.4007 act@1=0.515  *best
+21:41:52 | INFO    | gemma.down | [kuwait_city/full] ep3 step 200/770 loss=3.8779 (0.33s/step, epoch ETA 3.1 min) 
+21:42:57 | INFO    | gemma.down | [kuwait_city/full] ep3 step 400/770 loss=3.9070 (0.32s/step, epoch ETA 2.0 min) 
+21:43:34 | INFO    | gemma.down | [kuwait_city/full] val@ep3-step500: acc@1=0.2007 acc@5=0.3793 act@1=0.515
+21:44:06 | INFO    | gemma.down | [kuwait_city/full] ep3 step 600/770 loss=3.9285 (0.33s/step, epoch ETA 0.9 min) 
+21:45:00 | INFO    | gemma.down | [kuwait_city/full] ft epoch 3 loss=3.9205 (252s) | ret[hist=0.69 prefix=0.04 is_last=-2.61 ptrans=0.87 tod=0.41 dow=0.37 rec=1.49 geo=0.63 lptr=-0.02] exp[hier=0.23 geo=1.07 anchor=0.42 covis=0.72 pop=0.35 hour=0.19] gate[nov=0.67 logS=-0.33 pref=0.55] tau=40.6
+21:45:04 | INFO    | gemma.down | [kuwait_city/full] val@ep3-end: acc@1=0.2050 acc@5=0.3853 act@1=0.511
+21:46:09 | INFO    | gemma.down | [kuwait_city/full] ep4 step 200/770 loss=3.4699 (0.33s/step, epoch ETA 3.1 min) 
+21:47:13 | INFO    | gemma.down | [kuwait_city/full] ep4 step 400/770 loss=3.4478 (0.32s/step, epoch ETA 2.0 min) 
+21:47:51 | INFO    | gemma.down | [kuwait_city/full] val@ep4-step500: acc@1=0.2020 acc@5=0.3693 act@1=0.515
+21:47:51 | INFO    | gemma.down | [kuwait_city/full] ft epoch 4 loss=3.4729 (166s) | ret[hist=0.68 prefix=0.04 is_last=-2.67 ptrans=0.88 tod=0.41 dow=0.38 rec=1.52 geo=0.64 lptr=-0.02] exp[hier=0.24 geo=1.10 anchor=0.44 covis=0.76 pop=0.35 hour=0.19] gate[nov=0.63 logS=-0.34 pref=0.56] tau=53.1
+21:47:51 | INFO    | gemma.down | [kuwait_city/full] early stop in epoch 4
+21:47:51 | INFO    | gemma.down | [kuwait_city/full] restored best checkpoint (val acc@1=0.2153)
+21:47:51 | INFO    | gemma.down | [kuwait_city/full] protocol=sthgcn split=test: scoring 17753/18332 targets
+21:48:11 | INFO    | gemma.down | [kuwait_city/full (source)] FULL-VOCAB acc@1=0.2022 acc@5=0.3881 acc@10=0.4853 ndcg@5=0.2991 mrr=0.2945 | next-activity acc=0.5266 f1=0.2283 | revisit(0.56) acc@1=0.354 explore acc@1=0.011 | cond: explore@1/@10=0.030/0.155 revisit@1=0.365 lat-explore@10=0.011 ptr@1=0.044 pi(exp/rev)=0.55/0.33 | STHGCN 0.225/0.314
+21:48:13 | INFO    | gemma.down | [sao_paulo] 18856/256824 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+21:48:52 | INFO    | gemma.down | [sao_paulo] loaded semantic codes (4 levels) for 29851 POIs
+21:48:52 | INFO    | gemma.down | [sao_paulo] trails train=62782 val=8969 test=17938 | POIs (all splits) = 34881
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+21:48:53 | INFO    | gemma.down | [sao_paulo/full] fine-tune on 116989 next-step queries from 62782 trajectories (visible=71751)
+21:48:53 | INFO    | gemma.down | [sao_paulo/full] device=cuda amp=torch.float16 steps/epoch=914 epochs=8 lr_head=0.002 lr_resid=0.0003 lr_bb=0.0001 val_every=500 patience=3 min_epochs=0
+21:49:00 | INFO    | gemma.down | [sao_paulo/full] val@init: acc@1=0.2343 acc@5=0.4527 act@1=0.450  *best
+21:50:31 | INFO    | gemma.down | [sao_paulo/full] ep0 step 200/914 loss=6.2847 (0.45s/step, epoch ETA 5.4 min) 
+21:52:00 | INFO    | gemma.down | [sao_paulo/full] ep0 step 400/914 loss=6.1969 (0.45s/step, epoch ETA 3.9 min) 
+21:52:53 | INFO    | gemma.down | [sao_paulo/full] val@ep0-step500: acc@1=0.2540 acc@5=0.4530 act@1=0.465  *best
+21:53:38 | INFO    | gemma.down | [sao_paulo/full] ep0 step 600/914 loss=6.1841 (0.46s/step, epoch ETA 2.4 min) 
+21:55:07 | INFO    | gemma.down | [sao_paulo/full] ep0 step 800/914 loss=6.1632 (0.46s/step, epoch ETA 0.9 min) 
+21:55:58 | INFO    | gemma.down | [sao_paulo/full] ft epoch 0 loss=6.1972 (418s) | ret[hist=0.59 prefix=0.10 is_last=-1.67 ptrans=1.05 tod=0.48 dow=0.40 rec=1.21 geo=0.50 lptr=0.01] exp[hier=0.37 geo=1.15 anchor=0.56 covis=0.93 pop=0.33 hour=0.28] gate[nov=0.84 logS=-0.21 pref=0.97] tau=9.7
+21:56:05 | INFO    | gemma.down | [sao_paulo/full] val@ep0-end: acc@1=0.2523 acc@5=0.4570 act@1=0.468
+21:57:36 | INFO    | gemma.down | [sao_paulo/full] ep1 step 200/914 loss=6.0340 (0.45s/step, epoch ETA 5.4 min) 
+21:59:05 | INFO    | gemma.down | [sao_paulo/full] ep1 step 400/914 loss=6.0231 (0.45s/step, epoch ETA 3.9 min) 
+21:59:57 | INFO    | gemma.down | [sao_paulo/full] val@ep1-step500: acc@1=0.2487 acc@5=0.4533 act@1=0.457
+22:00:43 | INFO    | gemma.down | [sao_paulo/full] ep1 step 600/914 loss=6.0159 (0.46s/step, epoch ETA 2.4 min) 
+22:02:13 | INFO    | gemma.down | [sao_paulo/full] ep1 step 800/914 loss=5.9823 (0.46s/step, epoch ETA 0.9 min) 
+22:03:04 | INFO    | gemma.down | [sao_paulo/full] ft epoch 1 loss=6.0036 (419s) | ret[hist=0.52 prefix=0.05 is_last=-1.99 ptrans=1.06 tod=0.48 dow=0.44 rec=1.24 geo=0.52 lptr=0.00] exp[hier=0.36 geo=1.20 anchor=0.63 covis=0.86 pop=0.23 hour=0.24] gate[nov=0.83 logS=-0.21 pref=1.00] tau=14.9
+22:03:11 | INFO    | gemma.down | [sao_paulo/full] val@ep1-end: acc@1=0.2493 acc@5=0.4590 act@1=0.465
+22:03:11 | INFO    | gemma.down | [sao_paulo/full] early stop at epoch 1
+22:03:11 | INFO    | gemma.down | [sao_paulo/full] restored best checkpoint (val acc@1=0.2540)
+22:03:11 | INFO    | gemma.down | [sao_paulo/full] protocol=sthgcn split=test: scoring 16523/17938 targets
+22:03:43 | INFO    | gemma.down | [sao_paulo/full (source)] FULL-VOCAB acc@1=0.2454 acc@5=0.4565 acc@10=0.5437 ndcg@5=0.3568 mrr=0.3450 | next-activity acc=0.4617 f1=0.3035 | revisit(0.62) acc@1=0.387 explore acc@1=0.013 | cond: explore@1/@10=0.044/0.172 revisit@1=0.388 lat-explore@10=0.021 ptr@1=0.065 pi(exp/rev)=0.62/0.29 | STHGCN 0.250/0.344
+22:03:43 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+22:03:43 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+22:03:43 | INFO    | gemma.down |       istanbul full        0.198/0.299       nan/nan       nan/nan 0.241/0.318    0.499  *source
+22:03:43 | INFO    | gemma.down |  petaling_jaya full        0.156/0.238       nan/nan       nan/nan 0.174/0.241    0.484  *source
+22:03:43 | INFO    | gemma.down |        jakarta full        0.218/0.303       nan/nan       nan/nan 0.197/0.270    0.470  *source
+22:03:43 | INFO    | gemma.down |       new_york full        0.156/0.234       nan/nan       nan/nan 0.146/0.207    0.502  *source
+22:03:43 | INFO    | gemma.down |    kuwait_city full        0.202/0.299       nan/nan       nan/nan 0.225/0.314    0.527  *source
+22:03:43 | INFO    | gemma.down |      sao_paulo full        0.245/0.357       nan/nan       nan/nan 0.250/0.344    0.462  *source

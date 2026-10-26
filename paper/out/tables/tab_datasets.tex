@@ -1,0 +1,31 @@
+\begin{table}[t]
+\caption{Massive-STEPS cities. \emph{Queries}: test next-visit queries kept by the STHGCN protocol (target POI and user
+seen in training). \emph{Revisit}: share of check-ins to an already visited place, over all check-ins and over the
+scored queries. $\gamma$: novelty exponent of $P(\text{new})\propto S^{-\gamma}$.}
+\label{tab:datasets}
+\small\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{lrrrrccc}
+\toprule
+City & Users & Check-ins & POIs & Queries & \multicolumn{2}{c}{Revisit} & $\gamma$ \\
+ & & & & & all & test & \\
+\midrule
+\multicolumn{8}{l}{\textit{Source (training)}} \\
+Istanbul & 23,700 & 544,471 & 42,795 & 41,150 & 0.40 & 0.50 & 0.33 \\
+Petaling Jaya & 14,308 & 506,430 & 53,650 & 33,889 & 0.37 & 0.44 & 0.24 \\
+Jakarta & 8,336 & 412,100 & 71,150 & 24,402 & 0.41 & 0.53 & 0.22 \\
+New York & 6,929 & 272,368 & 45,804 & 16,766 & 0.37 & 0.45 & 0.27 \\
+Kuwait City & 9,628 & 232,706 & 13,455 & 17,753 & 0.45 & 0.56 & 0.46 \\
+São Paulo & 5,822 & 256,824 & 34,881 & 16,523 & 0.51 & 0.62 & 0.31 \\
+\midrule
+\multicolumn{8}{l}{\textit{Unseen (zero-shot)}} \\
+Tokyo & 764 & 13,839 & 2,982 & 946 & 0.42 & 0.60 & 0.34 \\
+Shanghai & 296 & 10,491 & 3,610 & 530 & 0.36 & 0.53 & 0.17 \\
+Palembang & 267 & 14,467 & 4,117 & 774 & 0.44 & 0.67 & 0.29 \\
+Melbourne & 646 & 22,050 & 6,901 & 1,239 & 0.35 & 0.52 & 0.19 \\
+Sydney & 740 & 29,900 & 8,189 & 1,667 & 0.41 & 0.55 & 0.48 \\
+Tangerang & 1,437 & 45,521 & 9,975 & 2,787 & 0.51 & 0.68 & 0.31 \\
+Moscow & 3,993 & 105,620 & 13,994 & 7,288 & 0.43 & 0.54 & 0.28 \\
+Bandung & 3,377 & 161,284 & 26,559 & 9,913 & 0.43 & 0.55 & 0.28 \\
+\bottomrule
+\end{tabular}
+\end{table}

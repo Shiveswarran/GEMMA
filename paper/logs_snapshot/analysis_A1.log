@@ -1,0 +1,22 @@
+[table] A1_mobility_laws
+         city   role  users  check-ins  POIs  traj_len  revisit_share  unseen_test_target  mu (S~n^mu)  gamma (Pnew~S^-g)  alpha (Zipf)
+     Istanbul source  23700     544471 42795  2.515912       0.404665            0.049280     0.690955           0.334408      1.350154
+Petaling Jaya source  14308     506430 53650  2.807106       0.368829            0.060778     0.774989           0.237644      1.004763
+      Jakarta source   8336     412100 71150  2.999360       0.414034            0.112009     0.798189           0.218904      0.888551
+     New York source   6929     272368 45804  2.959203       0.366849            0.089250     0.760263           0.267475      0.913538
+  Kuwait City source   9628     232706 13455  2.538851       0.446646            0.031584     0.643757           0.463453      1.391829
+    São Paulo source   5822     256824 34881  2.863495       0.511996            0.078883     0.707062           0.314344      1.099587
+        Tokyo target    764      13839  2982  2.524444       0.423556            0.137648     0.789335           0.340271      1.597816
+      Beijing target     56       1470   598  2.565445       0.492928            0.234783     0.819542           0.497763      1.422700
+     Shanghai target    296      10491  3610  2.885314       0.357234            0.271978     0.851684           0.166145      1.102559
+    Palembang target    267      14467  4117  3.078740       0.435493            0.176596     0.827052           0.290767      0.891099
+    Melbourne target    646      22050  6901  2.803917       0.345029            0.212333     0.802537           0.193782      0.992752
+       Sydney target    740      29900  8189  2.946393       0.410494            0.178818     0.751897           0.484064      0.977234
+    Tangerang target   1437      45521  9975  2.847910       0.508257            0.128245     0.744817           0.310800      1.354726
+       Moscow target   3993     105620 13994  2.674940       0.434589            0.077118     0.695249           0.280210      1.262408
+      Bandung target   3377     161284 26559  2.914789       0.431317            0.104274     0.765321           0.278197      0.906065
+
+[figure] analysis_out/figures/A1a_exploration_law.pdf/.png
+[figure] analysis_out/figures/A1c_novelty_law.pdf/.png
+[figure] analysis_out/figures/A1b_visitation_zipf.pdf/.png
+[figure] analysis_out/figures/A1d_revisit_share.pdf/.png

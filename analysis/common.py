@@ -13,7 +13,10 @@ import numpy as np
 import pandas as pd
 
 SRC = ["istanbul", "petaling_jaya", "jakarta", "new_york", "kuwait_city", "sao_paulo"]
-TGT = ["tokyo", "beijing", "shanghai", "palembang", "melbourne", "sydney", "tangerang", "moscow", "bandung"]
+# Beijing (88 scored test queries) is excluded from the paper; set GEMMA_WITH_BEIJING=1 to bring it back.
+TGT = ["tokyo", "shanghai", "palembang", "melbourne", "sydney", "tangerang", "moscow", "bandung"]
+if os.environ.get("GEMMA_WITH_BEIJING"):
+    TGT.insert(1, "beijing")
 PRETTY = {"istanbul": "Istanbul", "petaling_jaya": "Petaling Jaya", "jakarta": "Jakarta",
           "new_york": "New York", "kuwait_city": "Kuwait City", "sao_paulo": "São Paulo",
           "tokyo": "Tokyo", "beijing": "Beijing", "shanghai": "Shanghai", "palembang": "Palembang",
@@ -147,6 +150,10 @@ def setup_mpl():
     plt.rcParams.update({"figure.dpi": 120, "savefig.dpi": 300, "font.size": 9, "axes.titlesize": 10,
                          "axes.labelsize": 9, "legend.fontsize": 7.5, "axes.spines.top": False,
                          "axes.spines.right": False, "pdf.fonttype": 42, "ps.fonttype": 42})
+    if os.environ.get("GEMMA_PAPER_STYLE"):     # same fonts/sizes/colours as paper/figures.py
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "paper"))
+        from style import setup
+        setup()
     return plt
 
 

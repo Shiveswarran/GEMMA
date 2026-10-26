@@ -1,0 +1,151 @@
+09:20:05 | INFO    | gemma.down | device=cuda [Quadro RTX 6000] | CUDA_VISIBLE_DEVICES=<unset> | GPUs visible to torch=1
+09:20:05 | INFO    | gemma.down | retriever=hrem predictor=pooled hist_trails=15 few_shot_k=3 few_shot_frac=0.0 lr_bb=0.0001 rerank_m=100
+09:20:09 | INFO    | gemma.down | loaded 228910 cached LLM embeddings
+09:20:09 | INFO    | gemma.down | source-city realizer: runs/v6_s2/zs_hrem.pt
+09:20:09 | INFO    | gemma.down | evidence=full drop_ret='' hist_budget=-1 tag='_v6s_llm'
+09:20:09 | INFO    | gemma.down | [tokyo] 398/13839 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:20:11 | INFO    | gemma.down | [tokyo] loaded semantic codes (4 levels) for 2494 POIs
+09:20:11 | INFO    | gemma.down | [tokyo] trails train=3836 val=549 test=1097 | POIs (all splits) = 2982
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+09:20:12 | INFO    | gemma.down | [tokyo/zero_shot] protocol=all split=test: scoring 1097/1097 targets
+09:20:13 | INFO    | gemma.down | [tokyo/zero_shot]  || LLM-200[gt+near100] acc@1=0.260+-0.015 acc@5=0.446 ndcg@5=0.359 [near100 0.105] [gt+rand100 0.477] | LLM-Move best 0.250/0.368
+09:20:14 | INFO    | gemma.down | [beijing] 100/1470 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:20:14 | INFO    | gemma.down | [beijing] loaded semantic codes (4 levels) for 498 POIs
+09:20:14 | INFO    | gemma.down | [beijing] trails train=400 val=58 test=115 | POIs (all splits) = 598
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+09:20:14 | INFO    | gemma.down | [beijing/zero_shot] protocol=all split=test: scoring 115/115 targets
+09:20:14 | INFO    | gemma.down | [beijing/zero_shot]  || LLM-200[gt+near100] acc@1=0.196+-0.008 acc@5=0.404 ndcg@5=0.307 [near100 0.131] [gt+rand100 0.335] | LLM-Move best 0.192/0.280
+09:20:14 | INFO    | gemma.down | [shanghai] 765/10491 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:20:16 | INFO    | gemma.down | [shanghai] loaded semantic codes (4 levels) for 2893 POIs
+09:20:16 | INFO    | gemma.down | [shanghai] trails train=2544 val=364 test=728 | POIs (all splits) = 3610
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+09:20:16 | INFO    | gemma.down | [shanghai/zero_shot] protocol=all split=test: scoring 728/728 targets
+09:20:17 | INFO    | gemma.down | [shanghai/zero_shot]  || LLM-200[gt+near100] acc@1=0.152+-0.019 acc@5=0.280 ndcg@5=0.222 [near100 0.060] [gt+rand100 0.315] | LLM-Move best 0.170/0.221
+09:20:17 | INFO    | gemma.down | [palembang] 4264/14467 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:20:19 | INFO    | gemma.down | [palembang] loaded semantic codes (4 levels) for 3348 POIs
+09:20:19 | INFO    | gemma.down | [palembang] trails train=3289 val=470 test=940 | POIs (all splits) = 4117
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+09:20:20 | INFO    | gemma.down | [palembang/zero_shot] protocol=all split=test: scoring 940/940 targets
+09:20:21 | INFO    | gemma.down | [palembang/zero_shot]  || LLM-200[gt+near100] acc@1=0.287+-0.015 acc@5=0.398 ndcg@5=0.350 [near100 0.037] [gt+rand100 0.406] | LLM-Move best 0.260/0.329
+09:20:21 | INFO    | gemma.down | [melbourne] 1143/22050 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:20:25 | INFO    | gemma.down | [melbourne] loaded semantic codes (4 levels) for 5639 POIs
+09:20:25 | INFO    | gemma.down | [melbourne] trails train=5504 val=787 test=1573 | POIs (all splits) = 6901
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+09:20:25 | INFO    | gemma.down | [melbourne/zero_shot] protocol=all split=test: scoring 1573/1573 targets
+09:20:26 | INFO    | gemma.down | [melbourne/zero_shot]  || LLM-200[gt+near100] acc@1=0.167+-0.016 acc@5=0.281 ndcg@5=0.229 [near100 0.063] [gt+rand100 0.329] | LLM-Move best 0.225/0.275
+09:20:26 | INFO    | gemma.down | [sydney] 2243/29900 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:20:31 | INFO    | gemma.down | [sydney] loaded semantic codes (4 levels) for 6790 POIs
+09:20:31 | INFO    | gemma.down | [sydney] trails train=7103 val=1015 test=2030 | POIs (all splits) = 8189
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+09:20:31 | INFO    | gemma.down | [sydney/zero_shot] protocol=all split=test: scoring 2030/2030 targets
+09:20:32 | INFO    | gemma.down | [sydney/zero_shot]  || LLM-200[gt+near100] acc@1=0.142+-0.009 acc@5=0.250 ndcg@5=0.198 [near100 0.048] [gt+rand100 0.333] | LLM-Move best 0.230/0.331
+09:20:33 | INFO    | gemma.down | [tangerang] 12728/45521 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:20:40 | INFO    | gemma.down | [tangerang] loaded semantic codes (4 levels) for 8298 POIs
+09:20:40 | INFO    | gemma.down | [tangerang] trails train=11188 val=1599 test=3197 | POIs (all splits) = 9975
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+09:20:40 | INFO    | gemma.down | [tangerang/zero_shot] protocol=all split=test: scoring 3197/3197 targets
+09:20:41 | INFO    | gemma.down | [tangerang/zero_shot]  || LLM-200[gt+near100] acc@1=0.366+-0.035 acc@5=0.509 ndcg@5=0.447 [near100 0.053] [gt+rand100 0.589] | LLM-Move best 0.200/0.275
+09:20:42 | INFO    | gemma.down | [moscow] 16026/105620 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:20:59 | INFO    | gemma.down | [moscow] loaded semantic codes (4 levels) for 11894 POIs
+09:20:59 | INFO    | gemma.down | [moscow] trails train=27639 val=3949 test=7897 | POIs (all splits) = 13994
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+09:20:59 | INFO    | gemma.down | [moscow/zero_shot] protocol=all split=test: scoring 7897/7897 targets
+09:21:00 | INFO    | gemma.down | [moscow/zero_shot]  || LLM-200[gt+near100] acc@1=0.260+-0.026 acc@5=0.433 ndcg@5=0.355 [near100 0.072] [gt+rand100 0.523] | LLM-Move best 0.230/0.330
+09:21:01 | INFO    | gemma.down | [bandung] 37937/161284 rows missing exact coords -> centroid for geo prior; hashed for semantic-ID uniqueness
+09:21:25 | INFO    | gemma.down | [bandung] loaded semantic codes (4 levels) for 22058 POIs
+09:21:25 | INFO    | gemma.down | [bandung] trails train=38732 val=5534 test=11067 | POIs (all splits) = 26559
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:53: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+/scratch/umni5/a/shives/POI_RecSys/GEMMA/gemma/backbone.py:72: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, n_layers)
+09:21:25 | INFO    | gemma.down | [bandung/zero_shot] protocol=all split=test: scoring 11067/11067 targets
+09:21:27 | INFO    | gemma.down | [bandung/zero_shot]  || LLM-200[gt+near100] acc@1=0.304+-0.027 acc@5=0.418 ndcg@5=0.368 [near100 0.037] [gt+rand100 0.502] | LLM-Move best 0.225/0.289
+09:21:27 | INFO    | gemma.down | === GEMMA SUMMARY (A@1 / N@5; ref = supervised STHGCN; LLM-Move only applies to the LLM(rand100) column) ===
+09:21:27 | INFO    | gemma.down |           city shot         full-vocab  LLM(rand100)  LLM(near100)         ref next-act
+09:21:27 | INFO    | gemma.down |          tokyo zero_shot       nan/nan   0.477/0.563   0.260/0.359 0.250/0.350      nan
+09:21:27 | INFO    | gemma.down |        beijing zero_shot       nan/nan   0.335/0.440   0.196/0.307 0.453/0.552      nan
+09:21:27 | INFO    | gemma.down |       shanghai zero_shot       nan/nan   0.315/0.396   0.152/0.222 0.193/0.264      nan
+09:21:27 | INFO    | gemma.down |      palembang zero_shot       nan/nan   0.406/0.481   0.287/0.350 0.246/0.341      nan
+09:21:27 | INFO    | gemma.down |      melbourne zero_shot       nan/nan   0.329/0.410   0.167/0.229 0.168/0.247      nan
+09:21:27 | INFO    | gemma.down |         sydney zero_shot       nan/nan   0.333/0.438   0.142/0.198 0.227/0.307      nan
+09:21:27 | INFO    | gemma.down |      tangerang zero_shot       nan/nan   0.589/0.660   0.366/0.447 0.293/0.400      nan
+09:21:27 | INFO    | gemma.down |         moscow zero_shot       nan/nan   0.523/0.615   0.260/0.355 0.223/0.308      nan
+09:21:27 | INFO    | gemma.down |        bandung zero_shot       nan/nan   0.502/0.572   0.304/0.368 0.219/0.302      nan
+         city      n  STHGCN |                   v6s0 |                   v6s1 |                   v6s2 |                   wmS0 |                   wmS1 |                   wmS2
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        tokyo    946   0.250 | 0.261/0.368=         | 0.265/0.368= d+0.004 | 0.258/0.364= d-0.003 | 0.244/0.359= d-0.017 | 0.237/0.349= d-0.024* | 0.244/0.360= d-0.017
+      beijing     88   0.453 | 0.398/0.539=         | 0.386/0.531= d-0.011 | 0.273/0.475< d-0.125* | 0.239/0.446< d-0.159* | 0.284/0.490< d-0.114* | 0.409/0.528= d+0.011
+     shanghai    530   0.193 | 0.166/0.266=         | 0.177/0.273= d+0.011 | 0.166/0.263= d+0.000 | 0.166/0.252= d+0.000 | 0.158/0.256< d-0.008 | 0.172/0.258= d+0.006
+    palembang    774   0.246 | 0.248/0.343=         | 0.249/0.336= d+0.001 | 0.245/0.343= d-0.003 | 0.247/0.341= d-0.001 | 0.239/0.328= d-0.009 | 0.245/0.337= d-0.003
+    melbourne   1239   0.168 | 0.168/0.253=         | 0.169/0.256= d+0.001 | 0.165/0.250= d-0.002 | 0.157/0.245= d-0.010 | 0.150/0.242= d-0.018* | 0.161/0.247= d-0.007
+       sydney   1667   0.227 | 0.209/0.288=         | 0.205/0.287< d-0.004 | 0.199/0.286< d-0.011* | 0.203/0.287< d-0.007 | 0.196/0.279< d-0.013* | 0.202/0.288< d-0.008
+    tangerang   2787   0.293 | 0.319/0.434>         | 0.318/0.434> d-0.001 | 0.319/0.436> d-0.001 | 0.324/0.437> d+0.005 | 0.320/0.432> d+0.000 | 0.316/0.433> d-0.003
+       moscow   7288   0.223 | 0.220/0.316=         | 0.218/0.314= d-0.002 | 0.218/0.314= d-0.002 | 0.224/0.319= d+0.004 | 0.217/0.314= d-0.003 | 0.221/0.318= d+0.001
+      bandung   9913   0.219 | 0.212/0.298=         | 0.211/0.295< d-0.001 | 0.214/0.296= d+0.002 | 0.215/0.298= d+0.003 | 0.210/0.294< d-0.002 | 0.213/0.297= d+0.002
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      v6s0: macro Acc@1 0.2446 (STHGCN 0.2524, -0.0078) NDCG@5 0.3450 | above STHGCN 3/9, significantly above 1, significantly below 0
+      v6s1: macro Acc@1 0.2444 (STHGCN 0.2524, -0.0081) NDCG@5 0.3438 | above STHGCN 4/9, significantly above 1, significantly below 2
+      v6s2: macro Acc@1 0.2285 (STHGCN 0.2524, -0.0239) NDCG@5 0.3363 | above STHGCN 2/9, significantly above 1, significantly below 2
+      wmS0: macro Acc@1 0.2243 (STHGCN 0.2524, -0.0282) NDCG@5 0.3315 | above STHGCN 3/9, significantly above 1, significantly below 2
+      wmS1: macro Acc@1 0.2234 (STHGCN 0.2524, -0.0290) NDCG@5 0.3317 | above STHGCN 1/9, significantly above 1, significantly below 4
+      wmS2: macro Acc@1 0.2426 (STHGCN 0.2524, -0.0099) NDCG@5 0.3408 | above STHGCN 1/9, significantly above 1, significantly below 1
+legend: '>' / '<' = z-test vs published STHGCN Acc@1 at 95%;  d = paired Acc@1 difference vs baseline 'v6s0', '*' = 95% bootstrap CI excludes 0
+         city      n  STHGCN |                   v6s0 |                   v6s1 |                   v6s2 |                   wmS0
+--------------------------------------------------------------------------------------------------------------------------------
+        tokyo    946   0.250 | 0.272/0.389=         | 0.276/0.396= d+0.004 | 0.276/0.394= d+0.004 | 0.263/0.384= d-0.008
+      beijing     88   0.453 | 0.398/0.524=         | 0.375/0.493= d-0.023 | 0.398/0.527= d+0.000 | 0.398/0.526= d+0.000
+     shanghai    530   0.193 | 0.191/0.282=         | 0.189/0.280= d-0.002 | 0.183/0.275= d-0.008 | 0.196/0.281= d+0.006
+    palembang    774   0.246 | 0.253/0.351=         | 0.252/0.352= d-0.001 | 0.251/0.348= d-0.003 | 0.261/0.354= d+0.008
+    melbourne   1239   0.168 | 0.179/0.269=         | 0.170/0.266= d-0.009 | 0.174/0.268= d-0.005 | 0.160/0.261= d-0.019*
+       sydney   1667   0.227 | 0.219/0.310=         | 0.218/0.309= d-0.001 | 0.218/0.307= d-0.001 | 0.218/0.302= d-0.001
+    tangerang   2787   0.293 | 0.329/0.453>         | 0.319/0.439> d-0.010* | 0.325/0.448> d-0.004 | 0.329/0.442> d-0.000
+       moscow   7288   0.223 | 0.228/0.333=         | 0.233/0.333> d+0.004 | 0.229/0.332= d+0.001 | 0.227/0.328= d-0.001
+      bandung   9913   0.219 | 0.216/0.306=         | 0.214/0.307= d-0.001 | 0.221/0.314= d+0.006* | 0.215/0.308= d-0.000
+--------------------------------------------------------------------------------------------------------------------------------
+      v6s0: macro Acc@1 0.2539 (STHGCN 0.2524, +0.0014) NDCG@5 0.3575 | above STHGCN 5/9, significantly above 1, significantly below 0
+      v6s1: macro Acc@1 0.2496 (STHGCN 0.2524, -0.0029) NDCG@5 0.3529 | above STHGCN 5/9, significantly above 2, significantly below 0
+      v6s2: macro Acc@1 0.2529 (STHGCN 0.2524, +0.0004) NDCG@5 0.3570 | above STHGCN 6/9, significantly above 1, significantly below 0
+      wmS0: macro Acc@1 0.2520 (STHGCN 0.2524, -0.0004) NDCG@5 0.3539 | above STHGCN 5/9, significantly above 1, significantly below 0
+legend: '>' / '<' = z-test vs published STHGCN Acc@1 at 95%;  d = paired Acc@1 difference vs baseline 'v6s0', '*' = 95% bootstrap CI excludes 0
+         city      n  STHGCN |                     wm |                 noLptr |               noPrefix |                 noBoth
+--------------------------------------------------------------------------------------------------------------------------------
+        tokyo    946   0.250 | 0.244/0.359=         | 0.241/0.357= d-0.003 | 0.242/0.357= d-0.002 | 0.241/0.356= d-0.003
+      beijing     88   0.453 | 0.239/0.446<         | 0.239/0.456< d+0.000 | 0.239/0.446< d+0.000 | 0.239/0.456< d+0.000
+     shanghai    530   0.193 | 0.166/0.252=         | 0.162/0.250= d-0.004 | 0.166/0.252= d+0.000 | 0.162/0.250= d-0.004
+    palembang    774   0.246 | 0.247/0.341=         | 0.231/0.328= d-0.016* | 0.248/0.343= d+0.001 | 0.233/0.329= d-0.014*
+    melbourne   1239   0.168 | 0.157/0.245=         | 0.159/0.246= d+0.002 | 0.157/0.244= d-0.001 | 0.158/0.246= d+0.001
+       sydney   1667   0.227 | 0.203/0.287<         | 0.206/0.287< d+0.004 | 0.203/0.287< d+0.000 | 0.206/0.287< d+0.004
+    tangerang   2787   0.293 | 0.324/0.437>         | 0.309/0.429= d-0.015* | 0.324/0.437> d+0.000 | 0.308/0.428= d-0.016*
+       moscow   7288   0.223 | 0.224/0.319=         | 0.222/0.315= d-0.002 | 0.224/0.319= d+0.000 | 0.222/0.315= d-0.002
+      bandung   9913   0.219 | 0.215/0.298=         | 0.205/0.290< d-0.010* | 0.215/0.298= d+0.000 | 0.205/0.290< d-0.010*
+--------------------------------------------------------------------------------------------------------------------------------
+        wm: macro Acc@1 0.2243 (STHGCN 0.2524, -0.0282) NDCG@5 0.3315 | above STHGCN 3/9, significantly above 1, significantly below 2
+    noLptr: macro Acc@1 0.2193 (STHGCN 0.2524, -0.0332) NDCG@5 0.3286 | above STHGCN 1/9, significantly above 0, significantly below 3
+  noPrefix: macro Acc@1 0.2242 (STHGCN 0.2524, -0.0282) NDCG@5 0.3315 | above STHGCN 3/9, significantly above 1, significantly below 2
+    noBoth: macro Acc@1 0.2193 (STHGCN 0.2524, -0.0331) NDCG@5 0.3286 | above STHGCN 1/9, significantly above 0, significantly below 3
+legend: '>' / '<' = z-test vs published STHGCN Acc@1 at 95%;  d = paired Acc@1 difference vs baseline 'wm', '*' = 95% bootstrap CI excludes 0
+=== DONE (Tue Oct 13 09:21:38 AM EDT 2026) ===

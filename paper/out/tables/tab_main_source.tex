@@ -1,0 +1,26 @@
+\begin{table*}[t]
+\caption{Next-POI prediction on the six source cities GEMMA was trained on (in-domain; fine-tuned GEMMA, 3 seeds).}
+\label{tab:main-source}
+\scriptsize\setlength{\tabcolsep}{1.7pt}
+\begin{tabular}{l c cc cc cc cc cc cc ccc}
+\toprule
+ & Target & \multicolumn{2}{c}{Istanbul} & \multicolumn{2}{c}{P. Jaya} & \multicolumn{2}{c}{Jakarta} & \multicolumn{2}{c}{New York} & \multicolumn{2}{c}{Kuwait C.} & \multicolumn{2}{c}{São Paulo} & \multicolumn{3}{c}{Average} \\
+\cmidrule(lr){3-14}\cmidrule(lr){15-17}
+Model & train & A@1 & N@5 & A@1 & N@5 & A@1 & N@5 & A@1 & N@5 & A@1 & N@5 & A@1 & N@5 & A@1 & N@5 & A@1$_{\text{pooled}}$ \\
+\midrule
+FPMC & $\checkmark$ & .026 & .050 & .026 & .057 & .029 & .058 & .032 & .061 & .021 & .054 & .030 & .055 & .027 & .056 & .027 \\
+RNN & $\checkmark$ & .077 & .130 & .064 & .107 & .049 & .083 & .061 & .092 & .087 & .146 & .097 & .147 & .072 & .118 & .071 \\
+LSTPM & $\checkmark$ & .142 & .217 & .099 & .163 & .099 & .157 & .099 & .155 & .180 & .275 & .158 & .243 & .130 & .202 & .127 \\
+DeepMove & $\checkmark$ & .150 & .228 & .112 & .175 & .103 & .160 & .097 & .149 & .179 & .274 & .160 & .240 & .134 & .204 & .132 \\
+Flashback & $\checkmark$ & .137 & .200 & .072 & .119 & .113 & .166 & .086 & .123 & .150 & .227 & .159 & .222 & .120 & .176 & .117 \\
+Graph-Flashback & $\checkmark$ & .137 & .202 & .072 & .119 & .072 & .121 & .059 & .093 & .115 & .181 & .096 & .156 & .092 & .145 & .096 \\
+LoTNext & $\checkmark$ & .105 & .168 & .055 & .097 & .044 & .078 & .061 & .099 & .132 & .209 & .105 & .166 & .084 & .136 & .082 \\
+GETNext & $\checkmark$ & .146 & .210 & .139 & .200 & .155 & .209 & .134 & .202 & .175 & .251 & .202 & .286 & .159 & .226 & .154 \\
+STHGCN & $\checkmark$ & \textbf{.241} & \textbf{.318} & \textbf{.174} & \textbf{.241} & \underline{.197} & \underline{.270} & \underline{.146} & \underline{.207} & \textbf{.225} & \textbf{.314} & \textbf{.250} & \underline{.344} & \textbf{.206} & \underline{.282} & \textbf{.207} \\
+GNPR-SID & $\checkmark$ & .115 & .127 & .090 & .098 & .102 & .107 & .074 & .080 & .162 & .178 & .165 & .176 & .118 & .128 & .114 \\
+UniMove & $\checkmark$ & .015 & .038 & .008 & .034 & .004 & .020 & .004 & .016 & .023 & .073 & .002 & .009 & .009 & .032 & .010 \\
+\midrule
+\rowcolor{gemmarow}GEMMA fine-tuned & $\checkmark$ & \underline{.198} & \underline{.300} & \underline{.156} & \underline{.239} & \textbf{.216} & \textbf{.302} & \textbf{.155} & \textbf{.233} & \underline{.204} & \underline{.307} & \underline{.247} & \textbf{.359} & \underline{.196} & \textbf{.290} & \underline{.193} \\
+\bottomrule
+\end{tabular}
+\end{table*}
