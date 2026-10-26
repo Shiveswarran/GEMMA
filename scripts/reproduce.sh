@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
-# Reproduce every result of the paper on one GPU.
-#   bash scripts/reproduce.sh                 all stages
-#   ONLY="eval report" bash scripts/reproduce.sh
-# Stages: prep pretrain source eval llm ablate report
-# Times on one 24 GB GPU: prep ~1 h, pretrain ~6 h, source ~1.5 h per seed,
-# eval ~40 min per seed, llm ~5 min per seed, ablations ~3 min per run.
+
 set -euo pipefail
 DATA=${DATA:-data}
 TAX=${TAX:-personalization-apis-movement-sdk-categories.csv}
