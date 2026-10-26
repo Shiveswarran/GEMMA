@@ -57,21 +57,6 @@ python -m pytest tests -q        # exact normalization + identifier invariance (
 Source cities: Istanbul, Petaling Jaya, Jakarta, New York, Kuwait City, São Paulo.
 Unseen target cities: Tokyo, Shanghai, Palembang, Melbourne, Sydney, Tangerang, Moscow, Bandung.
 
-## Quick start on synthetic data (CPU, about 3 minutes)
-
-```bash
-python scripts/make_synthetic.py --out data_synth --fsq_out data_synth/taxonomy.csv \
-    --cities src_a src_b tgt_c
-python scripts/build_semantic_ids.py --data_root data_synth --fsq_csv data_synth/taxonomy.csv \
-    --train_cities src_a src_b --all_cities src_a src_b tgt_c --codebook 16 --epochs 3
-python scripts/pretrain.py --data_root data_synth --fsq_csv data_synth/taxonomy.csv \
-    --pretrain_cities src_a src_b --poi_encoder hash --epochs 2 --batch_size 32 --d_model 64 \
-    --num_workers 0 --run_name synth --allow_cpu
-python scripts/train_source.py --run_dir runs/synth --seed 0 --epochs 1 --batch 32 --allow_cpu
-python scripts/evaluate.py --run_dir runs/synth --source runs/synth/source_s0.pt --cities tgt_c \
-    --settings zero_shot finetuned --protocols full llm --ft_epochs 1 --allow_cpu
-```
-
 ## Reproducing the paper
 
 `scripts/reproduce.sh` runs every stage. Each stage can also be run alone, e.g.
@@ -136,11 +121,6 @@ gemma/
 scripts/           command-line entry points (see the table above)
 tests/             properties of the mixture
 ```
-
-## Hardware
-
-All experiments run on one GPU with 24 GB of memory. Training on CPU is refused unless
-`--allow_cpu` is given.
 
 ## License
 
