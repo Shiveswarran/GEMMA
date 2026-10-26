@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+data/
+data_synth/
+runs/
+poi_emb_cache/
+sid_cache/
+*.log
+.pytest_cache/
